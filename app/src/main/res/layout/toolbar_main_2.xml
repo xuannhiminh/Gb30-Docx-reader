@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:id="@+id/header_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/_20sdp"
+        android:paddingBottom="@dimen/_4sdp"
+        android:background="#E53935">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingVertical="@dimen/_12sdp"
+            android:layoutDirection="locale"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_24sdp"
+                android:src="@drawable/icon_setting_back_black"
+                android:visibility="gone"
+                android:layout_marginEnd="15dp"
+                android:contentDescription="@string/search_icon" />
+
+            <ImageView
+                android:layout_width="@dimen/_32sdp"
+                android:layout_height="@dimen/_32sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:src="@drawable/icon_app" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_title"
+                android:textDirection="locale"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif"
+                android:ellipsize="middle"
+                android:text="@string/app_name"
+                android:textStyle="bold"
+                android:singleLine="true"
+                android:gravity="start|center_vertical"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end|center_vertical">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_iap"
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    app:srcCompat="@drawable/icon_iap" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_search"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:visibility="gone"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    app:srcCompat="@drawable/find"
+                    android:tint="@android:color/white" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_filter"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:visibility="gone"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    app:srcCompat="@drawable/filter_search"
+                    android:tint="@android:color/white" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_check"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:visibility="gone"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    app:srcCompat="@drawable/check_square"
+                    android:tint="@android:color/white" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_setting"
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    app:srcCompat="@drawable/setting"
+                    android:tint="@android:color/white" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Ô tìm kiếm bo tròn -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/_20sdp"
+            android:paddingVertical="@dimen/_12sdp"
+            android:background="@drawable/search_bg">
+
+            <EditText
+                android:id="@+id/edt_search"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:hint="@string/search"
+                android:textSize="12sp"
+                android:singleLine="true"
+                android:textColor="@android:color/white"
+                android:textColorHint="#f5f5f5"
+                android:inputType="text"
+                android:fontFamily="sans-serif" />
+
+            <ImageView
+                android:id="@+id/iv_show"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/find"
+                android:contentDescription="@string/clear_text"
+                android:tint="@android:color/white" />
+            <ImageView
+                android:id="@+id/iv_clear"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:visibility="gone"
+                android:src="@drawable/ic_mtrl_chip_close_circle"
+                android:contentDescription="@string/clear_text"
+                android:tint="@android:color/white" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Thanh tab -->
+    <LinearLayout
+        android:id="@+id/choose_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="#E53935"
+        android:orientation="horizontal"
+        android:paddingVertical="@dimen/_8sdp">
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_all"
+                android:textAllCaps="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/all"
+                android:fontFamily="sans-serif"
+                android:textFontWeight="500"
+                android:textSize="16sp"
+                android:background="@drawable/underline"
+                android:textColor="@color/dark_gray"
+                android:paddingVertical="8dp" />
+
+            <View
+                android:id="@+id/underline_all"
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:background="@color/red"
+                android:layout_gravity="center"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_word"
+                android:textAllCaps="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:fontFamily="sans-serif"
+                android:textFontWeight="500"
+                android:text="@string/word"
+                android:textColor="@color/dark_gray"
+                android:textSize="16sp"
+                android:paddingVertical="8dp" />
+
+            <View
+                android:id="@+id/underline_word"
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:background="@color/dark_gray"
+                android:layout_gravity="center"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_pdf"
+                android:textAllCaps="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:fontFamily="sans-serif"
+                android:textFontWeight="500"
+                android:text="@string/pdf"
+                android:textColor="@color/dark_gray"
+                android:textSize="16sp"
+                android:paddingVertical="8dp" />
+
+            <View
+                android:id="@+id/underline_pdf"
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:background="@color/dark_gray"
+                android:layout_gravity="center"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_excel"
+                android:textAllCaps="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/excel"
+                android:fontFamily="sans-serif"
+                android:textFontWeight="500"
+                android:textColor="@color/dark_gray"
+                android:textSize="16sp"
+                android:paddingVertical="8dp" />
+
+            <View
+                android:id="@+id/underline_excel"
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:background="@color/dark_gray"
+                android:layout_gravity="center"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_ppt"
+                android:textAllCaps="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/ppt"
+                android:fontFamily="sans-serif"
+                android:textFontWeight="500"
+                android:textColor="@color/dark_gray"
+                android:textSize="16sp"
+                android:paddingVertical="8dp" />
+
+            <View
+                android:id="@+id/underline_ppt"
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:background="@color/dark_gray"
+                android:layout_gravity="center"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

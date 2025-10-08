@@ -1,0 +1,103 @@
+[33m2eea030b[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain_develop[m[33m, [m[1;31mlocal/main_develop[m[33m)[m HEAD@{0}: checkout: moving from ver-106 to main_develop
+[33m1f0dfbf6[m HEAD@{1}: checkout: moving from main_develop to ver-106
+[33m2eea030b[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain_develop[m[33m, [m[1;31mlocal/main_develop[m[33m)[m HEAD@{2}: reset: moving to 2eea030b1a4d5ed5b50047ffcfc7ff2a9faa7df2
+[33md267bd64[m HEAD@{3}: commit: feature IAP
+[33m2eea030b[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain_develop[m[33m, [m[1;31mlocal/main_develop[m[33m)[m HEAD@{4}: commit: update lib C
+[33m1f0dfbf6[m HEAD@{5}: commit: update lib ads 1.6.3
+[33mf3a0793e[m HEAD@{6}: commit: update lib C++
+[33mc9e3bb38[m HEAD@{7}: checkout: moving from 8ac79cf378400fff6ed877ba860e580c6c303f3d to main_develop
+[33m8ac79cf3[m HEAD@{8}: checkout: moving from main_develop to 8ac79cf378400fff6ed877ba860e580c6c303f3d
+[33mc9e3bb38[m HEAD@{9}: commit: ver 105
+[33m31a23a0c[m HEAD@{10}: commit: disable ads resume after grant request all file permission
+[33m5c5632ae[m HEAD@{11}: reset: moving to 5c5632aea4282ff6624da3694f283438f3688c39
+[33m5c5632ae[m HEAD@{12}: reset: moving to 5c5632aea4282ff6624da3694f283438f3688c39
+[33m855fec21[m HEAD@{13}: merge local/main_develop: Merge made by the 'ort' strategy.
+[33mae66f3b6[m HEAD@{14}: commit: disable ads resume after grant request all file permission
+[33mcee31c28[m HEAD@{15}: reset: moving to cee31c284e2a816f23a72c5f9e72f193b8b35d21
+[33m60180f62[m HEAD@{16}: merge local/main_develop: Merge made by the 'ort' strategy.
+[33mcee31c28[m HEAD@{17}: commit: preload language at showing ad open
+[33mdae9a75e[m HEAD@{18}: reset: moving to dae9a75e2d8cb0f563f762ee62567bf3c9fdef32
+[33m5c5632ae[m HEAD@{19}: commit: preload language at showing ad open and disable ads resume after grant request all file permission
+[33mdae9a75e[m HEAD@{20}: reset: moving to HEAD
+[33mdae9a75e[m HEAD@{21}: commit: increase timeout loading ads to 30s
+[33m839ae9b4[m[33m ([m[1;33mtag: [m[1;33m104[m[33m)[m HEAD@{22}: checkout: moving from main_develop_new_windows to main_develop
+[33m1d4ff6dd[m[33m ([m[1;32mmain_develop_new_windows[m[33m)[m HEAD@{23}: rebase (finish): returning to refs/heads/main_develop_new_windows
+[33m1d4ff6dd[m[33m ([m[1;32mmain_develop_new_windows[m[33m)[m HEAD@{24}: rebase (pick): remove request notification permission
+[33mef54a4ad[m HEAD@{25}: rebase (pick): add device tests
+[33m2978bf13[m HEAD@{26}: rebase (pick): update ver 104
+[33ma139fa8e[m HEAD@{27}: rebase (pick): refactor
+[33ma32466a5[m HEAD@{28}: rebase (pick): add ads open_splash and banner_navbar
+[33m6cfe6714[m HEAD@{29}: rebase (reword): hide all ads popup and add banner ads
+[33mf497fed8[m HEAD@{30}: rebase: fast-forward
+[33m742ddc48[m HEAD@{31}: rebase (start): checkout 742ddc485c0c3787ba939d98f6506ea36d41638a
+[33m8c5acbb1[m HEAD@{32}: reset: moving to 8c5acbb1b29e0704f3159b29c859a2affddf3f84
+[33mc6100300[m HEAD@{33}: commit: fix ads banner main activity
+[33m8c5acbb1[m HEAD@{34}: rebase (finish): returning to refs/heads/main_develop_new_windows
+[33m8c5acbb1[m HEAD@{35}: rebase (fixup): remove request notification permission
+[33m76665d73[m HEAD@{36}: rebase (reword): remove request notification permission
+[33mf1dd0ad3[m HEAD@{37}: rebase: fast-forward
+[33mbc23fd01[m HEAD@{38}: rebase (start): checkout bc23fd0136e31d3f4a0aefe0892c7b01be7a1e59
+[33m1517b1de[m HEAD@{39}: rebase (finish): returning to refs/heads/main_develop_new_windows
+[33m1517b1de[m HEAD@{40}: rebase (pick): remove request notification permission
+[33mf1dd0ad3[m HEAD@{41}: rebase (pick): remove request notification permission
+[33mbc23fd01[m HEAD@{42}: rebase (fixup): add device tests
+[33med33061f[m HEAD@{43}: rebase (fixup):  This is a combination of 2 commits.
+[33me536b9f3[m HEAD@{44}: rebase (reword): add device tests
+[33m94cb9177[m HEAD@{45}: rebase: fast-forward
+[33m755b38d4[m HEAD@{46}: rebase (start): checkout 755b38d489f3af1c67750acf7e86787eb0a24d90
+[33mae792dc7[m HEAD@{47}: cherry-pick: remove request notification permission
+[33ma5af608f[m HEAD@{48}: cherry-pick: remove request notification permission
+[33m4bf79253[m HEAD@{49}: cherry-pick: ad id device test
+[33m00edaa18[m HEAD@{50}: cherry-pick: ad id device test and ads real
+[33m94cb9177[m HEAD@{51}: cherry-pick: ad id device test
+[33m755b38d4[m HEAD@{52}: cherry-pick: update ver 104
+[33mf4f4c38d[m HEAD@{53}: cherry-pick: refactor
+[33m8f48e836[m HEAD@{54}: cherry-pick: add ads open_splash and banner_navbar
+[33mf497fed8[m HEAD@{55}: rebase (finish): returning to refs/heads/main_develop_new_windows
+[33mf497fed8[m HEAD@{56}: rebase (fixup): hide all ads popup
+[33m6205afe4[m HEAD@{57}: rebase (reword): hide all ads popup
+[33me023a008[m HEAD@{58}: rebase: fast-forward
+[33m742ddc48[m HEAD@{59}: rebase (start): checkout 742ddc485c0c3787ba939d98f6506ea36d41638a
+[33m4248498c[m HEAD@{60}: commit: hide all ads popup
+[33me023a008[m HEAD@{61}: commit: hide all ads popup
+[33m742ddc48[m HEAD@{62}: checkout: moving from main_develop to main_develop_new_windows
+[33m839ae9b4[m[33m ([m[1;33mtag: [m[1;33m104[m[33m)[m HEAD@{63}: commit: remove request notification permission
+[33mbc06f092[m HEAD@{64}: commit: remove request notification permission
+[33mbf30906f[m HEAD@{65}: commit: ad id device test
+[33m991cb2de[m HEAD@{66}: commit: ad id device test and ads real
+[33m6ef032c4[m HEAD@{67}: commit: ad id device test
+[33mab3ca51f[m HEAD@{68}: commit: update ver 104
+[33mfad94bd9[m HEAD@{69}: commit: refactor
+[33m3d8c718e[m HEAD@{70}: commit: add ads open_splash and banner_navbar
+[33mea1c5fcc[m HEAD@{71}: commit: hide ads on all dialog
+[33m0a64ce03[m HEAD@{72}: reset: moving to 0a64ce03314f9227eac551c339e661d7e35f0919
+[33m3358e56c[m HEAD@{73}: cherry-pick: add log to check show ads or not
+[33m0a64ce03[m HEAD@{74}: checkout: moving from main_develop_huy to main_develop
+[33mca3076cf[m[33m ([m[1;31mlocal/main_develop_huy[m[33m, [m[1;32mmain_develop_huy[m[33m)[m HEAD@{75}: checkout: moving from main_develop to main_develop_huy
+[33m0a64ce03[m HEAD@{76}: reset: moving to HEAD
+[33m0a64ce03[m HEAD@{77}: commit: fix language with -
+[33m3d507700[m HEAD@{78}: reset: moving to 3d507700184e353daf37e0101d15cef5b1972e08
+[33m30467905[m HEAD@{79}: commit: fix language with -
+[33m3d507700[m HEAD@{80}: commit: only logEvent notification when have permission
+[33m21e2681e[m HEAD@{81}: rebase (finish): returning to refs/heads/main_develop
+[33m21e2681e[m HEAD@{82}: rebase (fixup): change to open ads in splash
+[33m98c7bdf2[m HEAD@{83}: rebase (reword): change to open ads in splash
+[33mb4c85105[m HEAD@{84}: rebase: fast-forward
+[33mbb696072[m HEAD@{85}: rebase (start): checkout bb6960723030adeca952d903fc8517129b8c450d
+[33m8ad51b11[m HEAD@{86}: commit: change to open ads in splash
+[33mb4c85105[m HEAD@{87}: commit: change to open ads in splash
+[33mbb696072[m HEAD@{88}: commit: fix ads banner main activity
+[33m9cc581a8[m HEAD@{89}: cherry-pick: add ads banner
+[33mef7ccde5[m HEAD@{90}: commit: change splash load ads inter, loads ads native language, request permission and load file in parallel
+[33m359239ca[m HEAD@{91}: commit: no load ads again and go to Request All File Permission instead of Intro
+[33m4a9c5f22[m HEAD@{92}: commit: remove ads
+[33m1b687db4[m HEAD@{93}: commit: not load ad native popup all
+[33mea24155d[m HEAD@{94}: reset: moving to HEAD
+[33mea24155d[m HEAD@{95}: reset: moving to ea24155d32dbd5330066d501f99647d2be9ab505
+[33mea24155d[m HEAD@{96}: checkout: moving from main_develop_new_windows to main_develop
+[33m742ddc48[m HEAD@{97}: commit: relese 20_2
+[33m8640ff17[m HEAD@{98}: commit: relese 20_2
+[33mc2a4d649[m HEAD@{99}: cherry-pick: fix crash: keep class related to muPDFCore and change load lib to companion block
+[33me694dfd4[m HEAD@{100}: commit: fix log
+[33m1b4f90c0[m HEAD@{101}: cherry-pick: add log event to track splash to language or intro
+[33mae510189[m HEAD@{102}: cherry-pick: only preload native language ads when n

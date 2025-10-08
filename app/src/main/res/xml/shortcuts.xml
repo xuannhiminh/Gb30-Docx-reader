@@ -1,0 +1,13 @@
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="compose"
+        android:enabled="true"
+        android:icon="@drawable/delete_page"
+        android:shortcutShortLabel="@string/uninstall"
+        android:shortcutLongLabel="@string/uninstall">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="documents.office.docx.reader.viewer.editor"
+            android:targetClass="documents.office.docx.reader.viewer.editor.screen.uninstall.UninstallActivity" />
+    </shortcut>
+</shortcuts>

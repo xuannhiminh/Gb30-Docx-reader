@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="facebook_app_id" translatable="false">765144066363490</string>
+    <string name="facebook_client_token" translatable="false">91a7a973a41983e749f64c2a5eedc5c5</string>
+    <string name="admob_app_id" translatable="false">ca-app-pub-5904408074441373~1043440463</string>
+    <string name="app_flyer_id" translatable="false">Qhno4yJY6KHmZp9uS9DRe4</string>
+
+    <string name="inter_splash" translatable="false">ca-app-pub-5904408074441373/4296289760</string>
+    <string name="open_splash" translatable="false">ca-app-pub-5904408074441373/4598993358</string>
+    <string name="native_language" translatable="false">ca-app-pub-5904408074441373/8043963088</string>
+    <string name="banner_navbar" translatable="false">ca-app-pub-5904408074441373/3489586508</string>
+    <string name="native_between_files_home" translatable="false">ca-app-pub-5904408074441373/4104718072</string>
+    <string name="native_filedetail" translatable="false">ca-app-pub-5904408074441373/9659748345</string>
+    <string name="inter_filedetail" translatable="false">ca-app-pub-5904408074441373/9959131242</string>
+    <string name="open_all" translatable="false">ca-app-pub-5904408074441373/1558445780</string>
+    <string name="native_between_files_selectfiles" translatable="false">ca-app-pub-5904408074441373/2064824198</string>
+    <string name="inter_createpdf" translatable="false">ca-app-pub-5904408074441373/6842013315</string>
+    <string name="native_bot_createpdf" translatable="false">ca-app-pub-5904408074441373/8973352632</string>
+    <string name="native_keep_user" translatable="false">ca-app-pub-5904408074441373/4595123929</string>
+    <string name="native_survey_user" translatable="false">ca-app-pub-5904408074441373/2600064710</string>
+    <string name="inter_reload" translatable="false">ca-app-pub-5904408074441373/5828314544</string>
+    <string name="native_reload_success" translatable="false">ca-app-pub-5904408074441373/6646572199</string>
+
+    <string name="native_intro" translatable="false">ca-app-pub-5904408074441373/1308997608</string>
+    <string name="native_navbar" translatable="false">ca-app-pub-5904408074441373/9724970837</string>
+    <string name="native_home_v112" translatable="false">ca-app-pub-5904408074441373/2797675145</string>
+    <string name="native_popup_all" translatable="false">ca-app-pub-5904408074441373/1478935298</string>
+    <string name="native_bot_selectfiles" translatable="false">ca-app-pub-5904408074441373/8686054047</string>
+
+    <string name="inter_splash_uninstall" translatable="false">ca-app-pub-5904408074441373/5179861795</string>
+    <string name="inter_extract_image" translatable="false">ca-app-pub-5904408074441373/7320059533</string>
+    <string name="inter_splash_v112" translatable="false">ca-app-pub-5904408074441373/3508175480</string>
+
+
+
+    <string name="native_intro_1" translatable="false">ca-app-pub-5904408074441373/1308997608</string>
+    <string name="native_intro_2" translatable="false">ca-app-pub-5904408074441373/4827546578</string>
+    <string name="native_intro_3" translatable="false">ca-app-pub-5904408074441373/3743589254</string>
+
+<!--    <string name="native_create_success" translatable="false">ca-app-pub-3940256099942544/2247696110</string>-->
+<!--    <string name="native_create_pdf" translatable="false">ca-app-pub-3940256099942544/2247696110</string>-->
+<!--    <string name="native_bottom_sheet_file" translatable="false">ca-app-pub-3940256099942544/2247696110</string>-->
+<!--    <string name="native_bottom_sheet_menu" translatable="false">ca-app-pub-3940256099942544/2247696110</string>-->
+<!--    <string name="native_rename" translatable="false">ca-app-pub-3940256099942544/2247696110</string>-->
+<!--    <string name="native_delete" translatable="false">ca-app-pub-3940256099942544/2247696110</string>-->
+<!--    <string name="native_sort" translatable="false">ca-app-pub-3940256099942544/2247696110</string>-->
+<!--    <string name="native_default_reader_request" translatable="false">ca-app-pub-3940256099942544/2247696110</string>-->
+<!--    <string name="native_default_reader_guide" translatable="false">ca-app-pub-3940256099942544/2247696110</string>-->
+<!--    <string name="native_add_to_home" translatable="false">ca-app-pub-3940256099942544/2247696110</string>-->
+<!--    <string name="native_search_file" translatable="false">ca-app-pub-3940256099942544/2247696110</string>-->
+<!--    <string name="native_select_multiplefile" translatable="false">ca-app-pub-3940256099942544/2247696110</string>-->
+<!--    <string name="native_options" translatable="false">ca-app-pub-3940256099942544/2247696110</string>-->
+<!--    <string name="native_pickimage" translatable="false">ca-app-pub-3940256099942544/2247696110</string>-->
+<!--    <string name="native_signature" translatable="false">ca-app-pub-3940256099942544/2247696110</string>-->
+<!--    <string name="native_thumbnail" translatable="false">ca-app-pub-3940256099942544/2247696110</string>-->
+<!--    <string name="native_bottom_sheet_add" translatable="false">ca-app-pub-3940256099942544/2247696110</string>-->
+<!--    <string name="native_bottom_sheet_anno" translatable="false">ca-app-pub-3940256099942544/2247696110</string>-->
+<!--    <string name="native_extract" translatable="false">ca-app-pub-3940256099942544/2247696110</string>-->
+<!--    <string name="native_bottom_sheet_tool" translatable="false">ca-app-pub-3940256099942544/2247696110</string>-->
+<!--    <string name="native_bottom_sheet_note" translatable="false">ca-app-pub-3940256099942544/2247696110</string>-->
+<!--    <string name="native_bottom_sheet_edit" translatable="false">ca-app-pub-3940256099942544/2247696110</string>-->
+<!--    <string name="native_bottom_sheet_detail" translatable="false">ca-app-pub-3940256099942544/2247696110</string>-->
+
+    <string name="ads_test_banner_true" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="ads_test_banner" translatable="false">ca-app-pub-3940256099942544/9214589741</string>
+    <string name="ads_test_inter" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="ads_test_native" translatable="false">ca-app-pub-3940256099942544/2247696110</string>
+    <string name="ads_test_resume" translatable="false">ca-app-pub-3940256099942544/9257395921</string>
+    <string name="ads_test_reward" translatable="false">ca-app-pub-3940256099942544/5224354917</string>
+</resources>

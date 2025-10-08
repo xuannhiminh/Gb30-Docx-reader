@@ -1,0 +1,2 @@
+alias: gb26
+password: TripSoft@1234
