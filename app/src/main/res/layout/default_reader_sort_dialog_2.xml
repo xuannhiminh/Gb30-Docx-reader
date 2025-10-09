@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:gravity="bottom">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@drawable/bottom_dialog_background"
+        android:elevation="8dp"
+        android:orientation="vertical"
+        android:paddingVertical="@dimen/_16sdp"
+        android:paddingHorizontal="@dimen/_20sdp">
+        <FrameLayout
+            android:id="@+id/layout_native"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:layout_height="wrap_content">
+
+            <FrameLayout
+                android:id="@+id/frNativeAds"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </FrameLayout>
+
+        <!-- Header -->
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sort_by"
+            android:textSize="18sp"
+            android:textColor="@color/text1"
+            android:layout_marginBottom="@dimen/_24sdp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_section_dashed"
+            android:layout_marginBottom="@dimen/_12sdp"
+            android:paddingVertical="@dimen/_12sdp"
+            android:paddingHorizontal="@dimen/_20sdp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/sort_criteria"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/text1"
+                android:layout_marginBottom="@dimen/_12sdp" />
+
+            <LinearLayout
+                android:id="@+id/layout_criteria"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/btn_criteria_date"
+                    style="@style/PillButton"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/date"
+                    android:drawableStart="@drawable/ic_calendar"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:background="@drawable/btn_selector" />
+
+                <Button
+                    android:id="@+id/btn_criteria_name"
+                    style="@style/PillButton"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/name"
+                    android:drawableStart="@drawable/ic_name"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:background="@drawable/btn_selector" />
+
+                <Button
+                    android:id="@+id/btn_criteria_size"
+                    style="@style/PillButton"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/size"
+                    android:drawableStart="@drawable/ic_file_size"
+                    android:background="@drawable/btn_selector" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_section_dashed"
+            android:paddingVertical="@dimen/_12sdp"
+            android:paddingHorizontal="@dimen/_20sdp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/sort_order"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/text1"
+                android:layout_marginBottom="@dimen/_12sdp" />
+
+            <LinearLayout
+                android:id="@+id/layout_order"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/btn_order_asc"
+                    style="@style/PillButton"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ascending"
+                    android:drawableStart="@drawable/ic_ascending"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:background="@drawable/btn_selector" />
+
+                <Button
+                    android:id="@+id/btn_order_desc"
+                    style="@style/PillButton"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/descending"
+                    android:drawableStart="@drawable/ic_descending"
+                    android:background="@drawable/btn_selector" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:gravity="end">
+
+            <Button
+                android:theme="@style/Theme.PDFReaderProNegative"
+                android:id="@+id/btn_cancel"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/no"
+                android:textSize="14sp"
+                android:textAllCaps="false"
+                android:layout_marginEnd="32dp"
+                android:textColor="@color/cancel"
+                android:fontFamily="sans-serif"
+                android:textFontWeight="500"
+                android:stateListAnimator="@null"
+                android:elevation="0dp"
+                android:letterSpacing="0"
+                android:background="@drawable/button_cancel"/>
+
+            <Button
+                android:id="@+id/btn_ok"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_background_primary"
+                android:elevation="0dp"
+                android:letterSpacing="0"
+                android:shadowColor="@android:color/transparent"
+                android:text="@string/apply"
+                android:fontFamily="sans-serif"
+                android:textFontWeight="500"
+                android:stateListAnimator="@null"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+</FrameLayout>

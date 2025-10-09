@@ -24,6 +24,12 @@
     <string name="congrats_subtext">Добро пожаловать в Premium,\n наслаждайтесь преимуществами</string>
     <string name="ok_great">Хорошо, отлично!</string>
     <string name="set_docx_reader_as_your_default_word_file_viewer">Установите <b>%s</b> как программу просмотра файлов Word по умолчанию</string>
+    <string name="sort_criteria">Критерий сортировки</string>
+    <string name="sort_order">Порядок сортировки</string>
+    <string name="ascending">По возрастанию</string>
+    <string name="descending">По убыванию</string>
+    <string name="apply">Применить</string>
+    <string name="total">Итого:</string>
 
     <string name="add_in_fav">Добавить в избранное</string>
 

@@ -121,6 +121,7 @@ import java.io.IOException
 import java.util.concurrent.TimeUnit
 import com.ezteam.baseproject.extensions.hasExtraKeyContaining
 import com.nlbn.ads.util.Helper
+import documents.office.docx.reader.viewer.editor.dialog.SortDialog2
 import documents.office.docx.reader.viewer.editor.screen.iap.IapActivityV2
 import documents.office.docx.reader.viewer.editor.screen.reloadfile.FeatureRequestActivity
 import documents.office.docx.reader.viewer.editor.screen.reloadfile.ReloadLoadingActivity
@@ -982,7 +983,7 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
     override fun initListener() {
         binding.navView. setOnItemSelectedListener(onNavigationItemSelectedListener)
         binding.ivFilter.setOnClickListener {
-            val dialog = SortDialog()
+            val dialog = SortDialog2()
             dialog.setOnSortSelectedListener(::handleSortAction)
             dialog.show(supportFragmentManager, "SortDialog")
         }

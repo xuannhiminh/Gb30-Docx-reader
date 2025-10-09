@@ -27,6 +27,12 @@
     <string name="congrats">تهانينا!</string>
     <string name="congrats_subtext">مرحبًا بك في البريميوم،\nاستمتع بالمزايا</string>
     <string name="ok_great">حسناً، رائع!</string>
+    <string name="sort_criteria">معيار الفرز</string>
+    <string name="sort_order">ترتيب الفرز</string>
+    <string name="ascending">تصاعدي</string>
+    <string name="descending">تنازلي</string>
+    <string name="apply">تطبيق</string>
+    <string name="total">الإجمالي:</string>
 
     <string name="intent_label_excel_pdf">تحويل إكسل إلى PDF</string>
     <string name="intent_label_excel_reader">قارئ إكسل</string>

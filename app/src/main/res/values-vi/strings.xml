@@ -25,6 +25,12 @@
     <string name="congrats_subtext">Chào mừng đến với Premium,\n hãy tận hưởng các lợi ích</string>
     <string name="ok_great">Ok, tuyệt vời!</string>
     <string name="add_in_fav">Thêm yêu thích</string>
+    <string name="sort_criteria">Tiêu chí sắp xếp</string>
+    <string name="sort_order">Thứ tự sắp xếp</string>
+    <string name="ascending">Tăng dần</string>
+    <string name="descending">Giảm dần</string>
+    <string name="apply">Áp dụng</string>
+    <string name="total">Tổng:</string>
 
     <string name="app_name">Word Documents</string>
 

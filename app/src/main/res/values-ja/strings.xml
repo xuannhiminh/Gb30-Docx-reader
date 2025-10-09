@@ -27,6 +27,12 @@
     <string name="congrats">おめでとう！</string>
     <string name="congrats_subtext">プレミアムへようこそ、\n特典をお楽しみください</string>
     <string name="ok_great">OK、素晴らしい！</string>
+    <string name="sort_criteria">並べ替え条件</string>
+    <string name="sort_order">並べ替え順序</string>
+    <string name="ascending">昇順</string>
+    <string name="descending">降順</string>
+    <string name="apply">適用</string>
+    <string name="total">合計:</string>
 
     <string name="sort_by_size_desc">ファイルサイズ：降順</string>
     <string name="replace_old_file">古いファイルを置き換えますか？</string>

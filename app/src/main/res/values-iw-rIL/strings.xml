@@ -24,6 +24,12 @@
     <string name="word">Word</string>
 
     <string name="excel">Excel</string>
+    <string name="sort_criteria">קריטריון מיון</string>
+    <string name="sort_order">סדר מיון</string>
+    <string name="ascending">עולה</string>
+    <string name="descending">יורד</string>
+    <string name="apply">החל</string>
+    <string name="total">סה״כ:</string>
 
     <string name="ppt">PPT</string>
     <string name="congrats">מזל טוב!</string>

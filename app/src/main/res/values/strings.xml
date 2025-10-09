@@ -68,6 +68,11 @@
     <string name="thank_for_rate">Thank you!!!</string>
 
     <string name="sort_by">Sort by</string>
+    <string name="sort_criteria">Sort Criteria</string>
+    <string name="sort_order">Sort Order</string>
+    <string name="ascending">Ascending</string>
+    <string name="descending">Descending</string>
+    <string name="apply">Apply</string>
 
     <string name="sort_by_date">Date created: Ascending</string>
 

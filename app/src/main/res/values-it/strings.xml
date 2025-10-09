@@ -25,6 +25,13 @@
     <string name="sort_by_size_desc">Dimensione file: decrescente</string>
     <string name="replace_old_file">Sostituire il file esistente?</string>
     <string name="ok">OK</string>
+    <string name="sort_criteria">Criterio di ordinamento</string>
+    <string name="sort_order">Ordine di ordinamento</string>
+    <string name="ascending">Crescente</string>
+    <string name="descending">Decrescente</string>
+    <string name="apply">Applica</string>
+    <string name="total">Totale:</string>
+
     <string name="convert_to_pdf">Converti in PDF</string>
     <string name="pdf_file_name">Nome del file PDF</string>
     <string name="password">Password</string>

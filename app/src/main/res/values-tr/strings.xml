@@ -24,6 +24,12 @@
     <string name="congrats">Tebrikler!</string>
     <string name="congrats_subtext">Premium\'a hoş geldiniz,\n avantajların tadını çıkarın</string>
     <string name="ok_great">Tamam, harika!</string>
+    <string name="sort_criteria">Sıralama Kriteri</string>
+    <string name="sort_order">Sıralama Düzeni</string>
+    <string name="ascending">Artan</string>
+    <string name="descending">Azalan</string>
+    <string name="apply">Uygula</string>
+    <string name="total">Toplam:</string>
 
     <string name="start_free_trial">Start Free Trial</string>
 

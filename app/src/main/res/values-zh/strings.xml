@@ -31,6 +31,12 @@
     <string name="congrats">恭喜！</string>
     <string name="congrats_subtext">欢迎加入高级版，\n享受特权</string>
     <string name="ok_great">好的，太棒了！</string>
+    <string name="sort_criteria">排序条件</string>
+    <string name="sort_order">排序顺序</string>
+    <string name="ascending">升序</string>
+    <string name="descending">降序</string>
+    <string name="apply">应用</string>
+    <string name="total">总计：</string>
 
     <string name="pdf_file_name">PDF 文件名</string>
     <string name="password">密码</string>

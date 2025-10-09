@@ -22,6 +22,12 @@
     <string name="congrats">تبریک!</string>
     <string name="congrats_subtext">به پرمیوم خوش آمدید،\nاز مزایا لذت ببرید</string>
     <string name="ok_great">باشه، عالیه!</string>
+    <string name="sort_criteria">معیار مرتب‌سازی</string>
+    <string name="sort_order">ترتیب مرتب‌سازی</string>
+    <string name="ascending">صعودی</string>
+    <string name="descending">نزولی</string>
+    <string name="apply">اعمال</string>
+    <string name="total">جمع کل:</string>
 
     <string name="sort_by_date_desc">تاریخ ایجاد: نزولی</string>
     <string name="sort_by_name_asc">نام: الف تا ی</string>

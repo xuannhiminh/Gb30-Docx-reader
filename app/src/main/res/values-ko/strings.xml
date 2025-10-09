@@ -30,6 +30,12 @@
     <string name="congrats">축하합니다!</string>
     <string name="congrats_subtext">프리미엄에 오신 것을 환영합니다,\n혜택을 즐기세요</string>
     <string name="ok_great">좋아, 멋져!</string>
+    <string name="sort_criteria">정렬 기준</string>
+    <string name="sort_order">정렬 순서</string>
+    <string name="ascending">오름차순</string>
+    <string name="descending">내림차순</string>
+    <string name="apply">적용</string>
+    <string name="total">합계:</string>
 
     <string name="convert_to_pdf">PDF로 변환</string>
     <string name="pdf_file_name">PDF 파일 이름</string>

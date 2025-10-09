@@ -23,6 +23,12 @@
     <string name="add_in_fav">Añadir a favoritos</string>
 
     <string name="app_name">Word Documents</string>
+    <string name="sort_criteria">Criterio de orden</string>
+    <string name="sort_order">Orden</string>
+    <string name="ascending">Ascendente</string>
+    <string name="descending">Descendente</string>
+    <string name="apply">Aplicar</string>
+    <string name="total">Total:</string>
 
     <string name="browse_more_files">Examinar más archivos</string>
     <string name="congrats">¡Felicidades!</string>

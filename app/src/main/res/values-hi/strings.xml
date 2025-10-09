@@ -25,6 +25,12 @@
     <string name="congrats_subtext">प्रीमियम में आपका स्वागत है,\n लाभों का आनंद लें</string>
     <string name="ok_great">ठीक है, बढ़िया!</string>
     <string name="add_in_fav">पसंदीदा में जोड़ें</string>
+    <string name="sort_criteria">क्रमबद्ध मानदंड</string>
+    <string name="sort_order">क्रमबद्ध क्रम</string>
+    <string name="ascending">आरोही</string>
+    <string name="descending">अवरोही</string>
+    <string name="apply">लागू करें</string>
+    <string name="total">कुल:</string>
 
     <string name="app_name">Word Documents</string>
 

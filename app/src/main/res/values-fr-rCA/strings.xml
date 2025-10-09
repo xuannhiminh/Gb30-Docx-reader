@@ -24,6 +24,12 @@
     <string name="congrats_subtext">Bienvenue à Premium,\n profitez des avantages</string>
     <string name="ok_great">Ok, génial !</string>
     <string name="app_name">Word Documents</string>
+    <string name="sort_criteria">Critère de tri</string>
+    <string name="sort_order">Ordre de tri</string>
+    <string name="ascending">Croissant</string>
+    <string name="descending">Décroissant</string>
+    <string name="apply">Appliquer</string>
+    <string name="total">Total :</string>
 
     <string name="add_in_fav">Ajouter dans les favoris</string>
 

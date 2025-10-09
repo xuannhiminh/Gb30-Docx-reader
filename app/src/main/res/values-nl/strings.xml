@@ -28,6 +28,12 @@
     <string name="congrats">Gefeliciteerd!</string>
     <string name="congrats_subtext">Welkom bij Premium,\n geniet van de voordelen</string>
     <string name="ok_great">Oké, geweldig!</string>
+    <string name="sort_criteria">Sorteercriterium</string>
+    <string name="sort_order">Sorteervolgorde</string>
+    <string name="ascending">Oplopend</string>
+    <string name="descending">Aflopend</string>
+    <string name="apply">Toepassen</string>
+    <string name="total">Totaal:</string>
 
     <string name="ok">OK</string>
     <string name="convert_to_pdf">Converteren naar PDF</string>

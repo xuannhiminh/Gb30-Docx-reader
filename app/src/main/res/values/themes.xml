@@ -33,7 +33,6 @@
 
     <style name="Theme.PDFReaderProNegative" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
 
-
         <item name="colorPrimary">@color/element</item>
         <item name="android:textColor">@color/text2</item>
         <item name="android:actionBarStyle">@style/MyActionBar</item>

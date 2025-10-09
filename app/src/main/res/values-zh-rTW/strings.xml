@@ -30,6 +30,12 @@
     <string name="congrats">恭喜！</string>
     <string name="congrats_subtext">歡迎使用高級版，\n享受優惠</string>
     <string name="ok_great">好的，太棒了！</string>
+    <string name="sort_criteria">排序條件</string>
+    <string name="sort_order">排序順序</string>
+    <string name="ascending">升冪</string>
+    <string name="descending">降冪</string>
+    <string name="apply">套用</string>
+    <string name="total">總計：</string>
 
     <string name="convert_to_pdf">轉換為 PDF</string>
     <string name="pdf_file_name">PDF 檔案名稱</string>

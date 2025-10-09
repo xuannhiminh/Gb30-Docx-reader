@@ -49,4 +49,19 @@
     <color name="document_background_color">#FFFFFF</color>
     <color name="issue_background_color">#FF1F44</color>
     <color name="document_background_light_color">#FFFFFF</color>
+
+    <color name="card_bg">#FFFFFF</color>
+    <color name="title_text">#0F1724</color>
+    <color name="label_text">#4B5563</color>
+
+    <color name="button_default_bg">#E2EFFC</color>
+    <color name="button_border">#BDDEFA</color> <!-- very light -->
+    <color name="button_pressed_bg">#E8F2FF</color>
+
+    <color name="selected_bg">#84C4F5</color>      <!-- light blue -->
+    <color name="selected_border">#93C5FD</color>  <!-- blue border -->
+
+    <color name="dashed_border">#93C5FD</color>
+    <color name="apply_btn_bg">#0B74D1</color>
+    <color name="apply_btn_text">#FFFFFF</color>
 </resources>

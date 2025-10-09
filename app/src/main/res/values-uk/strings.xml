@@ -30,6 +30,12 @@
     <string name="congrats">Вітаємо!</string>
     <string name="congrats_subtext">Ласкаво просимо до Premium,\n насолоджуйтесь перевагами</string>
     <string name="ok_great">Гаразд, чудово!</string>
+    <string name="sort_criteria">Критерій сортування</string>
+    <string name="sort_order">Порядок сортування</string>
+    <string name="ascending">За зростанням</string>
+    <string name="descending">За спаданням</string>
+    <string name="apply">Застосувати</string>
+    <string name="total">Разом:</string>
 
     <string name="convert_to_pdf">Конвертувати в PDF</string>
     <string name="pdf_file_name">Назва PDF-файлу</string>

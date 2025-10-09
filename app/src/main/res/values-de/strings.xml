@@ -20,6 +20,13 @@
     <string name="congrats">Glückwunsch!</string>
     <string name="congrats_subtext">Willkommen bei Premium,\n genieße die Vorteile</string>
     <string name="ok_great">Ok, super!</string>
+    <string name="sort_criteria">Sortierkriterium</string>
+    <string name="sort_order">Sortierreihenfolge</string>
+    <string name="ascending">Aufsteigend</string>
+    <string name="descending">Absteigend</string>
+    <string name="apply">Anwenden</string>
+    <string name="total">Gesamt:</string>
+
     <string name="sort_by_date">Erstellungsdatum: Aufsteigend</string>
     <string name="sort_by_date_desc">Erstellungsdatum: Absteigend</string>
     <string name="start_free_trial">Start Free Trial</string>
