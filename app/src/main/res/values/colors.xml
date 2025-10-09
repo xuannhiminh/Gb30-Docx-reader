@@ -39,6 +39,7 @@
     <color name="stroke">#FFF5F7</color>
     <color name="gray1">#A0A0A0</color>
     <color name="dark_gray">#7A9FBF</color>
+    <color name="line">#EEEEEE</color>
     <color name="text">#040516</color>
     <color name="title_iap">#0D0326</color>
     <color name="favourite">#EF4949</color>
@@ -64,4 +65,5 @@
     <color name="dashed_border">#93C5FD</color>
     <color name="apply_btn_bg">#0B74D1</color>
     <color name="apply_btn_text">#FFFFFF</color>
+    <color name="brand_blue">#397FF8</color>
 </resources>

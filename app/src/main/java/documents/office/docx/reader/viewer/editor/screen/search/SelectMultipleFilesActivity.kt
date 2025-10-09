@@ -1,11 +1,16 @@
 package documents.office.docx.reader.viewer.editor.screen.search
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.lifecycleScope
 import com.ezteam.baseproject.utils.IAPUtils
@@ -148,12 +153,11 @@ class SelectMultipleFilesActivity : PdfBaseActivity<ActivityCheckFileBinding>() 
         binding.rcvListFile.adapter = adapter
         updateNavMenuState(false)
         adapter.onSelectedCountChangeListener = { count ->
-            var message = String.format(resources.getString(R.string.files_selected), count)
-            binding.toolbar.tvSelectedCount.text = message
+            binding.tvTotalFiles.text = "$count "
 
             val enabled = count > 0
             updateNavMenuState(enabled)
-            binding.toolbar.ivCheck.isSelected = count == adapter.itemCount
+            binding.toolbar.checkboxAll.isSelected = count == adapter.itemCount
         }
         if (Locale.getDefault().language == "ar") {
             binding.toolbar.ivBack.rotationY = 180f
@@ -191,7 +195,7 @@ class SelectMultipleFilesActivity : PdfBaseActivity<ActivityCheckFileBinding>() 
             finish()
         }
 
-        binding.toolbar.ivCheck.setOnClickListener {
+        binding.toolbar.checkboxAll.setOnClickListener {
             it.isSelected = !it.isSelected
             if (it.isSelected) {
                 adapter.selectAll()
@@ -200,42 +204,32 @@ class SelectMultipleFilesActivity : PdfBaseActivity<ActivityCheckFileBinding>() 
             }
         }
 
-        binding.navView.setOnItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.share -> {
-                    val selectedFiles = adapter.getSelectedFiles()
-                    if (selectedFiles.isNotEmpty()) {
-                        shareFiles(selectedFiles)
-                    } else {
-                        Toast.makeText(this, getString(R.string.please_choose_file), Toast.LENGTH_SHORT).show()
-                    }
-                    true
-                }
-                R.id.delete -> {
-                    val selectedFiles = adapter.getSelectedFiles()
-                    if (selectedFiles.isNotEmpty()) {
-
-                        showDialogConfirm(
-                            resources.getString(R.string.delete),
-                            getString(R.string.delete_all)
-                        ) {
-                            viewModel.deleteFiles(selectedFiles) {
-                                toast(resources.getString(R.string.delete_successfully))
-                            }
-                            adapter.deselectAll()
-                        }
-                    } else {
-                        Toast.makeText(this, getString(R.string.please_choose_file), Toast.LENGTH_SHORT).show()
-                    }
-                    true
-                }
-                else -> false
+        binding.btnShare.setOnClickListener {
+            val selectedFiles = adapter.getSelectedFiles()
+            if (selectedFiles.isNotEmpty()) {
+                shareFiles(selectedFiles)
+            } else {
+                Toast.makeText(this, getString(R.string.please_choose_file), Toast.LENGTH_SHORT).show()
             }
         }
 
-    }
-    private fun toggleSelectAll() {
-        adapter.selectAll()
+        binding.btnDelete.setOnClickListener {
+            val selectedFiles = adapter.getSelectedFiles()
+            if (selectedFiles.isNotEmpty()) {
+                showDialogConfirm(
+                    resources.getString(R.string.delete),
+                    getString(R.string.delete_all)
+                ) {
+                    viewModel.deleteFiles(selectedFiles) {
+                        toast(resources.getString(R.string.delete_successfully))
+                    }
+                    adapter.deselectAll()
+                }
+            } else {
+                Toast.makeText(this, getString(R.string.please_choose_file), Toast.LENGTH_SHORT).show()
+            }
+        }
+
     }
     override fun onResume() {
         super.onResume()
@@ -244,26 +238,34 @@ class SelectMultipleFilesActivity : PdfBaseActivity<ActivityCheckFileBinding>() 
         }
     }
     private fun updateNavMenuState(enabled: Boolean) {
-        val menu = binding.navView.menu
-        val colorEnabled = resources.getColor(R.color.text, theme)
+        binding.btnShare.isEnabled = enabled
+        binding.btnDelete.isEnabled = enabled
+
+        val colorEnabled = resources.getColor(R.color.text1, theme)
         val colorDisabled = resources.getColor(R.color.cancel, theme)
 
-        val shareItem = menu.findItem(R.id.share)
-        val deleteItem = menu.findItem(R.id.delete)
 
-        shareItem.isEnabled = enabled
-        deleteItem.isEnabled = enabled
+        val colorShareEnabled = Color.parseColor("#397FF8")
+        val colorShareDisabled = Color.parseColor("#BEDAFF")
 
-        val shareIcon = shareItem.icon
-        val deleteIcon = deleteItem.icon
-        shareIcon?.setTint(if (enabled) colorEnabled else colorDisabled)
-        deleteIcon?.setTint(if (enabled) colorEnabled else colorDisabled)
+        fun setTextAndIconColor(textView: TextView, imageView: ImageView, enabledColor: Int, disabledColor: Int) {
+            val color = if (enabled) enabledColor else disabledColor
+            textView.setTextColor(color)
+            imageView.setColorFilter(color)
+        }
+
+        setTextAndIconColor(binding.tvText, binding.ivIcon, colorEnabled, colorDisabled)
+        fun setButtonBackground(button: View, enabledColor: Int, disabledColor: Int) {
+            (button.background as? GradientDrawable)?.setColor(
+                if (enabled) enabledColor else disabledColor
+            )
+        }
+
+        setButtonBackground(binding.btnShare, colorShareEnabled, colorShareDisabled)
     }
 
 
     private fun onItemClick(fileModel: FileModel) {
-//        PdfViewerActivity.start(this, fileModel)
-//        PdfDetailActivity.start(this, fileModel.path, fileModel.isFavorite, fileModel.isReadDone)
         openFile(fileModel)
     }
     private fun onReactFavorite(fileModel: FileModel) {

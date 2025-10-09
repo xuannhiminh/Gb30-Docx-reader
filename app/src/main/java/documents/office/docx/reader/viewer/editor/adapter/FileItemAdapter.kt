@@ -62,9 +62,6 @@ class FileItemAdapter(
                     return
                 }
 
-
-
-
             binding.layoutNative.visibility = View.GONE
             binding.content.visibility = View.VISIBLE
 
@@ -124,29 +121,29 @@ class FileItemAdapter(
     }
     private val chosenPositions = mutableSetOf<Int>()
 
-override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-    val file = list[position]
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val file = list[position]
 
-    holder.bindData(file)
-    holder.binding.selectCheckbox.visibility = if (isCheckMode) View.VISIBLE else View.GONE
-//    holder.binding.ivFavorite.visibility = View.GONE
-//    holder.binding.icFunc.visibility = View.GONE
+        holder.bindData(file)
+        holder.binding.selectCheckbox.visibility = if (isCheckMode) View.VISIBLE else View.GONE
+    //    holder.binding.ivFavorite.visibility = View.GONE
+    //    holder.binding.icFunc.visibility = View.GONE
 
-    // Cập nhật trạng thái checkbox dựa trên danh sách chọn
-    holder.binding.selectCheckbox.isSelected = chosenPositions.contains(position)
+        // Cập nhật trạng thái checkbox dựa trên danh sách chọn
+        holder.binding.selectCheckbox.isSelected = chosenPositions.contains(position)
 
-    holder.binding.selectCheckbox.setOnClickListener {
-        it.isSelected = !it.isSelected
-        if (it.isSelected) {
-            chosenPositions.add(position)
-        } else {
-            chosenPositions.remove(position)
+        holder.binding.selectCheckbox.setOnClickListener {
+            it.isSelected = !it.isSelected
+            if (it.isSelected) {
+                chosenPositions.add(position)
+            } else {
+                chosenPositions.remove(position)
+            }
+            onSelectedCountChangeListener?.invoke(chosenPositions.size)
         }
-        onSelectedCountChangeListener?.invoke(chosenPositions.size)
+
+
     }
-
-
-}
     fun getSelectedFiles(): List<FileModel> {
         return chosenPositions.map { list[it] }
     }

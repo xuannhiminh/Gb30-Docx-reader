@@ -1008,6 +1008,7 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
             binding.navView.visibility=View.GONE
             TransitionManager.beginDelayedTransition(binding.root, AutoTransition())
             binding.recentlyAddedSection.visibility = View.GONE
+            binding.layoutTotalFiles.visibility = View.GONE
             binding.toolbar.chooseType.visibility = View.GONE
             binding.toolbar.ivBack.visibility = View.VISIBLE
             binding.toolbar.tvTitle.text = resources.getString(R.string.recent_add)
@@ -1018,6 +1019,7 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
             binding.toolbar.ivBack.visibility = View.GONE
             binding.toolbar.chooseType.visibility = View.VISIBLE
             binding.recentlyAddedSection.visibility = View.VISIBLE
+            binding.layoutTotalFiles.visibility = View.VISIBLE
             binding.toolbar.tvTitle.text = handleAppNameSpannable(showIcon = IAPUtils.isPremium())
             setOutRecently()
             handleSortAction(4)

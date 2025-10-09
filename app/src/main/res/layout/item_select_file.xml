@@ -87,6 +87,7 @@
             android:layout_height="@dimen/_20sdp"
             android:src="@drawable/icon_favourite"
             android:layout_marginEnd="@dimen/_12sdp"
+            android:visibility="invisible"
             app:layout_constraintEnd_toStartOf="@id/ic_func"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
@@ -99,6 +100,7 @@
             android:src="@drawable/ic_more"
             android:background="?attr/selectableItemBackgroundBorderless"
             app:tint="@color/textSecondary"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
