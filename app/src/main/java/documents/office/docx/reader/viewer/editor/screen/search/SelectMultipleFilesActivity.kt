@@ -18,7 +18,6 @@ import com.ezteam.baseproject.utils.PDFConstants.Companion.ADS_ITEM_INDEX
 import com.ezteam.baseproject.utils.SystemUtils
 import com.ezteam.baseproject.utils.TemporaryStorage
 import documents.office.docx.reader.viewer.editor.R
-import documents.office.docx.reader.viewer.editor.adapter.FileItemAdapter
 import documents.office.docx.reader.viewer.editor.common.FileTab
 import documents.office.docx.reader.viewer.editor.common.FunctionState
 import documents.office.docx.reader.viewer.editor.databinding.ActivityCheckFileBinding
@@ -30,6 +29,7 @@ import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdView
 import com.nlbn.ads.callback.NativeCallback
 import com.nlbn.ads.util.Admob
+import documents.office.docx.reader.viewer.editor.adapter.FileItemSelectAdapter
 import documents.office.docx.reader.viewer.editor.screen.base.CurrentStatusAdsFiles
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
@@ -37,7 +37,7 @@ import java.util.Locale
 
 class SelectMultipleFilesActivity : PdfBaseActivity<ActivityCheckFileBinding>() {
     private val viewModel by inject<MainViewModel>()
-    private lateinit var adapter: FileItemAdapter
+    private lateinit var adapter: FileItemSelectAdapter
     private var fileTab: FileTab = FileTab.ALL_FILE
     companion object {
         fun start(activity: FragmentActivity, fileTab: FileTab) {
@@ -148,7 +148,7 @@ class SelectMultipleFilesActivity : PdfBaseActivity<ActivityCheckFileBinding>() 
         }
     }
     override fun initView() {
-        adapter = FileItemAdapter(this, mutableListOf(), ::onItemClick, ::onSelectedFunc, ::onReactFavorite)
+        adapter = FileItemSelectAdapter(this, mutableListOf(), ::onItemClick, ::onSelectedFunc, ::onReactFavorite)
         adapter.toggleCheckMode(true)
         binding.rcvListFile.adapter = adapter
         updateNavMenuState(false)
