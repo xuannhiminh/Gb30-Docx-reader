@@ -23,16 +23,17 @@
     <color name="input">#EAF4FC</color>
     <color name="star">#86A1B7</color>
     <color name="color_f6f7f8">#F6F7F8</color>
-    <color name="red">#F05642</color>
-    <color name="blue">#007AFF</color>
+    <color name="red">#F32F31</color>
+    <color name="blue">#198ADE</color>
+    <color name="all">#E4252A14</color>
     <color name="green2">#34C759</color>
-    <color name="green">#23C965</color>
+    <color name="green">#33C481</color>
     <color name="excel">#00733B</color>
     <color name="powerpoint">#DF3303</color>
     <color name="cancel">#7A9FBF</color>
     <color name="positive">#FF1F44</color>
     <color name="ads">#FF7D37</color>
-    <color name="orange">#FF9500</color>
+    <color name="orange">#ED6C47</color>
     <color name="yellow">#FFD700</color>
     <color name="gray">#A0A0A0</color>
     <color name="stroke">#FFF5F7</color>
@@ -40,6 +41,7 @@
     <color name="dark_gray">#7A9FBF</color>
     <color name="text">#040516</color>
     <color name="title_iap">#0D0326</color>
+    <color name="favourite">#EF4949</color>
 
     <color name="textColor">#252525</color>
     <color name="textSelectedColor">#0849E8</color>

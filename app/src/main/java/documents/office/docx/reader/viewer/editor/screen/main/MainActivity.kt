@@ -69,13 +69,19 @@ import documents.office.docx.reader.viewer.editor.screen.search.SearchFileActivi
 import documents.office.docx.reader.viewer.editor.screen.search.SettingActivity
 import android.os.Handler
 import android.os.Looper
+import android.text.SpannableStringBuilder
+import android.text.Spanned
+import android.text.style.ForegroundColorSpan
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.widget.doOnTextChanged
 import com.ezteam.baseproject.iapLib.v3.BillingProcessor
 import com.ezteam.baseproject.iapLib.v3.PurchaseInfo
 import com.ezteam.baseproject.utils.IAPUtils
@@ -114,16 +120,17 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 import com.ezteam.baseproject.extensions.hasExtraKeyContaining
+import com.nlbn.ads.util.Helper
 import documents.office.docx.reader.viewer.editor.screen.iap.IapActivityV2
 import documents.office.docx.reader.viewer.editor.screen.reloadfile.FeatureRequestActivity
 import documents.office.docx.reader.viewer.editor.screen.reloadfile.ReloadLoadingActivity
 
 
 private const val ALL_FILES_FRAGMENT_INDEX = 0
-private const val PDF_FILES_FRAGMENT_INDEX = 1
-private const val WORD_FILES_FRAGMENT_INDEX = 2
-private const val PPT_FILES_FRAGMENT_INDEX = 3
-private const val EXCEL_FILES_FRAGMENT_INDEX = 4
+private const val PDF_FILES_FRAGMENT_INDEX = 2
+private const val WORD_FILES_FRAGMENT_INDEX = 1
+private const val PPT_FILES_FRAGMENT_INDEX = 4
+private const val EXCEL_FILES_FRAGMENT_INDEX = 3
 
 class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
     private val TAG = "MainActivity"
@@ -266,49 +273,6 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
         } else binding.bannerContainer.visibility = View.GONE
 
     }
-//    private fun loadNativeNomedia() {
-//    if (IAPUtils.isPremium()) {
-//        binding.layoutNative.visibility = View.GONE
-//        return
-//    }
-
-//        if (SystemUtils.isInternetAvailable(this)) {
-//            binding.layoutNative.visibility = View.VISIBLE
-//            val loadingView = LayoutInflater.from(this)
-//                .inflate(R.layout.ads_native_loading_short, null)
-//            binding.layoutNative.removeAllViews()
-//            binding.layoutNative.addView(loadingView)
-//
-//            val callback = object : NativeCallback() {
-//                override fun onNativeAdLoaded(nativeAd: NativeAd?) {
-//                    super.onNativeAdLoaded(nativeAd)
-//
-//                    val layoutRes = R.layout.ads_native_bot_no_media_short
-//                    val adView = LayoutInflater.from(this@MainActivity)
-//                        .inflate(layoutRes, null) as NativeAdView
-//
-//                    binding.layoutNative.removeAllViews()
-//                    binding.layoutNative.addView(adView)
-//
-//                    // Gán dữ liệu quảng cáo vào view
-//                    Admob.getInstance().pushAdsToViewCustom(nativeAd, adView)
-//                }
-//
-//                override fun onAdFailedToLoad() {
-//                    super.onAdFailedToLoad()
-//                    binding.layoutNative.visibility = View.GONE
-//                }
-//            }
-//
-//            Admob.getInstance().loadNativeAd(
-//                applicationContext,
-//                getString(R.string.native_navbar),
-//                callback
-//            )
-//        } else {
-//            binding.layoutNative.visibility = View.GONE
-//        }
-//    }
 
     private var shouldLoadAdsMiddleFiles = true
     // if user open a file from outside app => Main Activity => File Detail (shouldn't load ads middle files in this case)
@@ -458,19 +422,31 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
         binding.toolbar.tvPpt.text =  getString(R.string.ppt)
         binding.toolbar.tvExcel.text =  getString(R.string.excel)
         binding.toolbar.tvPdf.text =  getString(R.string.pdf)
-        adapter = BasePagerAdapter(supportFragmentManager, ALL_FILES_FRAGMENT_INDEX)
-        adapter.addFragment(ListAllFileFragment(viewModel.allFilesLiveData), ListAllFileFragment::class.java.name)
-        adapter.addFragment(ListFilePdfFragment(viewModel.pdfFilesLiveData), ListFilePdfFragment::class.java.name)
-        adapter.addFragment(ListFileWordFragment(viewModel.wordFilesLiveData), ListFileWordFragment::class.java.name)
-        adapter.addFragment(ListFilePPTFragment(viewModel.pptFilesLiveData), ListFilePPTFragment::class.java.name)
-        adapter.addFragment(ListFileExcelFragment(viewModel.excelFilesLiveData), ListFileExcelFragment::class.java.name)
+        adapter = BasePagerAdapter(supportFragmentManager,
+            ALL_FILES_FRAGMENT_INDEX
+        )
+        adapter.addFragment(
+            ListAllFileFragment(viewModel.getFilteredFilesLiveData(FileTab.ALL_FILE)),
+            ListAllFileFragment::class.java.name
+        )
+        adapter.addFragment(
+            ListFileWordFragment(viewModel.getFilteredFilesLiveData(FileTab.WORD)),
+            ListFileWordFragment::class.java.name
+        )
+        adapter.addFragment(
+            ListFilePdfFragment(viewModel.getFilteredFilesLiveData(FileTab.PDF)),
+            ListFilePdfFragment::class.java.name
+        )
+        adapter.addFragment(
+            ListFileExcelFragment(viewModel.getFilteredFilesLiveData(FileTab.EXCEL)),
+            ListFileExcelFragment::class.java.name
+        )
+        adapter.addFragment(
+            ListFilePPTFragment(viewModel.getFilteredFilesLiveData(FileTab.PPT)),
+            ListFilePPTFragment::class.java.name
+        )
         binding.viewPager.adapter = adapter
         binding.viewPager.offscreenPageLimit = 5
-//        adsCallbackListeners.add(adapter.getItem(ALL_FILES_FRAGMENT_INDEX) as IAdsControl)
-//        adsCallbackListeners.add(adapter.getItem(PDF_FILES_FRAGMENT_INDEX) as IAdsControl)
-//        adsCallbackListeners.add(adapter.getItem(WORD_FILES_FRAGMENT_INDEX) as IAdsControl)
-//        adsCallbackListeners.add(adapter.getItem(EXCEL_FILES_FRAGMENT_INDEX) as IAdsControl)
-//        adsCallbackListeners.add(adapter.getItem(PPT_FILES_FRAGMENT_INDEX) as IAdsControl)
 
         // Kotlin
 
@@ -905,27 +881,6 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
         )
     }
 
-//    private fun loadAds() {
-//        binding.toolbar.ivRemoveAds.isVisible = !IAPUtils.getInstance().isPremium
-//        AdmobNativeAdView.getNativeAd(
-//            this,
-//            R.layout.native_admod_home,
-//            object : NativeAdListener() {
-//                override fun onError() {
-//
-//                }
-//
-//                override fun onLoaded(nativeAd: RelativeLayout?) {}
-//
-//                override fun onClickAd() {
-//                }
-//
-//                override fun onPurchased(nativeAd: RelativeLayout?) {
-//                    super.onPurchased(nativeAd)
-//                    binding.toolbar.ivRemoveAds.isVisible = false
-//                }
-//            })
-//    }
 
     override fun onPause() {
         super.onPause()
@@ -994,7 +949,13 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
         )
     }
 
+    private fun clearSearchField() {
+        binding.toolbar.edtSearch.setText("")
+        viewModel.searchCharObservable.postValue("")
 
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(binding.toolbar.edtSearch.windowToken, 0)
+    }
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         Log.d(TAG, "onNewIntent")
@@ -1010,39 +971,39 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
             handleSortAction(sortState)
         }
 
-//        binding.toolbar.ivBack.visibility = View.GONE
-//        binding.toolbar.ivFilter.visibility = View.VISIBLE
-//        binding.toolbar.ivCheck.visibility = View.VISIBLE
-//        binding.toolbar.chooseType.visibility = View.VISIBLE
-//        binding.recentlyAddedSection.visibility = View.VISIBLE
-//        binding.toolbar.tvTitle.text = handleAppNameSpannable()
-//        handleUIBaseOnBottomTab(R.id.navigation_home, false)
-//        handleUIBaseOnFileTab(binding.toolbar.tvAll)
-//        viewModel.updateFileTab(FileTab.ALL_FILE)
-//        handleSortAction(4)
+    }
+
+    private fun observeTotalFiles(fileType: String) {
+        viewModel.loadTotalFiles(fileType).observe(this) { totalNumber ->
+            binding.tvTotalFiles.text = "$totalNumber "
+        }
     }
 
     override fun initListener() {
         binding.navView. setOnItemSelectedListener(onNavigationItemSelectedListener)
-        binding.toolbar.ivFilter.setOnClickListener {
+        binding.ivFilter.setOnClickListener {
             val dialog = SortDialog()
             dialog.setOnSortSelectedListener(::handleSortAction)
             dialog.show(supportFragmentManager, "SortDialog")
         }
 
         viewModel.loadAddedTodayFiles.observe(this) { addedNumber ->
-            if (addedNumber == 0) {
-                binding.recentlyAddedNumber.visibility = View.GONE
-            } else {
-                if (viewModel.currentBottomTab.value == BottomTab.HOME && viewModel.sortStateObservable.value != SortState.DATE_TODAY)  binding.recentlyAddedNumber.visibility = View.VISIBLE
-            }
-            binding.recentlyAddedNumber.text = "+ $addedNumber"
+            binding.recentlyAddedTitle.text = getString(R.string.recent_add, addedNumber.toString())
+            val text = getString(R.string.recent_add, addedNumber.toString())
+            val spannable = SpannableStringBuilder(text)
+            val start = text.indexOf("($addedNumber)")
+            val end = start + "($addedNumber)".length
+
+            spannable.setSpan(
+                ForegroundColorSpan(getColor(R.color.primaryColor)),
+                start, end,
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+
+            binding.recentlyAddedTitle.text = spannable
         }
 
         binding.recentlyAddedSection.setOnClickListener {
-            binding.toolbar.ivSearch.visibility = View.VISIBLE
-            binding.toolbar.ivFilter.visibility = View.GONE
-            binding.toolbar.ivCheck.visibility = View.GONE
             binding.navView.visibility=View.GONE
             TransitionManager.beginDelayedTransition(binding.root, AutoTransition())
             binding.recentlyAddedSection.visibility = View.GONE
@@ -1054,8 +1015,6 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
         binding.toolbar.ivBack.setOnClickListener {
             TransitionManager.beginDelayedTransition(binding.root, AutoTransition())
             binding.toolbar.ivBack.visibility = View.GONE
-            binding.toolbar.ivFilter.visibility = View.VISIBLE
-            binding.toolbar.ivCheck.visibility = View.VISIBLE
             binding.toolbar.chooseType.visibility = View.VISIBLE
             binding.recentlyAddedSection.visibility = View.VISIBLE
             binding.toolbar.tvTitle.text = handleAppNameSpannable(showIcon = IAPUtils.isPremium())
@@ -1090,36 +1049,27 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
             when (tab) {
                 BottomTab.HOME -> {
                     binding.recentlyAddedSection.visibility = View.VISIBLE
-                    if(viewModel.loadAddedTodayFiles.value != 0) binding.recentlyAddedNumber.visibility = View.VISIBLE else View.GONE
-//                    binding.toolbar.ivSetting.setOnClickListener {
-//                        showMenuFunction()
-//                    }
+//                    if(viewModel.loadAddedTodayFiles.value != 0) binding.recentlyAddedNumber.visibility = View.VISIBLE else View.GONE
+
                     binding.toolbar.ivSetting.setOnClickListener {
                         SettingActivity.start(this)
                     }
                 }
                 BottomTab.RECENT -> {
                     binding.recentlyAddedSection.visibility = View.GONE
-//                    binding.toolbar.ivSetting.setOnClickListener {
-//                        showMenuFunction()
-//                    }
+
                     binding.toolbar.ivSetting.setOnClickListener {
                         SettingActivity.start(this)
                     }
                 }
                 BottomTab.FAVORITE -> {
                     binding.recentlyAddedSection.visibility = View.GONE
-//                    binding.toolbar.ivSetting.setOnClickListener {
-//                        showMenuFunction()
-//                    }
+
                     binding.toolbar.ivSetting.setOnClickListener {
                         SettingActivity.start(this)
                     }
                 }
                 else -> {
-//                    binding.toolbar.ivSetting.setOnClickListener {
-//                        showMenuFunction()
-//                    }
                     binding.toolbar.ivSetting.setOnClickListener {
                         SettingActivity.start(this)
                     }
@@ -1130,8 +1080,18 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
             IapActivityV2.start(this)
         }
 
-        binding.toolbar.ivSearch.setOnClickListener {
-            SearchFileActivity.start(this)
+
+        binding.toolbar.edtSearch.doOnTextChanged { text, _, _, _ ->
+            val hasText = !text.isNullOrEmpty()
+
+            binding.toolbar.ivClear.visibility = if (hasText) View.VISIBLE else View.GONE
+            binding.toolbar.ivShow.visibility = if (hasText) View.GONE else View.VISIBLE
+
+            viewModel.searchCharObservable.postValue(text?.toString() ?: "")
+        }
+
+        binding.toolbar.ivClear.setOnClickListener {
+            clearSearchField()
         }
 
         binding.buttonCreate.setOnClickListener {
@@ -1170,9 +1130,7 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
             handleUIBaseOnFileTab(binding.toolbar.tvPpt)
         }
 
-        binding.toolbar.ivCheck.setOnClickListener {
-
-
+        binding.ivCheck.setOnClickListener {
 
             val currentIndex = binding.viewPager.currentItem
 
@@ -1188,9 +1146,6 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
             SelectMultipleFilesActivity.start(this, fileTab = fileTab)
         }
 
-//        binding.toolbar.ivRemoveAds.setOnClickListener {
-//            launchActivity<PremiumActivityJava> { }
-//        }
         binding.notificationWarningSection.setOnClickListener {
             requestNotificationPermission()
         }
@@ -1200,14 +1155,6 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
         binding.swipeRefresh.setOnRefreshListener {
             binding.swipeRefresh.isRefreshing = false
             logEvent("refresh_files")
-//            lifecycleScope.launch(Dispatchers.IO) {
-//                if (isAcceptManagerStorage()) {
-//                    viewModel.migrateFileData()
-//                } else {
-//                    viewModel.addSameFilesInternal()
-//                    Log.w("SplashActivity", "Skipping migration, no storage permission")
-//                }
-//            }
             TemporaryStorage.isShowedReloadGuideInThisSession = true // if user refresh files by swipe, not show reload guide anymore
             val intent = Intent(this, ReloadLoadingActivity::class.java)
             startActivity(intent)
@@ -1324,6 +1271,14 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
         Log.e("MainActivity", "Notification permission denied")
     }
     private fun handleUIBaseOnFileTab(selectedTextView: TextView) {
+        val selectedtab = when (selectedTextView) {
+            binding.toolbar.tvPpt -> "PPT"
+            binding.toolbar.tvExcel ->"EXCEL"
+            binding.toolbar.tvWord -> "WORD"
+            binding.toolbar.tvPdf -> "PDF"
+            else -> "ALL"
+        }
+        observeTotalFiles(selectedtab)
         when(selectedTextView) {
             binding.toolbar.tvAll -> viewModel.updateFileTab(FileTab.ALL_FILE)
             binding.toolbar.tvPdf -> viewModel.updateFileTab(FileTab.PDF)
@@ -1349,31 +1304,34 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
         val selectedColor = when (selectedTextView) {
             binding.toolbar.tvPpt -> R.color.orange
             binding.toolbar.tvExcel -> R.color.green
-            binding.toolbar.tvWord -> R.color.primaryColor
+            binding.toolbar.tvWord -> R.color.blue
             binding.toolbar.tvPdf -> R.color.red
             else -> R.color.primaryColor
         }
+        val textColor = R.color.white
         val underlineResource = if (selectedTextView == binding.toolbar.tvPpt) {
-            R.drawable.underline_orange
-        } else if (selectedTextView == binding.toolbar.tvPdf){
-            R.drawable.underline
+            R.drawable.underline_white
+        } else if (selectedTextView == binding.toolbar.tvWord){
+            R.drawable.underline_white
         } else if (selectedTextView == binding.toolbar.tvExcel){
-            R.drawable.underline_green
+            R.drawable.underline_white
+        } else if (selectedTextView == binding.toolbar.tvPdf){
+            R.drawable.underline_white
         } else {
-            R.drawable.underline_blue
+            R.drawable.underline_white
         }
 
         // Cập nhật màu, kiểu chữ và underline cho item được chọn
         selectedTextView.setTypeface(null, Typeface.BOLD)
-        selectedTextView.setTextColor(ContextCompat.getColor(this, selectedColor))
+        selectedTextView.setTextColor(ContextCompat.getColor(this, textColor))
         selectedTextView.setBackgroundResource(underlineResource)
+        binding.toolbar.headerBackground.setBackgroundColor(ContextCompat.getColor(this, selectedColor))
     }
 
 
     override fun viewBinding(): ActivityMainBinding {
         return ActivityMainBinding.inflate(LayoutInflater.from(this))
     }
-
     private fun handleSortAction(id: Int): Boolean {
         return when (id) {
             3 -> {
@@ -1543,21 +1501,19 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
 
         when (id) {
             R.id.navigation_home -> {
+                clearSearchField()
                 viewModel.updateBottomTab(BottomTab.HOME)
                 checkStoragePermissionToShowUI()
                 checkNotificationPermissionToShowUI()
                 checkFeatureRequestToShowUI()
                 binding.toolbar.apply {
                     tvTitle.text = handleAppNameSpannable(showIcon = IAPUtils.isPremium())
-                    ivSearch.visibility = View.VISIBLE
-                    ivFilter.visibility = View.VISIBLE
-                    ivCheck.visibility = View.VISIBLE
                     ivBack.visibility = View.GONE
                 }
 
                 binding.recentlyAddedSection.visibility = View.VISIBLE
-                binding.recentlyAddedNumber.visibility =
-                    if (viewModel.loadAddedTodayFiles.value != 0) View.VISIBLE else View.GONE
+//                binding.recentlyAddedNumber.visibility =
+//                    if (viewModel.loadAddedTodayFiles.value != 0) View.VISIBLE else View.GONE
 
                 if (viewModel.sortStateObservable.value == SortState.DATE_TODAY) {
                     handleSortAction(4)
@@ -1565,13 +1521,11 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
             }
 
             R.id.navigation_recent -> {
+                clearSearchField()
                 viewModel.updateBottomTab(BottomTab.RECENT)
 
                 binding.toolbar.apply {
                     tvTitle.text = getString(R.string.title_recent)
-                    ivSearch.visibility = View.VISIBLE
-                    ivFilter.visibility = View.GONE
-                    ivCheck.visibility = View.GONE
                     ivBack.visibility = View.GONE
                 }
 
@@ -1579,13 +1533,11 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
             }
 
             R.id.navigation_favorite -> {
+                clearSearchField()
                 viewModel.updateBottomTab(BottomTab.FAVORITE)
 
                 binding.toolbar.apply {
                     tvTitle.text = getString(R.string.title_fav)
-                    ivSearch.visibility = View.GONE
-                    ivFilter.visibility = View.GONE
-                    ivCheck.visibility = View.GONE
                     ivBack.visibility = View.GONE
                 }
 

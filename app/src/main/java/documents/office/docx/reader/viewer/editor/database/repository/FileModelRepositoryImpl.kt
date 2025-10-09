@@ -27,6 +27,9 @@ class FileModelRepositoryImpl(
 //        val snapshot = fileModels.toList()              // copy the list first
 //        snapshot.forEach { appDatabase.serverDao().setNotRecently(it.path) }
 //    }
+    override fun getNumberOfTotalFile(text: String): LiveData<Int> {
+        return appDatabase.serverDao().getNumberOfTotalFile(text)
+    }
 
     override suspend fun setNotRecently(fileModels: List<FileModel>) {
         val paths = fileModels.map { it.path }

@@ -84,7 +84,7 @@
 
     <string name="enter_file_name">Nhập tên cho tệp</string>
 
-    <string name="recent_add">Thêm gần đây</string>
+    <string name="recent_add">Thêm gần đây (%s)</string>
 
     <string name="all">Tất cả</string>
 

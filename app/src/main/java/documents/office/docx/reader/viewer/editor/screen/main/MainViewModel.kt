@@ -11,6 +11,7 @@ import android.os.CountDownTimer
 import android.os.Environment
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.switchMap
@@ -105,7 +106,11 @@ class MainViewModel(
             else               -> getListWordFile()
         }
     }
-
+    fun loadTotalFiles(type: String): LiveData<Int> {
+        return liveData(Dispatchers.IO) {
+            emitSource(repository.getNumberOfTotalFile(type))
+        }
+    }
     // 4) PPT files
     val pptFilesLiveData: LiveData<List<FileModel>> = _currentBottomTab.switchMap { tab ->
         when (tab) {
@@ -173,7 +178,35 @@ class MainViewModel(
             _recentFiles.postValue(files)
         }
     }
+    fun getFilteredFilesLiveData(fileTab: FileTab): LiveData<List<FileModel>> {
+        val result = MediatorLiveData<List<FileModel>>()
+        val source = getCurrentFiles(fileTab)
+        var lastList: List<FileModel> = emptyList()
+        var lastQuery: String = searchCharObservable.value ?: ""
 
+        fun applyFilter() {
+            val query = lastQuery.trim().lowercase()
+            if (query.isEmpty()) {
+                result.postValue(lastList)
+            } else {
+                val filtered = lastList.filter {
+                    (it.name ?: "").lowercase().contains(query)
+                }
+                result.postValue(filtered)
+            }
+        }
+
+        result.addSource(source) { list ->
+            lastList = list ?: emptyList()
+            applyFilter()
+        }
+        result.addSource(searchCharObservable) { query ->
+            lastQuery = query ?: ""
+            applyFilter()
+        }
+
+        return result
+    }
     // When the file type changes, switch the LiveData source to get the correct count.
     val loadAddedTodayFiles: LiveData<Int> = _currentFileTab.switchMap { type ->
         liveData(Dispatchers.IO) {

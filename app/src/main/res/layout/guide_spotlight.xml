@@ -1,54 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.ezteam.baseproject.dialog.SpotlightOverlayView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/spotlight_overlay"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_pull_hint"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#80000000">
 
-    <ImageView
-        android:id="@+id/arrow_image"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:src="@drawable/icon_point_hand"
-        android:rotation="-120"
-        android:layout_gravity="top|center_horizontal"
-        android:layout_marginTop="@dimen/_20sdp"/>
-
-    <!-- Hộp nội dung -->
-    <LinearLayout
+    <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:background="@drawable/rounded_background"
-        android:layout_gravity="center|end"
-        android:layout_marginEnd="32dp"
-        android:elevation="10dp">
+        android:layout_marginTop="@dimen/_28sdp"
+        android:layout_gravity="center">
 
-<!--        <TextView-->
-<!--            android:id="@+id/title"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@string/user_guide_title"-->
-<!--            android:textColor="@color/text1"-->
-<!--            android:textStyle="bold"-->
-<!--            android:textSize="16sp" />-->
+        <ImageView
+            android:id="@+id/arrowIcon"
+            android:layout_width="@dimen/_160sdp"
+            android:layout_height="@dimen/_160sdp"
+            android:src="@drawable/ic_arrow_down"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/swipe_refresh_guide"
-            android:textColor="@color/text1"
-            android:textSize="14sp"
-            android:layout_marginTop="4dp" />
+        <ImageView
+            android:id="@+id/handIcon"
+            android:layout_width="@dimen/_48sdp"
+            android:layout_height="@dimen/_48sdp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_gravity="top|center_horizontal"
+            android:src="@drawable/ic_hand"/>
+    </FrameLayout>
 
-        <Button
-            android:id="@+id/btn_got_it"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/ok"
-            android:textColor="@android:color/white"
-            android:background="@drawable/btn_background_primary"
-            android:layout_marginTop="8dp" />
-    </LinearLayout>
-
-</com.ezteam.baseproject.dialog.SpotlightOverlayView>
+    <TextView
+        android:id="@+id/tvHint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:text="@string/refresh_files"
+        android:layout_gravity="top|center_horizontal"
+        android:textColor="#ffffff"
+        android:textSize="16sp"/>
+</LinearLayout>

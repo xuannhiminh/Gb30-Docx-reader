@@ -223,7 +223,7 @@
     <string name="app_version">Sürüm %s</string>
     <string name="file_not_found">Dosya bulunamadı!!!</string>
     <string name="rate_now">Şimdi oyla</string>
-    <string name="recent_add">Son zamanlarda eklendi</string>
+    <string name="recent_add">Son zamanlarda eklendi (%s)</string>
     <string name="all">Hepsi</string>
     <string name="pdf">Pdf</string>
     <string name="word">Word</string>

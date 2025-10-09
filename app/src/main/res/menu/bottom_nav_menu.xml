@@ -15,5 +15,9 @@
         android:id="@+id/navigation_favorite"
         android:icon="@drawable/bookmark"
         android:title="@string/title_fav" />
+    <item
+        android:id="@+id/navigation_tool"
+        android:icon="@drawable/tools"
+        android:title="@string/tool" />
 
 </menu>

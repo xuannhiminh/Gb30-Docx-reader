@@ -226,7 +226,7 @@
 
     <string name="rate_now">Beri peringkat sekarang</string>
 
-    <string name="recent_add">Baru saja ditambahkan</string>
+    <string name="recent_add">Baru saja ditambahkan (%s)</string>
     <string name="all">Semua</string>
     <string name="pdf">Pdf</string>
     <string name="word">Word</string>

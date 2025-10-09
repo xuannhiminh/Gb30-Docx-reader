@@ -32,7 +32,7 @@ interface FileModelRepository {
     fun getPdfFiles(sortState: SortState): LiveData<List<FileModel>>
 
     fun getWordFiles(sortState: SortState): LiveData<List<FileModel>>
-
+    fun getNumberOfTotalFile(text: String): LiveData<Int>
     fun getExcelFiles(sortState: SortState): LiveData<List<FileModel>>
 
     fun getPptFiles(sortState: SortState): LiveData<List<FileModel>>

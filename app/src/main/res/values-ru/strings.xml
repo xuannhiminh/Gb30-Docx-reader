@@ -221,7 +221,7 @@
     <string name="app_version">Версия %s</string>
     <string name="file_not_found">Файл не найден!!!</string>
     <string name="rate_now">Оценить сейчас</string>
-    <string name="recent_add">Недавно добавлено</string>
+    <string name="recent_add">Недавно добавлено (%s)</string>
     <string name="all">Все</string>
     <string name="pdf">Pdf</string>
     <string name="word">Word</string>

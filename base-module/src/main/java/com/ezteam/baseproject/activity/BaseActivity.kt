@@ -71,8 +71,7 @@ open abstract class BaseActivity<B : ViewBinding> : LocalizationActivity() {
         }
         return false
     }
-
-    fun handleAppNameSpannable(showIcon: Boolean = false): SpannableString {
+    fun handleAppNameSpannable2(showIcon: Boolean = false): SpannableString {
         return try {
             val appName = getString(R.string.app_name)
             val spannable = if (showIcon) SpannableString("$appName\u00A0") else SpannableString(appName)
@@ -115,6 +114,36 @@ open abstract class BaseActivity<B : ViewBinding> : LocalizationActivity() {
 //                    )
 //                }
 //            }
+
+
+            return spannable
+        } catch (e: Exception) {
+            Log.e("SplashActivity", "Error creating spannable app name: ${e.message}")
+            SpannableString(getString(R.string.app_name))
+        }
+    }
+    fun handleAppNameSpannable(showIcon: Boolean = false): SpannableString {
+        return try {
+            val appName = getString(R.string.app_name)
+            val spannable = if (showIcon) SpannableString("$appName\u00A0") else SpannableString(appName)
+
+            val startIndex = 0
+            val endIndex = appName.length
+
+            val redColor = ContextCompat.getColor(this, R.color.colorWhite)
+            spannable.setSpan(
+                ForegroundColorSpan(redColor),
+                startIndex,
+                endIndex,
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+
+            spannable.setSpan(
+                StyleSpan(Typeface.BOLD),
+                startIndex,
+                endIndex,
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
 
 
             return spannable

@@ -13,14 +13,90 @@
         android:fitsSystemWindows="true"
         android:id="@+id/main_layout"
         tools:context=".screen.main.MainActivity">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_total_files"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            app:layout_constraintTop_toBottomOf="@id/recently_added_section"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <!-- Text bên trái -->
+            <LinearLayout
+                android:id="@+id/layout_texts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_total_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/total"
+                    android:textFontWeight="500"
+                    android:fontFamily="sans-serif"
+                    android:textSize="12sp"
+                    android:textColor="@color/text1" />
+
+                <TextView
+                    android:id="@+id/tv_total_files"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:text="0 "
+                    android:textSize="12sp"
+                    android:textFontWeight="400"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/textSecondary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/file"
+                    android:textSize="12sp"
+                    android:textFontWeight="400"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/textSecondary" />
+            </LinearLayout>
+
+            <!-- Icon filter -->
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_filter"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:srcCompat="@drawable/filter_search"
+                app:layout_constraintEnd_toStartOf="@id/iv_check"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginEnd="@dimen/_10sdp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_check"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:srcCompat="@drawable/check_square"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <documents.office.docx.reader.viewer.editor.view.NonSwipeViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_marginTop="8dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/layout_permission"
-        app:layout_constraintTop_toBottomOf="@id/recently_added_section" />
+        app:layout_constraintTop_toBottomOf="@id/layout_total_files"
+        app:layout_constraintBottom_toTopOf="@id/layout_permission"/>
 
     <LinearLayout
         android:id="@+id/layout_permission"
@@ -227,11 +303,12 @@
     <include
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/toolbar"
-        layout="@layout/toolbar_main" />
+        layout="@layout/toolbar_main_2" />
     <androidx.cardview.widget.CardView
         android:id="@+id/notification_warning_section"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_20sdp"
         android:layout_marginTop="@dimen/_4sdp"
         app:layout_constraintTop_toBottomOf="@id/feature_request_section"
         app:layout_constraintStart_toStartOf="parent"
@@ -242,15 +319,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@color/input"
-            android:paddingVertical="12dp"
-            android:paddingHorizontal="16dp"
+            android:background="@drawable/bg_recently_added_card"
+            android:paddingVertical="@dimen/_12sdp"
+            android:paddingHorizontal="@dimen/_20sdp"
             android:gravity="center_vertical"
             android:weightSum="1">
 
             <ImageView
-                android:layout_width="53dp"
-                android:layout_height="50dp"
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_24sdp"
                 android:src="@drawable/icon_notice"
                 android:contentDescription="Folder Icon" />
 
@@ -312,6 +389,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_4sdp"
+        android:layout_marginHorizontal="@dimen/_20sdp"
         android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintStart_toStartOf="parent"
@@ -321,15 +399,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@color/input"
-            android:paddingVertical="12dp"
-            android:paddingHorizontal="16dp"
+            android:background="@drawable/bg_recently_added_card"
+            android:paddingVertical="@dimen/_12sdp"
+            android:paddingHorizontal="@dimen/_20sdp"
             android:gravity="center_vertical"
             android:weightSum="1">
 
             <ImageView
-                android:layout_width="53dp"
-                android:layout_height="50dp"
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_24sdp"
                 android:src="@drawable/icon_feature_request_main"
                 android:contentDescription="Folder Icon" />
 
@@ -390,60 +468,50 @@
         android:id="@+id/recently_added_section"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_20sdp"
         android:layout_marginTop="@dimen/_8sdp"
         app:layout_constraintTop_toBottomOf="@id/notification_warning_section"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/view_pager">
+        app:layout_constraintBottom_toTopOf="@id/layout_total_files">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="353dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_recently_added_card"
             android:orientation="horizontal"
-            android:background="@color/input"
-            android:paddingVertical="12dp"
-            android:paddingHorizontal="16dp"
+            android:paddingHorizontal="@dimen/_20sdp"
+            android:paddingVertical="@dimen/_12sdp"
             android:weightSum="1">
 
             <ImageView
-                android:layout_width="47dp"
-                android:layout_height="38dp"
-                android:src="@drawable/icon_folder"
-                android:contentDescription="Folder Icon" />
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_24sdp"
+                android:contentDescription="Folder Icon"
+                android:src="@drawable/icon_folder" />
 
             <TextView
                 android:id="@+id/recently_added_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
-                android:layout_gravity="center_vertical"
+                android:fontFamily="sans-serif"
                 android:gravity="center_vertical"
                 android:text="@string/recent_add"
-                android:textSize="16sp"
-                android:fontFamily="sans-serif"
                 android:textColor="@color/text1"
+                android:textSize="14sp"
                 android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/recently_added_number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="+2"
-                android:layout_marginStart="8dp"
-                android:textSize="16dp"
-                android:textColor="@color/primaryColor"
-                android:textStyle="bold"
-                android:layout_gravity="center_vertical" />
 
             <ImageView
                 android:id="@+id/recently_added_icon"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/ic_base_forward"
-                android:contentDescription="Arrow Icon"
+                android:layout_gravity="center_vertical"
                 android:layout_marginStart="8dp"
-                android:layout_gravity="center_vertical" />
+                android:contentDescription="Arrow Icon"
+                android:src="@drawable/ic_base_forward" />
 
         </LinearLayout>
 

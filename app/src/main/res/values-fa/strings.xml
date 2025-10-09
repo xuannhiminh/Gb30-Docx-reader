@@ -7,7 +7,7 @@
     <string name="app_version">نسخه %s</string>
     <string name="file_not_found">فایل پیدا نشد!!!</string>
     <string name="rate_now">هم‌اکنون امتیاز دهید</string>
-    <string name="recent_add">اخیراً اضافه شده</string>
+    <string name="recent_add">اخیراً اضافه شده (%s)</string>
     <string name="all">همه</string>
     <string name="pdf">PDF</string>
     <string name="word">Word</string>

@@ -4,6 +4,7 @@
     <color name="iapColor">#0474C4</color>
     <color name="text1">#040516</color>
     <color name="text2">#8C8DAF</color>
+    <color name="textSecondary">#6F767E</color>
     <color name="element">#EAF4FC</color>
     <color name="negative">#f1f2f6</color>
 

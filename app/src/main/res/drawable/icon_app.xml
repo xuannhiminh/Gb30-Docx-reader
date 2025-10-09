@@ -83,16 +83,16 @@
       android:fillColor="#FB0D0D"/>
   <path
       android:pathData="M0,203C0.66,204.32 1.32,205.64 2,207C6.77,215.26 11.58,220.47 21,223C21,223.33 21,223.66 21,224C14.07,224 7.14,224 0,224C0,217.07 0,210.14 0,203Z"
-      android:fillColor="@color/white"/>
+      android:fillColor="@android:color/transparent"/>
   <path
       android:pathData="M223,203C223.33,203 223.66,203 224,203C224,209.93 224,216.86 224,224C217.07,224 210.14,224 203,224C204.32,223.34 205.64,222.68 207,222C215.26,217.23 220.47,212.42 223,203Z"
-      android:fillColor="@color/white"/>
+      android:fillColor="@android:color/transparent"/>
   <path
       android:pathData="M203,0C209.93,0 216.86,0 224,0C224,6.93 224,13.86 224,21C223.34,19.68 222.68,18.36 222,17C217.23,8.74 212.42,3.53 203,1C203,0.67 203,0.34 203,0Z"
-      android:fillColor="@color/white"/>
+      android:fillColor="@android:color/transparent"/>
   <path
       android:pathData="M0,0C6.93,0 13.86,0 21,0C19.02,0.99 19.02,0.99 17,2C8.74,6.77 3.53,11.58 1,21C0.67,21 0.34,21 0,21C0,14.07 0,7.14 0,0Z"
-      android:fillColor="@color/white"/>
+      android:fillColor="@android:color/transparent"/>
   <path
       android:pathData="M181,193C181.66,194.32 182.32,195.64 183,197C180.82,199.18 179.49,199.68 176.61,200.66C175.73,200.96 174.86,201.26 173.96,201.57C172.59,202.03 172.59,202.03 171.19,202.5C169.39,203.11 167.59,203.73 165.79,204.34C164.99,204.61 164.2,204.88 163.37,205.16C161.71,205.75 160.07,206.4 158.45,207.1C156,208 156,208 152,208C151.67,206.68 151.34,205.36 151,204C160.9,200.37 170.8,196.74 181,193Z"
       android:fillColor="#CFAB9C"/>

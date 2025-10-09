@@ -7,7 +7,7 @@
     <string name="app_version">Version %s</string>
     <string name="file_not_found">Datei nicht gefunden!!!</string>
     <string name="rate_now">Jetzt bewerten</string>
-    <string name="recent_add">Kürzlich hinzugefügt</string>
+    <string name="recent_add">Kürzlich hinzugefügt (%s)</string>
     <string name="all">Alle</string>
     <string name="pdf">PDF</string>
     <string name="word">Word</string>

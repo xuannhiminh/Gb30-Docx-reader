@@ -219,7 +219,7 @@
     <string name="app_version">Version %s</string>
     <string name="file_not_found">Fichier non trouvé!!!</string>
     <string name="rate_now">Évaluer maintenant</string>
-    <string name="recent_add">Ajouté récemment</string>
+    <string name="recent_add">Ajouté récemment (%s)</string>
     <string name="all">Tout</string>
     <string name="pdf">Pdf</string>
     <string name="word">Word</string>

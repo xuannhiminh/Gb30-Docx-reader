@@ -7,7 +7,7 @@
     <string name="app_version">Versione %s</string>
     <string name="file_not_found">File non trovato!!!</string>
     <string name="rate_now">Valuta ora</string>
-    <string name="recent_add">Aggiunti di recente</string>
+    <string name="recent_add">Aggiunti di recente (%s)</string>
     <string name="all">Tutti</string>
     <string name="pdf">PDF</string>
     <string name="word">Word</string>

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginVertical="@dimen/_4sdp"
-    android:layout_marginHorizontal="@dimen/_16sdp"
+    android:layout_marginHorizontal="@dimen/_20sdp"
     app:cardCornerRadius="12dp"
     android:id="@+id/parent"
 
@@ -87,7 +87,6 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/icon_favourite"
-            app:tint="@color/star"
             android:layout_marginEnd="@dimen/_4sdp"
             app:layout_constraintEnd_toStartOf="@id/ic_func"
             app:layout_constraintTop_toTopOf="parent"

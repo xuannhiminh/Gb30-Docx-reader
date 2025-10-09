@@ -47,7 +47,9 @@
 
     <string name="rate_now">Rate now</string>
 
-    <string name="recent_add">Recently added</string>
+    <string name="recent_add">Recently added (%s)</string>
+
+    <string name="total">Total:</string>
 
     <string name="all">All</string>
 
@@ -643,4 +645,5 @@
     <string name="ok_great">Ok, Great!</string>
     <string name="read">Read</string>
     <string name="your_recent_PDF_files_are_waiting">Your recent PDF files are waiting</string>
+    <string name="refresh_files">Pull down to refresh files</string>
 </resources>

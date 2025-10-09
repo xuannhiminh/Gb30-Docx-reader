@@ -100,11 +100,13 @@ class FileItemAdapter(
                 onSelectedFuncListener.onListener(model)
             }
 
-            val favoriteColor = if (model.isFavorite) R.color.yellow else R.color.gray
-            binding.ivFavorite.setColorFilter(
-                binding.root.context.getColor(favoriteColor),
-                android.graphics.PorterDuff.Mode.SRC_IN
-            )
+            val favoriteIcon = if (model.isFavorite) {
+                R.drawable.icon_favourite
+            } else {
+                R.drawable.icon_not_favourite
+            }
+            binding.ivFavorite.setImageResource(favoriteIcon)
+
 
             binding.ivFavorite.setOnClickListener {
                 listener.onListener(model)

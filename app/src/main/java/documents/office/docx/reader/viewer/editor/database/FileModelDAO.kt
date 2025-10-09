@@ -182,4 +182,14 @@ interface FileModelDAO {
           )
     """)
     fun getNumberOfTodayAddedFile(fileType: String): LiveData<Int>
+    @Query("""
+        SELECT COUNT(*) FROM file 
+        WHERE 
+            :fileType = 'ALL'
+            OR (:fileType = 'PDF' AND path LIKE '%.pdf')
+            OR (:fileType = 'WORD' AND (path LIKE '%.doc' OR path LIKE '%.docx'))
+            OR (:fileType = 'PPT' AND (path LIKE '%.ppt' OR path LIKE '%.pptx'))
+            OR (:fileType = 'EXCEL' AND (path LIKE '%.xls' OR path LIKE '%.xlsx' OR path LIKE '%.xlsm'))
+    """)
+    fun getNumberOfTotalFile(fileType: String): LiveData<Int>
 }
