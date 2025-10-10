@@ -199,7 +199,7 @@
     <string name="allow">允許</string>
     <string name="later">稍後</string>
     <string name="permission_explanation">為了閱讀和編輯您的檔案，請允許 <b>%s</b> 存取所有檔案。</string>
-    <string name="add_to_home_screen">新增至主畫面？</string>
+    <string name="add_to_home_screen">新增至主畫面</string>
     <string name="tap_add_or_hold_the_widget_to_add_it_to_your_home_screen_instantly_choose_an_option_below">點擊 %s 或長按小工具，即可快速新增到主畫面。請選擇以下選項：</string>
     <string name="add">新增</string>
     <string name="cannot_widget">您的裝置不支援釘選小工具。</string>

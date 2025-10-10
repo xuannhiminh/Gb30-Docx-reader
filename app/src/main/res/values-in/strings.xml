@@ -311,7 +311,7 @@
     <string name="allow">Izinkan</string>
     <string name="later">Nanti</string>
     <string name="permission_explanation">Untuk membaca dan mengedit file Anda, silakan izinkan <b>%s</b> mengakses semua file Anda.</string>
-    <string name="add_to_home_screen">Tambahkan ke layar utama?</string>
+    <string name="add_to_home_screen">Tambahkan ke layar utama</string>
     <string name="tap_add_or_hold_the_widget_to_add_it_to_your_home_screen_instantly_choose_an_option_below">Ketuk %s atau tahan widget untuk langsung menambahkannya ke layar utama Anda. Pilih opsi di bawah:</string>
     <string name="add">Tambahkan</string>
     <string name="cannot_widget">Perangkat Anda tidak mendukung widget yang disematkan.</string>

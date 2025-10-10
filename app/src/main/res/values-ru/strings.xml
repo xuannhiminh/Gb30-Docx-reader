@@ -302,7 +302,7 @@
     <string name="allow">Разрешить</string>
     <string name="later">Позже</string>
     <string name="permission_explanation">Чтобы просматривать и редактировать файлы, разрешите <b>%s</b> доступ ко всем файлам.</string>
-    <string name="add_to_home_screen">Добавить на главный экран?</string>
+    <string name="add_to_home_screen">Добавить на главный экран</string>
     <string name="tap_add_or_hold_the_widget_to_add_it_to_your_home_screen_instantly_choose_an_option_below">Нажмите %s или удерживайте виджет, чтобы мгновенно добавить его на главный экран. Выберите один из вариантов ниже:</string>
     <string name="add">Добавить</string>
     <string name="cannot_widget">Ваше устройство не поддерживает закрепление виджетов.</string>

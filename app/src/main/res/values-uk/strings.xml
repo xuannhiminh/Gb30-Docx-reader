@@ -199,7 +199,7 @@
     <string name="allow">Дозволити</string>
     <string name="later">Пізніше</string>
     <string name="permission_explanation">Щоб читати та редагувати файли, будь ласка, дозвольте <b>%s</b> доступ до всіх ваших файлів.</string>
-    <string name="add_to_home_screen">Додати на головний екран?</string>
+    <string name="add_to_home_screen">Додати на головний екран</string>
     <string name="tap_add_or_hold_the_widget_to_add_it_to_your_home_screen_instantly_choose_an_option_below">Торкніться %s або натисніть і утримуйте віджет, щоб миттєво додати на головний екран. Виберіть опцію нижче:</string>
     <string name="add">Додати</string>
     <string name="cannot_widget">Ваш пристрій не підтримує прикріплення віджетів.</string>

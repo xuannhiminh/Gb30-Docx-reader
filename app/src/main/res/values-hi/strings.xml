@@ -301,7 +301,7 @@
     <string name="allow">अनुमति दें</string>
     <string name="later">बाद में</string>
     <string name="permission_explanation">अपनी फ़ाइलों को पढ़ने और संपादित करने के लिए, कृपया <b>%s</b> को सभी फ़ाइलों तक पहुँच की अनुमति दें।</string>
-    <string name="add_to_home_screen">होम स्क्रीन में जोड़ें?</string>
+    <string name="add_to_home_screen">होम स्क्रीन में जोड़ें</string>
     <string name="tap_add_or_hold_the_widget_to_add_it_to_your_home_screen_instantly_choose_an_option_below">%s पर टैप करें या विजेट को होल्ड करें ताकि तुरंत होम स्क्रीन में जोड़ सकें। नीचे एक विकल्प चुनें:</string>
     <string name="add">जोड़ें</string>
     <string name="cannot_widget">आपका डिवाइस पिन किए गए विजेट्स का समर्थन नहीं करता।</string>

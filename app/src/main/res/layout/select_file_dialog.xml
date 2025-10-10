@@ -14,7 +14,8 @@
         android:background="@drawable/bottom_dialog_background"
         android:elevation="8dp"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:paddingVertical="@dimen/_16sdp"
+        android:paddingHorizontal="@dimen/_20sdp">
 
         <FrameLayout
             android:id="@+id/layout_native"
@@ -36,8 +37,8 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/file_icon"
-                android:layout_width="@dimen/_36sdp"
-                android:layout_height="@dimen/_47sdp"
+                android:layout_width="@dimen/_28sdp"
+                android:layout_height="@dimen/_28sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
                 app:srcCompat="@drawable/icon_pdf"
                 app:layout_constraintStart_toStartOf="parent"
@@ -49,7 +50,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginHorizontal="12dp"
+                android:layout_marginStart="12dp"
                 app:layout_constraintStart_toEndOf="@id/file_icon"
                 app:layout_constraintEnd_toStartOf="@id/star_icon"
                 app:layout_constraintTop_toTopOf="@id/file_icon"
@@ -60,7 +61,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Sheet_01.xls"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:fontFamily="sans-serif"
                     android:textStyle="bold"
                     android:textColor="@color/text1"
@@ -83,39 +84,22 @@
                 android:id="@+id/star_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 app:srcCompat="@drawable/icon_favourite"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/file_icon"
                 app:layout_constraintBottom_toBottomOf="@id/file_icon"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <View
-            android:id="@+id/view"
-            android:layout_marginTop="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_below="@id/item_view"
-            android:background="@color/line_color"
-            app:layout_constraintTop_toBottomOf="@+id/item_view" />
 
         <LinearLayout
             android:id="@+id/func_details"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingTop="8dp"
+            android:layout_marginTop="@dimen/_24sdp"
             app:layout_constraintTop_toBottomOf="@id/view">
 
-            <documents.office.docx.reader.viewer.editor.view.ItemFunctionView
-                android:id="@+id/func_rename"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:fontFamily="sans-serif"
-                android:textFontWeight="500"
-                app:fvTextColor="@color/text1"
-                app:fvIcon="@drawable/file_func_edit"
-                app:fvTitle="@string/rename" />
             <documents.office.docx.reader.viewer.editor.view.ItemFunctionView
                 android:id="@+id/func_detail_file"
                 android:layout_width="match_parent"
@@ -136,6 +120,68 @@
                 android:textSize="14sp"
                 app:fvIcon="@drawable/file_func_share"
                 app:fvTitle="@string/share" />
+            <documents.office.docx.reader.viewer.editor.view.ItemFunctionView
+                android:id="@+id/func_rename"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:fontFamily="sans-serif"
+                android:textFontWeight="500"
+                app:fvTextColor="@color/text1"
+                app:fvIcon="@drawable/file_func_edit"
+                app:fvTitle="@string/rename" />
+            <documents.office.docx.reader.viewer.editor.view.ItemFunctionView
+                android:id="@+id/func_pdf_to_word"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:fontFamily="sans-serif"
+                android:textFontWeight="500"
+                app:fvTextColor="@color/text1"
+                app:fvIcon="@drawable/file_func_pdf_to_word"
+                app:fvTitle="@string/pdf_to_word" />
+            <documents.office.docx.reader.viewer.editor.view.ItemFunctionView
+                android:id="@+id/func_word_to_pdf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:fontFamily="sans-serif"
+                android:visibility="gone"
+                android:textFontWeight="500"
+                app:fvTextColor="@color/text1"
+                app:fvIcon="@drawable/file_func_word_to_pdf"
+                app:fvTitle="@string/pdf_to_word" />
+            <documents.office.docx.reader.viewer.editor.view.ItemFunctionView
+                android:id="@+id/func_ppt_to_pdf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:visibility="gone"
+                android:fontFamily="sans-serif"
+                android:textFontWeight="500"
+                app:fvTextColor="@color/text1"
+                app:fvIcon="@drawable/file_func_word_to_pdf"
+                app:fvTitle="@string/pdf_to_word" />
+            <documents.office.docx.reader.viewer.editor.view.ItemFunctionView
+                android:id="@+id/func_print"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:fontFamily="sans-serif"
+                android:textFontWeight="500"
+                app:fvTextColor="@color/text1"
+                app:fvIcon="@drawable/file_func_print"
+                app:fvTitle="@string/print" />
+            <documents.office.docx.reader.viewer.editor.view.ItemFunctionView
+                android:id="@+id/func_add_to_home"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:fontFamily="sans-serif"
+                android:textFontWeight="500"
+                app:fvTextColor="@color/text1"
+                app:fvIcon="@drawable/file_func_add_to_home"
+                app:fvTitle="@string/add_to_home_screen" />
 
             <documents.office.docx.reader.viewer.editor.view.ItemFunctionView
                 android:id="@+id/func_delete"

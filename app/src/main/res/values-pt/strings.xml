@@ -301,7 +301,7 @@
     <string name="allow">Permitir</string>
     <string name="later">Mais tarde</string>
     <string name="permission_explanation">Para ler e editar seus arquivos, permita que <b>%s</b> acesse todos os seus arquivos.</string>
-    <string name="add_to_home_screen">Adicionar à tela inicial?</string>
+    <string name="add_to_home_screen">Adicionar à tela inicial</string>
     <string name="tap_add_or_hold_the_widget_to_add_it_to_your_home_screen_instantly_choose_an_option_below">Toque em %s ou mantenha o widget pressionado para adicioná-lo imediatamente à tela inicial. Escolha uma opção abaixo:</string>
     <string name="add">Adicionar</string>
     <string name="cannot_widget">Seu dispositivo não suporta widgets fixos.</string>

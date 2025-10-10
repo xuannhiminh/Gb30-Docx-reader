@@ -161,35 +161,46 @@ class BottomSheetFileFunction(
         } else {
             binding.tvTitle.gravity = Gravity.START or Gravity.CENTER_VERTICAL
         }
+
+        // Icon theo file
+        val isPdf = fileModel.path.endsWith(".pdf", true)
+        val isPpt = fileModel.path.endsWith(".ppt", true) || fileModel.path.endsWith(".pptx", true)
+        val isWord = fileModel.path.endsWith(".doc", true) || fileModel.path.endsWith(".docx", true)
+        val isExcel = fileModel.path.endsWith(".xls", true) || fileModel.path.endsWith(".xlsx", true) || fileModel.path.endsWith(".xlsm", true)
+
         val fileIconRes = when {
-            fileModel.path.lowercase().endsWith(".pdf") -> R.drawable.icon_pdf
-            fileModel.path.lowercase().endsWith(".ppt") || fileModel.path.lowercase().endsWith(".pptx") -> R.drawable.icon_ppt
-            fileModel.path.lowercase().endsWith(".doc") || fileModel.path.lowercase().endsWith(".docx") -> R.drawable.icon_word
-            fileModel.path.lowercase().endsWith(".xls") || fileModel.path.lowercase().endsWith(".xlsx") || fileModel.path.lowercase().endsWith(".xlsm") -> R.drawable.icon_excel
+            isPdf -> R.drawable.icon_pdf
+            isPpt -> R.drawable.icon_ppt
+            isWord -> R.drawable.icon_word
+            isExcel -> R.drawable.icon_excel
             else -> R.drawable.icon_pdf
         }
         binding.fileIcon.setImageResource(fileIconRes)
-        when (from) {
-            FileTab.ALL_FILE -> {
-                binding.funcRename.isVisible = true
-            }
 
-            FileTab.PDF -> {
-                Log.d("Bottomsheet", "FileTab.PDF")
-            }
+        //-------------------------------
+        // ẨN/HIỆN CÁC BUTTON CHUYỂN ĐỔI
+        //-------------------------------
+        // Mặc định ẩn hết 3 button
+        binding.funcPdfToWord.isVisible = false
+        binding.funcWordToPdf.isVisible = false
+        binding.funcPptToPdf.isVisible = false
+        binding.funcPrint.isVisible = false
 
-            FileTab.WORD -> {
-                Log.d("Bottomsheet", "FileTab.WORD")
+        when {
+            isPdf -> {
+                binding.funcPdfToWord.isVisible = true
+                binding.funcPrint.isVisible = true
             }
-
-            FileTab.PPT -> {
-                Log.d("Bottomsheet", "FileTab.PPT")
+            isWord -> {
+                binding.funcWordToPdf.isVisible = true
+                binding.funcPrint.isVisible = true
             }
-
-            FileTab.EXCEL -> {
-                Log.d("Bottomsheet", "FileTab.EXCEL")
+            isPpt -> {
+                binding.funcPptToPdf.isVisible = true
             }
+            isExcel -> {
 
+            }
         }
         binding.funcRename.isVisible = !fileModel.isSample
     }

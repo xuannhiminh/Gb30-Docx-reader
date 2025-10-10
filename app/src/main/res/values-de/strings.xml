@@ -198,7 +198,7 @@
     <string name="allow">Erlauben</string>
     <string name="later">Später</string>
     <string name="permission_explanation">Um Ihre Dateien zu lesen und zu bearbeiten, erlauben Sie bitte <b>%s</b> den Zugriff auf alle Ihre Dateien.</string>
-    <string name="add_to_home_screen">Zum Startbildschirm hinzufügen?</string>
+    <string name="add_to_home_screen">Zum Startbildschirm hinzufügen</string>
     <string name="tap_add_or_hold_the_widget_to_add_it_to_your_home_screen_instantly_choose_an_option_below">Tippen Sie auf %s oder halten Sie das Widget, um es sofort zu Ihrem Startbildschirm hinzuzufügen. Wählen Sie unten eine Option:</string>
     <string name="add">Hinzufügen</string>
     <string name="recent_desc" />

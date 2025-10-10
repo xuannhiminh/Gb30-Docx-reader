@@ -198,7 +198,7 @@
 <string name="allow">Toestaan</string>
 <string name="later">Later</string>
 <string name="permission_explanation">Om uw bestanden te lezen en te bewerken, geef <b>%s</b> alstublieft toegang tot al uw bestanden.</string>
-<string name="add_to_home_screen">Toevoegen aan startscherm?</string>
+<string name="add_to_home_screen">Toevoegen aan startscherm</string>
 <string name="tap_add_or_hold_the_widget_to_add_it_to_your_home_screen_instantly_choose_an_option_below">Tik op %s of houd de widget ingedrukt om deze direct aan uw startscherm toe te voegen. Kies hieronder een optie:</string>
 <string name="add">Toevoegen</string>
 <string name="recent_desc" />

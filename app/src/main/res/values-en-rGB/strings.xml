@@ -323,7 +323,7 @@
     <string name="allow">Allow</string>
     <string name="later">Later</string>
     <string name="permission_explanation">To read and edit your files, please allow <b>%s</b> to access all your files.</string>
-    <string name="add_to_home_screen">Add to Home screen?</string>
+    <string name="add_to_home_screen">Add to Home screen</string>
     <string name="tap_add_or_hold_the_widget_to_add_it_to_your_home_screen_instantly_choose_an_option_below">Tap %s or hold the widget to add it to your Home screen instantly. Choose an option below:</string>
     <string name="add">Add</string>
     <string name="recent_desc" />

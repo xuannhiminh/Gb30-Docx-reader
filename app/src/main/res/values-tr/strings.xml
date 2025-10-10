@@ -304,7 +304,7 @@
     <string name="allow">İzin Ver</string>
     <string name="later">Sonra</string>
     <string name="permission_explanation">Dosyalarınızı okumak ve düzenlemek için lütfen <b>%s</b>\'nin tüm dosyalarınıza erişmesine izin verin.</string>
-    <string name="add_to_home_screen">Ana Ekrana Ekle?</string>
+    <string name="add_to_home_screen">Ana Ekrana Ekle</string>
     <string name="tap_add_or_hold_the_widget_to_add_it_to_your_home_screen_instantly_choose_an_option_below">%s ye tıklayın veya widget ı ana ekranınıza hemen eklemek için tutun. Aşağıdaki seçeneklerden birini seçin:</string>
     <string name="add">Ekle</string>
     <string name="cannot_widget">Cihazınız sabitlenmiş widget ları desteklemiyor.</string>

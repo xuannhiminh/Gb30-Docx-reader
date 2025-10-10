@@ -199,7 +199,7 @@
     <string name="allow">允许</string>
     <string name="later">稍后</string>
     <string name="permission_explanation">为了阅读和编辑您的文件，请允许 <b>%s</b> 访问所有文件。</string>
-    <string name="add_to_home_screen">添加到主屏？</string>
+    <string name="add_to_home_screen">添加到主屏</string>
     <string name="tap_add_or_hold_the_widget_to_add_it_to_your_home_screen_instantly_choose_an_option_below">点击 %s 或长按小部件立即添加到主屏。请选择以下选项：</string>
     <string name="add">添加</string>
     <string name="cannot_widget">您的设备不支持固定小部件。</string>

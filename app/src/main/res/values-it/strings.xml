@@ -200,7 +200,7 @@
     <string name="allow">Consenti</string>
     <string name="later">Più tardi</string>
     <string name="permission_explanation">Per leggere e modificare i tuoi file, consenti a <b>%s</b> di accedere a tutti i tuoi file.</string>
-    <string name="add_to_home_screen">Aggiungere alla schermata Home?</string>
+    <string name="add_to_home_screen">Aggiungere alla schermata Home</string>
     <string name="tap_add_or_hold_the_widget_to_add_it_to_your_home_screen_instantly_choose_an_option_below">Tocca %s o tieni premuto il widget per aggiungerlo subito alla schermata Home. Scegli un’opzione qui sotto:</string>
     <string name="add">Aggiungi</string>
     <string name="recent_desc" />

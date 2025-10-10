@@ -199,7 +199,7 @@
     <string name="allow">허용</string>
     <string name="later">나중에</string>
     <string name="permission_explanation">파일을 읽고 편집하려면 이(가) 모든 파일에 접근하도록 허용해주세요.</string>
-    <string name="add_to_home_screen">홈 화면에 추가하시겠습니까?</string>
+    <string name="add_to_home_screen">홈 화면에 추가하시겠습니까</string>
     <string name="tap_add_or_hold_the_widget_to_add_it_to_your_home_screen_instantly_choose_an_option_below">%s을(를) 탭하거나 위젯을 길게 눌러 홈 화면에 바로 추가하세요. 아래 옵션에서 선택하세요:</string>
     <string name="add">추가</string>
     <string name="recent_desc" />

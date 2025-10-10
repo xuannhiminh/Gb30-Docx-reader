@@ -338,7 +338,7 @@
     <string name="allow">אפשר</string>
     <string name="later">מאוחר יותר</string>
     <string name="permission_explanation">כדי לקרוא ולערוך את הקבצים שלך, אנא אפשר ל<b>%s</b> גישה לכל הקבצים.</string>
-    <string name="add_to_home_screen">להוסיף למסך הבית?</string>
+    <string name="add_to_home_screen">להוסיף למסך הבית</string>
     <string name="tap_add_or_hold_the_widget_to_add_it_to_your_home_screen_instantly_choose_an_option_below">הקש על %s או החזק את הווידג\'ט כדי להוסיף אותו למסך הבית שלך מיד. בחר אפשרות למטה:</string>
     <string name="add">הוסף</string>
     <string name="recent_desc" />
