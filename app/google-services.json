@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "922137681161",
+    "project_id": "gb-30-word-documents",
+    "storage_bucket": "gb-30-word-documents.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:922137681161:android:1b2f325238473fc2aa07d8",
+        "android_client_info": {
+          "package_name": "documents.office.docx.reader.viewer.editor"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxrs5iJBDcmI41FI3Y-kc252m8H7LzEQY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -8,4 +8,4 @@ include ':document_lib'
 //include ':pdf-revolution-module'
 //include ':jni'
 project(':base-module').projectDir = new File(rootDir, 'base-module/')
-rootProject.name = "Word Documents"
+rootProject.name = "GB30 Docx Reader"
