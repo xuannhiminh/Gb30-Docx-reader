@@ -24,13 +24,8 @@ import documents.office.docx.reader.viewer.editor.screen.base.IAdsControl
 import documents.office.docx.reader.viewer.editor.screen.base.PdfBaseActivity
 import documents.office.docx.reader.viewer.editor.screen.base.PdfBaseFragment
 import documents.office.docx.reader.viewer.editor.screen.func.BottomSheetFileFunction
-import documents.office.docx.reader.viewer.editor.screen.main.MainActivity
 import documents.office.docx.reader.viewer.editor.screen.main.MainViewModel
 import documents.office.docx.reader.viewer.editor.screen.start.SplashActivity
-//import com.google.android.gms.ads.ez.EzAdControl
-//import com.google.android.gms.ads.ez.listenner.NativeAdListener
-//import com.google.android.gms.ads.ez.listenner.ShowAdCallback
-//import com.google.android.gms.ads.ez.nativead.AdmobNativeAdView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.apache.commons.io.FilenameUtils

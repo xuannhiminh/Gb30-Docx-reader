@@ -5,11 +5,6 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.DialogFragment
-import com.ezteam.baseproject.utils.SystemUtils
-import com.google.android.gms.ads.nativead.NativeAd
-import com.google.android.gms.ads.nativead.NativeAdView
-import com.nlbn.ads.callback.NativeCallback
-import com.nlbn.ads.util.Admob
 import documents.office.docx.reader.viewer.editor.R
 import documents.office.docx.reader.viewer.editor.databinding.DeleteDialogBinding
 

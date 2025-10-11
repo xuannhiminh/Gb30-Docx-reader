@@ -203,6 +203,7 @@ class BottomSheetFileFunction(
             }
         }
         binding.funcRename.isVisible = !fileModel.isSample
+        binding.funcRemoveRecent.isVisible = fileModel.isRecent
     }
     override fun onStart() {
         super.onStart()

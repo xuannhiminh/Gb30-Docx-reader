@@ -182,6 +182,16 @@
                 app:fvTextColor="@color/text1"
                 app:fvIcon="@drawable/file_func_add_to_home"
                 app:fvTitle="@string/add_to_home_screen" />
+            <documents.office.docx.reader.viewer.editor.view.ItemFunctionView
+                android:id="@+id/func_remove_recent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:fontFamily="sans-serif"
+                android:textFontWeight="500"
+                app:fvTextColor="@color/text1"
+                app:fvIcon="@drawable/file_func_remove_recent"
+                app:fvTitle="@string/remove_recent" />
 
             <documents.office.docx.reader.viewer.editor.view.ItemFunctionView
                 android:id="@+id/func_delete"
