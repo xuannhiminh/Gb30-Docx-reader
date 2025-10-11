@@ -23,7 +23,6 @@ import documents.office.docx.reader.viewer.editor.common.FunctionState
 import documents.office.docx.reader.viewer.editor.databinding.ActivityCheckFileBinding
 import documents.office.docx.reader.viewer.editor.model.FileModel
 import documents.office.docx.reader.viewer.editor.screen.base.PdfBaseActivity
-import documents.office.docx.reader.viewer.editor.screen.func.BottomSheetFileFunction
 import documents.office.docx.reader.viewer.editor.screen.main.MainViewModel
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdView
@@ -31,6 +30,8 @@ import com.nlbn.ads.callback.NativeCallback
 import com.nlbn.ads.util.Admob
 import documents.office.docx.reader.viewer.editor.adapter.FileItemSelectAdapter
 import documents.office.docx.reader.viewer.editor.screen.base.CurrentStatusAdsFiles
+import documents.office.docx.reader.viewer.editor.common.BottomTab
+import documents.office.docx.reader.viewer.editor.screen.func.BottomSheetFileFunction
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import java.util.Locale
@@ -40,9 +41,10 @@ class SelectMultipleFilesActivity : PdfBaseActivity<ActivityCheckFileBinding>() 
     private lateinit var adapter: FileItemSelectAdapter
     private var fileTab: FileTab = FileTab.ALL_FILE
     companion object {
-        fun start(activity: FragmentActivity, fileTab: FileTab) {
+        fun start(activity: FragmentActivity, fileTab: FileTab, bottomTab: BottomTab = BottomTab.HOME) {
             val intent = Intent(activity, SelectMultipleFilesActivity::class.java)
             intent.putExtra("FileTab", fileTab)
+            intent.putExtra("BottomTab", bottomTab)
             activity.startActivity(intent)
         }
     }
@@ -166,6 +168,8 @@ class SelectMultipleFilesActivity : PdfBaseActivity<ActivityCheckFileBinding>() 
         }
     }
 
+    private lateinit var bottomTab: BottomTab
+
     override fun initData() {
         lifecycleScope.launch {
             fileTab = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -173,7 +177,17 @@ class SelectMultipleFilesActivity : PdfBaseActivity<ActivityCheckFileBinding>() 
             } else {
                 (intent.getSerializableExtra("FileTab") as? FileTab)!! // Add a safe cast for older versions
             }
-            viewModel.getListFileBaseOnFileTab(fileTab).observe(this@SelectMultipleFilesActivity) {
+            bottomTab = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                intent.getSerializableExtra("BottomTab", BottomTab::class.java)!!
+            } else {
+                (intent.getSerializableExtra("BottomTab") as? BottomTab)!!
+            }
+            val liveData = if (bottomTab ==  BottomTab.HOME) {
+                viewModel.getListFileBaseOnFileTab(fileTab)
+            } else {
+                viewModel.allFilesLiveData
+            }
+            liveData.observe(this@SelectMultipleFilesActivity) {
                 adapter.setList(it)
 //                 if((it.size == 1 || (it.isNotEmpty() &&  !adapter.getList()[ADS_ITEM_INDEX].isAds))) // ads at index 0
 //                     adapter.addAds( FileModel().apply { isAds = true }, ADS_ITEM_INDEX) // ads at index 0
@@ -186,6 +200,24 @@ class SelectMultipleFilesActivity : PdfBaseActivity<ActivityCheckFileBinding>() 
                     binding.layoutEmpty.visibility = View.GONE
                     binding.animationView.cancelAnimation()
                 }
+            }
+        }
+
+        when (bottomTab) {
+            BottomTab.RECENT -> {
+                binding.btnRemoveFavourite.visibility = View.GONE
+                binding.btnRemoveRecent.visibility = View.VISIBLE
+                binding.buttonRecentContainer.weightSum = 3f
+            }
+            BottomTab.FAVORITE -> {
+                binding.btnRemoveFavourite.visibility = View.VISIBLE
+                binding.btnRemoveRecent.visibility = View.GONE
+                binding.buttonRecentContainer.weightSum = 3f
+            }
+            else -> {
+                binding.btnRemoveFavourite.visibility = View.GONE
+                binding.btnRemoveRecent.visibility = View.GONE
+                binding.buttonRecentContainer.weightSum = 2f
             }
         }
     }
@@ -229,7 +261,34 @@ class SelectMultipleFilesActivity : PdfBaseActivity<ActivityCheckFileBinding>() 
                 Toast.makeText(this, getString(R.string.please_choose_file), Toast.LENGTH_SHORT).show()
             }
         }
-
+        binding.btnRemoveRecent.setOnClickListener {
+            val selectedFiles = adapter.getSelectedFiles()
+            if (selectedFiles.isNotEmpty()) {
+                showDialogRemove(
+                    resources.getString(R.string.are_you_sure),
+                    getString(R.string.remove_recent_content)
+                ) {
+                    viewModel.removeRecentFiles(selectedFiles)
+                    adapter.deselectAll()
+                }
+            } else {
+                Toast.makeText(this, getString(R.string.please_choose_file), Toast.LENGTH_SHORT).show()
+            }
+        }
+        binding.btnRemoveFavourite.setOnClickListener {
+            val selectedFiles = adapter.getSelectedFiles()
+            if (selectedFiles.isNotEmpty()) {
+                showDialogRemove(
+                    resources.getString(R.string.are_you_sure),
+                    getString(R.string.remove_favourite_content)
+                ) {
+                    viewModel.removeFavouriteFiles(selectedFiles)
+                    adapter.deselectAll()
+                }
+            } else {
+                Toast.makeText(this, getString(R.string.please_choose_file), Toast.LENGTH_SHORT).show()
+            }
+        }
     }
     override fun onResume() {
         super.onResume()
@@ -240,6 +299,8 @@ class SelectMultipleFilesActivity : PdfBaseActivity<ActivityCheckFileBinding>() 
     private fun updateNavMenuState(enabled: Boolean) {
         binding.btnShare.isEnabled = enabled
         binding.btnDelete.isEnabled = enabled
+        binding.btnRemoveRecent.isEnabled = enabled
+        binding.btnRemoveFavourite.isEnabled = enabled
 
         val colorEnabled = resources.getColor(R.color.text1, theme)
         val colorDisabled = resources.getColor(R.color.cancel, theme)
@@ -254,7 +315,9 @@ class SelectMultipleFilesActivity : PdfBaseActivity<ActivityCheckFileBinding>() 
             imageView.setColorFilter(color)
         }
 
-        setTextAndIconColor(binding.tvText, binding.ivIcon, colorEnabled, colorDisabled)
+        setTextAndIconColor(binding.tvTextDelete, binding.ivIconDelete, colorEnabled, colorDisabled)
+        setTextAndIconColor(binding.tvTextRecent, binding.ivIconRecent, colorEnabled, colorDisabled)
+        setTextAndIconColor(binding.tvTextFavourite, binding.ivIconFavourite, colorEnabled, colorDisabled)
         fun setButtonBackground(button: View, enabledColor: Int, disabledColor: Int) {
             (button.background as? GradientDrawable)?.setColor(
                 if (enabled) enabledColor else disabledColor

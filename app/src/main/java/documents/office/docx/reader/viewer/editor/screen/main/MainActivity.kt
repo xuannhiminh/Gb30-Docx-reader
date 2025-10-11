@@ -1145,8 +1145,20 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
                 PPT_FILES_FRAGMENT_INDEX -> FileTab.PPT
                 else -> FileTab.ALL_FILE
             }
-
-            SelectMultipleFilesActivity.start(this, fileTab = fileTab)
+            when(viewModel.currentBottomTab.value) {
+                BottomTab.HOME -> {
+                    SelectMultipleFilesActivity.start(this, fileTab = fileTab, bottomTab = BottomTab.HOME)
+                }
+                BottomTab.RECENT -> {
+                    SelectMultipleFilesActivity.start(this, fileTab = fileTab, bottomTab = BottomTab.RECENT)
+                }
+                BottomTab.FAVORITE -> {
+                    SelectMultipleFilesActivity.start(this, fileTab = fileTab, bottomTab = BottomTab.FAVORITE)
+                }
+                else -> {
+                    SelectMultipleFilesActivity.start(this, fileTab = fileTab, bottomTab = BottomTab.HOME)
+                }
+            }
         }
 
         binding.notificationWarningSection.setOnClickListener {

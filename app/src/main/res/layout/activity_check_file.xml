@@ -90,8 +90,9 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center"
-            android:paddingHorizontal="@dimen/_20sdp"
-            android:paddingVertical="@dimen/_8sdp">
+            android:weightSum="3"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:paddingVertical="@dimen/_20sdp">
 
             <!-- Nút Delete -->
             <LinearLayout
@@ -101,18 +102,19 @@
                 android:layout_weight="1"
                 android:orientation="horizontal"
                 android:gravity="center"
-                android:paddingVertical="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:paddingVertical="@dimen/_12sdp"
                 android:background="@drawable/bg_btn_delete"
-                android:paddingHorizontal="@dimen/_16sdp">
+                android:paddingHorizontal="@dimen/_10sdp">
 
                 <ImageView
-                    android:id="@+id/iv_icon"
+                    android:id="@+id/iv_icon_delete"
                     android:layout_width="@dimen/_20sdp"
                     android:layout_height="@dimen/_20sdp"
                     android:src="@drawable/file_func_delete"/>
 
                 <TextView
-                    android:id="@+id/tv_text"
+                    android:id="@+id/tv_text_delete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_8sdp"
@@ -122,22 +124,76 @@
                     android:textFontWeight="400"
                     android:fontFamily="sans-serif-medium"/>
             </LinearLayout>
+            <LinearLayout
+                android:id="@+id/btn_remove_recent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:paddingVertical="@dimen/_12sdp"
+                android:background="@drawable/bg_btn_delete"
+                android:paddingHorizontal="@dimen/_10sdp">
 
-            <Space
-                android:layout_width="@dimen/_24sdp"
-                android:layout_height="match_parent"/>
+                <ImageView
+                    android:id="@+id/iv_icon_recent"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@drawable/file_func_remove_recent"/>
 
-            <!-- Nút Share -->
+                <TextView
+                    android:id="@+id/tv_text_recent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:text="@string/remove"
+                    android:textColor="@color/text1"
+                    android:textSize="14sp"
+                    android:textFontWeight="400"
+                    android:fontFamily="sans-serif-medium"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/btn_remove_favourite"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:gravity="center"
+                android:visibility="gone"
+                android:paddingVertical="@dimen/_12sdp"
+                android:background="@drawable/bg_btn_delete"
+                android:paddingHorizontal="@dimen/_10sdp">
+
+                <ImageView
+                    android:id="@+id/iv_icon_favourite"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@drawable/file_func_remove_favourite"/>
+
+                <TextView
+                    android:id="@+id/tv_text_favourite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:text="@string/remove"
+                    android:textColor="@color/text1"
+                    android:textSize="14sp"
+                    android:textFontWeight="400"
+                    android:fontFamily="sans-serif-medium"/>
+            </LinearLayout>
             <LinearLayout
                 android:id="@+id/btn_share"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="horizontal"
-                android:paddingVertical="@dimen/_10sdp"
                 android:gravity="center"
+                android:paddingVertical="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
                 android:background="@drawable/bg_btn_share_1"
-                android:paddingHorizontal="@dimen/_16sdp">
+                android:paddingHorizontal="@dimen/_10sdp">
 
                 <ImageView
                     android:id="@+id/iv_icon_2"
