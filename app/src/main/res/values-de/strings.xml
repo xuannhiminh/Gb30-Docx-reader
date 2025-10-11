@@ -26,6 +26,9 @@
     <string name="descending">Absteigend</string>
     <string name="apply">Anwenden</string>
     <string name="total">Gesamt:</string>
+    <string name="pdf_to_word">PDF in Word</string>
+    <string name="word_to_pdf">Word in PDF</string>
+    <string name="ppt_to_pdf">PPT in PDF</string>
 
     <string name="sort_by_date">Erstellungsdatum: Aufsteigend</string>
     <string name="sort_by_date_desc">Erstellungsdatum: Absteigend</string>

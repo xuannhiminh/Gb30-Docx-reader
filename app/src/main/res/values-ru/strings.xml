@@ -30,6 +30,9 @@
     <string name="descending">По убыванию</string>
     <string name="apply">Применить</string>
     <string name="total">Итого:</string>
+    <string name="pdf_to_word">PDF в Word</string>
+    <string name="word_to_pdf">Word в PDF</string>
+    <string name="ppt_to_pdf">PPT в PDF</string>
 
     <string name="add_in_fav">Добавить в избранное</string>
 

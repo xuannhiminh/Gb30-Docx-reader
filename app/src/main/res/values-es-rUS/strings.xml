@@ -16,6 +16,9 @@
     <string name="intent_label_ppt_reader">Lector de PPT</string>
     <string name="intent_label_pdf_ppt">Editor de PPT</string>
     <string name="start_free_trial">Start Free Trial</string> <!-- thường giữ nguyên ở US -->
+    <string name="pdf_to_word">PDF a Word</string>
+    <string name="word_to_pdf">Word a PDF</string>
+    <string name="ppt_to_pdf">PPT a PDF</string>
 
     <string name="intent_label_ppt_smart_editor">Editor inteligente de PPT</string>
     <string name="intent_label_ppt_print">Imprimir PPT</string>

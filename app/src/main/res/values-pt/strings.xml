@@ -29,6 +29,9 @@
     <string name="descending">Descendente</string>
     <string name="apply">Aplicar</string>
     <string name="total">Total:</string>
+    <string name="pdf_to_word">PDF para Word</string>
+    <string name="word_to_pdf">Word para PDF</string>
+    <string name="ppt_to_pdf">PPT para PDF</string>
 
     <string name="app_name">Word Documents</string>
 

@@ -33,6 +33,9 @@
     <string name="descending">降順</string>
     <string name="apply">適用</string>
     <string name="total">合計:</string>
+    <string name="pdf_to_word">PDFをWordに変換</string>
+    <string name="word_to_pdf">WordをPDFに変換</string>
+    <string name="ppt_to_pdf">PPTをPDFに変換</string>
 
     <string name="sort_by_size_desc">ファイルサイズ：降順</string>
     <string name="replace_old_file">古いファイルを置き換えますか？</string>

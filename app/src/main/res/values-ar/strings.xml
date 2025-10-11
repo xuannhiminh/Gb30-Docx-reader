@@ -471,6 +471,9 @@
     <string name="exit_app_content">هل أنت متأكد أنك تريد الخروج من التطبيق؟</string>
     <string name="exit_app">😢\nالخروج من التطبيق</string>
     <string name="not_exit">🥰\nالعودة</string>
+    <string name="pdf_to_word">PDF إلى Word</string>
+    <string name="word_to_pdf">Word إلى PDF</string>
+    <string name="ppt_to_pdf">PPT إلى PDF</string>
 
     <string name="uprange_to_premium">ترقية إلى بريميوم</string>
     <string name="full_premium_features">استمتع بجميع ميزات بريميوم</string>

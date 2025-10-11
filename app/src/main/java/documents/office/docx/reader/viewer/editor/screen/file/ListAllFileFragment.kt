@@ -33,6 +33,7 @@ import documents.office.docx.reader.viewer.editor.common.LoadingState
 import documents.office.docx.reader.viewer.editor.databinding.FragmentListFileBinding
 import documents.office.docx.reader.viewer.editor.model.FileModel
 import documents.office.docx.reader.viewer.editor.screen.base.IAdsControl
+import documents.office.docx.reader.viewer.editor.screen.base.PdfBaseActivity
 import documents.office.docx.reader.viewer.editor.screen.base.PdfBaseFragment
 import documents.office.docx.reader.viewer.editor.screen.func.BottomSheetFileFunction
 import documents.office.docx.reader.viewer.editor.screen.main.MainActivity
@@ -230,6 +231,9 @@ open class ListAllFileFragment(private val filesLiveData: LiveData<List<FileMode
 
             else -> {}
         }
+    }
+    fun showDetailFile(fileModel: FileModel) {
+        (requireActivity() as PdfBaseActivity<*>).showDetailFile(fileModel, viewModel)
     }
 
     override fun getViewBinding(

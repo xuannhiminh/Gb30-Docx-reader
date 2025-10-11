@@ -18,6 +18,9 @@
     <string name="intent_label_pdf_ppt">Éditeur PPT</string>
     <string name="intent_label_ppt_smart_editor">Éditeur intelligent PPT</string>
     <string name="intent_label_ppt_print">Imprimer PPT</string>
+    <string name="pdf_to_word">PDF vers Word</string>
+    <string name="word_to_pdf">Word vers PDF</string>
+    <string name="ppt_to_pdf">PPT vers PDF</string>
 
     <string name="start_free_trial">Start Free Trial</string>
 

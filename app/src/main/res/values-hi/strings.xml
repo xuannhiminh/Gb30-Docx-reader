@@ -20,6 +20,9 @@
     <string name="intent_label_ppt_print">PPT प्रिंट करें</string>
     <string name="start_free_trial">Start Free Trial</string>
     <string name="set_docx_reader_as_your_default_word_file_viewer"><b>%s</b> को अपना डिफ़ॉल्ट Word फ़ाइल दर्शक बनाएं</string>
+    <string name="pdf_to_word">PDF से Word</string>
+    <string name="word_to_pdf">Word से PDF</string>
+    <string name="ppt_to_pdf">PPT से PDF</string>
 
     <string name="congrats">बधाई हो!</string>
     <string name="congrats_subtext">प्रीमियम में आपका स्वागत है,\n लाभों का आनंद लें</string>

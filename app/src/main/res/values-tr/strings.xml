@@ -30,6 +30,9 @@
     <string name="descending">Azalan</string>
     <string name="apply">Uygula</string>
     <string name="total">Toplam:</string>
+    <string name="pdf_to_word">PDF'den Word'e</string>
+    <string name="word_to_pdf">Word'den PDF'ye</string>
+    <string name="ppt_to_pdf">PPT'den PDF'ye</string>
 
     <string name="start_free_trial">Start Free Trial</string>
 

@@ -22,6 +22,9 @@
     <string name="pdf">PDF</string>
 
     <string name="word">Word</string>
+    <string name="pdf_to_word">PDF ל-Word</string>
+    <string name="word_to_pdf">Word ל-PDF</string>
+    <string name="ppt_to_pdf">PPT ל-PDF</string>
 
     <string name="excel">Excel</string>
     <string name="sort_criteria">קריטריון מיון</string>

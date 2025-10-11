@@ -28,6 +28,9 @@
     <string name="descending">نزولی</string>
     <string name="apply">اعمال</string>
     <string name="total">جمع کل:</string>
+    <string name="pdf_to_word">PDF به Word</string>
+    <string name="word_to_pdf">Word به PDF</string>
+    <string name="ppt_to_pdf">PPT به PDF</string>
 
     <string name="sort_by_date_desc">تاریخ ایجاد: نزولی</string>
     <string name="sort_by_name_asc">نام: الف تا ی</string>

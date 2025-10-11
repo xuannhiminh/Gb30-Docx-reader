@@ -150,7 +150,7 @@
                 android:textFontWeight="500"
                 app:fvTextColor="@color/text1"
                 app:fvIcon="@drawable/file_func_word_to_pdf"
-                app:fvTitle="@string/pdf_to_word" />
+                app:fvTitle="@string/word_to_pdf" />
             <documents.office.docx.reader.viewer.editor.view.ItemFunctionView
                 android:id="@+id/func_ppt_to_pdf"
                 android:layout_width="match_parent"
@@ -161,7 +161,7 @@
                 android:textFontWeight="500"
                 app:fvTextColor="@color/text1"
                 app:fvIcon="@drawable/file_func_word_to_pdf"
-                app:fvTitle="@string/pdf_to_word" />
+                app:fvTitle="@string/ppt_to_pdf" />
             <documents.office.docx.reader.viewer.editor.view.ItemFunctionView
                 android:id="@+id/func_print"
                 android:layout_width="match_parent"

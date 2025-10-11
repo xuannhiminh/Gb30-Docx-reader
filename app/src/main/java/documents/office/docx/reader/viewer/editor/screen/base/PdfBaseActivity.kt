@@ -32,6 +32,7 @@ import documents.office.docx.reader.viewer.editor.dialog.DetailFileDialog
 import documents.office.docx.reader.viewer.editor.dialog.ReloadFileGuideDialog
 import documents.office.docx.reader.viewer.editor.dialog.RenameDialog
 import documents.office.docx.reader.viewer.editor.model.FileModel
+import documents.office.docx.reader.viewer.editor.screen.main.MainViewModel
 import documents.office.docx.reader.viewer.editor.screen.rate.DialogRating
 import documents.office.docx.reader.viewer.editor.screen.rate.DialogRatingState
 import documents.office.docx.reader.viewer.editor.utils.AppUtils.Companion.PDF_DETAIL_EZLIB
@@ -106,9 +107,14 @@ abstract class PdfBaseActivity<B : ViewBinding> : BaseActivity<B>(), IControl {
             .show(supportFragmentManager, "DeleteDialog")
     }
 
-    open fun showDetailFile(fileModel: FileModel) {
-        val detailPageDialog = DetailFileDialog(fileModel = fileModel);
-        detailPageDialog.show(supportFragmentManager, "DetailPageDialog")
+    open fun showDetailFile(fileModel: FileModel, viewModel: MainViewModel) {
+        val detailPageDialog = DetailFileDialog(fileModel = fileModel, viewModel);
+        try {
+            detailPageDialog.show(supportFragmentManager, "DetailPageDialog")
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Log.e("PdfBaseActivity", "Error showing DetailPageDialog: ${e.message}", e)
+        }
     }
 
     private fun showReloadGuide() {

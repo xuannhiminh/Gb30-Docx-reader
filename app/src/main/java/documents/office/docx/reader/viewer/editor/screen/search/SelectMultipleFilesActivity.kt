@@ -318,7 +318,7 @@ class SelectMultipleFilesActivity : PdfBaseActivity<ActivityCheckFileBinding>() 
             }
 
             FunctionState.DETAIL -> {
-                showDetailFile(fileModel)
+                showDetailFile(fileModel, viewModel)
             }
 
             else -> {}

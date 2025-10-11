@@ -36,6 +36,9 @@
     <string name="descending">내림차순</string>
     <string name="apply">적용</string>
     <string name="total">합계:</string>
+    <string name="pdf_to_word">PDF를 Word로</string>
+    <string name="word_to_pdf">Word를 PDF로</string>
+    <string name="ppt_to_pdf">PPT를 PDF로</string>
 
     <string name="convert_to_pdf">PDF로 변환</string>
     <string name="pdf_file_name">PDF 파일 이름</string>

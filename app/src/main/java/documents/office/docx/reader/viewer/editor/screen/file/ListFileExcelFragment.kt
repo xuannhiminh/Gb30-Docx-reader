@@ -21,6 +21,7 @@ import documents.office.docx.reader.viewer.editor.common.*
 import documents.office.docx.reader.viewer.editor.databinding.FragmentListFileBinding
 import documents.office.docx.reader.viewer.editor.model.FileModel
 import documents.office.docx.reader.viewer.editor.screen.base.IAdsControl
+import documents.office.docx.reader.viewer.editor.screen.base.PdfBaseActivity
 import documents.office.docx.reader.viewer.editor.screen.base.PdfBaseFragment
 import documents.office.docx.reader.viewer.editor.screen.func.BottomSheetFileFunction
 import documents.office.docx.reader.viewer.editor.screen.main.MainActivity
@@ -46,36 +47,6 @@ open class ListFileExcelFragment(private val filesLiveData: LiveData<List<FileMo
 
         binding.rcvListFile.adapter = adapter
 
-//        AdmobNativeAdView.getNativeAd(
-//            requireContext(),
-//            R.layout.native_admod_home,
-//            object : NativeAdListener() {
-//                override fun onError() {
-//
-//                }
-//
-//                override fun onLoaded(nativeAd: RelativeLayout?) {
-//                    if (fromTab() == FileTab.ALL_FILE) {
-//                        adsView = nativeAd
-//                        adapter.adsView = adsView
-//
-//                        val fileModel = FileModel()
-//                        fileModel.isAds = true
-//                        adapter.addAds(fileModel, 3)
-//                    }
-//                }
-//
-//                override fun onClickAd() {
-//                }
-//
-//                override fun onPurchased(nativeAd: RelativeLayout?) {
-//                    super.onPurchased(nativeAd)
-//                    adsView = null
-//                    adapter.adsView = null
-//                    viewModel.sortFile(SortState.getSortState(PreferencesUtils.getInteger(PresKey.SORT_STATE, 1)))
-//                    Log.e("Purchase", "On")
-//                }
-//            })
     }
 
     override fun initData() {
@@ -231,6 +202,10 @@ open class ListFileExcelFragment(private val filesLiveData: LiveData<List<FileMo
 
             else -> {}
         }
+    }
+
+    fun showDetailFile(fileModel: FileModel) {
+        (requireActivity() as PdfBaseActivity<*>).showDetailFile(fileModel, viewModel)
     }
 
     override fun getViewBinding(

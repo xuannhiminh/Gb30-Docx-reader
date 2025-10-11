@@ -188,7 +188,7 @@ class SearchFileActivity : PdfBaseActivity<ActivitySearchFileBinding>() {
             }
 
             FunctionState.DETAIL -> {
-                showDetailFile(fileModel)
+                showDetailFile(fileModel, viewModel)
             }
 
             else -> {}

@@ -10,7 +10,9 @@
     <string name="intent_label_pdf_excel">Excel Editor</string>
     <string name="intent_label_excel_smart_editor">Excel Smart Editor</string>
     <string name="intent_label_excel_print">Excel Print</string>
-
+    <string name="pdf_to_word">PDF to Word</string>
+    <string name="word_to_pdf">Word to PDF</string>
+    <string name="ppt_to_pdf">PPT to PDF</string>
     <string name="intent_label_ppt_pdf">PPT to PDF</string>
     <string name="intent_label_ppt_reader">PPT Reader</string>
     <string name="intent_label_pdf_ppt">PPT Editor</string>

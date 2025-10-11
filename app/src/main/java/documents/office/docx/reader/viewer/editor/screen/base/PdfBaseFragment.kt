@@ -15,9 +15,9 @@ abstract class PdfBaseFragment<B: ViewBinding> : BaseFragment<B>(), IControl {
         (requireActivity() as PdfBaseActivity<*>).showDialogConfirm(title, message, onConfirm)
     }
 
-    open fun showDetailFile(fileModel: FileModel) {
-        (requireActivity() as PdfBaseActivity<*>).showDetailFile(fileModel)
-    }
+//    fun showDetailFile(fileModel: FileModel) {
+//        (requireActivity() as PdfBaseActivity<*>).showDetailFile(fileModel, viewModel)
+//    }
 
     override fun openFile(fileModel: FileModel) {
         (requireActivity() as PdfBaseActivity<*>).openFile(fileModel)

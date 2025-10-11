@@ -34,6 +34,9 @@
     <string name="descending">Aflopend</string>
     <string name="apply">Toepassen</string>
     <string name="total">Totaal:</string>
+    <string name="pdf_to_word">PDF naar Word</string>
+    <string name="word_to_pdf">Word naar PDF</string>
+    <string name="ppt_to_pdf">PPT naar PDF</string>
 
     <string name="ok">OK</string>
     <string name="convert_to_pdf">Converteren naar PDF</string>

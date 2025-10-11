@@ -12,7 +12,9 @@
 
     <string name="app_version">Version %s</string>
     <string name="file_not_found">File not found!!!</string>
-
+    <string name="pdf_to_word">PDF to Word</string>
+    <string name="word_to_pdf">Word to PDF</string>
+    <string name="ppt_to_pdf">PPT to PDF</string>
     <string name="rate_now">Rate now</string>
 
     <string name="recent_add">Recently added (%s)</string>

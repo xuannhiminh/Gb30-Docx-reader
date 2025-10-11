@@ -36,6 +36,9 @@
     <string name="descending">降冪</string>
     <string name="apply">套用</string>
     <string name="total">總計：</string>
+    <string name="pdf_to_word">PDF 轉 Word</string>
+    <string name="word_to_pdf">Word 轉 PDF</string>
+    <string name="ppt_to_pdf">PPT 轉 PDF</string>
 
     <string name="convert_to_pdf">轉換為 PDF</string>
     <string name="pdf_file_name">PDF 檔案名稱</string>

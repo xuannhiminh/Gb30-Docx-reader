@@ -36,6 +36,9 @@
     <string name="descending">За спаданням</string>
     <string name="apply">Застосувати</string>
     <string name="total">Разом:</string>
+    <string name="pdf_to_word">PDF у Word</string>
+    <string name="word_to_pdf">Word у PDF</string>
+    <string name="ppt_to_pdf">PPT у PDF</string>
 
     <string name="convert_to_pdf">Конвертувати в PDF</string>
     <string name="pdf_file_name">Назва PDF-файлу</string>
