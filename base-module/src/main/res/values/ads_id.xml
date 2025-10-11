@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="facebook_app_id" translatable="false">765144066363490</string>
-    <string name="facebook_client_token" translatable="false">91a7a973a41983e749f64c2a5eedc5c5</string>
-    <string name="admob_app_id" translatable="false">ca-app-pub-5904408074441373~1043440463</string>
+    <string name="facebook_app_id" translatable="false">790900853557583</string>
+    <string name="facebook_client_token" translatable="false">6d3f65291ed660c25d0997c99edf30db</string>
+    <string name="admob_app_id" translatable="false">ca-app-pub-5904408074441373~4247241158</string>
     <string name="app_flyer_id" translatable="false">Qhno4yJY6KHmZp9uS9DRe4</string>
 
-    <string name="inter_splash" translatable="false">ca-app-pub-5904408074441373/4296289760</string>
+    <string name="inter_splash" translatable="false">ca-app-pub-5904408074441373/5784518250</string>
     <string name="open_splash" translatable="false">ca-app-pub-5904408074441373/4598993358</string>
-    <string name="native_language" translatable="false">ca-app-pub-5904408074441373/8043963088</string>
-    <string name="banner_navbar" translatable="false">ca-app-pub-5904408074441373/3489586508</string>
-    <string name="native_between_files_home" translatable="false">ca-app-pub-5904408074441373/4104718072</string>
-    <string name="native_filedetail" translatable="false">ca-app-pub-5904408074441373/9659748345</string>
-    <string name="inter_filedetail" translatable="false">ca-app-pub-5904408074441373/9959131242</string>
-    <string name="open_all" translatable="false">ca-app-pub-5904408074441373/1558445780</string>
-    <string name="native_between_files_selectfiles" translatable="false">ca-app-pub-5904408074441373/2064824198</string>
-    <string name="inter_createpdf" translatable="false">ca-app-pub-5904408074441373/6842013315</string>
-    <string name="native_bot_createpdf" translatable="false">ca-app-pub-5904408074441373/8973352632</string>
-    <string name="native_keep_user" translatable="false">ca-app-pub-5904408074441373/4595123929</string>
-    <string name="native_survey_user" translatable="false">ca-app-pub-5904408074441373/2600064710</string>
-    <string name="inter_reload" translatable="false">ca-app-pub-5904408074441373/5828314544</string>
-    <string name="native_reload_success" translatable="false">ca-app-pub-5904408074441373/6646572199</string>
+    <string name="native_language" translatable="false">ca-app-pub-5904408074441373/5989899362</string>
+    <string name="banner_navbar" translatable="false">ca-app-pub-5904408074441373/9693765681</string>
+    <string name="inter_home" translatable="false">ca-app-pub-5904408074441373/7848215442</string>
+    <string name="native_between_files_home" translatable="false">ca-app-pub-5904408074441373/8133272004</string>
+    <string name="native_filedetail" translatable="false">ca-app-pub-5904408074441373/4471436585</string>
+    <string name="inter_filedetail" translatable="false">ca-app-pub-5904408074441373/8219109900</string>
+    <string name="open_all" translatable="false">ca-app-pub-5904408074441373/6906028230</string>
+    <string name="native_between_files_selectfiles" translatable="false">ca-app-pub-5904408074441373/8380684016</string>
+    <string name="inter_createpdf" translatable="false">ca-app-pub-5904408074441373/9134937458</string>
+    <string name="native_bot_createpdf" translatable="false">ca-app-pub-5904408074441373/8157839651</string>
+    <string name="native_keep_user" translatable="false">ca-app-pub-5904408074441373/5277251796</string>
+    <string name="native_survey_user" translatable="false">ca-app-pub-5904408074441373/2880945321</string>
+    <string name="inter_reload" translatable="false">ca-app-pub-5904408074441373/7941700312</string>
+    <string name="native_reload_success" translatable="false">ca-app-pub-5904408074441373/6535133776</string>
 
     <string name="native_intro" translatable="false">ca-app-pub-5904408074441373/1308997608</string>
     <string name="native_navbar" translatable="false">ca-app-pub-5904408074441373/9724970837</string>
