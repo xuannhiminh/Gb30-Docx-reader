@@ -30,6 +30,9 @@
     <string name="remove_recent_content">你確定要將此項目從最近列表中移除嗎？</string>
     <string name="remove_favourite_content">你確定要將此檔案從收藏列表中移除嗎？</string>
     <string name="remove_favourite">從收藏中移除</string>
+    <string name="app">應用程式</string>
+    <string name="display">顯示</string>
+    <string name="support">支援</string>
 
     <string name="start_free_trial">Start Free Trial</string>
     <string name="set_docx_reader_as_your_default_word_file_viewer">將 <b>%s</b> 設為預設的 Word 檔案檢視器</string>

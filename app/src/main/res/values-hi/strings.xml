@@ -27,6 +27,9 @@
     <string name="remove_recent_content">क्या आप सुनिश्चित हैं कि आप इस आइटम को हाल की सूची से हटाना चाहते हैं?</string>
     <string name="remove_favourite_content">क्या आप सुनिश्चित हैं कि आप इस फ़ाइल को अपनी पसंदीदा सूची से हटाना चाहते हैं?</string>
     <string name="remove_favourite">पसंदीदा से हटाएँ</string>
+    <string name="app">ऐप</string>
+    <string name="display">प्रदर्शन</string>
+    <string name="support">सहायता</string>
 
     <string name="congrats">बधाई हो!</string>
     <string name="congrats_subtext">प्रीमियम में आपका स्वागत है,\n लाभों का आनंद लें</string>

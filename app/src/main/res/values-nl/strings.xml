@@ -31,6 +31,9 @@
     <string name="remove_recent_content">Weet je zeker dat je dit item uit de lijst Recent wilt verwijderen?</string>
     <string name="remove_favourite_content">Weet je zeker dat je dit bestand uit je favorietenlijst wilt verwijderen?</string>
     <string name="remove_favourite">Verwijderen uit favorieten</string>
+    <string name="app">App</string>
+    <string name="display">Weergave</string>
+    <string name="support">Ondersteuning</string>
 
     <string name="congrats_subtext">Welkom bij Premium,\n geniet van de voordelen</string>
     <string name="ok_great">Oké, geweldig!</string>

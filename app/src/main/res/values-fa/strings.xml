@@ -36,6 +36,9 @@
     <string name="remove_recent_content">آیا مطمئن هستید که می‌خواهید این مورد را از فهرست اخیر حذف کنید؟</string>
     <string name="remove_favourite_content">آیا مطمئن هستید که می‌خواهید این فایل را از فهرست علاقه‌مندی‌ها حذف کنید؟</string>
     <string name="remove_favourite">حذف از علاقه‌مندی‌ها</string>
+    <string name="app">برنامه</string>
+    <string name="display">نمایش</string>
+    <string name="support">پشتیبانی</string>
 
     <string name="sort_by_date_desc">تاریخ ایجاد: نزولی</string>
     <string name="sort_by_name_asc">نام: الف تا ی</string>

@@ -34,6 +34,9 @@
     <string name="remove_recent_content">Bist du sicher, dass du dieses Element aus der Liste „Zuletzt“ entfernen möchtest?</string>
     <string name="remove_favourite_content">Bist du sicher, dass du diese Datei aus deiner Favoritenliste entfernen möchtest?</string>
     <string name="remove_favourite">Aus Favoriten entfernen</string>
+    <string name="app">App</string>
+    <string name="display">Anzeige</string>
+    <string name="support">Support</string>
 
     <string name="sort_by_date">Erstellungsdatum: Aufsteigend</string>
     <string name="sort_by_date_desc">Erstellungsdatum: Absteigend</string>

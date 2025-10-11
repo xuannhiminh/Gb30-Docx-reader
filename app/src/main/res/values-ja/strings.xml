@@ -41,6 +41,9 @@
     <string name="remove_recent_content">この項目を「最近」リストから移動してもよろしいですか？</string>
     <string name="remove_favourite_content">このファイルをお気に入りリストから移動してもよろしいですか？</string>
     <string name="remove_favourite">お気に入りから削除</string>
+    <string name="app">アプリ</string>
+    <string name="display">表示</string>
+    <string name="support">サポート</string>
 
     <string name="sort_by_size_desc">ファイルサイズ：降順</string>
     <string name="replace_old_file">古いファイルを置き換えますか？</string>

@@ -30,6 +30,9 @@
     <string name="remove_recent_content">Ви впевнені, що хочете видалити цей елемент із списку нещодавніх?</string>
     <string name="remove_favourite_content">Ви впевнені, що хочете видалити цей файл із списку обраного?</string>
     <string name="remove_favourite">Видалити з обраного</string>
+    <string name="app">Додаток</string>
+    <string name="display">Відображення</string>
+    <string name="support">Підтримка</string>
 
     <string name="start_free_trial">Start Free Trial</string>
     <string name="set_docx_reader_as_your_default_word_file_viewer">Встановіть <b>%s</b> як ваш переглядач файлів Word за замовчуванням</string>

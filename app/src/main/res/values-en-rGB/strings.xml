@@ -386,7 +386,9 @@
     <string name="set_default">Set as default</string>
     <string name="click_clear_default">Then click Clear defaults</string>
     <string name="clear_default">Clear defaults</string>
-
+    <string name="app">App</string>
+    <string name="display">Display</string>
+    <string name="support">Support</string>
     <string name="fix_your_issue">Information for us to fix your issue faster</string>
     <string name="your_feedback">Your feedback</string>
    <string name="feedback_disclaimer">By sending this email, you agree to share the above information with us to help improve the app.</string>

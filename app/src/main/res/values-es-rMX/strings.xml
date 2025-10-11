@@ -26,6 +26,9 @@
     <string name="remove_favourite">Eliminar de Favoritos</string>
 
     <string name="intent_label_ppt_print">Imprimir PPT</string>
+    <string name="app">Aplicación</string>
+    <string name="display">Pantalla</string>
+    <string name="support">Soporte</string>
 
     <string name="add_in_fav">Añadir a favoritos</string>
     <string name="congrats">¡Felicidades!</string>

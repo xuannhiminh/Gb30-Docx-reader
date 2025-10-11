@@ -570,6 +570,9 @@
     <string name="thanks_for_feedback">Cảm ơn phản hồi của bạn!</string>
     <string name="deliver_better_experience">Chúng tôi nỗ lực mang đến trải nghiệm tốt hơn.</string>
     <string name="feature_request_limit">Bạn chỉ có thể gửi lại sau 1 giờ</string>
+    <string name="app">Ứng dụng</string>
+    <string name="display">Hiển thị</string>
+    <string name="support">Hỗ trợ</string>
 
 
     <string name="fix_your_issue">Thông tin để chúng tôi có thể khắc phục sự cố của bạn nhanh hơn</string>
