@@ -8,6 +8,7 @@
     <string name="file_not_found">Bestand niet gevonden!!!</string>
     <string name="rate_now">Nu beoordelen</string>
     <string name="recent_add">Recent toegevoegd (%s)</string>
+    <string name="recent_add_title">Recent toegevoegd</string>
     <string name="all">Alle</string>
     <string name="pdf">PDF</string>
     <string name="word">Word</string>

@@ -30,9 +30,9 @@
     <string name="descending">Azalan</string>
     <string name="apply">Uygula</string>
     <string name="total">Toplam:</string>
-    <string name="pdf_to_word">PDF'den Word'e</string>
-    <string name="word_to_pdf">Word'den PDF'ye</string>
-    <string name="ppt_to_pdf">PPT'den PDF'ye</string>
+    <string name="pdf_to_word">PDF\'den Word\'e</string>
+    <string name="word_to_pdf">Word\'den PDF\'ye</string>
+    <string name="ppt_to_pdf">PPT\'den PDF\'ye</string>
 
     <string name="start_free_trial">Start Free Trial</string>
 
@@ -233,6 +233,7 @@
     <string name="file_not_found">Dosya bulunamadı!!!</string>
     <string name="rate_now">Şimdi oyla</string>
     <string name="recent_add">Son zamanlarda eklendi (%s)</string>
+    <string name="recent_add_title">Son zamanlarda eklendi</string>
     <string name="all">Hepsi</string>
     <string name="pdf">Pdf</string>
     <string name="word">Word</string>

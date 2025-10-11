@@ -8,6 +8,7 @@
     <string name="file_not_found">لم يتم العثور على الملف!!!</string>
     <string name="rate_now">قيم الآن</string>
     <string name="recent_add">تمت الإضافة مؤخراً(%s)</string>
+    <string name="recent_add_title">تمت الإضافة مؤخراً</string>
     <string name="all">الكل</string>
     <string name="pdf">Pdf</string>
     <string name="word">Word</string>

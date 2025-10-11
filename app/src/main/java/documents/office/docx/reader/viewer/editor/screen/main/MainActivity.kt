@@ -1011,7 +1011,7 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
             binding.layoutTotalFiles.visibility = View.GONE
             binding.toolbar.chooseType.visibility = View.GONE
             binding.toolbar.ivBack.visibility = View.VISIBLE
-            binding.toolbar.tvTitle.text = resources.getString(R.string.recent_add)
+            binding.toolbar.tvTitle.text = resources.getString(R.string.recent_add_title)
             handleSortAction(7)
         }
         binding.toolbar.ivBack.setOnClickListener {

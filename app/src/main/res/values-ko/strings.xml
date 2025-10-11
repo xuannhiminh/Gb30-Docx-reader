@@ -8,6 +8,7 @@
     <string name="file_not_found">파일을 찾을 수 없습니다!!!</string>
     <string name="rate_now">지금 평가하기</string>
     <string name="recent_add">최근 추가됨 (%s)</string>
+    <string name="recent_add_title">최근 추가됨</string>
     <string name="all">전체</string>
     <string name="pdf">PDF</string>
     <string name="word">Word</string>

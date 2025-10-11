@@ -229,6 +229,7 @@
     <string name="file_not_found">Fichier non trouvé!!!</string>
     <string name="rate_now">Évaluer maintenant</string>
     <string name="recent_add">Ajouté récemment (%s)</string>
+    <string name="recent_add_title">Ajouté récemment</string>
     <string name="all">Tout</string>
     <string name="pdf">Pdf</string>
     <string name="word">Word</string>

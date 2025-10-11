@@ -8,6 +8,7 @@
     <string name="file_not_found">ファイルが見つかりません!!!</string>
     <string name="rate_now">今すぐ評価</string>
     <string name="recent_add">最近追加された (%s)</string>
+    <string name="recent_add_title">最近追加された</string>
     <string name="all">すべて</string>
     <string name="pdf">PDF</string>
     <string name="word">Word</string>

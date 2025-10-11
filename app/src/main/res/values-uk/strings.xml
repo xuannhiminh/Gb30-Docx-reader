@@ -8,6 +8,7 @@
     <string name="file_not_found">Файл не знайдено!!!</string>
     <string name="rate_now">Оцінити зараз</string>
     <string name="recent_add">Нещодавно додані (%s)</string>
+    <string name="recent_add_title">Нещодавно додані</string>
     <string name="all">Усі</string>
     <string name="pdf">PDF</string>
     <string name="word">Word</string>

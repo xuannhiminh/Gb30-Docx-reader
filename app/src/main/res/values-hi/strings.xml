@@ -230,6 +230,7 @@
     <string name="file_not_found">फाइल नहीं मिली!!!</string>
     <string name="rate_now">अब रेट करें</string>
     <string name="recent_add">हाल ही में जोड़ा गया (%s)</string>
+    <string name="recent_add_title">हाल ही में जोड़ा गया</string>
     <string name="all">सभी</string>
     <string name="pdf">Pdf</string>
     <string name="word">Word</string>
