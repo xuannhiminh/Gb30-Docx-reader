@@ -280,35 +280,6 @@ abstract class PdfBaseActivity<B : ViewBinding> : BaseActivity<B>(), IControl {
     }
 
 
-    //    fun openUri(uri: Uri) {
-//        if (getMimeType(this, uri) == "application/pdf") {
-//            PdfDetailActivity.start(this, uri, true, 1000)
-//        } else {
-//            val intent = Intent(this, OpenFileActivity::class.java)
-//            intent.setAction(Intent.ACTION_VIEW)
-//            intent.data = uri
-//            intent.putExtra("STARTED_FROM_EXPLORER", true)
-//            intent.putExtra("START_PAGE", 0)
-//            intent.putExtra("ALLOW_EDIT", false)
-//            intent.putExtra("LAST_PAGE", 0)
-////            sendBroadcast(
-////                Intent().apply {
-////                    action = BroadcastSubmodule.ACTION_RECENT
-////                    putExtra(BroadcastSubmodule.PATH, path)
-////                }
-////            )
-//
-////            if (copyString != "") {
-////                intent.putExtra("content", copyString)
-////            }
-//
-////            if (list.isNotEmpty()) {
-////                intent.putStringArrayListExtra("list_img", list)
-////            }
-//            Log.d("openDocuments", "startActivityForResult")
-//            this.startActivityForResult(intent, 1000)
-//        }
-//    }
     override fun showRenameFile(fileName: String, complete: (String) -> Unit) {
         RenameDialog()
             .setFileName(fileName)

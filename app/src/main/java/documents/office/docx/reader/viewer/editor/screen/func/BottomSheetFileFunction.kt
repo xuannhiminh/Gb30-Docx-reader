@@ -245,8 +245,20 @@ class BottomSheetFileFunction(
                 android.graphics.PorterDuff.Mode.SRC_IN
             )
         }
-        binding.funcDetailFile.setOnClickListener {
-            listener.onListener(FunctionState.DETAIL)
+        binding.funcPdfToWord.setOnClickListener {
+            listener.onListener(FunctionState.PDF_TO_WORD)
+            dismiss()
+        }
+        binding.funcWordToPdf.setOnClickListener {
+            listener.onListener(FunctionState.WORD_TO_PDF)
+            dismiss()
+        }
+        binding.funcPptToPdf.setOnClickListener {
+            listener.onListener(FunctionState.PPT_TO_PDF)
+            dismiss()
+        }
+        binding.funcPrint.setOnClickListener {
+            listener.onListener(FunctionState.PRINT)
             dismiss()
         }
 

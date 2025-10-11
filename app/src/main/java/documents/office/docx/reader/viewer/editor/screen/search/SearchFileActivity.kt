@@ -190,6 +190,18 @@ class SearchFileActivity : PdfBaseActivity<ActivitySearchFileBinding>() {
             FunctionState.DETAIL -> {
                 showDetailFile(fileModel, viewModel)
             }
+            FunctionState.PDF_TO_WORD -> {
+                openFile(fileModel)
+            }
+            FunctionState.WORD_TO_PDF -> {
+                openFile(fileModel)
+            }
+            FunctionState.PPT_TO_PDF -> {
+                openFile(fileModel)
+            }
+            FunctionState.PRINT -> {
+                openFile(fileModel)
+            }
 
             else -> {}
         }

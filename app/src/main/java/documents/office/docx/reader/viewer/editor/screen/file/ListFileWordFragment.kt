@@ -1,8 +1,11 @@
 package documents.office.docx.reader.viewer.editor.screen.file
 
+import android.content.Context
 import android.content.Intent
 import android.os.Handler
 import android.os.Looper
+import android.print.PrintManager
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +17,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.lifecycleScope
 import com.ezteam.baseproject.utils.IAPUtils
 import com.ezteam.baseproject.utils.PDFConstants.Companion.ADS_ITEM_INDEX
+import com.ezteam.ezpdflib.util.PdfUtils
+import com.ezteam.ezpdflib.util.print.PdfDocumentAdapter
 import com.google.android.gms.ads.nativead.NativeAd
 import documents.office.docx.reader.viewer.editor.R
 import documents.office.docx.reader.viewer.editor.adapter.FileItemAdapter
@@ -27,6 +32,7 @@ import documents.office.docx.reader.viewer.editor.screen.func.BottomSheetFileFun
 import documents.office.docx.reader.viewer.editor.screen.main.MainActivity
 import documents.office.docx.reader.viewer.editor.screen.main.MainViewModel
 import documents.office.docx.reader.viewer.editor.screen.start.SplashActivity
+import kotlinx.coroutines.CoroutineScope
 //import com.google.android.gms.ads.ez.EzAdControl
 //import com.google.android.gms.ads.ez.listenner.NativeAdListener
 //import com.google.android.gms.ads.ez.listenner.ShowAdCallback
@@ -35,6 +41,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.apache.commons.io.FilenameUtils
 import org.koin.android.ext.android.inject
+import java.io.File
 
 
 open class ListFileWordFragment(private val filesLiveData: LiveData<List<FileModel>>) : PdfBaseFragment<FragmentListFileBinding>(), IAdsControl {
@@ -197,6 +204,18 @@ open class ListFileWordFragment(private val filesLiveData: LiveData<List<FileMod
 
             FunctionState.DETAIL -> {
                 showDetailFile(fileModel)
+            }
+            FunctionState.PDF_TO_WORD -> {
+                openFile(fileModel)
+            }
+            FunctionState.WORD_TO_PDF -> {
+                openFile(fileModel)
+            }
+            FunctionState.PPT_TO_PDF -> {
+                openFile(fileModel)
+            }
+            FunctionState.PRINT -> {
+                openFile(fileModel)
             }
 
             else -> {}

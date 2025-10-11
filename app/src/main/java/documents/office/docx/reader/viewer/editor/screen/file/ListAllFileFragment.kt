@@ -228,6 +228,18 @@ open class ListAllFileFragment(private val filesLiveData: LiveData<List<FileMode
             FunctionState.DETAIL -> {
                 showDetailFile(fileModel)
             }
+            FunctionState.PDF_TO_WORD -> {
+                openFile(fileModel)
+            }
+            FunctionState.WORD_TO_PDF -> {
+                openFile(fileModel)
+            }
+            FunctionState.PPT_TO_PDF -> {
+                openFile(fileModel)
+            }
+            FunctionState.PRINT -> {
+                openFile(fileModel)
+            }
 
             else -> {}
         }

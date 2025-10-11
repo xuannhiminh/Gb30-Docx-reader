@@ -292,27 +292,6 @@ open class BasePdfViewerActivity : AppCompatActivity() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-//        var context: Context? = applicationContext
-//        while (context is ContextWrapper && context !is Activity) {
-//            context = context.baseContext
-//        }
-//        if (context is Activity) {
-//            val activity = context
-//            val printManager = activity.getSystemService(PRINT_SERVICE) as PrintManager
-//            val jobName = getString(com.ezteam.ezpdflib.R.string.app_name) + " Document"
-//            try{
-//                printManager.print(
-//                    jobName,
-//                    PdfDocumentAdapter(activity,  File(filePrint)),
-//                    PrintAttributes.Builder().build()
-//                )
-//            }catch (e: Exception) {
-////            e.printStackTrace()
-//        }
-//        } else {
-//            // Handle the case where the context is not an Activity
-//            Log.e("PrintError", "Unable to retrieve Activity context for printing.")
-//        }
     }
 
     protected open fun showDetail(pathFile: String) {
