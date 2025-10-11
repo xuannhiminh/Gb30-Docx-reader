@@ -316,6 +316,22 @@ class SelectMultipleFilesActivity : PdfBaseActivity<ActivityCheckFileBinding>() 
                     }
                 }
             }
+            FunctionState.CLEAR_RECENT -> {
+                showDialogRemove(
+                    resources.getString(R.string.are_you_sure),
+                    String.format(resources.getString(R.string.remove_recent_content))
+                ) {
+                    viewModel.removeRecentFile(fileModel)
+                }
+            }
+            FunctionState.CLEAR_FAVORITE -> {
+                showDialogRemove(
+                    resources.getString(R.string.are_you_sure),
+                    String.format(resources.getString(R.string.remove_favourite_content))
+                ) {
+                    viewModel.removeFavouriteFile(fileModel)
+                }
+            }
 
             FunctionState.DETAIL -> {
                 showDetailFile(fileModel, viewModel)

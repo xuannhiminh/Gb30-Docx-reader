@@ -35,6 +35,10 @@
     <string name="pdf_to_word">PDF in Word</string>
     <string name="word_to_pdf">Word in PDF</string>
     <string name="ppt_to_pdf">PPT in PDF</string>
+    <string name="are_you_sure">Sei sicuro?</string>
+    <string name="remove_recent_content">Sei sicuro di voler rimuovere questo elemento dalla lista Recenti?</string>
+    <string name="remove_favourite_content">Sei sicuro di voler rimuovere questo file dalla tua lista Preferiti?</string>
+    <string name="remove_favourite">Rimuovi dai Preferiti</string>
 
     <string name="convert_to_pdf">Converti in PDF</string>
     <string name="pdf_file_name">Nome del file PDF</string>

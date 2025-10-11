@@ -32,6 +32,10 @@
     <string name="pdf_to_word">PDF para Word</string>
     <string name="word_to_pdf">Word para PDF</string>
     <string name="ppt_to_pdf">PPT para PDF</string>
+    <string name="are_you_sure">Tem a certeza?</string>
+    <string name="remove_recent_content">Tem a certeza de que pretende remover este item da lista "Recentes"?</string>
+    <string name="remove_favourite_content">Tem a certeza de que pretende remover este ficheiro da sua lista de Favoritos?</string>
+    <string name="remove_favourite">Remover dos Favoritos</string>
 
     <string name="app_name">Word Documents</string>
 

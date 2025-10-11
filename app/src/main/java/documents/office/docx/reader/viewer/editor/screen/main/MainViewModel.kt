@@ -700,6 +700,34 @@ class MainViewModel(
             repository.setNotRecently(fileModels)
         }
     }
+    fun removeFavouriteFiles(fileModels: List<FileModel>, listener: (() -> Unit)? = null) {
+        viewModelScope.launch(Dispatchers.IO) {
+            viewModelScope.launch(Dispatchers.IO) {
+                repository.removeFavourites(fileModels)
+            }
+        }
+    }
+    fun removeRecentFiles(fileModels: List<FileModel>, listener: (() -> Unit)? = null) {
+        viewModelScope.launch(Dispatchers.IO) {
+            viewModelScope.launch(Dispatchers.IO) {
+                repository.removeRecents(fileModels)
+            }
+        }
+    }
+    fun removeFavouriteFile(fileModel: FileModel, listener: (() -> Unit)? = null) {
+        viewModelScope.launch(Dispatchers.IO) {
+            viewModelScope.launch(Dispatchers.IO) {
+                repository.removeFavourite(fileModel)
+            }
+        }
+    }
+    fun removeRecentFile(fileModel: FileModel, listener: (() -> Unit)? = null) {
+        viewModelScope.launch(Dispatchers.IO) {
+            viewModelScope.launch(Dispatchers.IO) {
+                repository.removeRecent(fileModel)
+            }
+        }
+    }
 
     /**
      * Import a file URI into internal storage (filesDir), persist its path.

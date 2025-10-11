@@ -21,6 +21,10 @@
     <string name="pdf_to_word">PDF a Word</string>
     <string name="word_to_pdf">Word a PDF</string>
     <string name="ppt_to_pdf">PPT a PDF</string>
+    <string name="are_you_sure">¿Estás seguro?</string>
+    <string name="remove_recent_content">¿Estás seguro de que deseas eliminar este elemento de la lista Recientes?</string>
+    <string name="remove_favourite_content">¿Estás seguro de que deseas eliminar este archivo de tu lista de Favoritos?</string>
+    <string name="remove_favourite">Eliminar de Favoritos</string>
 
     <string name="add_in_fav">Añadir a favoritos</string>
     <string name="congrats">¡Felicidades!</string>

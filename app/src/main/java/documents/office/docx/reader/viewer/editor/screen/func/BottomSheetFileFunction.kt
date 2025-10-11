@@ -204,6 +204,7 @@ class BottomSheetFileFunction(
         }
         binding.funcRename.isVisible = !fileModel.isSample
         binding.funcRemoveRecent.isVisible = fileModel.isRecent
+        binding.funcRemoveFavourite.isVisible = fileModel.isFavorite
     }
     override fun onStart() {
         super.onStart()
@@ -260,6 +261,14 @@ class BottomSheetFileFunction(
         }
         binding.funcPrint.setOnClickListener {
             listener.onListener(FunctionState.PRINT)
+            dismiss()
+        }
+        binding.funcRemoveRecent.setOnClickListener {
+            listener.onListener(FunctionState.CLEAR_RECENT)
+            dismiss()
+        }
+        binding.funcRemoveFavourite.setOnClickListener {
+            listener.onListener(FunctionState.CLEAR_FAVORITE)
             dismiss()
         }
 

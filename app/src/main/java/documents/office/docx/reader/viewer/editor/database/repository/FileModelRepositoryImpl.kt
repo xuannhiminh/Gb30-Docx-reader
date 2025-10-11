@@ -22,6 +22,20 @@ class FileModelRepositoryImpl(
     override suspend fun delete(fileModels: List<FileModel>) {
         appDatabase.serverDao().delete(fileModels)
     }
+    override suspend fun removeFavourites(fileModels: List<FileModel>) {
+        val paths = fileModels.map { it.path }
+        appDatabase.serverDao().removeFavourites(paths)
+    }
+    override suspend fun removeRecents(fileModels: List<FileModel>) {
+        val paths = fileModels.map { it.path }
+        appDatabase.serverDao().removeRecents(paths)
+    }
+    override suspend fun removeFavourite(fileModel: FileModel) {
+        appDatabase.serverDao().removeFavourite(fileModel.path)
+    }
+    override suspend fun removeRecent(fileModel: FileModel) {
+        appDatabase.serverDao().removeRecent(fileModel.path)
+    }
 
 //    override suspend fun setNotRecently(fileModels: List<FileModel>) {
 //        val snapshot = fileModels.toList()              // copy the list first

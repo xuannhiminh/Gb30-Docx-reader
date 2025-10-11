@@ -657,4 +657,8 @@
     <string name="your_recent_PDF_files_are_waiting">Your recent PDF files are waiting</string>
     <string name="refresh_files">Pull down to refresh files</string>
     <string name="delete_file">Delete File</string>
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="remove_recent_content">Are you sure you want to move out of this Recent list.</string>
+    <string name="remove_favourite_content">Are you sure you want to move this file out of your Favorites list.</string>
+    <string name="remove_favourite">Remove from Favourite</string>
 </resources>

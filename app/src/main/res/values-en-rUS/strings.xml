@@ -372,4 +372,8 @@
     <string name="fix_your_issue">Information for us to fix your issue faster</string>
     <string name="your_feedback">Your feedback</string>
    <string name="feedback_disclaimer">By sending this email, you agree to share the above information with us to help improve the app.</string>
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="remove_recent_content">Are you sure you want to move out of this Recent list.</string>
+    <string name="remove_favourite_content">Are you sure you want to move this file out of your Favorites list.</string>
+    <string name="remove_favourite">Remove from Favourite</string>
 </resources>

@@ -30,6 +30,7 @@ import documents.office.docx.reader.viewer.editor.common.LocaleManager
 import documents.office.docx.reader.viewer.editor.dialog.DeleteDialog
 import documents.office.docx.reader.viewer.editor.dialog.DetailFileDialog
 import documents.office.docx.reader.viewer.editor.dialog.ReloadFileGuideDialog
+import documents.office.docx.reader.viewer.editor.dialog.RemoveRecentDialog
 import documents.office.docx.reader.viewer.editor.dialog.RenameDialog
 import documents.office.docx.reader.viewer.editor.model.FileModel
 import documents.office.docx.reader.viewer.editor.screen.main.MainViewModel
@@ -105,6 +106,13 @@ abstract class PdfBaseActivity<B : ViewBinding> : BaseActivity<B>(), IControl {
             .setMessage(message)
             .setOnConfirmListener { onConfirm() }
             .show(supportFragmentManager, "DeleteDialog")
+    }
+    override fun showDialogRemove(title: String, message: String, onConfirm: () -> Unit) {
+        RemoveRecentDialog()
+            .setTitle(title)
+            .setMessage(message)
+            .setOnConfirmListener { onConfirm() }
+            .show(supportFragmentManager, "RemoveMarkDialog")
     }
 
     open fun showDetailFile(fileModel: FileModel, viewModel: MainViewModel) {

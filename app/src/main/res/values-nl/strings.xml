@@ -27,6 +27,11 @@
     <string name="replace_old_file">Oud bestand vervangen?</string>
     <string name="start_free_trial">Start Free Trial</string>
     <string name="congrats">Gefeliciteerd!</string>
+    <string name="are_you_sure">Weet je het zeker?</string>
+    <string name="remove_recent_content">Weet je zeker dat je dit item uit de lijst Recent wilt verwijderen?</string>
+    <string name="remove_favourite_content">Weet je zeker dat je dit bestand uit je favorietenlijst wilt verwijderen?</string>
+    <string name="remove_favourite">Verwijderen uit favorieten</string>
+
     <string name="congrats_subtext">Welkom bij Premium,\n geniet van de voordelen</string>
     <string name="ok_great">Oké, geweldig!</string>
     <string name="sort_criteria">Sorteercriterium</string>

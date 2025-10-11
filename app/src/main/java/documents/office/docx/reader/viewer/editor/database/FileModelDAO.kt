@@ -192,4 +192,12 @@ interface FileModelDAO {
             OR (:fileType = 'EXCEL' AND (path LIKE '%.xls' OR path LIKE '%.xlsx' OR path LIKE '%.xlsm'))
     """)
     fun getNumberOfTotalFile(fileType: String): LiveData<Int>
+    @Query("UPDATE file SET isFavorite = 0 WHERE path IN(:paths)")
+    fun removeFavourites(paths: List<String>)
+    @Query("UPDATE file SET isRecent = 0 WHERE path IN(:paths)")
+    fun removeRecents(paths: List<String>)
+    @Query("UPDATE file SET isFavorite = 0 WHERE path = :path")
+    fun removeFavourite(path: String)
+    @Query("UPDATE file SET isRecent = 0 WHERE path = :path")
+    fun removeRecent(path: String)
 }

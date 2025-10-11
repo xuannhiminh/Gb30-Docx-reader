@@ -34,6 +34,10 @@
     <string name="descending">تنازلي</string>
     <string name="apply">تطبيق</string>
     <string name="total">الإجمالي:</string>
+    <string name="are_you_sure">هل أنت متأكد؟</string>
+    <string name="remove_recent_content">هل أنت متأكد أنك تريد إزالة هذا العنصر من قائمة الحديث؟</string>
+    <string name="remove_favourite_content">هل أنت متأكد أنك تريد إزالة هذا الملف من قائمة المفضلة؟</string>
+    <string name="remove_favourite">إزالة من المفضلة</string>
 
     <string name="intent_label_excel_pdf">تحويل إكسل إلى PDF</string>
     <string name="intent_label_excel_reader">قارئ إكسل</string>

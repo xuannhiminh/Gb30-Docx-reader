@@ -23,6 +23,10 @@
     <string name="pdf_to_word">PDF ke Word</string>
     <string name="word_to_pdf">Word ke PDF</string>
     <string name="ppt_to_pdf">PPT ke PDF</string>
+    <string name="are_you_sure">Apakah kamu yakin?</string>
+    <string name="remove_recent_content">Apakah kamu yakin ingin menghapus item ini dari daftar Terbaru?</string>
+    <string name="remove_favourite_content">Apakah kamu yakin ingin menghapus file ini dari daftar Favorit?</string>
+    <string name="remove_favourite">Hapus dari Favorit</string>
 
     <string name="congrats">Selamat!</string>
     <string name="congrats_subtext">Selamat datang di Premium,\n nikmati manfaatnya</string>

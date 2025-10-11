@@ -21,6 +21,10 @@
     <string name="all">הכול</string>
 
     <string name="pdf">PDF</string>
+    <string name="are_you_sure">האם אתה בטוח?</string>
+    <string name="remove_recent_content">האם אתה בטוח שברצונך להסיר פריט זה מרשימת האחרונים?</string>
+    <string name="remove_favourite_content">האם אתה בטוח שברצונך להסיר קובץ זה מרשימת המועדפים?</string>
+    <string name="remove_favourite">הסר מהמועדפים</string>
 
     <string name="word">Word</string>
     <string name="pdf_to_word">PDF ל-Word</string>

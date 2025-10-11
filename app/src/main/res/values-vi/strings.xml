@@ -576,4 +576,9 @@
     <string name="your_feedback">Phản hồi của bạn</string>
    <string name="feedback_disclaimer">Bằng cách gửi email này, bạn đồng ý chia sẻ thông tin trên với chúng tôi để giúp cải thiện ứng dụng.</string>
     <string name="update_required">Phiên bản này đã quá cũ. Vui lòng cập nhật ứng dụng</string>
+    <string name="are_you_sure">Bạn có chắc không?</string>
+    <string name="remove_recent_content">Bạn có chắc muốn xóa khỏi danh sách Gần đây không?</string>
+    <string name="remove_favourite_content">Bạn có chắc muốn xóa tệp này khỏi mục Yêu thích không?</string>
+    <string name="remove_favourite">Xóa khỏi Yêu thích</string>
+
 </resources>

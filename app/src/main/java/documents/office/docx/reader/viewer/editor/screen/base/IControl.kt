@@ -9,6 +9,8 @@ interface IControl {
 
     fun showDialogConfirm(title: String, message: String, onConfirm: () -> Unit)
 
+    fun showDialogRemove(title: String, message: String, onConfirm: () -> Unit)
+
     fun openFile(fileModel: FileModel)
 
     fun openFile(uri: Uri)

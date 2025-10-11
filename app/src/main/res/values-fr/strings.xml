@@ -23,6 +23,11 @@
     <string name="ppt_to_pdf">PPT vers PDF</string>
 
     <string name="start_free_trial">Start Free Trial</string>
+    <string name="are_you_sure">Êtes-vous sûr ?</string>
+    <string name="remove_recent_content">Êtes-vous sûr de vouloir retirer cet élément de la liste « Récents » ?</string>
+    <string name="remove_favourite_content">Êtes-vous sûr de vouloir retirer ce fichier de votre liste de favoris ?</string>
+    <string name="remove_favourite">Retirer des favoris</string>
+
 
     <string name="app_name">Word Documents</string>
     <string name="congrats">Félicitations !</string>

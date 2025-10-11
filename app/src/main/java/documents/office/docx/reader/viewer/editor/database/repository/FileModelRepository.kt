@@ -12,6 +12,10 @@ interface FileModelRepository {
     suspend fun delete(fileModel: FileModel)
 
     suspend fun delete(fileModels: List<FileModel>)
+    suspend fun removeFavourite(fileModel: FileModel)
+    suspend fun removeRecent(fileModel: FileModel)
+    suspend fun removeFavourites(fileModels: List<FileModel>)
+    suspend fun removeRecents(fileModels: List<FileModel>)
 
     suspend fun setNotRecently(fileModels: List<FileModel>)
 

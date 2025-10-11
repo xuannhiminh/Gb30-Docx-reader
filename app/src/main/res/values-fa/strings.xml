@@ -32,6 +32,10 @@
     <string name="pdf_to_word">PDF به Word</string>
     <string name="word_to_pdf">Word به PDF</string>
     <string name="ppt_to_pdf">PPT به PDF</string>
+    <string name="are_you_sure">آیا مطمئن هستید؟</string>
+    <string name="remove_recent_content">آیا مطمئن هستید که می‌خواهید این مورد را از فهرست اخیر حذف کنید؟</string>
+    <string name="remove_favourite_content">آیا مطمئن هستید که می‌خواهید این فایل را از فهرست علاقه‌مندی‌ها حذف کنید؟</string>
+    <string name="remove_favourite">حذف از علاقه‌مندی‌ها</string>
 
     <string name="sort_by_date_desc">تاریخ ایجاد: نزولی</string>
     <string name="sort_by_name_asc">نام: الف تا ی</string>

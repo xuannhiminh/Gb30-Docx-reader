@@ -40,6 +40,10 @@
     <string name="pdf_to_word">PDF를 Word로</string>
     <string name="word_to_pdf">Word를 PDF로</string>
     <string name="ppt_to_pdf">PPT를 PDF로</string>
+    <string name="are_you_sure">확실합니까?</string>
+    <string name="remove_recent_content">이 항목을 최근 목록에서 제거하시겠습니까?</string>
+    <string name="remove_favourite_content">이 파일을 즐겨찾기 목록에서 제거하시겠습니까?</string>
+    <string name="remove_favourite">즐겨찾기에서 제거</string>
 
     <string name="convert_to_pdf">PDF로 변환</string>
     <string name="pdf_file_name">PDF 파일 이름</string>
