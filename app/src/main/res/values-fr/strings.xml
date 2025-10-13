@@ -30,6 +30,11 @@
     <string name="app">Application</string>
     <string name="display">Affichage</string>
     <string name="support">Assistance</string>
+    <string name="convert_tool">Outil de conversion</string>
+    <string name="title_tool">Outils</string>
+    <string name="docx_to_pdf">Docx en PDF</string>
+    <string name="xlsx_to_pdf">XLSX en PDF</string>
+    <string name="new_title">Nouveau</string>
 
 
     <string name="app_name">Word Documents</string>

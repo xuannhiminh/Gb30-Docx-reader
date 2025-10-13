@@ -664,4 +664,9 @@
     <string name="app">App</string>
     <string name="display">Display</string>
     <string name="support">Support</string>
+    <string name="convert_tool">Converter Tool</string>
+    <string name="title_tool">Tools</string>
+    <string name="docx_to_pdf">Docx to PDF</string>
+    <string name="xlsx_to_pdf">XLSX to PDF</string>
+    <string name="new_title">New</string>
 </resources>

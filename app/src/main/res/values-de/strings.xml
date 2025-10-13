@@ -37,6 +37,11 @@
     <string name="app">App</string>
     <string name="display">Anzeige</string>
     <string name="support">Support</string>
+    <string name="convert_tool">Konvertierungswerkzeug</string>
+    <string name="title_tool">Werkzeuge</string>
+    <string name="docx_to_pdf">Docx zu PDF</string>
+    <string name="xlsx_to_pdf">XLSX zu PDF</string>
+    <string name="new_title">Neu</string>
 
     <string name="sort_by_date">Erstellungsdatum: Aufsteigend</string>
     <string name="sort_by_date_desc">Erstellungsdatum: Absteigend</string>

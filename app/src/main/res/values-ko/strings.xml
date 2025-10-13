@@ -47,6 +47,11 @@
     <string name="app">앱</string>
     <string name="display">디스플레이</string>
     <string name="support">지원</string>
+    <string name="convert_tool">변환 도구</string>
+    <string name="title_tool">도구</string>
+    <string name="docx_to_pdf">Docx를 PDF로</string>
+    <string name="xlsx_to_pdf">XLSX를 PDF로</string>
+    <string name="new_title">새로 만들기</string>
 
     <string name="convert_to_pdf">PDF로 변환</string>
     <string name="pdf_file_name">PDF 파일 이름</string>

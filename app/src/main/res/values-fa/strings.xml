@@ -39,6 +39,11 @@
     <string name="app">برنامه</string>
     <string name="display">نمایش</string>
     <string name="support">پشتیبانی</string>
+    <string name="convert_tool">ابزار مبدل</string>
+    <string name="title_tool">ابزارها</string>
+    <string name="docx_to_pdf">Docx به PDF</string>
+    <string name="xlsx_to_pdf">XLSX به PDF</string>
+    <string name="new_title">جدید</string>
 
     <string name="sort_by_date_desc">تاریخ ایجاد: نزولی</string>
     <string name="sort_by_name_asc">نام: الف تا ی</string>

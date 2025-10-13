@@ -146,7 +146,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
             <LinearLayout
-                android:id="@+id/ivEdit"
+                android:id="@+id/ivTool"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -159,10 +159,10 @@
                     android:contentDescription="@string/excel_desc" />
 
                 <TextView
-                    android:id="@+id/tvExcel"
+                    android:id="@+id/tvTools"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/edit"
+                    android:text="@string/tool"
                     android:fontFamily="sans-serif"
                     android:textFontWeight="500"
                     android:textColor="@color/text1"

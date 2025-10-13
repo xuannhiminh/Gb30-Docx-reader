@@ -42,6 +42,11 @@
     <string name="app">App</string>
     <string name="display">Display</string>
     <string name="support">Supporto</string>
+    <string name="convert_tool">Strumento di conversione</string>
+    <string name="title_tool">Strumenti</string>
+    <string name="docx_to_pdf">Docx in PDF</string>
+    <string name="xlsx_to_pdf">XLSX in PDF</string>
+    <string name="new_title">Nuovo</string>
 
     <string name="convert_to_pdf">Converti in PDF</string>
     <string name="pdf_file_name">Nome del file PDF</string>

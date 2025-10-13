@@ -88,7 +88,7 @@ class Widget3 : AppWidgetProvider() {
         setClickAction(context, views, R.id.ivHome, SplashActivity::class.java)
         setClickAction(context, views, R.id.ivRecent, SplashActivity::class.java)
         setClickAction(context, views, R.id.ivBookmarks, SplashActivity::class.java)
-        setClickAction(context, views, R.id.ivEdit, SplashActivity::class.java)
+        setClickAction(context, views, R.id.ivTool, SplashActivity::class.java)
 
         // Update widget
         appWidgetManager.updateAppWidget(appWidgetId, views)

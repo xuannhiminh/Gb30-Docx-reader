@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/convert_tool"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:paddingBottom="12dp"/>
+
+            <!-- Row 1: Docx / XLSX / PPT -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:weightSum="3">
+
+                <!-- Docx to PDF -->
+                <LinearLayout
+                    android:id="@+id/layout_docx_to_pdf"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="@dimen/_44sdp"
+                        android:layout_height="@dimen/_44sdp"
+                        android:padding="@dimen/_8sdp"
+                        android:src="@drawable/ic_docx" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/docx_to_pdf"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:fontFamily="sans-serif"
+                        android:textFontWeight="400"
+                        android:textColor="@color/text1"
+                        android:textSize="14sp"/>
+                </LinearLayout>
+
+                <!-- XLSX to PDF -->
+                <LinearLayout
+                    android:id="@+id/layout_xlsx_to_pdf"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="@dimen/_44sdp"
+                        android:layout_height="@dimen/_44sdp"
+                        android:padding="@dimen/_8sdp"
+                        android:src="@drawable/ic_xlsx" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/xlsx_to_pdf"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:fontFamily="sans-serif"
+                        android:textFontWeight="400"
+                        android:textColor="@color/text1"
+                        android:textSize="14sp"/>
+                </LinearLayout>
+
+                <!-- PPT to PDF -->
+                <LinearLayout
+                    android:id="@+id/layout_ppt_to_pdf"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="@dimen/_44sdp"
+                        android:layout_height="@dimen/_44sdp"
+                        android:padding="@dimen/_8sdp"
+                        android:src="@drawable/ic_ppt" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ppt_to_pdf"
+                        android:textSize="14sp"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:fontFamily="sans-serif"
+                        android:textFontWeight="400"
+                        android:textColor="@color/text1"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- New title -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/new_title"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:paddingTop="24dp"
+                android:paddingBottom="12dp"/>
+
+            <!-- Row 2: Image to PDF / PDF to Image -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:weightSum="2">
+
+                <!-- Image to PDF -->
+                <LinearLayout
+                    android:id="@+id/layout_image_to_pdf"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="@dimen/_44sdp"
+                        android:layout_height="@dimen/_44sdp"
+                        android:padding="@dimen/_8sdp"
+                        android:src="@drawable/ic_image_to_pdf" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/image_to_pdf"
+                        android:textSize="14sp"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:fontFamily="sans-serif"
+                        android:textFontWeight="400"
+                        android:textColor="@color/text1"/>
+                </LinearLayout>
+
+                <!-- PDF to Image -->
+                <LinearLayout
+                    android:id="@+id/layout_pdf_to_image"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="@dimen/_44sdp"
+                        android:layout_height="@dimen/_44sdp"
+                        android:padding="@dimen/_8sdp"
+                        android:src="@drawable/ic_pdf_to_image" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/pdf_to_image"
+                        android:textSize="14sp"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:fontFamily="sans-serif"
+                        android:textFontWeight="400"
+                        android:textColor="@color/text1"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

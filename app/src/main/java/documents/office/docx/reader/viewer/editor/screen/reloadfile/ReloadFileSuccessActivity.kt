@@ -183,7 +183,7 @@ class ReloadFileSuccessActivity : PdfBaseActivity<ActivityReloadFileBinding>() {
         binding.ivHome.setOnClickListener { openSplashWithWhereToOpen(R.id.ivHome) }
         binding.ivRecent.setOnClickListener { openSplashWithWhereToOpen(R.id.ivRecent) }
         binding.ivBookmarks.setOnClickListener { openSplashWithWhereToOpen(R.id.ivBookmarks) }
-        binding.ivEdit.setOnClickListener { openSplashWithWhereToOpen(R.id.ivEdit) }
+        binding.ivTool.setOnClickListener { openSplashWithWhereToOpen(R.id.ivTool) }
 
     }
     private fun openSplashWithWhereToOpen(viewId: Int) {

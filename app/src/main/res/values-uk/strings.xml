@@ -33,6 +33,11 @@
     <string name="app">Додаток</string>
     <string name="display">Відображення</string>
     <string name="support">Підтримка</string>
+    <string name="convert_tool">Інструмент конвертації</string>
+    <string name="title_tool">Інструменти</string>
+    <string name="docx_to_pdf">Docx у PDF</string>
+    <string name="xlsx_to_pdf">XLSX у PDF</string>
+    <string name="new_title">Нове</string>
 
     <string name="start_free_trial">Start Free Trial</string>
     <string name="set_docx_reader_as_your_default_word_file_viewer">Встановіть <b>%s</b> як ваш переглядач файлів Word за замовчуванням</string>

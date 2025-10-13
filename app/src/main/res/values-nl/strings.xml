@@ -34,6 +34,11 @@
     <string name="app">App</string>
     <string name="display">Weergave</string>
     <string name="support">Ondersteuning</string>
+    <string name="convert_tool">Convertertool</string>
+    <string name="title_tool">Hulpmiddelen</string>
+    <string name="docx_to_pdf">Docx naar PDF</string>
+    <string name="xlsx_to_pdf">XLSX naar PDF</string>
+    <string name="new_title">Nieuw</string>
 
     <string name="congrats_subtext">Welkom bij Premium,\n geniet van de voordelen</string>
     <string name="ok_great">Oké, geweldig!</string>

@@ -97,7 +97,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:id="@+id/ivEdit"
+            android:id="@+id/ivTool"
             android:orientation="vertical"
             android:gravity="center">
 
@@ -107,10 +107,10 @@
                 android:src="@drawable/ic_edit_green"/>
 
             <TextView
-                android:id="@+id/tvAddText"
+                android:id="@+id/tvTools"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/edit"
+                android:text="@string/tool"
                 android:textSize="12sp"
                 android:fontFamily="sans-serif"
                 android:textFontWeight="400"

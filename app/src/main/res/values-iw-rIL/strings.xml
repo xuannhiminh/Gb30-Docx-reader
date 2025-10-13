@@ -33,6 +33,11 @@
     <string name="app">אפליקציה</string>
     <string name="display">תצוגה</string>
     <string name="support">תמיכה</string>
+    <string name="convert_tool">כלי ממיר</string>
+    <string name="title_tool">כלים</string>
+    <string name="docx_to_pdf">Docx ל-PDF</string>
+    <string name="xlsx_to_pdf">XLSX ל-PDF</string>
+    <string name="new_title">חדש</string>
 
     <string name="excel">Excel</string>
     <string name="sort_criteria">קריטריון מיון</string>

@@ -573,6 +573,11 @@
     <string name="app">Ứng dụng</string>
     <string name="display">Hiển thị</string>
     <string name="support">Hỗ trợ</string>
+    <string name="convert_tool">Công cụ chuyển đổi</string>
+    <string name="title_tool">Công cụ</string>
+    <string name="docx_to_pdf">Docx sang PDF</string>
+    <string name="xlsx_to_pdf">XLSX sang PDF</string>
+    <string name="new_title">Mới</string>
 
 
     <string name="fix_your_issue">Thông tin để chúng tôi có thể khắc phục sự cố của bạn nhanh hơn</string>

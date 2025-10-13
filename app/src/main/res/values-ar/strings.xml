@@ -41,6 +41,11 @@
     <string name="app">التطبيق</string>
     <string name="display">العرض</string>
     <string name="support">الدعم</string>
+    <string name="convert_tool">أداة التحويل</string>
+    <string name="title_tool">الأدوات</string>
+    <string name="docx_to_pdf">Docx إلى PDF</string>
+    <string name="xlsx_to_pdf">XLSX إلى PDF</string>
+    <string name="new_title">جديد</string>
 
     <string name="intent_label_excel_pdf">تحويل إكسل إلى PDF</string>
     <string name="intent_label_excel_reader">قارئ إكسل</string>

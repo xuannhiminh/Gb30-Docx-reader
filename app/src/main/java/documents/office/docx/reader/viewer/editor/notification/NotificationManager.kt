@@ -510,7 +510,7 @@ class NotificationManager(private val context: Context) {
         setClickAction(context, remoteViews, R.id.ivHome, SplashActivity::class.java)
         setClickAction(context, remoteViews, R.id.ivRecent, SplashActivity::class.java)
         setClickAction(context, remoteViews, R.id.ivBookmarks, SplashActivity::class.java)
-        setClickAction(context, remoteViews, R.id.ivEdit, SplashActivity::class.java)
+        setClickAction(context, remoteViews, R.id.ivTool, SplashActivity::class.java)
         return remoteViews
     }
     private fun createWidgetNotificationBigView(): RemoteViews {
@@ -522,7 +522,7 @@ class NotificationManager(private val context: Context) {
         setClickAction(context, remoteViews, R.id.ivHome, SplashActivity::class.java)
         setClickAction(context, remoteViews, R.id.ivRecent, SplashActivity::class.java)
         setClickAction(context, remoteViews, R.id.ivBookmarks, SplashActivity::class.java)
-        setClickAction(context, remoteViews, R.id.ivEdit, SplashActivity::class.java)
+        setClickAction(context, remoteViews, R.id.ivTool, SplashActivity::class.java)
         return remoteViews
     }
 

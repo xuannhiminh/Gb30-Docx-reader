@@ -40,6 +40,11 @@
     <string name="app">Приложение</string>
     <string name="display">Экран</string>
     <string name="support">Поддержка</string>
+    <string name="convert_tool">Инструмент конвертации</string>
+    <string name="title_tool">Инструменты</string>
+    <string name="docx_to_pdf">Docx в PDF</string>
+    <string name="xlsx_to_pdf">XLSX в PDF</string>
+    <string name="new_title">Новый</string>
 
     <string name="add_in_fav">Добавить в избранное</string>
 

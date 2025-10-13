@@ -39,6 +39,11 @@
     <string name="app">Aplicação</string>
     <string name="display">Ecrã</string>
     <string name="support">Suporte</string>
+    <string name="convert_tool">Ferramenta de conversão</string>
+    <string name="title_tool">Ferramentas</string>
+    <string name="docx_to_pdf">Docx para PDF</string>
+    <string name="xlsx_to_pdf">XLSX para PDF</string>
+    <string name="new_title">Novo</string>
 
     <string name="app_name">Word Documents</string>
 

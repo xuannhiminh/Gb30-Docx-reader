@@ -30,6 +30,11 @@
     <string name="app">ऐप</string>
     <string name="display">प्रदर्शन</string>
     <string name="support">सहायता</string>
+    <string name="convert_tool">कनवर्टर टूल</string>
+    <string name="title_tool">टूल्स</string>
+    <string name="docx_to_pdf">Docx से PDF</string>
+    <string name="xlsx_to_pdf">XLSX से PDF</string>
+    <string name="new_title">नया</string>
 
     <string name="congrats">बधाई हो!</string>
     <string name="congrats_subtext">प्रीमियम में आपका स्वागत है,\n लाभों का आनंद लें</string>

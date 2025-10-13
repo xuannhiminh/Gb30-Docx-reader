@@ -30,6 +30,11 @@
     <string name="app">Aplikasi</string>
     <string name="display">Tampilan</string>
     <string name="support">Dukungan</string>
+    <string name="convert_tool">Alat Konverter</string>
+    <string name="title_tool">Alat</string>
+    <string name="docx_to_pdf">Docx ke PDF</string>
+    <string name="xlsx_to_pdf">XLSX ke PDF</string>
+    <string name="new_title">Baru</string>
 
     <string name="congrats">Selamat!</string>
     <string name="congrats_subtext">Selamat datang di Premium,\n nikmati manfaatnya</string>

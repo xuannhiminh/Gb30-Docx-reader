@@ -60,9 +60,6 @@ import documents.office.docx.reader.viewer.editor.screen.file.ListFileExcelFragm
 import documents.office.docx.reader.viewer.editor.screen.file.ListFilePPTFragment
 import documents.office.docx.reader.viewer.editor.screen.file.ListFilePdfFragment
 import documents.office.docx.reader.viewer.editor.screen.file.ListFileWordFragment
-import documents.office.docx.reader.viewer.editor.screen.func.BottomSheetFavoriteFunction
-import documents.office.docx.reader.viewer.editor.screen.func.BottomSheetMenuFunction
-import documents.office.docx.reader.viewer.editor.screen.func.BottomSheetRecentFunction
 import documents.office.docx.reader.viewer.editor.screen.language.LanguageActivity
 import documents.office.docx.reader.viewer.editor.screen.search.SelectMultipleFilesActivity
 import documents.office.docx.reader.viewer.editor.screen.search.SearchFileActivity
@@ -122,6 +119,7 @@ import java.util.concurrent.TimeUnit
 import com.ezteam.baseproject.extensions.hasExtraKeyContaining
 import com.nlbn.ads.util.Helper
 import documents.office.docx.reader.viewer.editor.dialog.SortDialog2
+import documents.office.docx.reader.viewer.editor.screen.file.ToolsFragment
 import documents.office.docx.reader.viewer.editor.screen.iap.IapActivityV2
 import documents.office.docx.reader.viewer.editor.screen.reloadfile.FeatureRequestActivity
 import documents.office.docx.reader.viewer.editor.screen.reloadfile.ReloadLoadingActivity
@@ -132,6 +130,7 @@ private const val PDF_FILES_FRAGMENT_INDEX = 2
 private const val WORD_FILES_FRAGMENT_INDEX = 1
 private const val PPT_FILES_FRAGMENT_INDEX = 4
 private const val EXCEL_FILES_FRAGMENT_INDEX = 3
+private const val TOOLS_FRAGMENT_INDEX = 5
 
 class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
     private val TAG = "MainActivity"
@@ -457,8 +456,12 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
             ListFilePPTFragment(viewModel.getFilteredFilesLiveData(FileTab.PPT)),
             ListFilePPTFragment::class.java.name
         )
+        adapter.addFragment(
+            ToolsFragment(viewModel.getFilteredFilesLiveData(FileTab.ALL_FILE)),
+            ToolsFragment::class.java.name
+        )
         binding.viewPager.adapter = adapter
-        binding.viewPager.offscreenPageLimit = 5
+        binding.viewPager.offscreenPageLimit = 6
 
         // Kotlin
 
@@ -476,6 +479,10 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
                 R.id.ivBookmarks -> {
                     handleUIBaseOnBottomTab(R.id.navigation_favorite)
                     handleUIBaseOnFileTab(binding.toolbar.tvAll)
+                }
+                R.id.ivTool -> {
+                    handleUIBaseOnBottomTab(R.id.navigation_tool)
+                    binding.viewPager.setCurrentItem(TOOLS_FRAGMENT_INDEX, false)
                 }
                 R.id.ivPdf -> {
                     handleUIBaseOnBottomTab(R.id.navigation_home)
@@ -502,7 +509,7 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
                     handleUIBaseOnFileTab(binding.toolbar.tvAll)
                     SearchFileActivity.start(this)
                 }
-                R.id.ivEdit,  R.id.latest_file_item_1 -> {
+                 R.id.latest_file_item_1 -> {
                     handleUIBaseOnBottomTab(R.id.navigation_home)
                     handleUIBaseOnFileTab(binding.toolbar.tvAll)
                     lifecycleScope.launch(Dispatchers.IO) {
@@ -563,6 +570,9 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
                 }
                 BottomTab.FAVORITE -> {
                     handleUIBaseOnBottomTab(R.id.navigation_favorite)
+                }
+                BottomTab.TOOLS -> {
+                    handleUIBaseOnBottomTab(R.id.navigation_tool)
                 }
                 else -> {
                     handleUIBaseOnBottomTab(R.id.navigation_home)
@@ -1089,6 +1099,15 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
                         }
                     }
                 }
+                BottomTab.TOOLS -> {
+                    binding.recentlyAddedSection.visibility = View.GONE
+
+                    binding.toolbar.ivSetting.setOnClickListener {
+                        maybeShowAds(R.string.inter_home) {
+                            SettingActivity.start(this)
+                        }
+                    }
+                }
                 else -> {
                     binding.toolbar.ivSetting.setOnClickListener {
                         maybeShowAds(R.string.inter_home) {
@@ -1521,6 +1540,9 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
                 R.id.navigation_favorite -> {
                     return@OnItemSelectedListener true
                 }
+                R.id.navigation_tool -> {
+                    return@OnItemSelectedListener true
+                }
             }
             false
         }
@@ -1546,8 +1568,10 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
                 }
 
                 binding.recentlyAddedSection.visibility = View.VISIBLE
-//                binding.recentlyAddedNumber.visibility =
-//                    if (viewModel.loadAddedTodayFiles.value != 0) View.VISIBLE else View.GONE
+                binding.layoutTotalFiles.visibility = View.VISIBLE
+                binding.buttonCreate.visibility = View.VISIBLE
+                binding.toolbar.searchContainer.visibility = View.VISIBLE
+                binding.toolbar.chooseType.visibility = View.VISIBLE
 
                 if (viewModel.sortStateObservable.value == SortState.DATE_TODAY) {
                     handleSortAction(4)
@@ -1562,7 +1586,10 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
                     tvTitle.text = getString(R.string.title_recent)
                     ivBack.visibility = View.GONE
                 }
-
+                binding.layoutTotalFiles.visibility = View.VISIBLE
+                binding.buttonCreate.visibility = View.VISIBLE
+                binding.toolbar.searchContainer.visibility = View.VISIBLE
+                binding.toolbar.chooseType.visibility = View.VISIBLE
                 binding.recentlyAddedSection.visibility = View.GONE
             }
 
@@ -1574,8 +1601,26 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
                     tvTitle.text = getString(R.string.title_fav)
                     ivBack.visibility = View.GONE
                 }
-
+                binding.layoutTotalFiles.visibility = View.VISIBLE
+                binding.buttonCreate.visibility = View.VISIBLE
+                binding.toolbar.searchContainer.visibility = View.VISIBLE
+                binding.toolbar.chooseType.visibility = View.VISIBLE
                 binding.recentlyAddedSection.visibility = View.GONE
+            }
+            R.id.navigation_tool -> {
+                clearSearchField()
+                viewModel.updateBottomTab(BottomTab.TOOLS)
+
+                binding.toolbar.apply {
+                    tvTitle.text = getString(R.string.title_tool)
+                    ivBack.visibility = View.GONE
+                }
+                binding.layoutTotalFiles.visibility = View.GONE
+                binding.buttonCreate.visibility = View.GONE
+                binding.toolbar.searchContainer.visibility = View.GONE
+                binding.toolbar.chooseType.visibility = View.GONE
+                binding.recentlyAddedSection.visibility = View.GONE
+                binding.viewPager.currentItem = TOOLS_FRAGMENT_INDEX
             }
         }
     }
