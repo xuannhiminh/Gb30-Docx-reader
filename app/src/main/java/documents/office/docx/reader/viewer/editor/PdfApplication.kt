@@ -40,7 +40,11 @@ import documents.office.docx.reader.viewer.editor.screen.iap.IapActivity
 import documents.office.docx.reader.viewer.editor.screen.iap.IapActivityV2
 import documents.office.docx.reader.viewer.editor.screen.language.PreferencesHelper
 import documents.office.docx.reader.viewer.editor.screen.start.SplashActivity
+import documents.office.docx.reader.viewer.editor.utils.FCMTopicHandler
 import documents.office.docx.reader.viewer.editor.utils.FirebaseRemoteConfigUtil
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import office.file.ui.MyLibApplication
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -80,6 +84,8 @@ class PdfApplication: MyLibApplication() {
             FirebaseMessaging.getInstance().subscribeToTopic("debug_device")
         }
         subscribeToTimezoneTopic()
+
+        FCMTopicHandler.resetFCMTopic(this@PdfApplication)
 
         FirebaseRemoteConfigUtil.getInstance().fetchRemoteConfig { Log.d(TAG, "fetched") }
 

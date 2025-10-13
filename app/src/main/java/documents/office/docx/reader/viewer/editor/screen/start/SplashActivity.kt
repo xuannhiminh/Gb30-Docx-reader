@@ -40,10 +40,12 @@ import documents.office.docx.reader.viewer.editor.notification.NotificationManag
 import documents.office.docx.reader.viewer.editor.screen.iap.IapActivity
 import documents.office.docx.reader.viewer.editor.screen.iap.IapActivityV2
 import documents.office.docx.reader.viewer.editor.screen.language.LanguageActivity
+import documents.office.docx.reader.viewer.editor.screen.language.PreferencesHelper
 import documents.office.docx.reader.viewer.editor.screen.main.MainActivity
 import documents.office.docx.reader.viewer.editor.screen.main.MainViewModel
 import documents.office.docx.reader.viewer.editor.service.NotificationForegroundService
 import documents.office.docx.reader.viewer.editor.utils.AppUtils
+import documents.office.docx.reader.viewer.editor.utils.FCMTopicHandler
 import documents.office.docx.reader.viewer.editor.utils.FirebaseRemoteConfigUtil
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -108,13 +110,9 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
     override fun onResume() {
         super.onResume()
-        Admob.getInstance().setIntervalShowInterstitial(FirebaseRemoteConfigUtil.getInstance().getIntervalShowInterSecond())
         // place here for every engagement new data will be set for interval show ad
-    }
+        PreferencesHelper.putLong(PreferencesHelper.KEY_LAST_ENGAGE, System.currentTimeMillis())
 
-    override fun onStop() {
-        super.onStop()
-        Admob.getInstance().dismissLoadingDialog()
     }
 
     override fun initView() {
@@ -321,6 +319,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
                 Log.i("SplashActivity", "Billing initialized in $elapsed ms")
                 // Optionally load purchases
                 IAPUtils.loadOwnedPurchasesFromGoogleAsync { success ->
+                    FCMTopicHandler.resetFCMTopic(this@SplashActivity)
                     Log.i("SplashActivity", "loadOwnedPurchasesFromGoogleAsync: $success")
                     // resume the coroutine
                     if (cont.isActive) cont.resume(Unit)

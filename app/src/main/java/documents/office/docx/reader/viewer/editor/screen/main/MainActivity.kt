@@ -606,6 +606,7 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
 
     }
     override fun onResume() {
+        Admob.getInstance().setIntervalShowInterstitial(FirebaseRemoteConfigUtil.getInstance().getIntervalShowInterSecond())
         Helper.a = true
         super.onResume()
 

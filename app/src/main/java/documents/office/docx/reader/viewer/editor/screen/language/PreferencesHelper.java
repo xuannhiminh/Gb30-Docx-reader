@@ -8,6 +8,8 @@ public class PreferencesHelper {
 
     public static final String SHOW_SELECT_LANGUAGE_FIRST = "show select language first";
     public static final String SHOW_FIRST_PREMIUM = "show first premium";
+    public static final String GLOBAL_FIREBASE_TOPIC = "global firebase topic";
+    public static final String KEY_LAST_ENGAGE = "key last engage";
     private static SharedPreferences sharedPreferences;
     private static final String NAME = "MyPref";
     public static final String KEY_LANGUAGE = "language";

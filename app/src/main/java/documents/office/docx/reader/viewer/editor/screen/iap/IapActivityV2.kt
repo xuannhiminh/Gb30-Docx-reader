@@ -33,6 +33,7 @@ import documents.office.docx.reader.viewer.editor.screen.language.LanguageActivi
 import documents.office.docx.reader.viewer.editor.screen.main.MainActivity
 import documents.office.docx.reader.viewer.editor.screen.start.RequestAllFilePermissionActivity
 import documents.office.docx.reader.viewer.editor.utils.AppUtils
+import documents.office.docx.reader.viewer.editor.utils.FCMTopicHandler
 import documents.office.docx.reader.viewer.editor.utils.FirebaseRemoteConfigUtil
 import java.util.Locale
 
@@ -307,6 +308,7 @@ class IapActivityV2 : PdfBaseActivity<ActivityIapV3Binding>() {
             // Billing service is initialized, you can query products or subscriptions here
             // Toast.makeText(this@IapActivity3, "Billing initialized", Toast.LENGTH_SHORT).show()
             IAPUtils.loadOwnedPurchasesFromGoogleAsync {
+                FCMTopicHandler.resetFCMTopic(this@IapActivityV2)
                 updateViewBaseOnPremiumState()
             }
         }

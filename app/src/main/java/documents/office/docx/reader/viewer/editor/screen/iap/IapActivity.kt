@@ -35,6 +35,7 @@ import documents.office.docx.reader.viewer.editor.screen.TermAndConditionsActivi
 import documents.office.docx.reader.viewer.editor.screen.base.PdfBaseActivity
 import documents.office.docx.reader.viewer.editor.screen.start.RequestAllFilePermissionActivity
 import documents.office.docx.reader.viewer.editor.utils.AppUtils
+import documents.office.docx.reader.viewer.editor.utils.FCMTopicHandler
 import setSelectedCard
 import java.util.Locale
 
@@ -324,6 +325,7 @@ class IapActivity : PdfBaseActivity<ActivityIapBinding>() {
 
         binding.btnRestore.setOnClickListener {
             IAPUtils.loadOwnedPurchasesFromGoogleAsync {
+                FCMTopicHandler.resetFCMTopic(this@IapActivity)
                 if (it) {
                     Toast.makeText(this, getString(R.string.restore_success), Toast.LENGTH_SHORT).show()
                 } else {
@@ -508,6 +510,7 @@ class IapActivity : PdfBaseActivity<ActivityIapBinding>() {
             // Billing service is initialized, you can query products or subscriptions here
            // Toast.makeText(this@IapActivity, "Billing initialized", Toast.LENGTH_SHORT).show()
             IAPUtils.loadOwnedPurchasesFromGoogleAsync {
+                FCMTopicHandler.resetFCMTopic(this@IapActivity)
                 updateViewBaseOnPremiumState()
             }
         }

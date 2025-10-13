@@ -27,6 +27,7 @@ import documents.office.docx.reader.viewer.editor.notification.NotificationManag
 import documents.office.docx.reader.viewer.editor.receiver.HomeButtonReceiver
 import documents.office.docx.reader.viewer.editor.receiver.UnlockReceiver
 import documents.office.docx.reader.viewer.editor.utils.AppUtils
+import documents.office.docx.reader.viewer.editor.utils.FCMTopicHandler
 import documents.office.docx.reader.viewer.editor.utils.FirebaseRemoteConfigUtil
 
 class NotificationForegroundService: Service() {
@@ -167,17 +168,20 @@ class NotificationForegroundService: Service() {
         }
 
         override fun onBillingInitialized() {
-            if (IAPUtils.isPremium()) {
-                Log.d(TAG, "IAP initialized and user is premium")
-                if (FirebaseRemoteConfigUtil.getInstance().isTurnOffNotiServiceIfPremium())
-                {
-                    Log.d(TAG, "User is premium and turn off noti service if premium is true, so stop service")
-                    stopSelf()
+            IAPUtils.loadOwnedPurchasesFromGoogleAsync { success ->
+                Log.i("SplashActivity", "loadOwnedPurchasesFromGoogleAsync: $success")
+                FCMTopicHandler.resetFCMTopic(this@NotificationForegroundService)
+                if (IAPUtils.isPremium()) {
+                    Log.d(TAG, "IAP initialized and user is premium")
+                    if (FirebaseRemoteConfigUtil.getInstance().isTurnOffNotiServiceIfPremium())
+                    {
+                        Log.d(TAG, "User is premium and turn off noti service if premium is true, so stop service")
+                        stopSelf()
+                    }
+                } else {
+                    Log.d(TAG, "IAP initialized and user is not premium")
                 }
-            } else {
-                Log.d(TAG, "IAP initialized and user is not premium")
             }
-
         }
     }
 
