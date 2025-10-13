@@ -623,7 +623,7 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
                 IAPUtils.loadOwnedPurchasesFromGoogleAsync {
                     FCMTopicHandler.resetFCMTopic(this@MainActivity)
                     val isPremium = IAPUtils.isPremium()
-                    binding.toolbar.tvTitle.text =  handleAppNameSpannable(showIcon = isPremium)
+                    //binding.toolbar.tvTitle.text =  handleAppNameSpannable(showIcon = isPremium)
                     binding.toolbar.ivIap.visibility = if (isPremium) View.GONE else View.VISIBLE
 
                     if (isPremium) {
@@ -1004,6 +1004,11 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
         viewModel.getTotalFilesLiveData(bottomTab, fileType)
             .observe(this) { number ->
                 binding.tvTotalFiles.text = "$number "
+                if (number > 1) {
+                    binding.tvTotalFilesLabel.text = getString(R.string.files)
+                } else {
+                    binding.tvTotalFilesLabel.text = getString(R.string.file)
+                }
             }
     }
 
@@ -1047,7 +1052,7 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
             binding.toolbar.chooseType.visibility = View.VISIBLE
             binding.recentlyAddedSection.visibility = View.VISIBLE
             binding.layoutTotalFiles.visibility = View.VISIBLE
-            binding.toolbar.tvTitle.text = handleAppNameSpannable(showIcon = IAPUtils.isPremium())
+            //binding.toolbar.tvTitle.text = handleAppNameSpannable(showIcon = IAPUtils.isPremium())
             setOutRecently()
             handleSortAction(4)
             binding.navView.visibility = View.VISIBLE
@@ -1388,6 +1393,7 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
         }
 
         // Cập nhật màu, kiểu chữ và underline cho item được chọn
+        window.statusBarColor = ContextCompat.getColor(this, R.color.red)
         selectedTextView.setTypeface(null, Typeface.BOLD)
         selectedTextView.setTextColor(ContextCompat.getColor(this, textColor))
         selectedTextView.setBackgroundResource(underlineResource)
@@ -1619,7 +1625,7 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
 
         when (id) {
             R.id.navigation_home -> {
-                setupToolbar(title = handleAppNameSpannable(IAPUtils.isPremium()), showBack = false)
+                setupToolbar(title = getString(R.string.app_name), showBack = false)
                 viewModel.updateBottomTab(BottomTab.HOME)
                 observeTotalFiles(fileTab, "HOME")
                 showHomeUI()

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Word Documents</string>
+    <string name="app_name">Office App</string>
 
     <string name="cannot_open_file_Path">Cannot open file: %1$s</string>
     <string name="path_empty">Path empty</string>

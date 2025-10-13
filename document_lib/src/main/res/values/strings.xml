@@ -694,6 +694,7 @@ Customer: %s"</string>
     <string name="go_to_app_sett">Go to App Setting</string>
     <string name="folder">Folder</string>
     <string name="file">File</string>
+    <string name="files">Files</string>
     <string name="privacy_policy">Privacy Policy</string>
     <string name="rating_text">Rate your experience using Office Sub Document so far</string>
     <string name="storage">Storage</string>
@@ -810,7 +811,6 @@ Customer: %s"</string>
     <string name="no_recent_file">No Recent File</string>
     <string name="enter_file_name_here">Enter file name here</string>
     <string name="matching">Matching</string>
-    <string name="files">files</string>
     <string name="go_premium">Go Premium</string>
     <string name="general">General</string>
     <string name="policy">Policy</string>

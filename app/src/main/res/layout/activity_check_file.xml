@@ -41,6 +41,7 @@
             android:fontFamily="sans-serif"
             android:textColor="@color/brand_blue" />
         <TextView
+            android:id="@+id/tv_total_files_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/file"

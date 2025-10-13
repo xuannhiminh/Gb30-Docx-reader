@@ -648,6 +648,7 @@ Khách hàng: %s "</string>
     <string name="go_to_app_sett">Đi tới Cài đặt ứng dụng</string>
     <string name="folder">Thư mục</string>
     <string name="file">Tập tin</string>
+    <string name="files">Tập tin</string>
     <string name="privacy_policy">Chính sách bảo mật</string>
     <string name="rating_text">Đánh giá trải nghiệm của bạn khi sử dụng Tài liệu phụ Office cho đến nay</string>
     <string name="storage">Kho</string>
@@ -764,7 +765,6 @@ Khách hàng: %s "</string>
     <string name="no_recent_file">Không có tệp gần đây</string>
     <string name="enter_file_name_here">Nhập tên tệp ở đây</string>
     <string name="matching">Phù hợp</string>
-    <string name="files">các tập tin</string>
     <string name="go_premium">Lên cao cấp</string>
     <string name="general">Chung</string>
     <string name="policy">Chính sách</string>

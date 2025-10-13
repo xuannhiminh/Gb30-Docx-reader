@@ -159,6 +159,11 @@ class SelectMultipleFilesActivity : PdfBaseActivity<ActivityCheckFileBinding>() 
 
             val enabled = count > 0
             updateNavMenuState(enabled)
+            if (count > 1) {
+                binding.tvTotalFilesLabel.text = getString(R.string.files)
+            } else {
+                binding.tvTotalFilesLabel.text = getString(R.string.file)
+            }
             binding.toolbar.checkboxAll.isSelected = count == adapter.itemCount
         }
         if (Locale.getDefault().language == "ar") {

@@ -35,8 +35,8 @@ class NotificationManager(private val context: Context) {
         const val HIGH_CHANNEL_NAME = "PDF Reader Notifications"
         const val CALL_USE_APP_CHANNEL_NAME = "PDF Reader Call Notifications"
         const val CHANNEL_NAME_SERVICE = "PDF Reader Service Notifications"
-        const val CHANNEL_DESCRIPTION = "Notifications for Word Documents app"
-        const val CHANNEL_DESCRIPTION_FOREGROUND = "Notifications for Word Documents service"
+        const val CHANNEL_DESCRIPTION = "Notifications for Office App app"
+        const val CHANNEL_DESCRIPTION_FOREGROUND = "Notifications for Office App service"
         const val CHANNEL_ID_FOREGROUND = "all_pdf_reader_channel_foreground"
         const val GROUP_ID_FOREGROUND = "all_pdf_reader_group_foreground"
 

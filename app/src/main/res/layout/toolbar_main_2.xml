@@ -46,6 +46,7 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif"
                 android:ellipsize="middle"
+                app:textAllCaps="true"
                 android:text="@string/app_name"
                 android:textStyle="bold"
                 android:singleLine="true"
