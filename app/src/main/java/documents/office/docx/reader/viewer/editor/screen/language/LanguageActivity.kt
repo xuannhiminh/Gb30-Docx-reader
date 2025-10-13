@@ -30,6 +30,7 @@ import documents.office.docx.reader.viewer.editor.R
 import documents.office.docx.reader.viewer.editor.screen.iap.IapActivity
 import documents.office.docx.reader.viewer.editor.screen.iap.IapActivityV2
 import documents.office.docx.reader.viewer.editor.screen.start.RequestAllFilePermissionActivity
+import documents.office.docx.reader.viewer.editor.utils.FirebaseRemoteConfigUtil
 
 class LanguageActivity : BaseActivity<ActivityLanguageBinding>() {
 
@@ -86,7 +87,6 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>() {
         adapter = Language2Adapter(datas, this, selected, object : Language2Adapter.OnLanguageSelectedListener {
             override fun onLanguageSelected(item: ItemSelected) {
 //                startDoneCountdown()
-//                loadNativeNomedia()
             }
         })
         binding.rcvData.adapter = adapter
@@ -220,8 +220,12 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>() {
             return
         } else if (TemporaryStorage.isLoadingNativeAdsLanguage) {
             Log.d(TAG, "loadNativeNomedia: TemporaryStorage.isLoadingNativeAdsLanguage " + TemporaryStorage.isLoadingNativeAdsLanguage)
-            val loadingView = LayoutInflater.from(this)
-                .inflate(R.layout.ads_native_loading_short, null)
+            val layoutRes = if (FirebaseRemoteConfigUtil.getInstance().isBigAds()) {
+                R.layout.ads_native_bot_loading
+            } else {
+                R.layout.ads_native_loading_short
+            }
+            val loadingView = LayoutInflater.from(this).inflate(layoutRes, null)
             binding.layoutNative.removeAllViews()
             binding.layoutNative.addView(loadingView)
 
@@ -237,8 +241,12 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>() {
                     showIvDoneChecked()
 
                     // Inflate and bind your NativeAdView
-                    val adView = LayoutInflater.from(this@LanguageActivity)
-                        .inflate(R.layout.ads_native_bot_no_media_short, null) as NativeAdView
+                    val layoutRes = if (FirebaseRemoteConfigUtil.getInstance().isBigAds()) {
+                        R.layout.ads_native_bot
+                    } else {
+                        R.layout.ads_native_bot_no_media_short
+                    }
+                    val adView = LayoutInflater.from(this@LanguageActivity).inflate(layoutRes, null) as NativeAdView
                     binding.layoutNative.removeAllViews()
                     binding.layoutNative.addView(adView)
                     Admob.getInstance().pushAdsToViewCustom(nativeAd, adView)
@@ -342,15 +350,6 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>() {
         finish()
         setLanguageUpDate(adapter!!.selected)
     }
-//    override fun onResume() {
-//        super.onResume()
-//        if (TemporaryStorage.shouldLoadAdsLanguageScreen) {
-//            startDoneCountdown()
-//            loadNativeNomedia()
-//        } else {
-//            showIvDoneChecked()
-//        }
-//    }
     private fun startIntro() {
         IntroActivity.start(this);
         setLanguageUpDate(adapter!!.selected)

@@ -606,6 +606,7 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
 
     }
     override fun onResume() {
+        Helper.a = true
         super.onResume()
 
         binding.swipeRefresh.isRefreshing = false
