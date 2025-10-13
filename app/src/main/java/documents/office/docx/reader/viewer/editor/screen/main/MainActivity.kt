@@ -137,6 +137,7 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
     private val TAG = "MainActivity"
     private val viewModel by inject<MainViewModel>()
     private lateinit var adapter: BasePagerAdapter
+    private var allowShowAdsAt: Long = 0
     private val myBroadcastReceiver: BroadcastSubmodule by lazy {
         BroadcastSubmodule()
     }
@@ -197,6 +198,16 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
             )
         }
     * */
+    private fun isAllowShowAds(): Boolean {
+        return System.currentTimeMillis() >= allowShowAdsAt
+    }
+    private fun maybeShowAds(interstitialRes: Int, action: () -> Unit) {
+        if (isAllowShowAds()) {
+            showAdsInterstitial(interstitialRes, action)
+        } else {
+            action()
+        }
+    }
     private fun checkNotificationPermissionToShowUI() {
         val layoutParams = binding.recentlyAddedSection.layoutParams as ViewGroup.MarginLayoutParams
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
@@ -1055,26 +1066,34 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
 //                    if(viewModel.loadAddedTodayFiles.value != 0) binding.recentlyAddedNumber.visibility = View.VISIBLE else View.GONE
 
                     binding.toolbar.ivSetting.setOnClickListener {
-                        SettingActivity.start(this)
+                        maybeShowAds(R.string.inter_home) {
+                            SettingActivity.start(this)
+                        }
                     }
                 }
                 BottomTab.RECENT -> {
                     binding.recentlyAddedSection.visibility = View.GONE
 
                     binding.toolbar.ivSetting.setOnClickListener {
-                        SettingActivity.start(this)
+                        maybeShowAds(R.string.inter_home) {
+                            SettingActivity.start(this)
+                        }
                     }
                 }
                 BottomTab.FAVORITE -> {
                     binding.recentlyAddedSection.visibility = View.GONE
 
                     binding.toolbar.ivSetting.setOnClickListener {
-                        SettingActivity.start(this)
+                        maybeShowAds(R.string.inter_home) {
+                            SettingActivity.start(this)
+                        }
                     }
                 }
                 else -> {
                     binding.toolbar.ivSetting.setOnClickListener {
-                        SettingActivity.start(this)
+                        maybeShowAds(R.string.inter_home) {
+                            SettingActivity.start(this)
+                        }
                     }
                 }
             }

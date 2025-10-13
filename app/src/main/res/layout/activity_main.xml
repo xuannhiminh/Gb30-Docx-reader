@@ -272,18 +272,8 @@
             android:translationZ="0dp"
             android:background="@drawable/bottom_nav_top_border"
             app:elevation="0dp"
+            app:labelVisibilityMode="labeled"
             app:menu="@menu/bottom_nav_menu" />
-
-<!--        <FrameLayout-->
-<!--            android:id="@+id/layout_native"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content">-->
-
-<!--            <FrameLayout-->
-<!--                android:id="@+id/frNativeAds"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content" />-->
-<!--        </FrameLayout>-->
 
             <!-- Banner Ads -->
             <RelativeLayout
