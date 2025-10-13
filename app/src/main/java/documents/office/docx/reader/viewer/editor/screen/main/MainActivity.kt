@@ -137,6 +137,7 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
     private val viewModel by inject<MainViewModel>()
     private lateinit var adapter: BasePagerAdapter
     private var allowShowAdsAt: Long = 0
+    private var previousFragmentIndex = ALL_FILES_FRAGMENT_INDEX // Lưu fragment index trước khi chuyển sang Tools
     private val myBroadcastReceiver: BroadcastSubmodule by lazy {
         BroadcastSubmodule()
     }
@@ -995,10 +996,11 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
 
     }
 
-    private fun observeTotalFiles(fileType: String) {
-        viewModel.loadTotalFiles(fileType).observe(this) { totalNumber ->
-            binding.tvTotalFiles.text = "$totalNumber "
-        }
+    private fun observeTotalFiles(fileType: String, bottomTab: String) {
+        viewModel.getTotalFilesLiveData(bottomTab, fileType)
+            .observe(this) { number ->
+                binding.tvTotalFiles.text = "$number "
+            }
     }
 
     override fun initListener() {
@@ -1331,7 +1333,14 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
             binding.toolbar.tvPdf -> "PDF"
             else -> "ALL"
         }
-        observeTotalFiles(selectedtab)
+        val currentTab = when(viewModel.currentBottomTab.value) {
+            BottomTab.HOME -> "HOME"
+            BottomTab.RECENT -> "RECENT"
+            BottomTab.FAVORITE -> "FAVOURITE"
+            else -> "HOME"
+        }
+
+        observeTotalFiles(selectedtab, currentTab)
         when(selectedTextView) {
             binding.toolbar.tvAll -> viewModel.updateFileTab(FileTab.ALL_FILE)
             binding.toolbar.tvPdf -> viewModel.updateFileTab(FileTab.PDF)
@@ -1546,6 +1555,45 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
             }
             false
         }
+    private fun getFileTab(index: Int) = when (index) {
+        ALL_FILES_FRAGMENT_INDEX -> "ALL"
+        PDF_FILES_FRAGMENT_INDEX -> "PDF"
+        WORD_FILES_FRAGMENT_INDEX -> "WORD"
+        EXCEL_FILES_FRAGMENT_INDEX -> "EXCEL"
+        PPT_FILES_FRAGMENT_INDEX -> "PPT"
+        else -> "ALL"
+    }
+
+    private fun setupToolbar(title: CharSequence, showBack: Boolean) {
+        binding.toolbar.apply {
+            tvTitle.text = title
+            ivBack.visibility = if (showBack) View.VISIBLE else View.GONE
+        }
+    }
+
+    private fun showHomeUI() {
+        binding.recentlyAddedSection.visibility = View.VISIBLE
+        binding.layoutTotalFiles.visibility = View.VISIBLE
+        binding.buttonCreate.visibility = View.VISIBLE
+        binding.toolbar.searchContainer.visibility = View.VISIBLE
+        binding.toolbar.chooseType.visibility = View.VISIBLE
+    }
+
+    private fun showListUI() {
+        binding.layoutTotalFiles.visibility = View.VISIBLE
+        binding.buttonCreate.visibility = View.VISIBLE
+        binding.toolbar.searchContainer.visibility = View.VISIBLE
+        binding.toolbar.chooseType.visibility = View.VISIBLE
+        binding.recentlyAddedSection.visibility = View.GONE
+    }
+
+    private fun showToolsUI() {
+        binding.layoutTotalFiles.visibility = View.GONE
+        binding.buttonCreate.visibility = View.GONE
+        binding.toolbar.searchContainer.visibility = View.GONE
+        binding.toolbar.chooseType.visibility = View.GONE
+        binding.recentlyAddedSection.visibility = View.GONE
+    }
 
     private fun handleUIBaseOnBottomTab(id: Int, alsoSelect: Boolean = true) {
         if (alsoSelect) {
@@ -1554,24 +1602,26 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
         }
 
         TransitionManager.beginDelayedTransition(binding.root, AutoTransition())
+        clearSearchField()
+
+        val currentTab = viewModel.currentBottomTab.value
+
+        var fileTab = getFileTab(binding.viewPager.currentItem)
+
+        if (currentTab == BottomTab.TOOLS && id != R.id.navigation_tool) {
+            binding.viewPager.currentItem = previousFragmentIndex
+            fileTab = getFileTab(previousFragmentIndex)
+        }
 
         when (id) {
             R.id.navigation_home -> {
-                clearSearchField()
+                setupToolbar(title = handleAppNameSpannable(IAPUtils.isPremium()), showBack = false)
                 viewModel.updateBottomTab(BottomTab.HOME)
+                observeTotalFiles(fileTab, "HOME")
+                showHomeUI()
                 checkStoragePermissionToShowUI()
                 checkNotificationPermissionToShowUI()
                 checkFeatureRequestToShowUI()
-                binding.toolbar.apply {
-                    tvTitle.text = handleAppNameSpannable(showIcon = IAPUtils.isPremium())
-                    ivBack.visibility = View.GONE
-                }
-
-                binding.recentlyAddedSection.visibility = View.VISIBLE
-                binding.layoutTotalFiles.visibility = View.VISIBLE
-                binding.buttonCreate.visibility = View.VISIBLE
-                binding.toolbar.searchContainer.visibility = View.VISIBLE
-                binding.toolbar.chooseType.visibility = View.VISIBLE
 
                 if (viewModel.sortStateObservable.value == SortState.DATE_TODAY) {
                     handleSortAction(4)
@@ -1579,47 +1629,26 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
             }
 
             R.id.navigation_recent -> {
-                clearSearchField()
+                setupToolbar(title = getString(R.string.title_recent), showBack = false)
                 viewModel.updateBottomTab(BottomTab.RECENT)
-
-                binding.toolbar.apply {
-                    tvTitle.text = getString(R.string.title_recent)
-                    ivBack.visibility = View.GONE
-                }
-                binding.layoutTotalFiles.visibility = View.VISIBLE
-                binding.buttonCreate.visibility = View.VISIBLE
-                binding.toolbar.searchContainer.visibility = View.VISIBLE
-                binding.toolbar.chooseType.visibility = View.VISIBLE
+                observeTotalFiles(fileTab, "RECENT")
+                showListUI()
                 binding.recentlyAddedSection.visibility = View.GONE
             }
 
             R.id.navigation_favorite -> {
-                clearSearchField()
+                setupToolbar(title = getString(R.string.title_fav), showBack = false)
                 viewModel.updateBottomTab(BottomTab.FAVORITE)
-
-                binding.toolbar.apply {
-                    tvTitle.text = getString(R.string.title_fav)
-                    ivBack.visibility = View.GONE
-                }
-                binding.layoutTotalFiles.visibility = View.VISIBLE
-                binding.buttonCreate.visibility = View.VISIBLE
-                binding.toolbar.searchContainer.visibility = View.VISIBLE
-                binding.toolbar.chooseType.visibility = View.VISIBLE
+                observeTotalFiles(fileTab, "FAVORITE")
+                showListUI()
                 binding.recentlyAddedSection.visibility = View.GONE
             }
-            R.id.navigation_tool -> {
-                clearSearchField()
-                viewModel.updateBottomTab(BottomTab.TOOLS)
 
-                binding.toolbar.apply {
-                    tvTitle.text = getString(R.string.title_tool)
-                    ivBack.visibility = View.GONE
-                }
-                binding.layoutTotalFiles.visibility = View.GONE
-                binding.buttonCreate.visibility = View.GONE
-                binding.toolbar.searchContainer.visibility = View.GONE
-                binding.toolbar.chooseType.visibility = View.GONE
-                binding.recentlyAddedSection.visibility = View.GONE
+            R.id.navigation_tool -> {
+                previousFragmentIndex = binding.viewPager.currentItem
+                setupToolbar(title = getString(R.string.title_tool), showBack = false)
+                viewModel.updateBottomTab(BottomTab.TOOLS)
+                showToolsUI()
                 binding.viewPager.currentItem = TOOLS_FRAGMENT_INDEX
             }
         }

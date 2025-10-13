@@ -111,6 +111,25 @@ class MainViewModel(
             emitSource(repository.getNumberOfTotalFile(type))
         }
     }
+    fun loadTotalRecentFiles(type: String): LiveData<Int> {
+        return liveData(Dispatchers.IO) {
+            emitSource(repository.getTotalRecentFiles(type))
+        }
+    }
+    fun loadFavoriteFiles(type: String): LiveData<Int> {
+        return liveData(Dispatchers.IO) {
+            emitSource(repository.getTotalFavoriteFiles(type))
+        }
+    }
+    fun getTotalFilesLiveData(bottomTab: String, fileType: String): LiveData<Int> {
+        return when (bottomTab) {
+            "HOME"    -> loadTotalFiles(fileType)
+            "RECENT"   -> loadTotalRecentFiles(fileType)
+            "FAVORITE" -> loadFavoriteFiles(fileType)
+            else                    -> loadTotalFiles(fileType)
+        }
+    }
+
     // 4) PPT files
     val pptFilesLiveData: LiveData<List<FileModel>> = _currentBottomTab.switchMap { tab ->
         when (tab) {
@@ -275,7 +294,6 @@ class MainViewModel(
             return null
         }
     }
-
 
 
     private fun copyPdfFromAssetsToInternalDir(fileName: String): FileModel? {

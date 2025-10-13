@@ -24,7 +24,6 @@ interface FileModelRepository {
     suspend fun deleteAllRecent()
 
     suspend fun deleteAllFavorite()
-
      fun getNumberOfTodayAddedFile(text: String): LiveData<Int>
 
     fun getFileByPath(path: String): FileModel?
@@ -37,6 +36,8 @@ interface FileModelRepository {
 
     fun getWordFiles(sortState: SortState): LiveData<List<FileModel>>
     fun getNumberOfTotalFile(text: String): LiveData<Int>
+    fun getTotalRecentFiles(text: String): LiveData<Int>
+    fun getTotalFavoriteFiles(text: String): LiveData<Int>
     fun getExcelFiles(sortState: SortState): LiveData<List<FileModel>>
 
     fun getPptFiles(sortState: SortState): LiveData<List<FileModel>>

@@ -44,6 +44,12 @@ class FileModelRepositoryImpl(
     override fun getNumberOfTotalFile(text: String): LiveData<Int> {
         return appDatabase.serverDao().getNumberOfTotalFile(text)
     }
+    override fun getTotalRecentFiles(text: String): LiveData<Int> {
+        return appDatabase.serverDao().getTotalRecentFiles(text)
+    }
+    override fun getTotalFavoriteFiles(text: String): LiveData<Int> {
+        return appDatabase.serverDao().getTotalFavoriteFiles(text)
+    }
 
     override suspend fun setNotRecently(fileModels: List<FileModel>) {
         val paths = fileModels.map { it.path }
