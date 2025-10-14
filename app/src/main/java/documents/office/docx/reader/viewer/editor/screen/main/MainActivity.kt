@@ -123,6 +123,7 @@ import documents.office.docx.reader.viewer.editor.screen.file.ToolsFragment
 import documents.office.docx.reader.viewer.editor.screen.iap.IapActivityV2
 import documents.office.docx.reader.viewer.editor.screen.reloadfile.FeatureRequestActivity
 import documents.office.docx.reader.viewer.editor.screen.reloadfile.ReloadLoadingActivity
+import documents.office.docx.reader.viewer.editor.utils.FCMTopicHandler
 
 
 private const val ALL_FILES_FRAGMENT_INDEX = 0
@@ -620,6 +621,7 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
             override fun onBillingInitialized() {
                 Log.d(TAG, "onBillingInitialized")
                 IAPUtils.loadOwnedPurchasesFromGoogleAsync {
+                    FCMTopicHandler.resetFCMTopic(this@MainActivity)
                     val isPremium = IAPUtils.isPremium()
                     binding.toolbar.tvTitle.text =  handleAppNameSpannable(showIcon = isPremium)
                     binding.toolbar.ivIap.visibility = if (isPremium) View.GONE else View.VISIBLE
