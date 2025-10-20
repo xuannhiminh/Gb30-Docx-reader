@@ -65,7 +65,7 @@ class ClearDefaultReaderOverlayActivity : AppCompatActivity() {
 
         binding.step2.text = spannableStep2
 
-        val highlightStep3 = "⬅"
+        val highlightStep3 = "<"
         val fullTextStep3 = getString(R.string.click_back_to_app)
         val spannableStep3 = SpannableString(fullTextStep3)
 

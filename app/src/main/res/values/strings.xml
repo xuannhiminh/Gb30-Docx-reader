@@ -535,7 +535,7 @@
     <string name="set_pdf_reader_as_your_default_title">Select <b>%s</b> and click Always to set as default</string>
     <string name="select_pdf_reader">Select <b>%s</b></string>
     <string name="click_always_to_set">Then click Always to set successfully</string>
-    <string name="click_back_to_app">Then press ⬅ to the app</string>
+    <string name="click_back_to_app">Then press &lt; to the app</string>
 
     <string name="update_desc">Tap Update to enjoy the new version. 👇</string>
     <string name="update_desc_replace">Discover improved performance and increased stability with our latest version. Click to update now. 👇</string>

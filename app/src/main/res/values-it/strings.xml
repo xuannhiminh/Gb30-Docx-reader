@@ -382,7 +382,7 @@
     <string name="set_pdf_reader_as_your_default_title">Seleziona <b>%s</b> e clicca su Sempre per impostarla come predefinita</string>
     <string name="select_pdf_reader">Seleziona <b>%s</b></string>
     <string name="click_always_to_set">Poi clicca su Sempre per impostarla correttamente</string>
-    <string name="click_back_to_app">Poi premi ⬅ per tornare all’app</string>
+    <string name="click_back_to_app">Poi premi &lt; per tornare all’app</string>
 
     <string name="update_desc">Tocca Aggiorna per goderti la nuova versione 👇</string>
     <string name="update_desc_replace">Scopri prestazioni e stabilità migliorate con la nostra ultima versione. Clicca per aggiornare ora 👇</string>

@@ -519,7 +519,7 @@
     <string name="set_pdf_reader_as_your_default_title">בחר <b>%s</b> ולחץ על "תמיד" כדי להגדיר כברירת מחדל</string>
     <string name="select_pdf_reader">בחר <b>%s</b></string>
     <string name="click_always_to_set">לאחר מכן לחץ על "תמיד" כדי להגדיר בהצלחה</string>
-    <string name="click_back_to_app">לאחר מכן לחץ ⬅ כדי לחזור לאפליקציה</string>
+    <string name="click_back_to_app">לאחר מכן לחץ &lt; כדי לחזור לאפליקציה</string>
 
     <string name="update_desc">הקש על עדכן כדי ליהנות מהגרסה החדשה. 👇</string>
     <string name="update_desc_replace">גלה ביצועים משופרים ויציבות מוגברת עם הגרסה האחרונה שלנו. לחץ כדי לעדכן עכשיו. 👇</string>

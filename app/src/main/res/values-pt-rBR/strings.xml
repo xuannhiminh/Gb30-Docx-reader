@@ -17,7 +17,7 @@
     <string name="intent_label_pdf_ppt">Editor de PPT</string>
     <string name="intent_label_ppt_smart_editor">Editor Inteligente de PPT</string>
     <string name="intent_label_ppt_print">Imprimir PPT</string>
-    <string name="click_back_to_app">Depois pressione ⬅ para voltar ao aplicativo</string>
+    <string name="click_back_to_app">Depois pressione &lt; para voltar ao aplicativo</string>
     <string name="saving_content">Salvando conteúdo</string>
     <string name="you_have_unfinished_file">Você tem um arquivo inacabado</string>
     <string name="click_to_see_more">Clique para ver mais.</string>

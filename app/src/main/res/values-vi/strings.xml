@@ -446,7 +446,7 @@
     <string name="set_pdf_reader_as_your_default_title">Chọn <b>%s</b> và nhấn Luôn luôn để đặt làm mặc định</string>
     <string name="select_pdf_reader">Chọn <b>%s</b></string>
     <string name="click_always_to_set">Sau đó nhấn Luôn luôn để đặt thành công</string>
-    <string name="click_back_to_app">Sau đó nhấn ⬅ để trở về ứng dụng</string>
+    <string name="click_back_to_app">Sau đó nhấn &lt; để trở về ứng dụng</string>
     <string name="update_desc">Nhấn Cập nhật để trải nghiệm phiên bản mới. 👇</string>
     <string name="update_desc_replace">Khám phá hiệu suất cải thiện và độ ổn định cao hơn với phiên bản mới nhất. Nhấn để cập nhật ngay. 👇</string>
     <string name="update_title">Cùng với hơn %s người dùng, trải nghiệm hiệu suất vượt trội! 🚀</string>

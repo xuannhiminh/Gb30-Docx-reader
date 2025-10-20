@@ -22,7 +22,7 @@
     <string name="intent_label_ppt_smart_editor">Akıllı PPT Düzenleyici</string>
     <string name="intent_label_ppt_print">PPT Yazdır</string>
 
-    <string name="click_back_to_app">Ardından uygulamaya dönmek için ⬅ tuşuna basın</string>
+    <string name="click_back_to_app">Ardından uygulamaya dönmek için &lt; tuşuna basın</string>
     <string name="set_docx_reader_as_your_default_word_file_viewer"><b>%s</b>\'i varsayılan Word dosya görüntüleyiciniz olarak ayarlayın</string>
     <string name="congrats">Tebrikler!</string>
     <string name="congrats_subtext">Premium\'a hoş geldiniz,\n avantajların tadını çıkarın</string>

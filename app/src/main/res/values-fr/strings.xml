@@ -441,7 +441,7 @@
     <string name="set_pdf_reader_as_your_default_title">Sélectionnez <b>%s</b> puis cliquez sur Toujours pour le définir par défaut</string>
     <string name="select_pdf_reader">Sélectionnez <b>%s</b></string>
     <string name="click_always_to_set">Ensuite, cliquez sur Toujours pour valider</string>
-    <string name="click_back_to_app">Appuyez ensuite sur ⬅ pour revenir à l\'application</string>
+    <string name="click_back_to_app">Appuyez ensuite sur &lt; pour revenir à l\'application</string>
     <string name="update_desc">Appuyez sur Mettre à jour pour profiter de la nouvelle version. 👇</string>
     <string name="update_desc_replace">Découvrez de meilleures performances et une stabilité accrue avec notre dernière version. Cliquez pour mettre à jour maintenant. 👇</string>
     <string name="update_title">Rejoignez plus de %s utilisateurs et profitez de meilleures performances! 🚀</string>

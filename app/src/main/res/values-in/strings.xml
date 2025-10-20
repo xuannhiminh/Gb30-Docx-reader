@@ -450,7 +450,7 @@
     <string name="set_pdf_reader_as_your_default_title">Pilih <b>%s</b> lalu klik Selalu untuk menjadikannya default</string>
     <string name="select_pdf_reader">Pilih <b>%s</b></string>
     <string name="click_always_to_set">Kemudian klik Selalu untuk menyetel berhasil</string>
-    <string name="click_back_to_app">Lalu tekan ⬅ untuk kembali ke aplikasi</string>
+    <string name="click_back_to_app">Lalu tekan &lt; untuk kembali ke aplikasi</string>
     <string name="update_desc">Ketuk Perbarui untuk menikmati versi baru. 👇</string>
     <string name="update_desc_replace">Nikmati kinerja yang lebih baik dan stabilitas yang meningkat dengan versi terbaru kami. Ketuk untuk memperbarui sekarang. 👇</string>
     <string name="update_title">Bergabunglah dengan lebih dari %s pengguna, rasakan performa yang lebih baik! 🚀</string>

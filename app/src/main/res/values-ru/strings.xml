@@ -21,7 +21,7 @@
     <string name="intent_label_pdf_ppt">Редактор PPT</string>
     <string name="intent_label_ppt_smart_editor">Умный редактор PPT</string>
     <string name="intent_label_ppt_print">Печать PPT</string>
-    <string name="click_back_to_app">Затем нажмите ⬅ для возврата в приложение</string>
+    <string name="click_back_to_app">Затем нажмите &lt; для возврата в приложение</string>
     <string name="start_free_trial">Start Free Trial</string>
     <string name="congrats">Поздравляем!</string>
     <string name="congrats_subtext">Добро пожаловать в Premium,\n наслаждайтесь преимуществами</string>

@@ -381,7 +381,7 @@
     <string name="set_pdf_reader_as_your_default_title"> 선택 후 “항상”을 클릭하여 기본 설정</string>
     <string name="select_pdf_reader">  선택</string>
     <string name="click_always_to_set">그런 다음 “항상”을 클릭하여 성공적으로 설정</string>
-    <string name="click_back_to_app">그런 다음 ⬅를 눌러 앱으로 돌아가세요</string>
+    <string name="click_back_to_app">그런 다음 &lt;를 눌러 앱으로 돌아가세요</string>
 
     <string name="update_desc">업데이트를 눌러 새 버전을 즐기세요. 👇</string>
     <string name="update_desc_replace">최신 버전의 향상된 성능과 안정성을 확인하세요. 지금 업데이트를 클릭하세요. 👇</string>

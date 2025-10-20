@@ -362,7 +362,7 @@
     <string name="set_pdf_reader_as_your_default_title">選擇 <b>%s</b>，然後點擊「始終」設為預設</string>
     <string name="select_pdf_reader">選擇 <b>%s</b></string>
     <string name="click_always_to_set">然後點擊「始終」設置成功</string>
-    <string name="click_back_to_app">然後按 ⬅ 返回應用</string>
+    <string name="click_back_to_app">然後按 &lt; 返回應用</string>
     <string name="update_desc">點擊更新以體驗新版 👇</string>
     <string name="update_desc_replace">體驗更快效能與更穩定版本 👇</string>
     <string name="update_title">加入超過 %s 用戶，提昇效率體驗！🚀</string>

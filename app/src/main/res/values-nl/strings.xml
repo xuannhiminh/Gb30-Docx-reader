@@ -381,7 +381,7 @@
     <string name="set_pdf_reader_as_your_default_title">Selecteer <b>%s</b> en klik op Altijd om in te stellen als standaard</string>
     <string name="select_pdf_reader">Selecteer <b>%s</b></string>
     <string name="click_always_to_set">Klik daarna op Altijd om succesvol in te stellen</string>
-    <string name="click_back_to_app">Druk vervolgens op ⬅ om terug te keren naar de app</string>
+    <string name="click_back_to_app">Druk vervolgens op &lt; om terug te keren naar de app</string>
 
     <string name="update_desc">Tik op Bijwerken om te genieten van de nieuwe versie. 👇</string>
     <string name="update_desc_replace">Ontdek verbeterde prestaties en stabiliteit met onze nieuwste versie. Klik nu om bij te werken. 👇</string>
