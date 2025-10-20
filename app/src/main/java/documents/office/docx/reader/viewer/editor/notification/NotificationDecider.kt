@@ -17,8 +17,7 @@ object NotificationDecider {
 
     const val TAG = "NotificationDecider"
 
-    private const val PREF_NAME = "device_notification_prefs"
-    private const val KEY_LAST_NOTI_TIME = "last_noti_time"
+    const val KEY_LAST_NOTI_TIME = "last_noti_time"
     private const val KEY_TIMEOUT_DELTA = "timeout_delta" // store only adjustment
 
     // Default fallback values (if RemoteConfig not available yet)
@@ -29,8 +28,8 @@ object NotificationDecider {
     private const val DEFAULT_MIN_TIMEOUT = 60L
     private const val DEFAULT_MAX_TIMEOUT = 24 * 60L
 
-    private fun getPrefs(context: Context) =
-        context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+    fun getPrefs(context: Context) =
+        context.getSharedPreferences(context.packageName, Context.MODE_PRIVATE)
 
     // ===== Remote Config Fetchers =====
     private fun getRemoteConfigBase(): Long {
@@ -112,7 +111,6 @@ object NotificationDecider {
         if (lastTime == 0L) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 if (!Environment.isExternalStorageManager()) {
-                    Log.d(TAG, "canShowNotification: No MANAGE_EXTERNAL_STORAGE permission")
                     return true // Allow noti to ask for permission
                 }
             } else {
@@ -120,7 +118,6 @@ object NotificationDecider {
                 if (context.checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) !=
                     android.content.pm.PackageManager.PERMISSION_GRANTED
                 ) {
-                    Log.d(TAG, "canShowNotification: No MANAGE_EXTERNAL_STORAGE permission")
                     return true
                 }
             }
@@ -188,5 +185,12 @@ object NotificationDecider {
         val finalDelta = finalTimeout - base
 
         prefs.edit().putLong(KEY_TIMEOUT_DELTA, finalDelta).apply()
+    }
+
+    fun getLastTimeShowNotification(context: Context) : Long {
+        val prefs = getPrefs(context)
+        val lastTime = prefs.getLong(KEY_LAST_NOTI_TIME, 0L)
+        Log.d(TAG, "getLastTimeShowNotification: lastTime = $lastTime")
+        return lastTime
     }
 }

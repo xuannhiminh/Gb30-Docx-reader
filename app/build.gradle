@@ -133,6 +133,7 @@ dependencies {
     implementation 'com.google.android.play:app-update-ktx:2.1.0'
     implementation 'com.google.firebase:firebase-firestore-ktx:25.1.4'
     implementation 'com.google.firebase:firebase-appcheck-playintegrity:19.0.0'
+    implementation 'androidx.lifecycle:lifecycle-process:2.9.4'
 // if (file('../pdf-revolution-module/build.gradle').isFile())
 //        api project(':pdf-revolution-module')
 //    else

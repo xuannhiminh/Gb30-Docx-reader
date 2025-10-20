@@ -23,28 +23,31 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.messaging.RemoteMessage
 import documents.office.docx.reader.viewer.editor.R
 import documents.office.docx.reader.viewer.editor.screen.start.SplashActivity
+import documents.office.docx.reader.viewer.editor.utils.FirebaseRemoteConfigUtil
 import java.io.File
+import kotlin.text.compareTo
 import android.app.NotificationManager as AndroidNotificationManager
 
 
 class NotificationManager(private val context: Context) {
     private val TAG = "NotificationManager"
     companion object {
-        const val HIGH_CHANNEL_ID = "all_pdf_reader_channel"
-        const val CALL_USE_APP_CHANNEL_ID = "all_pdf_reader_call_use_app_channel"
-        const val HIGH_CHANNEL_NAME = "PDF Reader Notifications"
-        const val CALL_USE_APP_CHANNEL_NAME = "PDF Reader Call Notifications"
-        const val CHANNEL_NAME_SERVICE = "PDF Reader Service Notifications"
+        const val HIGH_CHANNEL_ID = "office_app_channel"
+        const val CALL_USE_APP_CHANNEL_ID = "office_app_call_use_app_channel"
+        const val CALL_USE_APP_OUT_CHANNEL_ID = "office_app_call_use_app_channel"
+        const val HIGH_CHANNEL_NAME = "Office App Notifications"
+        const val CALL_USE_APP_CHANNEL_NAME = "Office App Call Notifications"
+        const val CHANNEL_NAME_SERVICE = "Office App Service Notifications"
         const val CHANNEL_DESCRIPTION = "Notifications for Office App app"
         const val CHANNEL_DESCRIPTION_FOREGROUND = "Notifications for Office App service"
-        const val CHANNEL_ID_FOREGROUND = "all_pdf_reader_channel_foreground"
-        const val GROUP_ID_FOREGROUND = "all_pdf_reader_group_foreground"
+        const val CHANNEL_ID_FOREGROUND = "office_app_channel_foreground"
+        const val GROUP_ID_FOREGROUND = "office_app_group_foreground"
 
         // Channel thông báo cập nhật ứng dụng
-        const val CHANNEL_ID_UPDATE = "all_pdf_reader_channel_update"
-        const val GROUP_ID_UPDATE = "all_pdf_reader_group_update"
-        const val CHANNEL_NAME_UPDATE = "PDF Reader Update Notifications"
-        const val CHANNEL_DESCRIPTION_UPDATE = "Notifications for PDF Reader app updates and new features"
+        const val CHANNEL_ID_UPDATE = "office_app_channel_update"
+        const val GROUP_ID_UPDATE = "office_app_group_update"
+        const val CHANNEL_NAME_UPDATE = "Office App Update Notifications"
+        const val CHANNEL_DESCRIPTION_UPDATE = "Notifications for Office App app updates and new features"
 
         // Notification IDs
         const val NEW_FILE_NOTIFICATION_ID = 1001
@@ -53,6 +56,7 @@ class NotificationManager(private val context: Context) {
         const val DAILY_CALL_OPEN_APP_NOTIFICATION_ID = 1004
         const val WIDGETS_NOTIFICATION_ID = 1005
         const val CALL_USE_APP_NOTIFICATION_ID = 1006
+        const val CALL_USE_APP_NOTIFICATION_OUT_ID = 1010
         const val SCREENSHOT_NOTIFICATION_ID = 1007
         const val UPDATE_NOTIFICATION_ID = 1008
         const val FCM_NOTIFICATION_ID = 1009
@@ -117,17 +121,6 @@ class NotificationManager(private val context: Context) {
         }
 
         notificationManager.createNotificationChannel(callUseAppChannel)
-
-        // Create a foreground service notification channel
-        val foregroundChannel = NotificationChannel(
-            CHANNEL_ID_FOREGROUND,
-            CHANNEL_NAME_SERVICE,
-            AndroidNotificationManager.IMPORTANCE_DEFAULT
-        ).apply {
-            description = CHANNEL_DESCRIPTION_FOREGROUND
-            setSound(null, null) // Disable sound for foreground service notifications
-        }
-        notificationManager.createNotificationChannel(foregroundChannel)
 
         // Create a update notification channel
         val updateChannel = NotificationChannel(
@@ -307,7 +300,7 @@ class NotificationManager(private val context: Context) {
         buttonTitle: String? = null
     ): RemoteViews {
         val remoteViews = RemoteViews(context.packageName, R.layout.notification_expand_custom_2)
-        remoteViews.setTextViewText(R.id.text_title, title)
+
         val safeTitle = title.orEmpty()
         val spaceIndex = safeTitle.indexOfFirst { it == ' ' }
 
@@ -605,6 +598,52 @@ class NotificationManager(private val context: Context) {
         logEvent("notification_shown_${CALL_USE_APP_NOTIFICATION_ID}")
         NotificationDecider.recordNotificationShown(context)
         Log.d(TAG, "showCallUseAppNotification: Notification shown at ${System.currentTimeMillis()}")
+
+    }
+
+
+    fun showCallUseAppNotificationWhenOutApp() {
+        var lastTimeShowNotification = NotificationDecider.getLastTimeShowNotification(context)
+        if (System.currentTimeMillis() - lastTimeShowNotification < FirebaseRemoteConfigUtil.getInstance().getNotificationOutAppIntervalSecond() * 1000L) {
+            Log.d(TAG, "Notification out app not shown, last time: $lastTimeShowNotification")
+            return
+        }
+
+        if (IAPUtils.isPremium()) {
+            Log.d(TAG,"Notification out app not shown premium" )
+            return
+        }
+        val openAppIntent = Intent(context, SplashActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            putExtra("${context.packageName}.notificationID", CALL_USE_APP_NOTIFICATION_OUT_ID)
+            putExtra("${context.packageName}.isFromNotification", true)
+        }
+        val openAppPendingIntent = PendingIntent.getActivity(
+            context,
+            0,
+            openAppIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+
+
+        val notification = NotificationCompat.Builder(context, CALL_USE_APP_OUT_CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_notitication)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+//            .setCategory(NotificationCompat.CATEGORY_CALL)
+            .setDeleteIntent(createDismissPendingIntent(CALL_USE_APP_NOTIFICATION_OUT_ID))
+            .setAutoCancel(true)
+            .setContentTitle(context.getString(R.string.you_have_unfinished_file))
+            .setContentText(context.getString(R.string.click_to_see_more))
+            .setContentIntent(openAppPendingIntent)
+            .setSound(null)
+            .setVibrate(null)
+            .build()
+
+        val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as AndroidNotificationManager
+        notificationManager.notify(CALL_USE_APP_NOTIFICATION_OUT_ID, notification)
+        logEvent("notification_shown_${CALL_USE_APP_NOTIFICATION_OUT_ID}")
+        NotificationDecider.recordNotificationShown(context)
+        Log.d(TAG, "showCallUseAppNotificationWhenOut: Notification shown at ${System.currentTimeMillis()}")
 
     }
 

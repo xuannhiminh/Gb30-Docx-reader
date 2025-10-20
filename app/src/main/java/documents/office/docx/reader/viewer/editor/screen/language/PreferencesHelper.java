@@ -10,9 +10,9 @@ public class PreferencesHelper {
     public static final String SHOW_FIRST_PREMIUM = "show first premium";
     public static final String GLOBAL_FIREBASE_TOPIC = "global firebase topic";
     public static final String KEY_LAST_ENGAGE = "key last engage";
+    public static final String KEY_FIRST_OPEN = "key first open";
     private static SharedPreferences sharedPreferences;
-    private static final String NAME = "MyPref";
-    public static final String KEY_LANGUAGE = "language";
+    public static final String KEY_LANGUAGE = "language_helper";
     public static final String ENABLE_KIDZONE = "enable kidzone";
     private static final String LIST_APP_KID_ZONE = "list app kid zone";
     private static final String LIST_APP_SCREEN_OFF = "list app screen off";
@@ -38,7 +38,7 @@ public class PreferencesHelper {
     public static final String DETECTION_TYPE = "detection type";
 
     public static void init(Context mContext) {
-        sharedPreferences = mContext.getSharedPreferences(NAME, Context.MODE_PRIVATE);
+        sharedPreferences = mContext.getSharedPreferences(mContext.getPackageName(), Context.MODE_PRIVATE);
     }
 
     private static SharedPreferences.Editor editor() {
