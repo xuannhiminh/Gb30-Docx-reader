@@ -2,6 +2,8 @@ package documents.office.docx.reader.viewer.editor.service
 
 import android.annotation.SuppressLint
 import android.app.ForegroundServiceStartNotAllowedException
+import android.app.NotificationChannel
+import android.app.NotificationManager as AndroidNotificationManager
 import android.app.Service
 import android.content.Intent
 import android.content.IntentFilter
@@ -24,6 +26,9 @@ import com.google.android.play.core.install.InstallStateUpdatedListener
 import com.google.android.play.core.install.model.InstallStatus
 import documents.office.docx.reader.viewer.editor.notification.FileObserverWrapper
 import documents.office.docx.reader.viewer.editor.notification.NotificationManager
+import documents.office.docx.reader.viewer.editor.notification.NotificationManager.Companion.CHANNEL_DESCRIPTION_FOREGROUND
+import documents.office.docx.reader.viewer.editor.notification.NotificationManager.Companion.CHANNEL_ID_FOREGROUND
+import documents.office.docx.reader.viewer.editor.notification.NotificationManager.Companion.CHANNEL_NAME_SERVICE
 import documents.office.docx.reader.viewer.editor.receiver.HomeButtonReceiver
 import documents.office.docx.reader.viewer.editor.receiver.UnlockReceiver
 import documents.office.docx.reader.viewer.editor.utils.AppUtils
@@ -117,7 +122,7 @@ class NotificationForegroundService: Service() {
         observers.clear()
         contentResolver.unregisterContentObserver(screenShotObserver)
         IAPUtils.unregisterListener(iapHandler)
-        IAPUtils.destroy()
+//        IAPUtils.destroy()
 //        wakeLock?.let {
 //            if (it.isHeld) {
 //                it.release()
@@ -160,36 +165,15 @@ class NotificationForegroundService: Service() {
     )
     private val observers = mutableListOf<FileObserverWrapper>()
 
-    private val iapHandler = object : BillingProcessor.IBillingHandler {
-        override fun onProductPurchased(productId: String, details: PurchaseInfo?) { /*--*/ }
-        override fun onPurchaseHistoryRestored() { /*--*/ }
-
-        override fun onBillingError(errorCode: Int, error: Throwable?) {
-        }
-
-        override fun onBillingInitialized() {
-            IAPUtils.loadOwnedPurchasesFromGoogleAsync { success ->
-                Log.i("SplashActivity", "loadOwnedPurchasesFromGoogleAsync: $success")
-                FCMTopicHandler.resetFCMTopic(this@NotificationForegroundService)
-                if (IAPUtils.isPremium()) {
-                    Log.d(TAG, "IAP initialized and user is premium")
-                    if (FirebaseRemoteConfigUtil.getInstance().isTurnOffNotiServiceIfPremium())
-                    {
-                        Log.d(TAG, "User is premium and turn off noti service if premium is true, so stop service")
-                        stopSelf()
-                    }
-                } else {
-                    Log.d(TAG, "IAP initialized and user is not premium")
-                }
-            }
-        }
-    }
-
     @SuppressLint("UnspecifiedRegisterReceiverFlag")
     override fun onCreate() {
         super.onCreate()
         Log.d(TAG, "Service created")
         notificationManager = NotificationManager(this)
+
+        createForegroundNotificationChannel()
+
+
 
         showForegroundNotification()
 
@@ -213,7 +197,50 @@ class NotificationForegroundService: Service() {
 //                }
 //            }
     }
+    private val iapHandler = object : BillingProcessor.IBillingHandler {
+        override fun onProductPurchased(productId: String, details: PurchaseInfo?) { /*--*/ }
+        override fun onPurchaseHistoryRestored() { /*--*/ }
+
+        override fun onBillingError(errorCode: Int, error: Throwable?) {
+        }
+
+        override fun onBillingInitialized() {
+            IAPUtils.loadOwnedPurchasesFromGoogleAsync { success ->
+                Log.i(TAG, "loadOwnedPurchasesFromGoogleAsync: $success")
+                FCMTopicHandler.resetFCMTopic(this@NotificationForegroundService)
+                if (IAPUtils.isPremium()) {
+                    Log.d(TAG, "IAP initialized and user is premium")
+                    if (FirebaseRemoteConfigUtil.getInstance().isTurnOffNotiServiceIfPremium()) {
+                        Log.d(
+                            TAG,
+                            "User is premium and turn off noti service if premium is true, so stop service"
+                        )
+                        stopSelf()
+                    }
+                } else {
+                    Log.d(TAG, "IAP initialized and user is not premium")
+                }
+            }
+        }
+    }
     private lateinit var installStateUpdatedListener : InstallStateUpdatedListener
+
+
+    private fun createForegroundNotificationChannel() {
+        // Create a foreground service notification channel
+        val foregroundChannel = NotificationChannel(
+            CHANNEL_ID_FOREGROUND,
+            CHANNEL_NAME_SERVICE,
+            AndroidNotificationManager.IMPORTANCE_DEFAULT
+        ).apply {
+            description = CHANNEL_DESCRIPTION_FOREGROUND
+            setSound(null, null) // Disable sound for foreground service notifications
+        }
+        (getSystemService(NOTIFICATION_SERVICE) as AndroidNotificationManager).createNotificationChannel(
+            foregroundChannel
+        )
+    }
+
 
     private fun startListeningUpdate() {
         Log.d(TAG, "Start listening update")
