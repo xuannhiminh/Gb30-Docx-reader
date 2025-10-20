@@ -12,6 +12,9 @@
     <string name="intent_label_pdf_excel">Editor Excel</string>
     <string name="intent_label_excel_smart_editor">Editor Cerdas Excel</string>
     <string name="intent_label_excel_print">Cetak Excel</string>
+    <string name="saving_content">Menyimpan konten</string>
+    <string name="you_have_unfinished_file">Anda memiliki file yang belum selesai</string>
+    <string name="click_to_see_more">Klik untuk melihat lebih banyak.</string>
 
     <string name="intent_label_ppt_pdf">PPT ke PDF</string>
     <string name="intent_label_ppt_reader">Pembaca PPT</string>
@@ -580,4 +583,5 @@
     <string name="your_feedback">Masukan Anda</string>
    <string name="feedback_disclaimer">Dengan mengirim email ini, Anda setuju untuk membagikan informasi di atas dengan kami untuk membantu meningkatkan aplikasi.</string>
     <string name="update_required">Versi ini sudah usang. Silakan perbarui aplikasi</string>
+    <string name="leave_the_app">Keluar dari aplikasi?</string>
 </resources>

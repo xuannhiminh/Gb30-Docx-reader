@@ -13,6 +13,10 @@
     <string name="pdf">PDF</string>
     <string name="word">Word</string>
     <string name="excel">Excel</string>
+    <string name="saving_content">Inhalt wird gespeichert</string>
+    <string name="you_have_unfinished_file">Sie haben eine unvollständige Datei</string>
+    <string name="click_to_see_more">Klicken Sie, um mehr zu sehen.</string>
+
     <string name="ppt">PPT</string>
     <string name="remind_later">Später erinnern</string>
     <string name="please_rate">Bitte wählen Sie eine Bewertung!!!</string>
@@ -473,5 +477,6 @@
    <string name="feedback_disclaimer">Indem Sie diese E-Mail senden, stimmen Sie zu, die oben genannten Informationen mit uns zu teilen, um die App zu verbessern.</string>
     <string name="update_required">Diese Version ist veraltet. Bitte aktualisiere die App</string>
     <string name="set_docx_reader_as_your_default_word_file_viewer">Legen Sie <b>%s</b> als Ihren Standard-Word-Dateibetrachter fest</string>
+    <string name="leave_the_app">Quitter l’app ?</string>
 
 </resources> 

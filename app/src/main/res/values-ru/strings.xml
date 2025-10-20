@@ -12,6 +12,9 @@
     <string name="intent_label_pdf_excel">Редактор Excel</string>
     <string name="intent_label_excel_smart_editor">Умный редактор Excel</string>
     <string name="intent_label_excel_print">Печать Excel</string>
+    <string name="saving_content">Сохранение содержимого</string>
+    <string name="you_have_unfinished_file">У вас есть незавершенный файл</string>
+    <string name="click_to_see_more">Нажмите, чтобы увидеть больше.</string>
 
     <string name="intent_label_ppt_pdf">PPT в PDF</string>
     <string name="intent_label_ppt_reader">Читалка PPT</string>
@@ -571,4 +574,5 @@
     <string name="your_feedback">Ваш отзыв</string>
    <string name="feedback_disclaimer">Отправляя это письмо, вы соглашаетесь поделиться указанной выше информацией с нами, чтобы помочь улучшить приложение.</string>
     <string name="update_required">Эта версия устарела. Пожалуйста, обновите приложение</string>
+    <string name="leave_the_app">Выйти из приложения?</string>
 </resources>

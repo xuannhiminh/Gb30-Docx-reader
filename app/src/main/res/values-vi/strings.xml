@@ -12,6 +12,9 @@
     <string name="intent_label_pdf_excel">Trình chỉnh sửa Excel</string>
     <string name="intent_label_excel_smart_editor">Trình chỉnh sửa thông minh Excel</string>
     <string name="intent_label_excel_print">In Excel</string>
+    <string name="saving_content">Đang lưu nội dung</string>
+    <string name="you_have_unfinished_file">Bạn có một tệp chưa hoàn thành</string>
+    <string name="click_to_see_more">Nhấn để xem thêm.</string>
 
     <string name="intent_label_ppt_pdf">Chuyển PPT sang PDF</string>
     <string name="intent_label_ppt_reader">Trình đọc PPT</string>
@@ -588,5 +591,6 @@
     <string name="remove_recent_content">Bạn có chắc muốn xóa khỏi danh sách Gần đây không?</string>
     <string name="remove_favourite_content">Bạn có chắc muốn xóa tệp này khỏi mục Yêu thích không?</string>
     <string name="remove_favourite">Xóa khỏi Yêu thích</string>
+    <string name="leave_the_app">Thoát ứng dụng?</string>
 
 </resources>

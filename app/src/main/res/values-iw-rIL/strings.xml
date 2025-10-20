@@ -14,6 +14,9 @@
     <string name="file_not_found">קובץ לא נמצא!!!</string>
 
     <string name="rate_now">דרג עכשיו</string>
+    <string name="saving_content">שומר תוכן</string>
+    <string name="you_have_unfinished_file">יש לך קובץ שלא הושלם</string>
+    <string name="click_to_see_more">לחץ כדי לראות עוד.</string>
 
     <string name="recent_add">נוסף לאחרונה (%s)</string>
     <string name="recent_add_title">נוסף לאחרונה</string>
@@ -628,5 +631,6 @@
         <item>A4</item>
         <item>Letter</item>
     </string-array>
+    <string name="leave_the_app">לצאת מהאפליקציה?</string>
 
 </resources>

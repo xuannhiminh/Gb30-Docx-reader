@@ -12,6 +12,9 @@
     <string name="intent_label_pdf_excel">Excel संपादक</string>
     <string name="intent_label_excel_smart_editor">स्मार्ट Excel संपादक</string>
     <string name="intent_label_excel_print">Excel प्रिंट करें</string>
+    <string name="saving_content">सामग्री सहेजी जा रही है</string>
+    <string name="you_have_unfinished_file">आपके पास एक अधूरी फ़ाइल है</string>
+    <string name="click_to_see_more">अधिक देखने के लिए क्लिक करें।</string>
 
     <string name="intent_label_ppt_pdf">PPT को PDF में बदलें</string>
     <string name="intent_label_ppt_reader">PPT रीडर</string>
@@ -572,4 +575,5 @@
     <string name="your_feedback">आपकी प्रतिक्रिया</string>
    <string name="feedback_disclaimer">इस ईमेल को भेजकर, आप ऐप को बेहतर बनाने में हमारी सहायता के लिए उपरोक्त जानकारी साझा करने के लिए सहमत होते हैं।</string>
     <string name="update_required">यह संस्करण पुराना हो गया है। कृपया ऐप अपडेट करें</string>
+    <string name="leave_the_app">ऐप छोड़ें?</string>
 </resources>

@@ -14,6 +14,10 @@
     <string name="word">Word</string>
     <string name="excel">Excel</string>
     <string name="ppt">PPT</string>
+    <string name="saving_content">コンテンツを保存しています</string>
+    <string name="you_have_unfinished_file">未完了のファイルがあります</string>
+    <string name="click_to_see_more">もっと見るにはクリックしてください。</string>
+
     <string name="remind_later">後で通知</string>
     <string name="please_rate">評価を選択してください!!!</string>
     <string name="thank_for_rate">ありがとうございます!!!</string>
@@ -487,4 +491,5 @@
    <string name="feedback_disclaimer">このメールを送信することで、上記の情報を共有し、アプリの改善にご協力いただくことに同意したものとみなされます。</string>
     <string name="reload_file_successful">成功</string>
     <string name="update_required">このバージョンは古くなっています。アプリを更新してください</string>
+    <string name="leave_the_app">アプリを終了しますか？</string>
 </resources> 

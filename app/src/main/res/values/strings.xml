@@ -669,4 +669,8 @@
     <string name="docx_to_pdf">Docx to PDF</string>
     <string name="xlsx_to_pdf">XLSX to PDF</string>
     <string name="new_title">New</string>
+    <string name="leave_the_app">Leave the app?</string>
+    <string name="saving_content">Saving content</string>
+    <string name="you_have_unfinished_file">You have an unfinished file</string>
+    <string name="click_to_see_more">Click to see more.</string>
 </resources>

@@ -10,13 +10,96 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="@drawable/bottom_dialog_background"
-        android:elevation="8dp"
+        android:elevation="0dp"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:padding="@dimen/_8sdp">
+        android:paddingHorizontal="@dimen/_20sdp"
+        android:paddingTop="@dimen/_16sdp"
+        android:paddingBottom="@dimen/_48sdp">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:letterSpacing="0"
+            android:lineSpacingExtra="0dp"
+            android:text="@string/leave_the_app"
+            android:textColor="#EF4949"
+            android:layout_gravity="center_horizontal"
+            android:textSize="24sp"
+            android:fontFamily="sans-serif"
+            android:textFontWeight="500" />
+
+        <ImageView
+            android:id="@+id/iv_loading"
+            android:layout_width="@dimen/_48sdp"
+            android:layout_height="@dimen/_48sdp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:visibility="gone"
+            android:src="@drawable/ic_loading" />
+        <TextView
+            android:id="@+id/tv_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:letterSpacing="0"
+            android:lineSpacingExtra="0dp"
+            android:textFontWeight="400"
+            android:text="@string/exit_app_content"
+            android:textColor="@color/text1"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:id="@+id/button_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end"
+            android:paddingTop="@dimen/_24sdp">
+
+            <Button
+                android:id="@+id/btn_exit"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_background_red"
+                android:elevation="0dp"
+                android:letterSpacing="0"
+                android:shadowColor="@android:color/transparent"
+                android:text="@string/yes"
+                android:fontFamily="sans-serif"
+                android:textFontWeight="500"
+                android:textAllCaps="false"
+                android:stateListAnimator="@null"
+                android:textColor="@color/white"
+                android:layout_marginEnd="32dp"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:theme="@style/Theme.PDFReaderProNegative"
+                android:id="@+id/btn_back"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/no"
+                android:textSize="14sp"
+                android:textAllCaps="false"
+                android:textColor="@color/text1"
+                android:fontFamily="sans-serif"
+                android:textFontWeight="500"
+                android:stateListAnimator="@null"
+                android:elevation="0dp"
+                android:letterSpacing="0"
+                android:background="@drawable/button_cancel"/>
+        </LinearLayout>
         <FrameLayout
             android:id="@+id/layout_native"
             android:layout_width="match_parent"
-            android:layout_marginBottom="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_24sdp"
             android:layout_height="wrap_content">
 
             <FrameLayout
@@ -24,81 +107,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </FrameLayout>
-        <RelativeLayout
-            android:id="@+id/layoutHeader"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/iv_icon"
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/_50sdp"
-                android:layout_alignParentTop="true"
-                android:layout_marginBottom="@dimen/_16sdp"
-                android:src="@drawable/icon_logout" />
-        </RelativeLayout>
-
-
-
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textSize="24sp"
-            android:textColor="@color/text1"
-            android:textStyle="bold"
-            android:layout_marginBottom="@dimen/_16sdp" />
-
-        <!-- Hai nút phản hồi -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginBottom="@dimen/_16sdp"
-            android:weightSum="2">
-
-            <Button
-                android:id="@+id/btn_back"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_8sdp"
-                android:layout_weight="1"
-                android:background="@drawable/background_negative"
-                android:elevation="0dp"
-                android:fontFamily="sans-serif"
-                android:letterSpacing="0"
-                android:lineHeight="@dimen/_24sdp"
-                android:paddingVertical="@dimen/_8sdp"
-                android:stateListAnimator="@null"
-                android:text=""
-                android:textAllCaps="false"
-                android:textColor="@color/text1"
-                android:textFontWeight="600"
-                android:textSize="20sp"
-                android:theme="@style/Theme.PDFReaderProNegative" />
-
-            <Button
-                android:theme="@style/Theme.PDFReaderProNegative"
-                android:id="@+id/btn_exit"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:paddingVertical="@dimen/_8sdp"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textSize="20sp"
-                android:lineHeight="@dimen/_24sdp"
-                android:textAllCaps="false"
-                android:textColor="@color/text1"
-                android:fontFamily="sans-serif"
-                android:textFontWeight="600"
-                android:stateListAnimator="@null"
-                android:elevation="0dp"
-                android:letterSpacing="0"
-                android:background="@drawable/background_negative"/>
-
-        </LinearLayout>
 
     </LinearLayout>
 </FrameLayout>

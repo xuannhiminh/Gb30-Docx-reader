@@ -19,6 +19,10 @@
     <string name="intent_label_ppt_smart_editor">PPT Smart Editor</string>
     <string name="intent_label_ppt_print">PPT Print</string>
     <string name="congrats">Congrats!</string>
+    <string name="saving_content">Saving content</string>
+    <string name="you_have_unfinished_file">You have an unfinished file</string>
+    <string name="click_to_see_more">Click to see more.</string>
+
     <string name="congrats_subtext">Welcome to Premium,\n enjoy the benefits</string>
     <string name="ok_great">Ok, Great!</string>
     <string name="app_name">Office App</string>
@@ -402,4 +406,5 @@
     <string name="remove_recent_content">Are you sure you want to move out of this Recent list.</string>
     <string name="remove_favourite_content">Are you sure you want to move this file out of your Favorites list.</string>
     <string name="remove_favourite">Remove from Favourite</string>
+    <string name="leave_the_app">Leave the app?</string>
 </resources>

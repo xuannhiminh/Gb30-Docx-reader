@@ -18,6 +18,10 @@
     <string name="please_rate">평점을 선택해주세요!!!</string>
     <string name="thank_for_rate">감사합니다!!!</string>
     <string name="sort_by">정렬 기준</string>
+    <string name="saving_content">콘텐츠 저장 중</string>
+    <string name="you_have_unfinished_file">완료되지 않은 파일이 있습니다</string>
+    <string name="click_to_see_more">더 보려면 클릭하세요.</string>
+
     <string name="sort_by_date">생성일자: 오름차순</string>
     <string name="sort_by_date_desc">생성일자: 내림차순</string>
     <string name="sort_by_name_asc">이름: A → Z</string>
@@ -488,4 +492,5 @@
    <string name="feedback_disclaimer">이 이메일을 보내시면 위 정보를 공유하여 앱 개선을 돕는 데 동의하게 됩니다.</string>
     <string name="reload_file_successful">성공</string>
     <string name="update_required">이 버전은 오래되었습니다. 앱을 업데이트하세요</string>
+    <string name="leave_the_app">앱을 종료하시겠습니까?</string>
 </resources> 

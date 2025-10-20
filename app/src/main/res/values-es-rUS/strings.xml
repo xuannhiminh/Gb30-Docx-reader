@@ -11,6 +11,9 @@
     <string name="intent_label_pdf_excel">Editor de Excel</string>
     <string name="intent_label_excel_smart_editor">Editor inteligente de Excel</string>
     <string name="intent_label_excel_print">Imprimir Excel</string>
+    <string name="saving_content">Guardando contenido</string>
+    <string name="you_have_unfinished_file">Tienes un archivo sin terminar</string>
+    <string name="click_to_see_more">Haz clic para ver más.</string>
 
     <string name="intent_label_ppt_pdf">PPT a PDF</string>
     <string name="intent_label_ppt_reader">Lector de PPT</string>
@@ -574,5 +577,6 @@
    <string name="feedback_disclaimer">Al enviar este correo electrónico, aceptas compartir la información anterior con nosotros para ayudar a mejorar la aplicación.</string>
     <string name="update_required">This version is outdated. Please update the app</string>
     <string name="set_docx_reader_as_your_default_word_file_viewer">Set <b>%s</b> as your default Word File Viewer</string>
+    <string name="leave_the_app">Exit the app?</string>
 
 </resources>

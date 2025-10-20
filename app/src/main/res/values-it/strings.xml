@@ -18,6 +18,10 @@
     <string name="please_rate">Per favore seleziona una valutazione!!!</string>
     <string name="thank_for_rate">Grazie!!!</string>
     <string name="sort_by">Ordina per</string>
+    <string name="saving_content">Salvataggio del contenuto</string>
+    <string name="you_have_unfinished_file">Hai un file non completato</string>
+    <string name="click_to_see_more">Clicca per vedere di più.</string>
+
     <string name="sort_by_date">Data di creazione: crescente</string>
     <string name="sort_by_date_desc">Data di creazione: decrescente</string>
     <string name="sort_by_name_asc">Nome: A → Z</string>
@@ -492,4 +496,5 @@
     <string name="your_feedback">Il tuo feedback</string>
    <string name="feedback_disclaimer">Inviando questa email, accetti di condividere le informazioni di cui sopra con noi per contribuire a migliorare l\'app.</string>
     <string name="update_required">Questa versione è obsoleta. Aggiorna l’app</string>
+    <string name="leave_the_app">Uscire dall’app?</string>
 </resources> 

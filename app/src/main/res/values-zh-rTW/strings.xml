@@ -18,6 +18,10 @@
     <string name="please_rate">請選擇評分！！！</string>
     <string name="thank_for_rate">謝謝！！！</string>
     <string name="sort_by">排序方式</string>
+    <string name="saving_content">正在儲存內容</string>
+    <string name="you_have_unfinished_file">您有一個未完成的檔案</string>
+    <string name="click_to_see_more">點擊查看更多。</string>
+
     <string name="sort_by_date">建立日期：升冪</string>
     <string name="sort_by_date_desc">建立日期：降冪</string>
     <string name="sort_by_name_asc">名稱：A 到 Z</string>
@@ -467,4 +471,5 @@
     <string name="your_feedback">您的回</string>
    <string name="feedback_disclaimer">傳送此電子郵件即表示您同意與我們共享上述資訊，以協助改進此應用程</string>
     <string name="update_required">此版本已過時。請更新應用程式</string>
-</resources> 
+    <string name="leave_the_app">要離開應用程式嗎？</string>
+</resources>

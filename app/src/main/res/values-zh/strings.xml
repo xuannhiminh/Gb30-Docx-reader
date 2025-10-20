@@ -15,6 +15,10 @@
     <string name="excel">Excel</string>
     <string name="ppt">PPT</string>
     <string name="remind_later">稍后提醒我</string>
+    <string name="saving_content">正在保存内容</string>
+    <string name="you_have_unfinished_file">您有一个未完成的文件</string>
+    <string name="click_to_see_more">点击查看更多。</string>
+
     <string name="please_rate">请选择评分！！！</string>
     <string name="thank_for_rate">谢谢！！！</string>
     <string name="sort_by">排序方式</string>
@@ -468,4 +472,5 @@
     <string name="your_feedback">您的反馈</string>
    <string name="feedback_disclaimer">发送此电子邮件即表示您同意与我们共享上述信息，以帮助改进该应用。</string>
     <string name="update_required">此版本已过时。请更新应用</string>
-</resources> 
+    <string name="leave_the_app">退出应用？</string>
+</resources>

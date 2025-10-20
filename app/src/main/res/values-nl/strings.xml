@@ -18,6 +18,10 @@
     <string name="please_rate">Selecteer een beoordeling!!!</string>
     <string name="thank_for_rate">Dank u wel!!!</string>
     <string name="sort_by">Sorteren op</string>
+    <string name="saving_content">Inhoud wordt opgeslagen</string>
+    <string name="you_have_unfinished_file">U heeft een onvoltooid bestand</string>
+    <string name="click_to_see_more">Klik om meer te zien.</string>
+
     <string name="sort_by_date">Aanmaakdatum: oplopend</string>
     <string name="sort_by_date_desc">Aanmaakdatum: aflopend</string>
     <string name="sort_by_name_asc">Naam: A tot Z</string>
@@ -492,4 +496,5 @@
     <string name="your_feedback">Uw feedback</string>
    <string name="feedback_disclaimer">Door deze e-mail te verzenden, stemt u ermee in de bovenstaande informatie met ons te delen om de app te verbeteren.</string>
     <string name="update_required">Deze versie is verouderd. Werk de app bij</string>
-</resources> 
+    <string name="leave_the_app">App verlaten?</string>
+</resources>

@@ -18,6 +18,9 @@
     <string name="intent_label_ppt_smart_editor">Editor Inteligente de PPT</string>
     <string name="intent_label_ppt_print">Imprimir PPT</string>
     <string name="click_back_to_app">Depois pressione ⬅ para voltar ao aplicativo</string>
+    <string name="saving_content">A guardar conteúdo</string>
+    <string name="you_have_unfinished_file">Tem um ficheiro inacabado</string>
+    <string name="click_to_see_more">Clique para ver mais.</string>
 
     <string name="congrats">Parabéns!</string>
     <string name="congrats_subtext">Bem-vindo ao Premium,\n aproveite os benefícios</string>
@@ -571,4 +574,5 @@
     <string name="your_feedback">Seu feedback</string>
    <string name="feedback_disclaimer">Ao enviar este e-mail, você concorda em compartilhar as informações acima conosco para ajudar a melhorar o aplicativo.</string>
     <string name="update_required">Esta versão está desatualizada. Atualize a aplicação</string>
+    <string name="leave_the_app">Sair da aplicação?</string>
 </resources>

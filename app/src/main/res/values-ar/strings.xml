@@ -20,6 +20,10 @@
     <string name="sort_by">فرز حسب</string>
     <string name="replace_old_file">هل تريد استبدال الملف القديم؟</string>
     <string name="ok">نعم</string>
+    <string name="saving_content">جاري حفظ المحتوى</string>
+    <string name="you_have_unfinished_file">لديك ملف غير مكتمل</string>
+    <string name="click_to_see_more">انقر لرؤية المزيد.</string>
+
     <string name="intent_label_doc_pdf">تحويل مستند إلى PDF</string>
     <string name="intent_label_doc_reader">قارئ مستندات</string>
     <string name="intent_label_pdf_doc">محرر مستندات</string>
@@ -568,5 +572,6 @@
     <string name="start_free_trial">ابدأ التجربة المجانية</string>
     <string name="update_required">هذا الإصدار قديم. يرجى تحديث التطبيق</string>
     <string name="set_docx_reader_as_your_default_word_file_viewer">تعيين <b>%s</b> كعارض افتراضي لملفات Word</string>
+    <string name="leave_the_app">مغادرة التطبيق؟</string>
 
 </resources>

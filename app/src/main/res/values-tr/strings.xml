@@ -12,6 +12,9 @@
     <string name="intent_label_pdf_excel">Excel Düzenleyici</string>
     <string name="intent_label_excel_smart_editor">Akıllı Excel Düzenleyici</string>
     <string name="intent_label_excel_print">Excel Yazdır</string>
+    <string name="saving_content">İçerik kaydediliyor</string>
+    <string name="you_have_unfinished_file">Bitmemiş bir dosyanız var</string>
+    <string name="click_to_see_more">Daha fazlasını görmek için tıklayın.</string>
 
     <string name="intent_label_ppt_pdf">PPT\'den PDF\'ye</string>
     <string name="intent_label_ppt_reader">PPT Okuyucu</string>
@@ -575,4 +578,5 @@
     <string name="your_feedback">Geri bildiriminiz</string>
    <string name="feedback_disclaimer">Bu e-postayı göndererek, uygulamayı iyileştirmemize yardımcı olmak için yukarıdaki bilgileri bizimle paylaşmayı kabul etmiş olursunuz.</string>
     <string name="update_required">Bu sürüm eski. Lütfen uygulamayı güncelleyin</string>
+    <string name="leave_the_app">Uygulamadan çıkılsın mı?</string>
 </resources>

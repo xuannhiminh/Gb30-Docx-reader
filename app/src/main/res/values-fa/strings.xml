@@ -18,6 +18,10 @@
     <string name="please_rate">لطفاً یک امتیاز انتخاب کنید!!!</string>
     <string name="thank_for_rate">متشکریم!!!</string>
     <string name="sort_by">مرتب‌سازی بر اساس</string>
+    <string name="saving_content">در حال ذخیره محتوا</string>
+    <string name="you_have_unfinished_file">شما یک فایل ناتمام دارید</string>
+    <string name="click_to_see_more">برای دیدن بیشتر کلیک کنید.</string>
+
     <string name="sort_by_date">تاریخ ایجاد: صعودی</string>
     <string name="start_free_trial">Start Free Trial</string>
     <string name="congrats">تبریک!</string>
@@ -488,5 +492,6 @@
    <string name="feedback_disclaimer">با ارسال این ایمیل، شما موافقت می‌کنید اطلاعات فوق را با ما به اشتراک بگذارید تا به بهبود برنامه کمک کند.</string>
     <string name="update_required">این نسخه قدیمی است. لطفاً برنامه را به‌روزرسانی کنید</string>
     <string name="set_docx_reader_as_your_default_word_file_viewer"><b>%s</b> را به عنوان نمایشگر پیش‌فرض فایل‌های Word تنظیم کنید</string>
+    <string name="leave_the_app">خروج از برنامه؟</string>
 
 </resources> 
