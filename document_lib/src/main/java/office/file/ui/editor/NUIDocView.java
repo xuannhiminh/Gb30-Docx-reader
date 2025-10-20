@@ -25,6 +25,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Environment;
 import android.os.Handler;
@@ -64,6 +65,7 @@ import androidx.annotation.ColorRes;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
 import com.aigestudio.wheelpicker.WheelPicker;
 import com.artifex.solib.ConfigOptions;
@@ -85,6 +87,7 @@ import com.ezteam.baseproject.utils.PresKey;
 import com.ezteam.baseproject.utils.TemporaryStorage;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.nlbn.ads.callback.AdCallback;
 import com.nlbn.ads.util.Admob;
 import com.nlbn.ads.util.AppOpenManager;
@@ -338,6 +341,13 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
     private void D() {
         DocView var1 = this.getDocView();
         var1.smoothScrollBy(0, -var1.getHeight() / 20, 100);
+    }
+    private void logEvent(String event) {
+        try {
+            FirebaseAnalytics.getInstance(this.getContext()).logEvent(event, new Bundle());
+        } catch (Exception e) {
+            Log.e("DefaultReaderGuideDialog", "Error initializing FirebaseAnalytics " + e);
+        }
     }
 
     private boolean E() {
@@ -1636,10 +1646,13 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
                         var10.printStackTrace();
                         var9 = var6;
                     }
-
-                    Utilities.showMessage((Activity) NUIDocView.this.getContext(),
-                            NUIDocView.this.getContext().getString(R.string.sodk_editor_version_title),
-                            String.format(NUIDocView.this.getContext().getString(R.string.sodk_editor_version_format), var7, var8, var9, var13));
+                    try {
+                        Utilities.showMessage((Activity) NUIDocView.this.getContext(),
+                                NUIDocView.this.getContext().getString(R.string.sodk_editor_version_title),
+                                String.format(NUIDocView.this.getContext().getString(R.string.sodk_editor_version_format), var7, var8, var9, var13));
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
                     NUIDocView.this.mVersionTapCount = 0;
                 }
 
@@ -1713,7 +1726,11 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
                                     NUIDocView.this.m();
                                     if (!NUIDocView.this.mSession.isCancelled() || var1 != 6) {
                                         String var3 = Utilities.getOpenErrorDescription(NUIDocView.this.getContext(), var1);
-                                        Utilities.showMessage(var9, NUIDocView.this.getContext().getString(R.string.sodk_editor_error), var3);
+                                        try {
+                                            Utilities.showMessage(var9, NUIDocView.this.getContext().getString(R.string.sodk_editor_error), var3);
+                                        } catch (Exception e) {
+                                            throw new RuntimeException(e);
+                                        }
                                     }
                                 }
                             }
@@ -1775,7 +1792,12 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
                                             NUIDocView.this.m();
                                             if (!NUIDocView.this.mSession.isCancelled() || var1 != 6) {
                                                 String var3 = Utilities.getOpenErrorDescription(NUIDocView.this.getContext(), var1);
-                                                Utilities.showMessage(var9, NUIDocView.this.getContext().getString(R.string.sodk_editor_error), var3);
+                                                try {
+                                                    Utilities.showMessage(var9, NUIDocView.this.getContext().getString(R.string.sodk_editor_error), var3);
+                                                } catch (Exception e) {
+                                                    throw new RuntimeException(e);
+                                                }
+
                                             }
 
                                         }
@@ -1824,7 +1846,11 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
                                 if (var3 != null && var3.equalsIgnoreCase("content")) {
                                     String var7 = com.artifex.solib.a.b(NUIDocView.this.getContext(), var6);
                                     if (var7.equals("---fileOpen")) {
-                                        Utilities.showMessage(var9, NUIDocView.this.getContext().getString(R.string.sodk_editor_content_error), NUIDocView.this.getContext().getString(R.string.sodk_editor_error_opening_from_other_app));
+                                        try {
+                                            Utilities.showMessage(var9, NUIDocView.this.getContext().getString(R.string.sodk_editor_content_error), NUIDocView.this.getContext().getString(R.string.sodk_editor_error_opening_from_other_app));
+                                        } catch (Exception e) {
+                                            throw new RuntimeException(e);
+                                        }
                                         return;
                                     }
 
@@ -1836,7 +1862,11 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
                                         var5.append(NUIDocView.this.getContext().getString(R.string.sodk_editor_error_opening_from_other_app));
                                         var5.append(": \n\n");
                                         var5.append(var3);
-                                        Utilities.showMessage(var11, var4, var5.toString());
+                                        try {
+                                            Utilities.showMessage(var11, var4, var5.toString());
+                                        } catch (Exception e) {
+                                            throw new RuntimeException(e);
+                                        }
                                         return;
                                     }
 
@@ -1847,7 +1877,11 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
                                 } else {
                                     NUIDocView.this.mDocUserPath = var6.getPath();
                                     if (NUIDocView.this.mDocUserPath == null) {
-                                        Utilities.showMessage(var9, NUIDocView.this.getContext().getString(R.string.sodk_editor_invalid_file_name), NUIDocView.this.getContext().getString(R.string.sodk_editor_error_opening_from_other_app));
+                                        try {
+                                            Utilities.showMessage(var9, NUIDocView.this.getContext().getString(R.string.sodk_editor_invalid_file_name), NUIDocView.this.getContext().getString(R.string.sodk_editor_error_opening_from_other_app));
+                                        } catch (Exception e) {
+                                            throw new RuntimeException(e);
+                                        }
                                         StringBuilder var8 = new StringBuilder();
                                         var8.append(" Uri has no path: ");
                                         var8.append(var6.toString());
@@ -1893,7 +1927,11 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
                                             NUIDocView.this.m();
                                             if (!NUIDocView.this.mSession.isCancelled() || var1 != 6) {
                                                 String var3 = Utilities.getOpenErrorDescription(NUIDocView.this.getContext(), var1);
-                                                Utilities.showMessage(var9, NUIDocView.this.getContext().getString(R.string.sodk_editor_error), var3);
+                                                try {
+                                                    Utilities.showMessage(var9, NUIDocView.this.getContext().getString(R.string.sodk_editor_error), var3);
+                                                } catch (Exception e) {
+                                                    throw new RuntimeException(e);
+                                                }
                                             }
 
                                         }
@@ -2008,7 +2046,7 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
         if (isFullScreen) {
             onClick(mFullscreenButton);
             if (mButtonOutFullScreen != null) {
-                mButtonOutFullScreen.setVisibility(VISIBLE);
+                mButtonOutFullScreen.setVisibility(GONE);
             }
         }
     }
@@ -2225,12 +2263,20 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
 
     public void doInsertImage(String var1) {
         if (!com.artifex.solib.a.c(var1)) {
-            Utilities.showMessage((Activity) this.getContext(), this.getContext().getString(R.string.sodk_editor_insert_image_gone_title), this.getContext().getString(R.string.sodk_editor_insert_image_gone_body));
+            try {
+                Utilities.showMessage((Activity) this.getContext(), this.getContext().getString(R.string.sodk_editor_insert_image_gone_title), this.getContext().getString(R.string.sodk_editor_insert_image_gone_body));
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         } else {
-            String var2 = Utilities.preInsertImage(this.getContext(), var1);
-            this.getDoc().d(var2);
-            if (!var1.equalsIgnoreCase(var2)) {
-                this.addDeleteOnClose(var2);
+            try {
+                String var2 = Utilities.preInsertImage(this.getContext(), var1);
+                this.getDoc().d(var2);
+                if (!var1.equalsIgnoreCase(var2)) {
+                    this.addDeleteOnClose(var2);
+                }
+            } catch (Exception var3) {
+                Utilities.showMessage((Activity) this.getContext(), this.getContext().getString(R.string.sodk_editor_insert_image_gone_title), this.getContext().getString(R.string.sodk_editor_insert_image_gone_title));
             }
 
         }
@@ -2413,18 +2459,18 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
                         public void onComplete(int var1x, int var2) {
                             var1.dismiss();
                             if (var1x == 0) {
-                                TemporaryStorage.setSavingFileNotNoti(true);
+                                // TemporaryStorage.setSavingFileNotNoti(true);
                                 NUIDocView.this.mFileState.saveFile();
-                                new CountDownTimer(500,500) {
-                                    @Override
-                                    public void onTick(long millisUntilFinished) {
-
-                                    }
-                                    @Override
-                                    public void onFinish() {
-                                        TemporaryStorage.setSavingFileNotNoti(false);
-                                    }
-                                }.start();
+//                                new CountDownTimer(500,500) {
+//                                    @Override
+//                                    public void onTick(long millisUntilFinished) {
+//
+//                                    }
+//                                    @Override
+//                                    public void onFinish() {
+//                                        TemporaryStorage.setSavingFileNotNoti(false);
+//                                    }
+//                                }.start();
                                 NUIDocView.this.updateUIAppearance();
                                 if (NUIDocView.this.mDataLeakHandlers != null) {
                                     NUIDocView.this.mDataLeakHandlers.postSaveHandler(new SOSaveAsComplete() {
@@ -2435,7 +2481,11 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
                                 }
                             } else {
                                 String var3 = String.format(NUIDocView.this.activity().getString(R.string.sodk_editor_error_saving_document_code), var2);
-                                Utilities.showMessage(NUIDocView.this.activity(), NUIDocView.this.activity().getString(R.string.sodk_editor_error), var3);
+                                try {
+                                    Utilities.showMessage(NUIDocView.this.activity(), NUIDocView.this.activity().getString(R.string.sodk_editor_error), var3);
+                                } catch (Exception e) {
+                                    throw new RuntimeException(e);
+                                }
                             }
 
                         }
@@ -2819,7 +2869,11 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
                                                 } else {
                                                     NUIDocView.this.mFileState.closeFile();
                                                     String var3 = String.format(NUIDocView.this.activity().getString(R.string.sodk_editor_error_saving_document_code), var2);
-                                                    Utilities.showMessage(NUIDocView.this.activity(), NUIDocView.this.activity().getString(R.string.sodk_editor_error), var3);
+                                                    try {
+                                                        Utilities.showMessage(NUIDocView.this.activity(), NUIDocView.this.activity().getString(R.string.sodk_editor_error), var3);
+                                                    } catch (Exception e) {
+                                                        throw new RuntimeException(e);
+                                                    }
                                                 }
 
                                             }
@@ -3356,6 +3410,7 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
             if (this.mConfigOptions.z()) {
                 ImageView var2 = this.mFullscreenButton;
                 if (var2 != null && var1 == var2) {
+                    logEvent("NUI_fullscreen_press");
                     this.onFullScreen(var1);
                 }
             }
@@ -3368,6 +3423,7 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
                 if (keyboardShown) {
                     Utilities.hideKeyboard(getContext());
                 } else {
+                    logEvent("NUI_keyboard_press");
                     Utilities.showKeyboard(getContext());
                 }
             }
@@ -3496,7 +3552,11 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
     public void onCustomSaveButton(View var1) {
         if (this.mDataLeakHandlers != null) {
             if (!this.mConfigOptions.C()) {
-                Utilities.showMessage(this.activity(), this.getContext().getString(R.string.sodk_editor_error), this.getContext().getString(R.string.sodk_editor_has_no_permission_to_save));
+                try {
+                    Utilities.showMessage(this.activity(), this.getContext().getString(R.string.sodk_editor_error), this.getContext().getString(R.string.sodk_editor_has_no_permission_to_save));
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
                 return;
             }
 
@@ -3781,6 +3841,12 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
     }
 
     public void onInsertImageButton(View var1) {
+        if (!checkStoragePermission(this.getContext())) {
+            Utilities.showMessage((Activity) NUIDocView.this.getContext(),
+                    NUIDocView.this.getContext().getString(R.string.edit),
+                    NUIDocView.this.getContext().getString(R.string.accept_all_file_permission_edit2));
+            return;
+        }
         this.showKeyboard(false, new Runnable() {
             public void run() {
                 if (NUIDocView.this.mDataLeakHandlers != null) {
@@ -4011,7 +4077,11 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
 
     public void onPrintButton(View var1) {
         if (this.mConfigOptions.B()) {
-            Utilities.showMessage(this.activity(), this.getContext().getString(R.string.sodk_editor_error), this.getContext().getString(R.string.sodk_editor_has_no_permission_to_print));
+            try {
+                Utilities.showMessage(this.activity(), this.getContext().getString(R.string.sodk_editor_error), this.getContext().getString(R.string.sodk_editor_has_no_permission_to_print));
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         } else {
             SODataLeakHandlers var3 = this.mDataLeakHandlers;
             if (var3 != null) {
@@ -4218,10 +4288,13 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
 
     public void onSaveAsButton(View var1) {
         if (!checkStoragePermission(this.getContext())) {
-            Toast.makeText(this.getContext(), "", Toast.LENGTH_SHORT).show();
-            Utilities.showMessage((Activity) NUIDocView.this.getContext(),
-                    NUIDocView.this.getContext().getString(R.string.edit),
-                    NUIDocView.this.getContext().getString(R.string.accept_all_file_permission_edit2));
+            try {
+                Utilities.showMessage((Activity) NUIDocView.this.getContext(),
+                        NUIDocView.this.getContext().getString(R.string.edit),
+                        NUIDocView.this.getContext().getString(R.string.accept_all_file_permission_edit2));
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
             return;
         }
 //        if (blockFunction(IAPHelper.KEY_SAVE)) return;
@@ -4234,10 +4307,13 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
 
     public void onSaveButton(View var1) {
         if (!checkStoragePermission(this.getContext())) {
-            Toast.makeText(this.getContext(), "", Toast.LENGTH_SHORT).show();
-            Utilities.showMessage((Activity) NUIDocView.this.getContext(),
-                    NUIDocView.this.getContext().getString(R.string.edit),
-                    NUIDocView.this.getContext().getString(R.string.accept_all_file_permission_edit2));
+            try {
+                Utilities.showMessage((Activity) NUIDocView.this.getContext(),
+                        NUIDocView.this.getContext().getString(R.string.edit),
+                        NUIDocView.this.getContext().getString(R.string.accept_all_file_permission_edit2));
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
             return;
         }
 //        if (blockFunction(IAPHelper.KEY_SAVE)) return;
@@ -4250,10 +4326,13 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
 
     public void onSavePDFButton(View var1) {
         if (!checkStoragePermission(this.getContext())) {
-            Toast.makeText(this.getContext(), "", Toast.LENGTH_SHORT).show();
-            Utilities.showMessage((Activity) NUIDocView.this.getContext(),
-                    NUIDocView.this.getContext().getString(R.string.edit),
-                    NUIDocView.this.getContext().getString(R.string.accept_all_file_permission_edit2));
+            try {
+                Utilities.showMessage((Activity) NUIDocView.this.getContext(),
+                        NUIDocView.this.getContext().getString(R.string.edit),
+                        NUIDocView.this.getContext().getString(R.string.accept_all_file_permission_edit2));
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
             return;
         }
 //        if (blockFunction(IAPHelper.KEY_SAVE)) return;
@@ -4343,8 +4422,44 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
         if (this.mDataLeakHandlers != null) {
             try {
                 File var4 = new File(this.mFileState.getOpenedPath());
-                this.mDataLeakHandlers.shareHandler(var4.getName(), this.mSession.getDoc());
-            } catch (NullPointerException | UnsupportedOperationException var2) {
+                if (var4 != null && var4.exists()) {
+                    Context context = getContext();
+                    Uri uri = FileProvider.getUriForFile(
+                            context,
+                            context.getPackageName() + ".provider",
+                            var4
+                    );
+
+                    String name = var4.getName().toLowerCase();
+                    String mimeType;
+                    if (name.endsWith(".pdf")) {
+                        mimeType = "application/pdf";
+                    } else if (name.endsWith(".doc") || name.endsWith(".dot")) {
+                        mimeType = "application/msword";
+                    } else if (name.endsWith(".docx")) {
+                        mimeType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+                    } else if (name.endsWith(".xls")) {
+                        mimeType = "application/vnd.ms-excel";
+                    } else if (name.endsWith(".xlsx")) {
+                        mimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                    } else if (name.endsWith(".ppt")) {
+                        mimeType = "application/vnd.ms-powerpoint";
+                    } else if (name.endsWith(".pptx")) {
+                        mimeType = "application/vnd.openxmlformats-officedocument.presentationml.presentation";
+                    } else if (name.endsWith(".txt")) {
+                        mimeType = "text/plain";
+                    } else {
+                        mimeType = "application/octet-stream";
+                    }
+
+                    Intent share = new Intent(Intent.ACTION_SEND);
+                    share.setType(mimeType);
+                    share.putExtra(Intent.EXTRA_STREAM, uri);
+                    share.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+                    activity().startActivity(Intent.createChooser(share, context.getString(R.string.share)));
+                }
+            } catch (Exception ignore) {
             }
         } else {
             throw new UnsupportedOperationException();
@@ -4412,7 +4527,11 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
         this.onTabChanging(this.mCurrentTab, var1);
         this.getDocView().saveComment();
         if (var1.equals(this.activity().getString(R.string.sodk_editor_tab_review)) && !this.getDocView().getDoc().docSupportsReview()) {
-            Utilities.showMessage(this.activity(), this.activity().getString(R.string.sodk_editor_not_supported), this.activity().getString(R.string.sodk_editor_cant_review_doc_body));
+            try {
+                Utilities.showMessage(this.activity(), this.activity().getString(R.string.sodk_editor_not_supported), this.activity().getString(R.string.sodk_editor_cant_review_doc_body));
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
             this.setTab(this.mCurrentTab);
             if (this.mCurrentTab.equals(this.activity().getString(R.string.sodk_editor_tab_hidden))) {
                 this.onSearchButton(this.mSearchButton);
@@ -4459,7 +4578,11 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
                         NUIDocView.this.onSearch();
                         NUIDocView.this.setSingleTabTitle(var6);
                     } else if (var6.equals(NUIDocView.this.activity().getString(R.string.sodk_editor_tab_review)) && !NUIDocView.this.getDocView().getDoc().docSupportsReview()) {
-                        Utilities.showMessage(NUIDocView.this.activity(), NUIDocView.this.activity().getString(R.string.sodk_editor_not_supported), NUIDocView.this.activity().getString(R.string.sodk_editor_cant_review_doc_body));
+                        try {
+                            Utilities.showMessage(NUIDocView.this.activity(), NUIDocView.this.activity().getString(R.string.sodk_editor_not_supported), NUIDocView.this.activity().getString(R.string.sodk_editor_cant_review_doc_body));
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
                     } else {
                         NUIDocView.this.changeTab(var6);
                         NUIDocView.this.setSingleTabTitle(var6);
@@ -4619,7 +4742,7 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
                 NUIDocView.this.activity(),
                 NUIDocView.this.activity().getString(R.string.inter_filedetail),
                 100,
-                8000,
+                100,
                 interCallback
         );
     }
@@ -5671,27 +5794,38 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
 
     protected void selectedTab(TabLayout.Tab tab) {
         if (tab.getText() == getResources().getString(R.string.file)) {
+            logEvent("NUI_File_tab_press");
             onBottomMenuButton(mFileTab, getResources().getString(R.string.file));
         } else if (tab.getText() == getResources().getString(R.string.home)) {
+            logEvent("NUI_Home_tab_press");
             onBottomMenuButton(mHomeTab, getResources().getString(R.string.home));
             if (!checkStoragePermission(this.getContext())) {
-                Toast.makeText(this.getContext(), "", Toast.LENGTH_SHORT).show();
-                Utilities.showMessage((Activity) NUIDocView.this.getContext(),
-                        NUIDocView.this.getContext().getString(R.string.edit),
-                        NUIDocView.this.getContext().getString(R.string.accept_all_file_permission_edit2));
+                try {
+                    Utilities.showMessage((Activity) NUIDocView.this.getContext(),
+                            NUIDocView.this.getContext().getString(R.string.edit),
+                            NUIDocView.this.getContext().getString(R.string.accept_all_file_permission_edit2));
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
                 return;
             }
         } else if (tab.getText() == getResources().getString(R.string.edit)) {
+            logEvent("NUI_Edit_tab_press");
             onBottomMenuButton(mEditTab, getResources().getString(R.string.edit));
         } else if (tab.getText() == getResources().getString(R.string.insert)) {
+            logEvent("NUI_insert_tab_press");
             onBottomMenuButton(mInsertTab, getResources().getString(R.string.insert));
         } else if (tab.getText() == getResources().getString(R.string.lib_page)) {
+            logEvent("NUI_Page_tab_press");
             onBottomMenuButton(mPagesTab, getResources().getString(R.string.lib_page));
         } else if (tab.getText() == getResources().getString(R.string.format)) {
+            logEvent("NUI_format_tab_press");
             onBottomMenuButton(mFormatTab, getResources().getString(R.string.format));
         } else if (tab.getText() == getResources().getString(R.string.formulas)) {
+            logEvent("NUI_formulas_tab_press");
             onBottomMenuButton(mFormulasTab, getResources().getString(R.string.formulas));
         } else if (tab.getText() == getResources().getString(R.string.annotate)) {
+            logEvent("NUI_annotate_tab_press");
             onBottomMenuButton(mAnnotateTab, getResources().getString(R.string.annotate));
         }
     }
@@ -5732,15 +5866,19 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
             if (this instanceof NUIDocViewDoc) {
                 borderColor = ContextCompat.getColor(getContext(), R.color.blue);
                 guideKey = PresKey.FIRST_TIME_OPEN_DOC;
+                PreferencesUtils.putInteger(PresKey.TIME_ENTER_FILE_DOC, PreferencesUtils.getInteger(PresKey.TIME_ENTER_FILE_DOC, 0) + 1);
             } else if (this instanceof NUIDocViewXls) {
                 borderColor = ContextCompat.getColor(getContext(), R.color.green);
                 guideKey = PresKey.FIRST_TIME_OPEN_EXCEL;
+                PreferencesUtils.putInteger(PresKey.TIME_ENTER_FILE_EXCEL, PreferencesUtils.getInteger(PresKey.TIME_ENTER_FILE_EXCEL, 0) + 1);
             } else if (this instanceof NUIDocViewPpt) {
                 borderColor = ContextCompat.getColor(getContext(), R.color.orange);
                 guideKey = PresKey.FIRST_TIME_OPEN_PPT;
+                PreferencesUtils.putInteger(PresKey.TIME_ENTER_FILE_PPT, PreferencesUtils.getInteger(PresKey.TIME_ENTER_FILE_PPT, 0) + 1);
             } else if (this instanceof NUIDocViewPdf) {
                 borderColor = ContextCompat.getColor(getContext(), R.color.primaryColor);
                 guideKey = PresKey.FIRST_TIME_OPEN_PDF;
+                PreferencesUtils.putInteger(PresKey.TIME_ENTER_FILE_PDF, PreferencesUtils.getInteger(PresKey.TIME_ENTER_FILE_PDF, 0) + 1);
             }
         }
 
