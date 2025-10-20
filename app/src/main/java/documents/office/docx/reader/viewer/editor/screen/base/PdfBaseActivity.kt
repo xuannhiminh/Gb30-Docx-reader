@@ -3,6 +3,8 @@ package documents.office.docx.reader.viewer.editor.screen.base
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.content.pm.ResolveInfo
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
@@ -27,6 +29,8 @@ import com.nlbn.ads.util.Admob
 import com.nlbn.ads.util.ConsentHelper
 import documents.office.docx.reader.viewer.editor.R
 import documents.office.docx.reader.viewer.editor.common.LocaleManager
+import documents.office.docx.reader.viewer.editor.dialog.DefaultReaderRequestDialog
+import documents.office.docx.reader.viewer.editor.dialog.DefaultReaderUninstallDialog
 import documents.office.docx.reader.viewer.editor.dialog.DeleteDialog
 import documents.office.docx.reader.viewer.editor.dialog.DetailFileDialog
 import documents.office.docx.reader.viewer.editor.dialog.ReloadFileGuideDialog
@@ -47,6 +51,7 @@ import office.file.ui.extension.openDocuments
 import org.apache.commons.io.FilenameUtils
 import java.io.File
 import java.io.FileOutputStream
+import java.io.IOException
 import java.net.URLConnection
 
 abstract class PdfBaseActivity<B : ViewBinding> : BaseActivity<B>(), IControl {
@@ -404,5 +409,58 @@ abstract class PdfBaseActivity<B : ViewBinding> : BaseActivity<B>(), IControl {
             }
         }
     }
+    fun showDefaultReaderDialog(closable : Boolean = false) {
+        val defaultWordViewerResolveInfo = getDefaultWordViewerClass()
+        Log.i("DefaultReader", "DefaultWordViewer: $defaultWordViewerResolveInfo")
+        if (defaultWordViewerResolveInfo?.activityInfo == null || defaultWordViewerResolveInfo.activityInfo.name.contains("internal.app.ResolverActivity")) { // default reader isn't set => show dialog to set default
+            val dialog = DefaultReaderRequestDialog();
+            dialog.show(this.supportFragmentManager, "RequestDefaultReaderDialog")
+        } else if(!defaultWordViewerResolveInfo.activityInfo.name.contains(packageName) ) { // default reader is set but not our app => show dialog to clear default
+            val fragmentManager = supportFragmentManager
+            val existingDialog = fragmentManager.findFragmentByTag("DefaultReaderUninstallDialog")
+            if (existingDialog == null) {
+                val dialog = DefaultReaderUninstallDialog()
+                dialog.defaultWordViewer = defaultWordViewerResolveInfo
+                dialog.listener = {
+                    isGoingToSettingToClearDefault = true
+                }
+                dialog.show(fragmentManager, "DefaultReaderUninstallDialog")
+            }
+        } else { // default reader is our app => do nothing
+            Log.d("DefaultReader", "DefaultWordViewer: $defaultWordViewerResolveInfo")
+            logEventBase("app_default_reader")
+        }
+    }
+    var isGoingToSettingToClearDefault = false
+    private fun getDefaultWordViewerClass(): ResolveInfo? {
+        val fileName = "file_example_DOCX.docx"
+        val assetManager = assets
+        val file = File(File(filesDir, "defaultFiles").apply { mkdirs() }, fileName)
 
+        // Copy file từ assets nếu chưa tồn tại
+        if (!file.exists()) {
+            try {
+                assetManager.open(fileName).use { inputStream ->
+                    FileOutputStream(file).use { outputStream ->
+                        inputStream.copyTo(outputStream)
+                    }
+                }
+            } catch (e: IOException) {
+                e.printStackTrace()
+                return null
+            }
+        }
+
+        val uri = Uri.fromFile(file)
+
+        val intent = Intent(Intent.ACTION_VIEW).apply {
+            setDataAndType(uri, "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        }
+
+        val resolveInfo = packageManager.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY)
+        Log.d("DefaultReader", "resolveInfo: $resolveInfo")
+
+        return resolveInfo
+    }
 }

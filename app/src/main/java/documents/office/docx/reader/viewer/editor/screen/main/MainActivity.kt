@@ -589,8 +589,6 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
         }
     }
 
-    private var isGoingToSettingToClearDefault = false
-
     override fun onStop() {
         super.onStop()
         Log.d(TAG, "onStop")
@@ -733,26 +731,7 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
             isGoingToSettingToClearDefault = false
             Log.d(TAG, "time enter app = $timeEnterApp")
             if (timeEnterApp == 1 || timeEnterApp % 3 == 0 || BuildConfig.DEBUG) {
-                val defaultWordViewerResolveInfo = getDefaultWordViewerClass()
-                Log.i("DefaultReader", "DefaultWordViewer: $defaultWordViewerResolveInfo")
-                if (defaultWordViewerResolveInfo?.activityInfo == null || defaultWordViewerResolveInfo.activityInfo.name.contains("internal.app.ResolverActivity")) { // default reader isn't set => show dialog to set default
-                    val dialog = DefaultReaderRequestDialog();
-                    dialog.show(this.supportFragmentManager, "RequestDefaultReaderDialog")
-                } else if(!defaultWordViewerResolveInfo.activityInfo.name.contains(packageName) ) { // default reader is set but not our app => show dialog to clear default
-                    val fragmentManager = supportFragmentManager
-                    val existingDialog = fragmentManager.findFragmentByTag("DefaultReaderUninstallDialog")
-                    if (existingDialog == null) {
-                        val dialog = DefaultReaderUninstallDialog()
-                        dialog.defaultWordViewer = defaultWordViewerResolveInfo
-                        dialog.listener = {
-                            isGoingToSettingToClearDefault = true
-                        }
-                        dialog.show(fragmentManager, "DefaultReaderUninstallDialog")
-                    }
-                } else { // default reader is our app => do nothing
-                    Log.d("DefaultReader", "DefaultWordViewer: $defaultWordViewerResolveInfo")
-                    logEvent("app_default_reader")
-                }
+                showDefaultReaderDialog()
             }
         }
         val showReloadFileGuideTime = PreferencesUtils.getInteger("SHOW_RELOAD_FILE_GUIDE_TIME",0)
@@ -1722,35 +1701,4 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
 //        }
 //    }
 
-    private fun getDefaultWordViewerClass(): ResolveInfo? {
-        val fileName = "file_example_DOCX.docx"
-        val assetManager = assets
-        val file = File(File(filesDir, "defaultFiles").apply { mkdirs() }, fileName)
-
-        // Copy file từ assets nếu chưa tồn tại
-        if (!file.exists()) {
-            try {
-                assetManager.open(fileName).use { inputStream ->
-                    FileOutputStream(file).use { outputStream ->
-                        inputStream.copyTo(outputStream)
-                    }
-                }
-            } catch (e: IOException) {
-                e.printStackTrace()
-                return null
-            }
-        }
-
-        val uri = Uri.fromFile(file)
-
-        val intent = Intent(Intent.ACTION_VIEW).apply {
-            setDataAndType(uri, "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        }
-
-        val resolveInfo = packageManager.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY)
-        Log.d("DefaultReader", "resolveInfo: $resolveInfo")
-
-        return resolveInfo
-    }
 }

@@ -77,6 +77,8 @@ class ReloadFileSuccessActivity : PdfBaseActivity<ActivityReloadFileBinding>() {
             emitter = Emitter(Long.MAX_VALUE, TimeUnit.MILLISECONDS).perSecond(20)
         )
         konfettiView.start(party)
+
+        showDefaultReaderDialog(true)
     }
 
     override fun initData() {

@@ -622,7 +622,6 @@ class SettingActivity : PdfBaseActivity<ActivitySettingsBinding>() {
     override fun viewBinding(): ActivitySettingsBinding {
         return ActivitySettingsBinding.inflate(LayoutInflater.from(this))
     }
-    private var isGoingToSettingToClearDefault = false
 
     override fun onStop() {
         super.onStop()

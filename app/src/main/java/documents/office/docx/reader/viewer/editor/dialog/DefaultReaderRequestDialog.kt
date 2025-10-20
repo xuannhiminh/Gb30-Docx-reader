@@ -70,7 +70,13 @@ class DefaultReaderRequestDialog : DialogFragment() {
         }
         binding.btnSetDefault.setOnClickListener {
             dismiss()
-            DefaultReaderGuideDialog().show(parentFragmentManager, "DefaultReaderGuideDialog")
+            val dialog = DefaultReaderGuideDialog()
+            try {
+                dialog.show(this.parentFragmentManager, "DefaultReaderGuideDialog")
+            } catch (e : Exception)
+            {
+                Log.e("DefaultReaderRequestDialog", "Error showing DefaultReaderGuideDialog: ${e.message}")
+            }
         }
 
         val appName = getString(R.string.app_name)
