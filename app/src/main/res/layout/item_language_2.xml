@@ -24,10 +24,11 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:padding="@dimen/_10sdp">
+            android:paddingHorizontal="@dimen/_10sdp">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/iv_flag"
+                android:layout_marginVertical="@dimen/_10sdp"
                 android:layout_width="@dimen/_24sdp"
                 android:layout_height="@dimen/_24sdp"
                 app:civ_border_color="@color/input"
@@ -37,6 +38,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_8sdp"
+                android:layout_marginVertical="@dimen/_10sdp"
                 android:layout_weight="1"
                 android:orientation="vertical">
                 <TextView
@@ -55,13 +57,30 @@
                     android:layout_marginTop="2dp"/>
             </LinearLayout>
 
-            <RadioButton
-                android:layout_gravity="center"
-                android:id="@+id/rd_select"
-                android:layout_width="@dimen/_22sdp"
-                android:layout_height="@dimen/_22sdp"
-                android:buttonTint="@color/primaryColor"
-                android:clickable="false" />
+            <FrameLayout
+                android:id="@+id/rd_select_container"
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_44sdp"
+                android:layout_gravity="center">
+
+                <RadioButton
+                    android:id="@+id/rd_select"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:buttonTint="@color/primaryColor"
+                    android:clickable="false" />
+
+                <ImageView
+                    android:id="@+id/iv_hand"
+                    android:layout_width="@dimen/_16sdp"
+                    android:layout_height="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:src="@drawable/ic_hand_language"
+                    android:visibility="gone"
+                    android:rotation="270"
+                    android:layout_gravity="center" />
+            </FrameLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

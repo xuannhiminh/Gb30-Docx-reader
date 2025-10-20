@@ -5,16 +5,16 @@
     android:layout_height="wrap_content"
     android:paddingStart="12dp">
 
-<!--    <ImageView-->
-<!--        android:id="@+id/line"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="@dimen/_40sdp"-->
-<!--        android:scaleType="fitCenter"-->
-<!--        android:src="@drawable/line_child"-->
-<!--        android:layout_marginBottom="@dimen/_40sdp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent" />-->
+    <!--    <ImageView-->
+    <!--        android:id="@+id/line"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="@dimen/_40sdp"-->
+    <!--        android:scaleType="fitCenter"-->
+    <!--        android:src="@drawable/line_child"-->
+    <!--        android:layout_marginBottom="@dimen/_40sdp"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent" />-->
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_language"
@@ -67,13 +67,30 @@
                     android:layout_marginTop="2dp"/>
             </LinearLayout>
 
-            <RadioButton
-                android:layout_gravity="center"
-                android:id="@+id/rd_select"
-                android:layout_width="@dimen/_22sdp"
-                android:layout_height="@dimen/_22sdp"
-                android:buttonTint="@color/primaryColor"
-                android:clickable="false" />
+            <FrameLayout
+                android:id="@+id/rd_select_container"
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_44sdp"
+                android:layout_gravity="center">
+
+                <RadioButton
+                    android:id="@+id/rd_select"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:buttonTint="@color/primaryColor"
+                    android:clickable="false" />
+
+                <ImageView
+                    android:id="@+id/iv_hand"
+                    android:layout_width="@dimen/_16sdp"
+                    android:layout_height="@dimen/_16sdp"
+                    android:visibility="gone"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:src="@drawable/ic_hand_language"
+                    android:rotation="270"
+                    android:layout_gravity="center" />
+            </FrameLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
