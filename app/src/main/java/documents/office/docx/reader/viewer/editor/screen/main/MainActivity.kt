@@ -123,6 +123,7 @@ import documents.office.docx.reader.viewer.editor.dialog.ExitAppDialog
 import documents.office.docx.reader.viewer.editor.dialog.SortDialog2
 import documents.office.docx.reader.viewer.editor.screen.file.ToolsFragment
 import documents.office.docx.reader.viewer.editor.screen.iap.IapActivityV2
+import documents.office.docx.reader.viewer.editor.screen.language.PreferencesHelper
 import documents.office.docx.reader.viewer.editor.screen.reloadfile.FeatureRequestActivity
 import documents.office.docx.reader.viewer.editor.screen.reloadfile.ReloadLoadingActivity
 import documents.office.docx.reader.viewer.editor.utils.FCMTopicHandler
@@ -948,6 +949,10 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
         TemporaryStorage.reset()
         PreferencesUtils.putInteger(PresKey.TIME_ENTER_APP,  PreferencesUtils.getInteger(PresKey.TIME_ENTER_APP, 1) + 1)
         TemporaryStorage.isShowedReloadGuideInThisSession = false
+        if (IAPUtils.isPremium()) {
+            IAPUtils.destroy()
+        }
+        PreferencesHelper.putLong(PreferencesHelper.KEY_LAST_ENGAGE, System.currentTimeMillis())
     }
 
     override fun initData() {

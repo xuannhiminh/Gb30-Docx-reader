@@ -87,6 +87,7 @@ class NotificationManager(private val context: Context) {
             .setSmallIcon(R.drawable.ic_notitication)
             .setBadgeIconType(NotificationCompat.BADGE_ICON_NONE)
             .setCustomContentView(remoteCustomView)
+            .setDeleteIntent(createDismissPendingIntent(WIDGETS_NOTIFICATION_ID))
             .setCustomBigContentView(remoteCustomBigView)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setGroup(GROUP_ID_FOREGROUND)

@@ -112,8 +112,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
     override fun onResume() {
         super.onResume()
-        PreferencesHelper.putLong(PreferencesHelper.KEY_LAST_ENGAGE, System.currentTimeMillis())
-
         mCountDownTimer?.cancel()
         mCountDownTimer = object : CountDownTimer(FirebaseRemoteConfigUtil.getInstance().getTimeoutLoadInterMillisecond()+10000L, FirebaseRemoteConfigUtil.getInstance().getTimeoutLoadInterMillisecond()) {
             override fun onTick(millisUntilFinished: Long) {
