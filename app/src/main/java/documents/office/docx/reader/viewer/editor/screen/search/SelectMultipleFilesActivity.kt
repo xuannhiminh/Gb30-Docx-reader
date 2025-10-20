@@ -32,6 +32,7 @@ import documents.office.docx.reader.viewer.editor.adapter.FileItemSelectAdapter
 import documents.office.docx.reader.viewer.editor.screen.base.CurrentStatusAdsFiles
 import documents.office.docx.reader.viewer.editor.common.BottomTab
 import documents.office.docx.reader.viewer.editor.screen.func.BottomSheetFileFunction
+import documents.office.docx.reader.viewer.editor.utils.FirebaseRemoteConfigUtil
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import java.util.Locale
@@ -226,10 +227,20 @@ class SelectMultipleFilesActivity : PdfBaseActivity<ActivityCheckFileBinding>() 
             }
         }
     }
-
+    private fun showAdsOr(action: () -> Unit) {
+        if (FirebaseRemoteConfigUtil.getInstance().isShowAdsMain()) {
+            showAdsInterstitial(R.string.inter_home) {
+                action()
+            }
+        } else {
+            action()
+        }
+    }
     override fun initListener() {
         binding.toolbar.ivBack.setOnClickListener {
-            finish()
+            showAdsOr {
+                finish()
+            }
         }
 
         binding.toolbar.checkboxAll.setOnClickListener {

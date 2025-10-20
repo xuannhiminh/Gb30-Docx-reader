@@ -49,6 +49,7 @@ import documents.office.docx.reader.viewer.editor.screen.main.MainViewModel
 import documents.office.docx.reader.viewer.editor.screen.overlay.ClearDefaultReaderOverlayActivity
 import documents.office.docx.reader.viewer.editor.screen.reloadfile.FeatureRequestActivity
 import documents.office.docx.reader.viewer.editor.utils.FileSaveManager
+import documents.office.docx.reader.viewer.editor.utils.FirebaseRemoteConfigUtil
 import documents.office.docx.reader.viewer.editor.utils.createPdf.OnPDFCreatedInterface
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -56,6 +57,7 @@ import org.koin.android.ext.android.inject
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
+import java.util.ArrayList
 
 class SettingActivity : PdfBaseActivity<ActivitySettingsBinding>() {
     private val viewModel by inject<MainViewModel>()
@@ -82,7 +84,15 @@ class SettingActivity : PdfBaseActivity<ActivitySettingsBinding>() {
     private fun checkFeatureRequestToShowUI() {
         binding.funcFeatureRequest.visibility = View.VISIBLE
     }
-
+    private fun showAdsOr(action: () -> Unit) {
+        if (FirebaseRemoteConfigUtil.getInstance().isShowAdsMain()) {
+            showAdsInterstitial(R.string.inter_home) {
+                action()
+            }
+        } else {
+            action()
+        }
+    }
     override fun initView() {
         val isNotificationEnabled = PreferencesUtils.getBoolean("NOTIFICATION", false)
         binding.switchNotifications.isChecked = isNotificationEnabled
@@ -217,7 +227,7 @@ class SettingActivity : PdfBaseActivity<ActivitySettingsBinding>() {
         }
 
         val resolveInfo = packageManager.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY)
-        Log.d("DefaultReader", "resolveInfo Excel: $resolveInfo")
+        Log.d("DefaultReader", "resolveInfo: $resolveInfo")
 
         return resolveInfo
     }
@@ -270,7 +280,12 @@ class SettingActivity : PdfBaseActivity<ActivitySettingsBinding>() {
             FunctionState.RATE_US -> {
                 AppOpenManager.getInstance().disableAppResume()
                 val rateUsDialog = RateUsDialog();
-                rateUsDialog.show(this.supportFragmentManager, "RateUsDialog")
+                try {
+                    rateUsDialog.show(this.supportFragmentManager, "RateUsDialog")
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    Log.e("SettingActivity", "Error showing RateUsDialog: ${e.message}", e)
+                }
             }
 
             FunctionState.FEEDBACK -> {
@@ -296,7 +311,11 @@ class SettingActivity : PdfBaseActivity<ActivitySettingsBinding>() {
     override fun initListener() {
         
         binding.layoutIap.setOnClickListener {
-            IapActivityV2.start(this)
+            when (FirebaseRemoteConfigUtil.getInstance().getIapScreenType()) {
+                0 -> IapActivityV2.start(this)
+                1 -> IapActivity.start(this)
+                else -> IapActivityV2.start(this)
+            }
         }
         checkFeatureRequestToShowUI()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -347,20 +366,35 @@ class SettingActivity : PdfBaseActivity<ActivitySettingsBinding>() {
 
         binding.funcAboutUs.setOnClickListener {
             val dialog = AboutUsDialog();
-            dialog.show(this.supportFragmentManager, "AboutUsDialog")
+            try {
+                dialog.show(this.supportFragmentManager, "AboutUsDialog")
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Log.e("SettingActivity", "Error showing AboutUsDialog: ${e.message}", e)
+            }
         }
 
         binding.funcAddWidget.setOnClickListener {
             TemporaryStorage.isShowedAddToHoneDialog = true
             val dialog = AddToHomeDialog();
-            dialog.show(this.supportFragmentManager, "AddToHomeDialog")
+            try {
+                dialog.show(this.supportFragmentManager, "AddToHomeRequestDialog")
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Log.e("SettingActivity", "Error showing AddToHomeRequestDialog: ${e.message}", e)
+            }
         }
         binding.funcSetDefault.setOnClickListener {
             val defaultWordViewerResolveInfo = getDefaultWordViewerClass()
             Log.i("DefaultReader", "DefaultWordViewer: $defaultWordViewerResolveInfo")
             if (defaultWordViewerResolveInfo?.activityInfo == null || defaultWordViewerResolveInfo.activityInfo.name.contains("internal.app.ResolverActivity")) { // default reader isn't set => show dialog to set default
                 val dialog = DefaultReaderRequestDialog();
-                dialog.show(this.supportFragmentManager, "RequestDefaultReaderDialog")
+                try {
+                    dialog.show(this.supportFragmentManager, "RequestDefaultReaderDialog")
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    Log.e("SettingActivity", "Error showing RequestDefaultReaderDialog: ${e.message}", e)
+                }
             } else if(!defaultWordViewerResolveInfo.activityInfo.name.contains(packageName) ) { // default reader is set but not our app => show dialog to clear default
                 val fragmentManager = supportFragmentManager
                 val existingDialog = fragmentManager.findFragmentByTag("DefaultReaderUninstallDialog")
@@ -370,7 +404,12 @@ class SettingActivity : PdfBaseActivity<ActivitySettingsBinding>() {
                     dialog.listener = {
                         isGoingToSettingToClearDefault = true
                     }
-                    dialog.show(fragmentManager, "DefaultReaderUninstallDialog")
+                    try {
+                        dialog.show(fragmentManager, "DefaultReaderUninstallDialog")
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                        Log.e("SettingActivity", "Error showing DefaultReaderUninstallDialog: ${e.message}", e)
+                    }
                 }
             } else { // default reader is our app => do nothing
                 Log.d("DefaultReader", "DefaultWordViewer: $defaultWordViewerResolveInfo")
@@ -405,7 +444,7 @@ class SettingActivity : PdfBaseActivity<ActivitySettingsBinding>() {
                         requestNotificationPermissionFlow()
                     }
                 } else {
-                    Log.d("MainActivity", "Notification permission not required for SDK < 33")
+                    Log.d("SettingActivity", "Notification permission not required for SDK < 33")
                     if (ContextCompat.checkSelfPermission(this,
                             Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
                         startActivity(Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).apply {
@@ -428,7 +467,9 @@ class SettingActivity : PdfBaseActivity<ActivitySettingsBinding>() {
         }
 
         binding.ivBack.setOnClickListener {
-            finish()
+            showAdsOr {
+                finish()
+            }
         }
     }
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
@@ -502,7 +543,12 @@ class SettingActivity : PdfBaseActivity<ActivitySettingsBinding>() {
             isGoingToSettingToClearDefault = false
             if (defaultWordViewerResolveInfo?.activityInfo == null || defaultWordViewerResolveInfo.activityInfo.name.contains("internal.app.ResolverActivity")) {// default reader isn't set => show dialog to set default
                 val dialog = DefaultReaderRequestDialog();
-                dialog.show(this.supportFragmentManager, "RequestDefaultReaderDialog")
+                try {
+                    dialog.show(this.supportFragmentManager, "RequestDefaultReaderDialog")
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    Log.e("SettingActivity", "Error showing RequestDefaultReaderDialog: ${e.message}", e)
+                }
             }else if(!defaultWordViewerResolveInfo.activityInfo.name.contains(packageName) ) { // default reader is set but not our app => show dialog to clear default
                 val fragmentManager = supportFragmentManager
                 val existingDialog = fragmentManager.findFragmentByTag("DefaultReaderUninstallDialog")
@@ -512,7 +558,12 @@ class SettingActivity : PdfBaseActivity<ActivitySettingsBinding>() {
                     dialog.listener = {
                         isGoingToSettingToClearDefault = true
                     }
-                    dialog.show(fragmentManager, "DefaultReaderUninstallDialog")
+                    try {
+                        dialog.show(fragmentManager, "DefaultReaderUninstallDialog")
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                        Log.e("SettingActivity", "Error showing DefaultReaderUninstallDialog: ${e.message}", e)
+                    }
                 }
             } else { // default reader is our app => do nothing
                 Log.d("DefaultReader", "DefaultWordViewer: $defaultWordViewerResolveInfo")
@@ -558,7 +609,7 @@ class SettingActivity : PdfBaseActivity<ActivitySettingsBinding>() {
 
     private fun onNotificationPermissionDenied() {
         binding.switchNotifications.isChecked = false
-        Log.e("MainActivity", "Notification permission denied")
+        Log.e("SettingActivity", "Notification permission denied")
         PreferencesUtils.putBoolean(
             "NOTIFICATION", false
         )

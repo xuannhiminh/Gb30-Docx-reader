@@ -24,6 +24,7 @@ import documents.office.docx.reader.viewer.editor.screen.base.PdfBaseActivity
 import documents.office.docx.reader.viewer.editor.screen.func.BottomSheetFileFunction
 import documents.office.docx.reader.viewer.editor.screen.main.MainViewModel
 import documents.office.docx.reader.viewer.editor.screen.start.SplashActivity
+import documents.office.docx.reader.viewer.editor.utils.FirebaseRemoteConfigUtil
 import kotlinx.coroutines.launch
 import org.apache.commons.io.FilenameUtils
 import org.koin.android.ext.android.inject
@@ -44,7 +45,15 @@ class SearchFileActivity : PdfBaseActivity<ActivitySearchFileBinding>() {
         super.onCreate(savedInstanceState)
 //        EzAdControl.getInstance(this).showAds()
     }
-
+    private fun showAdsOr(action: () -> Unit) {
+        if (FirebaseRemoteConfigUtil.getInstance().isShowAdsMain()) {
+            showAdsInterstitial(R.string.inter_home) {
+                action()
+            }
+        } else {
+            action()
+        }
+    }
     override fun initView() {
         if (Locale.getDefault().language == "ar") {
             binding.toolbar.ivBack.rotationY = 180f
@@ -77,7 +86,9 @@ class SearchFileActivity : PdfBaseActivity<ActivitySearchFileBinding>() {
         binding.toolbar.ivBack.setOnClickListener {
             if (!binding.toolbar.edtSearch.getText().isNullOrEmpty())
                 binding.toolbar.edtSearch.setText("")
-            finish()
+            showAdsOr {
+                finish()
+            }
         }
 
         binding.toolbar.ivClear.setOnClickListener {
