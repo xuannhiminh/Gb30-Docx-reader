@@ -12,6 +12,7 @@ import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Toast
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.FragmentActivity
@@ -24,6 +25,8 @@ import com.ezteam.baseproject.utils.PreferencesUtils
 import com.ezteam.baseproject.utils.TemporaryStorage
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.FirebaseAnalytics.Event
+import com.google.firebase.analytics.FirebaseAnalytics.Param
 import com.nlbn.ads.callback.AdCallback
 import com.nlbn.ads.util.Admob
 import com.nlbn.ads.util.AppOpenManager
@@ -33,9 +36,12 @@ import documents.office.docx.reader.viewer.editor.databinding.ActivityIapBinding
 import documents.office.docx.reader.viewer.editor.screen.PolicyActivity
 import documents.office.docx.reader.viewer.editor.screen.TermAndConditionsActivity
 import documents.office.docx.reader.viewer.editor.screen.base.PdfBaseActivity
+import documents.office.docx.reader.viewer.editor.screen.language.LanguageActivity
+import documents.office.docx.reader.viewer.editor.screen.main.MainActivity
 import documents.office.docx.reader.viewer.editor.screen.start.RequestAllFilePermissionActivity
 import documents.office.docx.reader.viewer.editor.utils.AppUtils
 import documents.office.docx.reader.viewer.editor.utils.FCMTopicHandler
+import documents.office.docx.reader.viewer.editor.utils.FirebaseRemoteConfigUtil
 import setSelectedCard
 import java.util.Locale
 
@@ -66,6 +72,8 @@ class IapActivity : PdfBaseActivity<ActivityIapBinding>() {
         }
     }
 
+    private var isFromSplash = false
+
     override fun viewBinding(): ActivityIapBinding {
         return ActivityIapBinding.inflate(LayoutInflater.from(this))
     }
@@ -79,24 +87,6 @@ class IapActivity : PdfBaseActivity<ActivityIapBinding>() {
     private var yearlyPrice: String = ""
     private var monthlyPriceFromYear: String = ""
 
-    private fun showAdsInterstitial(interstitialAd: InterstitialAd?) {
-        Log.i("IapActivity", "showAdsInterstitial called with ad: $interstitialAd")
-        Admob.getInstance().showInterAds(this@IapActivity, interstitialAd, object : AdCallback() {
-            override fun onNextAction() {
-                if (PreferencesUtils.getBoolean(PresKey.GET_START, true) && !IAPUtils.isPremium()) {
-//                    if (!isFreeTrialShowed) {
-//                        showFreeTrialDialog()
-//                    } else {
-//                        startRequestAllFilePermission()
-//                    }
-                    startRequestAllFilePermission()
-                } else {
-                    this@IapActivity.finish()
-                }
-            }
-        })
-    }
-
     override fun initView() {
 //        window.statusBarColor = Color.parseColor("#1F0718")
         WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = false
@@ -105,8 +95,10 @@ class IapActivity : PdfBaseActivity<ActivityIapBinding>() {
         applyGradientToTitle()
 
         // Ẩn btnClose ban đầu
+        binding.btnClose.visibility = View.INVISIBLE
         binding.btnClose.alpha = 0f
         binding.btnClose.postDelayed({
+            binding.btnClose.visibility = View.VISIBLE
             binding.btnClose.animate().alpha(1f).setDuration(300).start()
         }, 3000)
 
@@ -222,15 +214,11 @@ class IapActivity : PdfBaseActivity<ActivityIapBinding>() {
                     }
                 }
 
-                // finish
-                if (isSubscribed) {
-                    if (PreferencesUtils.getBoolean(PresKey.GET_START, true)) {
-                        startRequestAllFilePermission()
-                    } else {
-                        finish()
-                    }
-                }
+            // finish
+            if (isSubscribed) {
+                navigateToNextScreen()
             }
+        }
 
     }
 
@@ -271,8 +259,46 @@ class IapActivity : PdfBaseActivity<ActivityIapBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         firebaseAnalytics = FirebaseAnalytics.getInstance(this)
-        AppOpenManager.getInstance().disableAppResume()
+        // AppOpenManager.getInstance().disableAppResume()
+        isFromSplash = intent.getBooleanExtra("${packageName}.isFromSplash", false)
         super.onCreate(savedInstanceState)
+    }
+    private fun showLoadedAdsInterstitial(interstitialAd: InterstitialAd?, complete: () -> Unit) {
+        Log.i("IapActivity3", "showAdsInterstitial called with ad: $interstitialAd")
+        Admob.getInstance().showInterAds(this, interstitialAd, object : AdCallback() {
+            override fun onNextAction() {
+                complete.invoke()
+            }
+        })
+    }
+    private fun navigateToNextScreen() {
+        if (IAPUtils.isPremium()) {
+            TemporaryStorage.interAdPreloaded = null
+        }
+        if (IAPUtils.isPremium()) {
+            proceedToNextSucess()     // đăng kí IAP thành công
+        } else {
+            showLoadedAdsInterstitial(TemporaryStorage.interAdPreloaded) {
+                // dăng kí thất bại thì ko vao màn thành công
+                proceedToNext()
+            }
+        }
+    }
+    private fun proceedToNextSucess() {
+        IapRegistrationSuccessfulActivity.start(this)
+        finish()
+    }
+    private fun proceedToNext() {
+        if (!isFromSplash) {
+            finish()    // vào từ main
+            return
+        }
+        if (PreferencesUtils.getBoolean(com.ezteam.baseproject.utils.PresKey.GET_START, true)) {
+            LanguageActivity.start(this)    // lần đầu tiên
+        } else {
+            MainActivity.start(this)
+        }
+        finish()
     }
 
     private fun showFreeTrialDialog() {
@@ -303,6 +329,7 @@ class IapActivity : PdfBaseActivity<ActivityIapBinding>() {
             }
         }
         isFreeTrialShowed = true
+        finish()
     }
 
     private fun startRequestAllFilePermission() {
@@ -320,7 +347,7 @@ class IapActivity : PdfBaseActivity<ActivityIapBinding>() {
 
         binding.btnClose.setOnClickListener {
             logEvent("close_IAP_activity")
-            showAdsInterstitial(TemporaryStorage.interAdPreloaded)
+            navigateToNextScreen()
         }
 
         binding.btnRestore.setOnClickListener {
@@ -368,12 +395,12 @@ class IapActivity : PdfBaseActivity<ActivityIapBinding>() {
         binding.shineFreeTrialContainer.setOnClickListener {
             logEvent("start_trial_IAP_pressed")
             IAPUtils.callSubscription(this@IapActivity, IAPUtils.KEY_PREMIUM, IAPUtils.KEY_PREMIUM_WEEKLY_PLAN)
-//            if (isAnnualSelected) {
-//                showFreeTrialDialog()
-//            } else {
-//                logEvent("purchase_month_pressed")
-//                IAPUtils.callSubscription(this@IapActivity, IAPUtils.KEY_PREMIUM, IAPUtils.KEY_PREMIUM_MONTHLY_PLAN)
-//            }
+            if (isAnnualSelected) {
+                showFreeTrialDialog()
+            } else {
+                logEvent("purchase_month_pressed")
+                IAPUtils.callSubscription(this@IapActivity, IAPUtils.KEY_PREMIUM, IAPUtils.KEY_PREMIUM_MONTHLY_PLAN)
+            }
         }
     }
 
@@ -443,12 +470,7 @@ class IapActivity : PdfBaseActivity<ActivityIapBinding>() {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
-        if (PreferencesUtils.getBoolean(PresKey.GET_START, true)) {
-            startRequestAllFilePermission()
-        } else {
-            this@IapActivity.finish()
-        }
+        navigateToNextScreen()
     }
 
     override fun onDestroy() {
@@ -469,7 +491,12 @@ class IapActivity : PdfBaseActivity<ActivityIapBinding>() {
             details: PurchaseInfo?
         ) {
             logEvent("purchase_success_$productId")
-            Toast.makeText(this@IapActivity, getString(R.string.you_premium), Toast.LENGTH_SHORT).show()
+            if (FirebaseRemoteConfigUtil.getInstance().isLogPurchaseEvent()) {
+                val params = Bundle()
+                params.putString(Param.TRANSACTION_ID, details?.purchaseData?.orderId )
+                firebaseAnalytics.logEvent(Event.PURCHASE, params)
+            }
+            FCMTopicHandler.resetFCMTopic(this@IapActivity)
             updateViewBaseOnPremiumState()
         }
 
@@ -485,7 +512,7 @@ class IapActivity : PdfBaseActivity<ActivityIapBinding>() {
             if (errorCode == 1) { // user cancel
                 if (PreferencesUtils.getBoolean(PresKey.GET_START, true)) {
                     logEvent("purchase_cancelled_start")
-                    startRequestAllFilePermission()
+                    //startRequestAllFilePermission()
                 } else {
                     logEvent("purchase_cancelled")
                 }
@@ -493,7 +520,7 @@ class IapActivity : PdfBaseActivity<ActivityIapBinding>() {
             } else if (errorCode == 3) { // Billing service unavailable
                 Toast.makeText(this@IapActivity, R.string.please_update_store, Toast.LENGTH_LONG).show()
                 if (PreferencesUtils.getBoolean(PresKey.GET_START, true)) {
-                    startRequestAllFilePermission()
+                    navigateToNextScreen()
                 }
                 return
             } else if (errorCode == 7) { // Items already owned
