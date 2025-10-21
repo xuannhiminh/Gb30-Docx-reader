@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/transparent"
@@ -26,12 +27,29 @@
                 android:layout_height="wrap_content" />
         </FrameLayout>
 
-        <ImageView
-            android:layout_width="48dp"
-            android:layout_gravity="center"
-            android:layout_height="48dp"
-            android:src="@drawable/ic_pdf_folder"
-            android:layout_marginBottom="12dp"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_24sdp">
+
+            <ImageView
+                android:id="@+id/ivLogo"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_pdf_folder"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <ImageView
+                android:id="@+id/ivClose"
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_24sdp"
+                android:visibility="gone"
+                android:src="@drawable/icon_close"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
 
@@ -52,6 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:letterSpacing="0"
+            android:textFontWeight="400"
             android:lineSpacingExtra="0dp"
             android:text="@string/pick_this_option_to_open_files_fast_and_make_reading_super_easy_and_fun"
             android:textColor="@color/text1"
@@ -72,7 +91,7 @@
             android:stateListAnimator="@null"
             android:textColor="@android:color/white"
             android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textFontWeight="500" />
 
     </LinearLayout>
 </FrameLayout>

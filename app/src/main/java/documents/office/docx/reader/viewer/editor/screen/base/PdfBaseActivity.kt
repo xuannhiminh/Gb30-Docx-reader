@@ -413,8 +413,13 @@ abstract class PdfBaseActivity<B : ViewBinding> : BaseActivity<B>(), IControl {
         val defaultWordViewerResolveInfo = getDefaultWordViewerClass()
         Log.i("DefaultReader", "DefaultWordViewer: $defaultWordViewerResolveInfo")
         if (defaultWordViewerResolveInfo?.activityInfo == null || defaultWordViewerResolveInfo.activityInfo.name.contains("internal.app.ResolverActivity")) { // default reader isn't set => show dialog to set default
-            val dialog = DefaultReaderRequestDialog();
-            dialog.show(this.supportFragmentManager, "RequestDefaultReaderDialog")
+            val dialog = DefaultReaderRequestDialog.newInstance(closable);
+            try {
+                dialog.show(this.supportFragmentManager, "RequestDefaultReaderDialog")
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Log.e("MainActivity", "Error showing RequestDefaultReaderDialog: ${e.message}", e)
+            }
         } else if(!defaultWordViewerResolveInfo.activityInfo.name.contains(packageName) ) { // default reader is set but not our app => show dialog to clear default
             val fragmentManager = supportFragmentManager
             val existingDialog = fragmentManager.findFragmentByTag("DefaultReaderUninstallDialog")
