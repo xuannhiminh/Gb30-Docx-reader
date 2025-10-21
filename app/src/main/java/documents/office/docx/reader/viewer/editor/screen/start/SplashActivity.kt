@@ -64,6 +64,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
     companion object {
         const val FILE_PATH = "File_path"
+        private const val TAG = "SplashActivity"
         fun start(activity: FragmentActivity) {
             activity.intent.data?.let {
                 activity.intent.apply {
@@ -324,7 +325,18 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 //            getString(R.string.inter_splash)
 //        }
     }
-
+    private suspend fun fetchRemoteConfigSuspend(): Boolean = suspendCancellableCoroutine { cont ->
+        val startTime = System.currentTimeMillis()
+        Log.i(TAG, "fetchRemoteConfigSuspend started at $startTime ms")
+        // suspend to wait for other to complete
+        FirebaseRemoteConfigUtil.getInstance().fetchRemoteConfig { success ->
+            val elapsed = System.currentTimeMillis() - startTime
+            Log.i(TAG, "fetchRemoteConfig completed in $elapsed ms, success: $success")
+            if (cont.isActive) {
+                cont.resume(success)
+            }
+        }
+    }
     private suspend fun initBillingAndAwait(): Unit = suspendCancellableCoroutine { cont ->
         val startTimeT = System.currentTimeMillis()
         Log.i("SplashActivity", "initAndRegister called at $startTimeT ms")
@@ -374,7 +386,26 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
                     val loadFileDeferred = async { migrateFileDataAndHandleIntentOpeningFile() }
                  //   val loadInterAdDeferred   = async { loadInterstitialAd(ads_inter_id) }
                     val billingAndAdsDeferred = async {
-                        initBillingAndAwait()
+                        val parallelStartTime = System.currentTimeMillis()
+                        Log.i(TAG, "Starting parallel execution of billing and remote config at $parallelStartTime ms")
+
+                        // Chạy song song initBillingAndAwait và fetchRemoteConfig
+                        val billingDeferred = async {
+                            Log.i(TAG, "Starting initBillingAndAwait...")
+                            initBillingAndAwait()
+                        }
+                        val remoteConfigDeferred = async {
+                            Log.i(TAG, "Starting fetchRemoteConfigSuspend...")
+                            fetchRemoteConfigSuspend()
+                        }
+                        // wait for both to complete
+                        billingDeferred.await()
+                        Log.i(TAG, "Billing completed, now waiting for remote config...")
+                        val remoteConfigSuccess = remoteConfigDeferred.await()
+
+                        val totalParallelTime = System.currentTimeMillis() - parallelStartTime
+                        Log.i(TAG, "Both billing and remote config completed in $totalParallelTime ms. Remote config success: $remoteConfigSuccess")
+
                         when (FirebaseRemoteConfigUtil.getInstance().getTypeOfStartUp()) {
                             FirebaseRemoteConfigUtil.Companion.StartUpType.ADS_OPEN_IAP_LANGUAGE.value -> {
                                 loadAppOpenAds()
@@ -536,7 +567,8 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
     private fun navigateToNextScreen() {
 
-        if (FirebaseRemoteConfigUtil.getInstance().getTypeOfStartUp() == FirebaseRemoteConfigUtil.Companion.StartUpType.ADS_OPEN_IAP_LANGUAGE.value) {
+        if (FirebaseRemoteConfigUtil.getInstance().getTypeOfStartUp() == FirebaseRemoteConfigUtil.Companion.StartUpType.ADS_OPEN_IAP_LANGUAGE.value ||
+            FirebaseRemoteConfigUtil.getInstance().getTypeOfStartUp() == FirebaseRemoteConfigUtil.Companion.StartUpType.IAP_ADS_INTER_LANGUAGE.value) {
             if (!IAPUtils.isPremium() && BillingProcessor.isIabServiceAvailable(this)) {
                 intent.apply {
                     putExtra("${packageName}.isFromSplash", true)
