@@ -1005,6 +1005,7 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
     override fun initListener() {
         binding.navView. setOnItemSelectedListener(onNavigationItemSelectedListener)
         binding.ivFilter.setOnClickListener {
+            logEvent("main_filter")
             val dialog = SortDialog2()
             dialog.setOnSortSelectedListener(::handleSortAction)
             dialog.show(supportFragmentManager, "SortDialog")
@@ -1027,6 +1028,7 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
         }
 
         binding.recentlyAddedSection.setOnClickListener {
+            logEvent("main_recent_add_press")
             binding.navView.visibility=View.GONE
             TransitionManager.beginDelayedTransition(binding.root, AutoTransition())
             binding.recentlyAddedSection.visibility = View.GONE
@@ -1111,7 +1113,12 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
             }
         }
         binding.toolbar.ivIap.setOnClickListener {
-            IapActivityV2.start(this)
+            logEvent("main_iap_press")
+            when (FirebaseRemoteConfigUtil.getInstance().getIapScreenType()) {
+                0 -> IapActivityV2.start(this)
+                1 -> IapActivity.start(this)
+                else -> IapActivityV2.start(this)
+            }
         }
 
 
@@ -1129,6 +1136,7 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
         }
 
         binding.buttonCreate.setOnClickListener {
+            logEvent("main_create_pdf_press")
             AppOpenManager.getInstance().disableAppResume()
             startChooseImageActivity()
         }
@@ -1136,7 +1144,7 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
         initFileTabListeners()
 
         binding.ivCheck.setOnClickListener {
-
+            logEvent("main_select_multifile_press")
             val currentIndex = binding.viewPager.currentItem
 
             val fileTab = when (currentIndex) {
