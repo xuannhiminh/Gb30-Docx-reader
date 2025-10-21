@@ -54,22 +54,26 @@ class ExitAppDialog : DialogFragment() {
         return binding.root
     }
     private fun disabledButton() {
-        binding.buttonContainer.visibility = View.GONE
-        binding.ivLoading.apply {
-            visibility = View.VISIBLE
-            setImageResource(R.drawable.ic_loading)
-            val rotate = AnimationUtils.loadAnimation(requireContext(), R.anim.rotate_loading)
-            startAnimation(rotate)
-            isClickable = false
+        binding?.let {
+            it.buttonContainer.visibility = View.GONE
+            it.ivLoading.apply {
+                visibility = View.VISIBLE
+                setImageResource(R.drawable.ic_loading)
+                val rotate = AnimationUtils.loadAnimation(requireContext(), R.anim.rotate_loading)
+                startAnimation(rotate)
+                isClickable = false
+            }
+            it.tvMessage.text = getString(R.string.saving_content)
         }
-        binding.tvMessage.text = getString(R.string.saving_content)
     }
     private fun enabledButton() {
         doneCountDown?.cancel()
-        binding.buttonContainer.visibility = View.VISIBLE
-        binding.ivLoading.visibility = View.GONE
-        binding.ivLoading.clearAnimation()
-        binding.tvMessage.text = getString(R.string.exit_app_content)
+        binding?.let {
+            it.buttonContainer.visibility = View.VISIBLE
+            it.ivLoading.visibility = View.GONE
+            it.ivLoading.clearAnimation()
+            it.tvMessage.text = getString(R.string.exit_app_content)
+        }
     }
     private var doneCountDown: CountDownTimer? = null
     private fun startDoneCountdown() {
@@ -187,6 +191,7 @@ class ExitAppDialog : DialogFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         isViewDestroyed = true
+        doneCountDown?.cancel()
         _binding = null
     }
 
