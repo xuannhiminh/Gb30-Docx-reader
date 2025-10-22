@@ -12,6 +12,7 @@ import android.provider.MediaStore
 import android.util.Log
 import documents.office.docx.reader.viewer.editor.R
 import com.ezteam.baseproject.EzListener
+import com.ezteam.baseproject.utils.FirebaseRemoteConfigUtil
 import org.apache.commons.io.FilenameUtils
 import java.io.*
 import java.text.SimpleDateFormat

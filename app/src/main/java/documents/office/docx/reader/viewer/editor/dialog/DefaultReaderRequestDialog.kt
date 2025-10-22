@@ -20,7 +20,7 @@ import com.nlbn.ads.util.Admob
 import documents.office.docx.reader.viewer.editor.R
 import documents.office.docx.reader.viewer.editor.databinding.DefaultReaderRequestDialogBinding
 import documents.office.docx.reader.viewer.editor.screen.language.PreferencesHelper
-import documents.office.docx.reader.viewer.editor.utils.FirebaseRemoteConfigUtil
+import com.ezteam.baseproject.utils.FirebaseRemoteConfigUtil
 
 class DefaultReaderRequestDialog : DialogFragment() {
 

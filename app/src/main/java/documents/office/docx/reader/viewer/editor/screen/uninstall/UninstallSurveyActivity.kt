@@ -29,7 +29,7 @@ import com.ezteam.baseproject.utils.IAPUtils
 import com.ezteam.baseproject.utils.TemporaryStorage
 import com.google.firebase.firestore.FirebaseFirestore
 import documents.office.docx.reader.viewer.editor.model.FeedbackData
-import documents.office.docx.reader.viewer.editor.utils.FirebaseRemoteConfigUtil
+import com.ezteam.baseproject.utils.FirebaseRemoteConfigUtil
 
 class UninstallSurveyActivity : PdfBaseActivity<ActivityUninstallReasonBinding>() {
     private lateinit var adapter: IssueOptionAdapter
@@ -140,7 +140,7 @@ class UninstallSurveyActivity : PdfBaseActivity<ActivityUninstallReasonBinding>(
 
             Admob.getInstance().loadNativeAd(
                 applicationContext,
-                getString(R.string.native_survey_user),
+                FirebaseRemoteConfigUtil.getInstance().getAdsConfigValue("native_survey_user"),
                 callback
             )
         } else {

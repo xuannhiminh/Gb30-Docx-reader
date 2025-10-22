@@ -32,7 +32,7 @@ import documents.office.docx.reader.viewer.editor.adapter.FileItemSelectAdapter
 import documents.office.docx.reader.viewer.editor.screen.base.CurrentStatusAdsFiles
 import documents.office.docx.reader.viewer.editor.common.BottomTab
 import documents.office.docx.reader.viewer.editor.screen.func.BottomSheetFileFunction
-import documents.office.docx.reader.viewer.editor.utils.FirebaseRemoteConfigUtil
+import com.ezteam.baseproject.utils.FirebaseRemoteConfigUtil
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import java.util.Locale
@@ -117,7 +117,7 @@ class SelectMultipleFilesActivity : PdfBaseActivity<ActivityCheckFileBinding>() 
 
             Admob.getInstance().loadNativeAd(
                 applicationContext,
-                getString(R.string.native_bot_selectfiles),
+                FirebaseRemoteConfigUtil.getInstance().getAdsConfigValue("native_bot_selectfiles"),
                 callback
             )
         } else {
@@ -143,7 +143,7 @@ class SelectMultipleFilesActivity : PdfBaseActivity<ActivityCheckFileBinding>() 
 
             Admob.getInstance().loadNativeAd(
                 applicationContext,
-                getString(R.string.native_between_files_selectfiles),
+                FirebaseRemoteConfigUtil.getInstance().getAdsConfigValue("native_between_files_selectfiles"),
                 callback
             )
         } else {
@@ -229,7 +229,7 @@ class SelectMultipleFilesActivity : PdfBaseActivity<ActivityCheckFileBinding>() 
     }
     private fun showAdsOr(action: () -> Unit) {
         if (FirebaseRemoteConfigUtil.getInstance().isShowAdsMain()) {
-            showAdsInterstitial(R.string.inter_home) {
+            showAdsInterstitial(FirebaseRemoteConfigUtil.getInstance().getAdsConfigValue("inter_home")) {
                 action()
             }
         } else {

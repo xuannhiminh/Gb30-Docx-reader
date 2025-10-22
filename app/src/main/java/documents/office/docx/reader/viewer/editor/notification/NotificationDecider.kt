@@ -5,7 +5,7 @@ import android.os.Build
 import android.os.Environment
 import android.util.Log
 import com.ezteam.baseproject.utils.IAPUtils
-import documents.office.docx.reader.viewer.editor.utils.FirebaseRemoteConfigUtil
+import com.ezteam.baseproject.utils.FirebaseRemoteConfigUtil
 import java.util.Calendar
 import java.util.concurrent.TimeUnit
 

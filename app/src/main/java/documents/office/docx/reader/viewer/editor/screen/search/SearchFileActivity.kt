@@ -24,7 +24,7 @@ import documents.office.docx.reader.viewer.editor.screen.base.PdfBaseActivity
 import documents.office.docx.reader.viewer.editor.screen.func.BottomSheetFileFunction
 import documents.office.docx.reader.viewer.editor.screen.main.MainViewModel
 import documents.office.docx.reader.viewer.editor.screen.start.SplashActivity
-import documents.office.docx.reader.viewer.editor.utils.FirebaseRemoteConfigUtil
+import com.ezteam.baseproject.utils.FirebaseRemoteConfigUtil
 import kotlinx.coroutines.launch
 import org.apache.commons.io.FilenameUtils
 import org.koin.android.ext.android.inject
@@ -47,7 +47,7 @@ class SearchFileActivity : PdfBaseActivity<ActivitySearchFileBinding>() {
     }
     private fun showAdsOr(action: () -> Unit) {
         if (FirebaseRemoteConfigUtil.getInstance().isShowAdsMain()) {
-            showAdsInterstitial(R.string.inter_home) {
+            showAdsInterstitial(FirebaseRemoteConfigUtil.getInstance().getAdsConfigValue("inter_home")) {
                 action()
             }
         } else {

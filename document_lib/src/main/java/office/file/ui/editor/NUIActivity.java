@@ -19,6 +19,7 @@ import com.ezteam.baseproject.utils.PresKey;
 import com.google.android.gms.ads.nativead.NativeAd;
 import com.google.android.gms.ads.nativead.NativeAdView;
 import com.nlbn.ads.callback.NativeCallback;
+import com.ezteam.baseproject.utils.FirebaseRemoteConfigUtil;
 import com.nlbn.ads.util.Admob;
 
 import office.file.ui.IdController;
@@ -288,7 +289,7 @@ public class NUIActivity extends BaseActivity {
             // Load the native ad
             Admob.getInstance().loadNativeAd(
                     getApplicationContext(),
-                    getString(com.ezteam.baseproject.R.string.native_filedetail),
+                    FirebaseRemoteConfigUtil.Companion.getInstance().getAdsConfigValue("native_filedetail"),
                     callback
             );
         }

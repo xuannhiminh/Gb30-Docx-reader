@@ -6,6 +6,7 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import com.ezteam.baseproject.utils.FirebaseRemoteConfigUtil
 import com.ezteam.baseproject.utils.IAPUtils
 import com.ezteam.baseproject.utils.SystemUtils
 import com.ezteam.ezpdflib.R
@@ -93,7 +94,7 @@ class SignatureActivity : BasePdfViewerActivity() {
 
             Admob.getInstance().loadNativeAd(
                 applicationContext,
-                getString(R.string.native_filedetail),
+                FirebaseRemoteConfigUtil.getInstance().getAdsConfigValue("native_filedetail"),
                 callback
             )
         } else {

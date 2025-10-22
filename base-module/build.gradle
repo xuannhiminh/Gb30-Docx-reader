@@ -67,6 +67,7 @@ dependencies {
 
     implementation 'com.android.billingclient:billing-ktx:7.0.0'
     implementation "com.android.billingclient:billing:7.0.0"
+    implementation 'com.google.firebase:firebase-config:23.0.0'
 
     kapt 'com.github.bumptech.glide:compiler:4.16.0'
 

@@ -81,6 +81,7 @@ import com.ezteam.baseproject.dialog.GuideEditDialog;
 import com.ezteam.baseproject.dialog.GuideStep;
 import com.ezteam.baseproject.print.PdfDocumentAdapter;
 import com.ezteam.baseproject.utils.FileUtil;
+import com.ezteam.baseproject.utils.FirebaseRemoteConfigUtil;
 import com.ezteam.baseproject.utils.IAPUtils;
 import com.ezteam.baseproject.utils.PreferencesUtils;
 import com.ezteam.baseproject.utils.PresKey;
@@ -4740,7 +4741,7 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
 
         Admob.getInstance().loadAndShowInter(
                 NUIDocView.this.activity(),
-                NUIDocView.this.activity().getString(R.string.inter_filedetail),
+                FirebaseRemoteConfigUtil.Companion.getInstance().getAdsConfigValue("inter_filedetail"),
                 100,
                 100,
                 interCallback

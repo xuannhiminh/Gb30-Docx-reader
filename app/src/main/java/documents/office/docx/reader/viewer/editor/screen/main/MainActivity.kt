@@ -104,7 +104,7 @@ import documents.office.docx.reader.viewer.editor.screen.iap.IapActivity
 import documents.office.docx.reader.viewer.editor.service.NotificationForegroundService
 import documents.office.docx.reader.viewer.editor.utils.AppUtils
 import documents.office.docx.reader.viewer.editor.utils.FileSaveManager
-import documents.office.docx.reader.viewer.editor.utils.FirebaseRemoteConfigUtil
+import com.ezteam.baseproject.utils.FirebaseRemoteConfigUtil
 import documents.office.docx.reader.viewer.editor.utils.createPdf.OnPDFCreatedInterface
 import documents.office.docx.reader.viewer.editor.widgets.Widget1
 import documents.office.docx.reader.viewer.editor.widgets.Widget2
@@ -282,7 +282,7 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
             val config = BannerPlugin.Config()
             config.defaultRefreshRateSec = 30
             config.defaultCBFetchIntervalSec = 30
-            config.defaultAdUnitId = getString(R.string.banner_navbar)
+            config.defaultAdUnitId = FirebaseRemoteConfigUtil.getInstance().getAdsConfigValue("banner_navbar")
             config.defaultBannerType = BannerPlugin.BannerType.Adaptive
             Admob.getInstance().loadBannerPlugin(
                 this,
@@ -316,7 +316,7 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
 
             Admob.getInstance().loadNativeAd(
                 applicationContext,
-                getString(R.string.native_between_files_home),
+                FirebaseRemoteConfigUtil.getInstance().getAdsConfigValue("native_between_files_home"),
                 callback
             )
         } else {
@@ -402,11 +402,13 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
                                 }
                             }
                         }.addOnFailureListener { e ->
-                            Toast.makeText(
-                                this,
-                                getString(R.string.app_update_fail),
-                                Toast.LENGTH_LONG
-                            ).show();
+                            if (!BuildConfig.DEBUG) {
+                                Toast.makeText(
+                                    this,
+                                    getString(R.string.app_update_fail),
+                                    Toast.LENGTH_LONG
+                                ).show();
+                            }
                             Log.e(TAG, "Init View Failed to check for updates: ${e.message}")
                         }
                 }
@@ -1196,7 +1198,7 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
     }
     private fun showAdsOr(action: () -> Unit) {
         if (FirebaseRemoteConfigUtil.getInstance().isShowAdsMain() && isAllowShowAds()) {
-            showAdsInterstitial(R.string.inter_home) {
+            showAdsInterstitial(FirebaseRemoteConfigUtil.getInstance().getAdsConfigValue("inter_home")) {
                 action()
             }
         } else {

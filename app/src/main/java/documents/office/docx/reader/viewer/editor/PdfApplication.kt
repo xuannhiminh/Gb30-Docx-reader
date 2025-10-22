@@ -44,7 +44,7 @@ import documents.office.docx.reader.viewer.editor.screen.iap.IapActivityV2
 import documents.office.docx.reader.viewer.editor.screen.language.PreferencesHelper
 import documents.office.docx.reader.viewer.editor.screen.start.SplashActivity
 import documents.office.docx.reader.viewer.editor.utils.FCMTopicHandler
-import documents.office.docx.reader.viewer.editor.utils.FirebaseRemoteConfigUtil
+import com.ezteam.baseproject.utils.FirebaseRemoteConfigUtil
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -135,7 +135,7 @@ class PdfApplication: MyLibApplication(), DefaultLifecycleObserver {
     }
 
     override fun getResumeAdId(): String {
-        return getString(R.string.open_all)
+        return FirebaseRemoteConfigUtil.getInstance().getAdsConfigValue("open_all")
     }
 
 

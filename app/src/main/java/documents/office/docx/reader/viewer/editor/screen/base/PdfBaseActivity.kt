@@ -41,7 +41,7 @@ import documents.office.docx.reader.viewer.editor.screen.main.MainViewModel
 import documents.office.docx.reader.viewer.editor.screen.rate.DialogRating
 import documents.office.docx.reader.viewer.editor.screen.rate.DialogRatingState
 import documents.office.docx.reader.viewer.editor.utils.AppUtils.Companion.PDF_DETAIL_EZLIB
-import documents.office.docx.reader.viewer.editor.utils.FirebaseRemoteConfigUtil
+import com.ezteam.baseproject.utils.FirebaseRemoteConfigUtil
 import documents.office.docx.reader.viewer.editor.utils.createPdf.Config
 import documents.office.docx.reader.viewer.editor.utils.createPdf.CreatePdf
 import documents.office.docx.reader.viewer.editor.utils.createPdf.OnPDFCreatedInterface
@@ -173,7 +173,7 @@ abstract class PdfBaseActivity<B : ViewBinding> : BaseActivity<B>(), IControl {
         handler.removeCallbacks(checkNoDialogToShowReloadGuideRunnable)
 
         lifecycleScope.launch {
-            showAdsInterstitial(R.string.inter_filedetail) {
+            showAdsInterstitial(FirebaseRemoteConfigUtil.getInstance().getAdsConfigValue("inter_filedetail")) {
                 showHideLoading(true)
                 Handler(Looper.getMainLooper()).postDelayed({
                     openDocumentActivity(fileModel)
@@ -184,7 +184,7 @@ abstract class PdfBaseActivity<B : ViewBinding> : BaseActivity<B>(), IControl {
             }
         }
     }
-    protected fun showAdsInterstitial(idAds: Int,complete: () -> Unit) {
+    protected fun showAdsInterstitial(idAds: String,complete: () -> Unit) {
         if (IAPUtils.isPremium() || !Admob.getInstance().isLoadFullAds || !ConsentHelper.getInstance(this.applicationContext).canRequestAds()) {
             return complete()
         }
@@ -199,7 +199,7 @@ abstract class PdfBaseActivity<B : ViewBinding> : BaseActivity<B>(), IControl {
             }
         }
         Admob.getInstance().loadAndShowInter(this,
-            getString(idAds),
+            idAds,
             100, 8000, interCallback)
     }
 

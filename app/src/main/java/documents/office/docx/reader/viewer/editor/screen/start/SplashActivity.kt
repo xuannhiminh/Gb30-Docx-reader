@@ -47,7 +47,7 @@ import documents.office.docx.reader.viewer.editor.screen.main.MainViewModel
 import documents.office.docx.reader.viewer.editor.service.NotificationForegroundService
 import documents.office.docx.reader.viewer.editor.utils.AppUtils
 import documents.office.docx.reader.viewer.editor.utils.FCMTopicHandler
-import documents.office.docx.reader.viewer.editor.utils.FirebaseRemoteConfigUtil
+import com.ezteam.baseproject.utils.FirebaseRemoteConfigUtil
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
@@ -264,7 +264,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
                     AppOpenManager.getInstance().loadOpenAppAdSplash(
                         this@SplashActivity,
-                        getString(R.string.open_splash),
+                        FirebaseRemoteConfigUtil.getInstance().getAdsConfigValue("open_splash"),
                         100,
                         FirebaseRemoteConfigUtil.getInstance().getTimeoutLoadInterMillisecond(),
                         false,
@@ -411,7 +411,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
                                 loadAppOpenAds()
                             }
                             FirebaseRemoteConfigUtil.Companion.StartUpType.IAP_ADS_INTER_LANGUAGE.value -> {
-                                TemporaryStorage.interAdPreloaded = loadInterstitialAd(getString(R.string.inter_splash))
+                                TemporaryStorage.interAdPreloaded = loadInterstitialAd(FirebaseRemoteConfigUtil.getInstance().getAdsConfigValue("inter_splash"))
                             }
                             FirebaseRemoteConfigUtil.Companion.StartUpType.ADS_OPEN_LANGUAGE.value -> {
                                 loadAppOpenAds()
@@ -666,7 +666,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
         Admob.getInstance().loadNativeAd(
             applicationContext,
-            getString(R.string.native_language),
+            FirebaseRemoteConfigUtil.getInstance().getAdsConfigValue("native_language"),
             callBack
         )
     }
@@ -697,7 +697,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
                 Admob.getInstance().loadNativeAd(
                     applicationContext,
-                    getString(R.string.native_language),
+                    FirebaseRemoteConfigUtil.getInstance().getAdsConfigValue("native_language"),
                     callback
                 )
 

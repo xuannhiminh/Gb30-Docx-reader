@@ -33,7 +33,7 @@ import documents.office.docx.reader.viewer.editor.receiver.HomeButtonReceiver
 import documents.office.docx.reader.viewer.editor.receiver.UnlockReceiver
 import documents.office.docx.reader.viewer.editor.utils.AppUtils
 import documents.office.docx.reader.viewer.editor.utils.FCMTopicHandler
-import documents.office.docx.reader.viewer.editor.utils.FirebaseRemoteConfigUtil
+import com.ezteam.baseproject.utils.FirebaseRemoteConfigUtil
 
 class NotificationForegroundService: Service() {
 

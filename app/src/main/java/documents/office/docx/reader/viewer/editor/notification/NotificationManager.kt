@@ -23,7 +23,7 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.messaging.RemoteMessage
 import documents.office.docx.reader.viewer.editor.R
 import documents.office.docx.reader.viewer.editor.screen.start.SplashActivity
-import documents.office.docx.reader.viewer.editor.utils.FirebaseRemoteConfigUtil
+import com.ezteam.baseproject.utils.FirebaseRemoteConfigUtil
 import java.io.File
 import kotlin.text.compareTo
 import android.app.NotificationManager as AndroidNotificationManager

@@ -22,12 +22,12 @@
     <string name="inter_reload" translatable="false">ca-app-pub-5904408074441373/7941700312</string>
     <string name="native_reload_success" translatable="false">ca-app-pub-5904408074441373/6535133776</string>
     <string name="native_exit_app" translatable="false">ca-app-pub-5904408074441373/6535133776</string>
+    <string name="native_bot_selectfiles" translatable="false">ca-app-pub-5904408074441373/8686054047</string>
 
     <string name="native_intro" translatable="false">ca-app-pub-5904408074441373/1308997608</string>
     <string name="native_navbar" translatable="false">ca-app-pub-5904408074441373/9724970837</string>
     <string name="native_home_v112" translatable="false">ca-app-pub-5904408074441373/2797675145</string>
     <string name="native_popup_all" translatable="false">ca-app-pub-5904408074441373/1478935298</string>
-    <string name="native_bot_selectfiles" translatable="false">ca-app-pub-5904408074441373/8686054047</string>
 
     <string name="inter_splash_uninstall" translatable="false">ca-app-pub-5904408074441373/5179861795</string>
     <string name="inter_extract_image" translatable="false">ca-app-pub-5904408074441373/7320059533</string>

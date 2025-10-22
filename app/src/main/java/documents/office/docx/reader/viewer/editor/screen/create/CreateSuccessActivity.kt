@@ -16,6 +16,7 @@ import documents.office.docx.reader.viewer.editor.screen.base.PdfBaseActivity
 import documents.office.docx.reader.viewer.editor.screen.main.MainViewModel
 import com.ezteam.baseproject.extensions.autoRotate
 import com.ezteam.baseproject.extensions.resizeBitmapByCanvas
+import com.ezteam.baseproject.utils.FirebaseRemoteConfigUtil
 import com.ezteam.baseproject.utils.IAPUtils
 import com.ezteam.baseproject.utils.SystemUtils
 import com.google.android.gms.ads.nativead.NativeAd
@@ -97,7 +98,7 @@ class CreateSuccessActivity : PdfBaseActivity<ActivityCreateSuccessBinding>() {
 
             Admob.getInstance().loadNativeAd(
                 applicationContext,
-                getString(R.string.native_bot_createpdf),
+                FirebaseRemoteConfigUtil.getInstance().getAdsConfigValue("native_bot_createpdf"),
                 callback
             )
         } else {
@@ -159,7 +160,7 @@ class CreateSuccessActivity : PdfBaseActivity<ActivityCreateSuccessBinding>() {
 
     override fun initListener() {
         binding.toolbar.icBack.setOnClickListener {
-            showAdsInterstitial(R.string.inter_createpdf) {
+            showAdsInterstitial(FirebaseRemoteConfigUtil.getInstance().getAdsConfigValue("inter_createpdf")) {
                 finish()
             }
         }

@@ -31,7 +31,7 @@ import documents.office.docx.reader.viewer.editor.R
 import documents.office.docx.reader.viewer.editor.screen.iap.IapActivity
 import documents.office.docx.reader.viewer.editor.screen.iap.IapActivityV2
 import documents.office.docx.reader.viewer.editor.screen.start.RequestAllFilePermissionActivity
-import documents.office.docx.reader.viewer.editor.utils.FirebaseRemoteConfigUtil
+import com.ezteam.baseproject.utils.FirebaseRemoteConfigUtil
 import kotlin.collections.get
 import kotlin.text.toInt
 
@@ -335,7 +335,7 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>() {
 
             Admob.getInstance().loadNativeAd(
                 applicationContext,
-                getString(R.string.native_language),
+                FirebaseRemoteConfigUtil.getInstance().getAdsConfigValue("native_language"),
                 callback
             )
         }

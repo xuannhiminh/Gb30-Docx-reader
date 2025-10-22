@@ -26,7 +26,7 @@ import documents.office.docx.reader.viewer.editor.screen.base.PdfBaseActivity
 import documents.office.docx.reader.viewer.editor.screen.language.LanguageActivity
 import documents.office.docx.reader.viewer.editor.screen.main.MainActivity
 import documents.office.docx.reader.viewer.editor.screen.main.MainViewModel
-import documents.office.docx.reader.viewer.editor.utils.FirebaseRemoteConfigUtil
+import com.ezteam.baseproject.utils.FirebaseRemoteConfigUtil
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 

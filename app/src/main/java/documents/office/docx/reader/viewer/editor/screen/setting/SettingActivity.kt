@@ -49,7 +49,7 @@ import documents.office.docx.reader.viewer.editor.screen.main.MainViewModel
 import documents.office.docx.reader.viewer.editor.screen.overlay.ClearDefaultReaderOverlayActivity
 import documents.office.docx.reader.viewer.editor.screen.reloadfile.FeatureRequestActivity
 import documents.office.docx.reader.viewer.editor.utils.FileSaveManager
-import documents.office.docx.reader.viewer.editor.utils.FirebaseRemoteConfigUtil
+import com.ezteam.baseproject.utils.FirebaseRemoteConfigUtil
 import documents.office.docx.reader.viewer.editor.utils.createPdf.OnPDFCreatedInterface
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -86,7 +86,7 @@ class SettingActivity : PdfBaseActivity<ActivitySettingsBinding>() {
     }
     private fun showAdsOr(action: () -> Unit) {
         if (FirebaseRemoteConfigUtil.getInstance().isShowAdsMain()) {
-            showAdsInterstitial(R.string.inter_home) {
+            showAdsInterstitial(FirebaseRemoteConfigUtil.getInstance().getAdsConfigValue("inter_home")) {
                 action()
             }
         } else {

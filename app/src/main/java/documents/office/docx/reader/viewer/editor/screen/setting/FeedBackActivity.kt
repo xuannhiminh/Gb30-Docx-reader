@@ -22,7 +22,7 @@ import documents.office.docx.reader.viewer.editor.databinding.ActivityFeedbackBi
 import documents.office.docx.reader.viewer.editor.model.FeedbackData
 import documents.office.docx.reader.viewer.editor.screen.base.PdfBaseActivity
 import documents.office.docx.reader.viewer.editor.screen.setting.FeedBackSucessDialog
-import documents.office.docx.reader.viewer.editor.utils.FirebaseRemoteConfigUtil
+import com.ezteam.baseproject.utils.FirebaseRemoteConfigUtil
 
 class FeedBackActivity : PdfBaseActivity<ActivityFeedbackBinding>() {
 

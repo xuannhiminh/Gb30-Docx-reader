@@ -22,6 +22,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
+import com.ezteam.baseproject.utils.FirebaseRemoteConfigUtil
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
@@ -215,7 +216,7 @@ open class PdfDetailActivity : BasePdfViewerActivity(), MyRecyclerView.TouchList
 
             Admob.getInstance().loadNativeAd(
                 applicationContext,
-                getString(R.string.native_filedetail),
+                FirebaseRemoteConfigUtil.getInstance().getAdsConfigValue("native_filedetail"),
                 callback
             )
         } else {
@@ -1592,7 +1593,7 @@ open class PdfDetailActivity : BasePdfViewerActivity(), MyRecyclerView.TouchList
         Admob.getInstance().setOpenActivityAfterShowInterAds(false)
         Admob.getInstance().loadAndShowInter(
             this,
-            getString(R.string.inter_filedetail),
+            FirebaseRemoteConfigUtil.getInstance().getAdsConfigValue("inter_filedetail"),
             100, 8000, interCallback
         )
     }

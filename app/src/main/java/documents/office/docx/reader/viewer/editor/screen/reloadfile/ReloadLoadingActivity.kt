@@ -22,7 +22,7 @@ import com.nlbn.ads.util.Admob
 import documents.office.docx.reader.viewer.editor.R
 import documents.office.docx.reader.viewer.editor.databinding.ActivityReloadingBinding
 import documents.office.docx.reader.viewer.editor.screen.main.MainViewModel
-import documents.office.docx.reader.viewer.editor.utils.FirebaseRemoteConfigUtil
+import com.ezteam.baseproject.utils.FirebaseRemoteConfigUtil
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -106,7 +106,7 @@ class ReloadLoadingActivity : BaseActivity<ActivityReloadingBinding>() {
 
         Admob.getInstance().loadNativeAd(
             applicationContext,
-            getString(R.string.native_language),
+            FirebaseRemoteConfigUtil.getInstance().getAdsConfigValue("native_language"),
             callBack
         )
     }
@@ -117,7 +117,7 @@ class ReloadLoadingActivity : BaseActivity<ActivityReloadingBinding>() {
             val startTime = System.currentTimeMillis()
 
             val loadFileDeferred = async { migrateFileDataAndHandleIntentOpeningFile() }
-            val loadAdsDeferred = async { if(FirebaseRemoteConfigUtil.getInstance().isShowAdsReloadFileInter()) loadInterstitialAd(getString(R.string.inter_reload)) else null }
+            val loadAdsDeferred = async { if(FirebaseRemoteConfigUtil.getInstance().isShowAdsReloadFileInter()) loadInterstitialAd( FirebaseRemoteConfigUtil.getInstance().getAdsConfigValue("inter_reload")) else null }
             loadFileDeferred.await()
             val interAd = loadAdsDeferred.await()
 //            preloadLanguageNativeAd()
