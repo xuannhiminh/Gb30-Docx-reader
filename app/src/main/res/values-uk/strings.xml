@@ -25,6 +25,10 @@
     <string name="your_recent_PDF_files_are_waiting">Ваші нещодавні PDF-файли чекають</string>
     <string name="refresh_files">Потягніть вниз, щоб оновити файли</string>
     <string name="delete_file">Видалити файл</string>
+    <string name="pdf_document">Документи PDF</string>
+    <string name="docx_document">Документи Docx</string>
+    <string name="xlsx_document">Документи XLSX</string>
+    <string name="ppt_document">Документи PPT</string>
 
     <string name="sort_by_date">Дата створення: зростання</string>
     <string name="sort_by_date_desc">Дата створення: спадання</string>

@@ -19,6 +19,10 @@
     <string name="your_recent_PDF_files_are_waiting">आपकी हाल की PDF फ़ाइलें प्रतीक्षा कर रही हैं</string>
     <string name="refresh_files">फ़ाइलों को रीफ्रेश करने के लिए नीचे खींचें</string>
     <string name="delete_file">फ़ाइल हटाएं</string>
+    <string name="pdf_document">PDF दस्तावेज़</string>
+    <string name="docx_document">Docx दस्तावेज़</string>
+    <string name="xlsx_document">XLSX दस्तावेज़</string>
+    <string name="ppt_document">PPT दस्तावेज़</string>
 
     <string name="intent_label_ppt_pdf">PPT को PDF में बदलें</string>
     <string name="intent_label_ppt_reader">PPT रीडर</string>

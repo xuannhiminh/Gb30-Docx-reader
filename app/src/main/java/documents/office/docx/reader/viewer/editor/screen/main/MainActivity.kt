@@ -630,7 +630,6 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
                 IAPUtils.loadOwnedPurchasesFromGoogleAsync {
                     FCMTopicHandler.resetFCMTopic(this@MainActivity)
                     val isPremium = IAPUtils.isPremium()
-                    //binding.toolbar.tvTitle.text =  handleAppNameSpannable(showIcon = isPremium)
                     binding.toolbar.ivIap.visibility = if (isPremium) View.GONE else View.VISIBLE
 
                     if (isPremium) {
@@ -1356,7 +1355,13 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
             BottomTab.FAVORITE -> "FAVOURITE"
             else -> "HOME"
         }
-
+        val textTitle = when (selectedTextView) {
+            binding.toolbar.tvPpt -> getString(R.string.ppt_document)
+            binding.toolbar.tvExcel -> getString(R.string.xlsx_document)
+            binding.toolbar.tvWord -> getString(R.string.docx_document)
+            binding.toolbar.tvPdf -> getString(R.string.pdf_document)
+            else -> getString(R.string.app_name)
+        }
         observeTotalFiles(selectedtab, currentTab)
         when(selectedTextView) {
             binding.toolbar.tvAll -> viewModel.updateFileTab(FileTab.ALL_FILE)
@@ -1377,8 +1382,17 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
         // Reset tất cả về màu và kiểu chữ mặc định
         for (textView in allTextViews) {
             textView.setTypeface(Typeface.SANS_SERIF, Typeface.NORMAL)
-            textView.setTextColor(getColor(R.color.dark_gray))
             textView.background = null
+
+            val colorRes = when (selectedTextView) {
+                binding.toolbar.tvPpt -> R.color.orange1
+                binding.toolbar.tvExcel -> R.color.green1
+                binding.toolbar.tvWord -> R.color.blue1
+                binding.toolbar.tvPdf -> R.color.red1
+                else -> R.color.blue1
+            }
+
+            textView.setTextColor(getColor(colorRes))
         }
         val selectedColor = when (selectedTextView) {
             binding.toolbar.tvPpt -> R.color.orange
@@ -1406,6 +1420,7 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
         selectedTextView.setTextColor(ContextCompat.getColor(this, textColor))
         selectedTextView.setBackgroundResource(underlineResource)
         binding.toolbar.headerBackground.setBackgroundColor(ContextCompat.getColor(this, selectedColor))
+        binding.toolbar.tvTitle.setText(textTitle)
     }
 
 

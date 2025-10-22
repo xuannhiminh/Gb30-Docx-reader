@@ -25,6 +25,10 @@
     <string name="your_recent_PDF_files_are_waiting">I tuoi file PDF recenti ti stanno aspettando</string>
     <string name="refresh_files">Trascina verso il basso per aggiornare i file</string>
     <string name="delete_file">Elimina file</string>
+    <string name="pdf_document">Documenti PDF</string>
+    <string name="docx_document">Documenti Docx</string>
+    <string name="xlsx_document">Documenti XLSX</string>
+    <string name="ppt_document">Documenti PPT</string>
 
     <string name="sort_by_date">Data di creazione: crescente</string>
     <string name="sort_by_date_desc">Data di creazione: decrescente</string>

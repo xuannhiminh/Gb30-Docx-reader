@@ -25,6 +25,10 @@
     <string name="your_recent_PDF_files_are_waiting">فایل‌های PDF اخیر شما در انتظار هستند</string>
     <string name="refresh_files">برای به‌روزرسانی فایل‌ها به پایین بکشید</string>
     <string name="delete_file">حذف فایل</string>
+    <string name="pdf_document">اسناد PDF</string>
+    <string name="docx_document">اسناد Docx</string>
+    <string name="xlsx_document">اسناد XLSX</string>
+    <string name="ppt_document">اسناد PPT</string>
 
     <string name="sort_by_date">تاریخ ایجاد: صعودی</string>
     <string name="start_free_trial">Start Free Trial</string>

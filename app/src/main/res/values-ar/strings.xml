@@ -27,6 +27,10 @@
     <string name="your_recent_PDF_files_are_waiting">ملفات PDF الأخيرة في انتظارك</string>
     <string name="refresh_files">اسحب لأسفل لتحديث الملفات</string>
     <string name="delete_file">حذف الملف</string>
+    <string name="pdf_document">مستندات PDF</string>
+    <string name="docx_document">مستندات Docx</string>
+    <string name="xlsx_document">مستندات XLSX</string>
+    <string name="ppt_document">مستندات PPT</string>
 
     <string name="intent_label_doc_pdf">تحويل مستند إلى PDF</string>
     <string name="intent_label_doc_reader">قارئ مستندات</string>

@@ -21,6 +21,10 @@
     <string name="your_recent_PDF_files_are_waiting">קובצי ה-PDF האחרונים שלך ממתינים</string>
     <string name="refresh_files">החלק למטה כדי לרענן קבצים</string>
     <string name="delete_file">מחק קובץ</string>
+    <string name="pdf_document">מסמכי PDF</string>
+    <string name="docx_document">מסמכי Docx</string>
+    <string name="xlsx_document">מסמכי XLSX</string>
+    <string name="ppt_document">מסמכי PPT</string>
 
     <string name="recent_add">נוסף לאחרונה (%s)</string>
     <string name="recent_add_title">נוסף לאחרונה</string>

@@ -19,6 +19,10 @@
     <string name="your_recent_PDF_files_are_waiting">Son PDF dosyalarınız sizi bekliyor</string>
     <string name="refresh_files">Dosyaları yenilemek için aşağı çekin</string>
     <string name="delete_file">Dosyayı sil</string>
+    <string name="pdf_document">PDF Belgeleri</string>
+    <string name="docx_document">Docx Belgeleri</string>
+    <string name="xlsx_document">XLSX Belgeleri</string>
+    <string name="ppt_document">PPT Belgeleri</string>
 
     <string name="intent_label_ppt_pdf">PPT\'den PDF\'ye</string>
     <string name="intent_label_ppt_reader">PPT Okuyucu</string>

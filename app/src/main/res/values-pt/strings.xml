@@ -25,6 +25,10 @@
     <string name="your_recent_PDF_files_are_waiting">Os seus ficheiros PDF recentes estão à espera</string>
     <string name="refresh_files">Puxe para baixo para atualizar os ficheiros</string>
     <string name="delete_file">Eliminar ficheiro</string>
+    <string name="pdf_document">Documentos PDF</string>
+    <string name="docx_document">Documentos Docx</string>
+    <string name="xlsx_document">Documentos XLSX</string>
+    <string name="ppt_document">Documentos PPT</string>
 
     <string name="congrats">Parabéns!</string>
     <string name="congrats_subtext">Bem-vindo ao Premium,\n aproveite os benefícios</string>

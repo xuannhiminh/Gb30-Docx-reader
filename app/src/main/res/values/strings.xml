@@ -674,4 +674,8 @@
     <string name="you_have_unfinished_file">You have an unfinished file</string>
     <string name="click_to_see_more">Click to see more.</string>
     <string name="splash_content">Your documents, all in one place</string>
+    <string name="pdf_document">PDF Documents</string>
+    <string name="docx_document">Docx Documents</string>
+    <string name="xlsx_document">XLSX Documents</string>
+    <string name="ppt_document">PPT Documents</string>
 </resources>

@@ -25,6 +25,10 @@
     <string name="your_recent_PDF_files_are_waiting">Je recente PDF-bestanden wachten</string>
     <string name="refresh_files">Trek omlaag om bestanden te vernieuwen</string>
     <string name="delete_file">Bestand verwijderen</string>
+    <string name="pdf_document">PDF-documenten</string>
+    <string name="docx_document">Docx-documenten</string>
+    <string name="xlsx_document">XLSX-documenten</string>
+    <string name="ppt_document">PPT-documenten</string>
 
     <string name="sort_by_date">Aanmaakdatum: oplopend</string>
     <string name="sort_by_date_desc">Aanmaakdatum: aflopend</string>

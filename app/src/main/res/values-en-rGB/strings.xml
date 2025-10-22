@@ -26,6 +26,10 @@
     <string name="your_recent_PDF_files_are_waiting">Your recent PDF files are waiting</string>
     <string name="refresh_files">Pull down to refresh files</string>
     <string name="delete_file">Delete File</string>
+    <string name="pdf_document">PDF Documents</string>
+    <string name="docx_document">Docx Documents</string>
+    <string name="xlsx_document">XLSX Documents</string>
+    <string name="ppt_document">PPT Documents</string>
 
     <string name="congrats_subtext">Welcome to Premium,\n enjoy the benefits</string>
     <string name="ok_great">Ok, Great!</string>

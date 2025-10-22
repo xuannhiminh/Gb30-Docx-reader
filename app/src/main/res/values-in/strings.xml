@@ -19,6 +19,10 @@
     <string name="your_recent_PDF_files_are_waiting">File PDF terbaru Anda sedang menunggu</string>
     <string name="refresh_files">Tarik ke bawah untuk memuat ulang file</string>
     <string name="delete_file">Hapus file</string>
+    <string name="pdf_document">Dokumen PDF</string>
+    <string name="docx_document">Dokumen Docx</string>
+    <string name="xlsx_document">Dokumen XLSX</string>
+    <string name="ppt_document">Dokumen PPT</string>
 
     <string name="intent_label_ppt_pdf">PPT ke PDF</string>
     <string name="intent_label_ppt_reader">Pembaca PPT</string>

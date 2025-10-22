@@ -21,6 +21,10 @@
     <string name="your_recent_PDF_files_are_waiting">最近のPDFファイルが待機中です</string>
     <string name="refresh_files">下にスワイプしてファイルを更新</string>
     <string name="delete_file">ファイルを削除</string>
+    <string name="pdf_document">PDF ドキュメント</string>
+    <string name="docx_document">Docx ドキュメント</string>
+    <string name="xlsx_document">XLSX ドキュメント</string>
+    <string name="ppt_document">PPT ドキュメント</string>
 
     <string name="remind_later">後で通知</string>
     <string name="please_rate">評価を選択してください!!!</string>

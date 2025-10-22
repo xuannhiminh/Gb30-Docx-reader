@@ -19,6 +19,10 @@
     <string name="your_recent_PDF_files_are_waiting">Vos fichiers PDF récents vous attendent</string>
     <string name="refresh_files">Balayez vers le bas pour actualiser les fichiers</string>
     <string name="delete_file">Supprimer le fichier</string>
+    <string name="pdf_document">Documents PDF</string>
+    <string name="docx_document">Documents Docx</string>
+    <string name="xlsx_document">Documents XLSX</string>
+    <string name="ppt_document">Documents PPT</string>
 
     <string name="intent_label_ppt_pdf">PPT vers PDF</string>
     <string name="intent_label_ppt_reader">Lecteur PPT</string>

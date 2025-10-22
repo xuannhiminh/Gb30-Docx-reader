@@ -19,6 +19,10 @@
     <string name="your_recent_PDF_files_are_waiting">Các tệp PDF gần đây của bạn đang chờ</string>
     <string name="refresh_files">Kéo xuống để làm mới tệp</string>
     <string name="delete_file">Xóa tệp</string>
+    <string name="pdf_document">Tài liệu PDF</string>
+    <string name="docx_document">Tài liệu Docx</string>
+    <string name="xlsx_document">Tài liệu XLSX</string>
+    <string name="ppt_document">Tài liệu PPT</string>
 
     <string name="intent_label_ppt_pdf">Chuyển PPT sang PDF</string>
     <string name="intent_label_ppt_reader">Trình đọc PPT</string>

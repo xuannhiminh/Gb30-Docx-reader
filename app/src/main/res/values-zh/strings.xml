@@ -22,6 +22,10 @@
     <string name="your_recent_PDF_files_are_waiting">您最近的 PDF 文件正在等待</string>
     <string name="refresh_files">下拉刷新文件</string>
     <string name="delete_file">删除文件</string>
+    <string name="pdf_document">PDF 文档</string>
+    <string name="docx_document">Docx 文档</string>
+    <string name="xlsx_document">XLSX 文档</string>
+    <string name="ppt_document">PPT 文档</string>
 
     <string name="please_rate">请选择评分！！！</string>
     <string name="thank_for_rate">谢谢！！！</string>

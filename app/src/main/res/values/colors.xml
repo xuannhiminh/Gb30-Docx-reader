@@ -25,10 +25,13 @@
     <color name="star">#86A1B7</color>
     <color name="color_f6f7f8">#F6F7F8</color>
     <color name="red">#F32F31</color>
+    <color name="red1">#ECA4A4</color>
     <color name="blue">#198ADE</color>
+    <color name="blue1">#84C4F5</color>
     <color name="all">#E4252A14</color>
     <color name="green2">#34C759</color>
     <color name="green">#33C481</color>
+    <color name="green1">#A4ECD3</color>
     <color name="excel">#00733B</color>
     <color name="powerpoint">#DF3303</color>
     <color name="cancel">#7A9FBF</color>

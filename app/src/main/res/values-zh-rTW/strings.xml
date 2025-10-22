@@ -25,6 +25,10 @@
     <string name="your_recent_PDF_files_are_waiting">您最近的 PDF 檔案正在等待</string>
     <string name="refresh_files">下拉以重新整理檔案</string>
     <string name="delete_file">刪除檔案</string>
+    <string name="pdf_document">PDF 文件</string>
+    <string name="docx_document">Docx 文件</string>
+    <string name="xlsx_document">XLSX 文件</string>
+    <string name="ppt_document">PPT 文件</string>
 
     <string name="sort_by_date">建立日期：升冪</string>
     <string name="sort_by_date_desc">建立日期：降冪</string>

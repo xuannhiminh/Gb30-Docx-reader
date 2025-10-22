@@ -19,6 +19,10 @@
     <string name="your_recent_PDF_files_are_waiting">Ваши последние PDF-файлы ждут вас</string>
     <string name="refresh_files">Потяните вниз, чтобы обновить файлы</string>
     <string name="delete_file">Удалить файл</string>
+    <string name="pdf_document">Документы PDF</string>
+    <string name="docx_document">Документы Docx</string>
+    <string name="xlsx_document">Документы XLSX</string>
+    <string name="ppt_document">Документы PPT</string>
 
     <string name="intent_label_ppt_pdf">PPT в PDF</string>
     <string name="intent_label_ppt_reader">Читалка PPT</string>

@@ -20,6 +20,10 @@
     <string name="your_recent_PDF_files_are_waiting">Ihre letzten PDF-Dateien warten</string>
     <string name="refresh_files">Zum Aktualisieren nach unten ziehen</string>
     <string name="delete_file">Datei löschen</string>
+    <string name="pdf_document">PDF-Dokumente</string>
+    <string name="docx_document">Docx-Dokumente</string>
+    <string name="xlsx_document">XLSX-Dokumente</string>
+    <string name="ppt_document">PPT-Dokumente</string>
 
     <string name="ppt">PPT</string>
     <string name="remind_later">Später erinnern</string>

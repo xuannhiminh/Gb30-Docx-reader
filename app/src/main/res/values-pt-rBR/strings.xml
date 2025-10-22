@@ -25,6 +25,10 @@
     <string name="saving_content">Salvando conteúdo</string>
     <string name="you_have_unfinished_file">Você tem um arquivo inacabado</string>
     <string name="click_to_see_more">Clique para ver mais.</string>
+    <string name="pdf_document">Documentos PDF</string>
+    <string name="docx_document">Documentos Docx</string>
+    <string name="xlsx_document">Documentos XLSX</string>
+    <string name="ppt_document">Documentos PPT</string>
 
     <string name="congrats">Parabéns!</string>
     <string name="congrats_subtext">Bem-vindo ao Premium,\n aproveite os benefícios</string>
