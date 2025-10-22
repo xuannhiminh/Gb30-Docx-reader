@@ -93,6 +93,7 @@ class NotificationForegroundService: Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         // Handle the service start command
         Log.d(TAG, "Service started")
+        createForegroundNotificationChannel()
         showForegroundNotification()
 
         IAPUtils.initAndRegister(this, AppUtils.PUBLIC_LICENSE_KEY, iapHandler)
@@ -170,12 +171,6 @@ class NotificationForegroundService: Service() {
         super.onCreate()
         Log.d(TAG, "Service created")
         notificationManager = NotificationManager(this)
-
-        createForegroundNotificationChannel()
-
-
-
-//        showForegroundNotification()
 
         registerReceiver(unlockReceiver, IntentFilter(Intent.ACTION_USER_PRESENT))
         try {
