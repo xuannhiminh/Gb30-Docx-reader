@@ -75,7 +75,7 @@
                     android:layout_height="@dimen/_30sdp"
                     android:layout_gravity="center"
                     android:contentDescription="PDF Icon"
-                    android:src="@drawable/icon_pdf" />
+                    android:src="@drawable/icon_word" />
             </FrameLayout>
 
             <LinearLayout
