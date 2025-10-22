@@ -1141,6 +1141,12 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
             AppOpenManager.getInstance().disableAppResume()
             startChooseImageActivity()
         }
+        binding.toolbar.ivSearch.setOnClickListener {
+            logEvent("main_search_press")
+            showAdsOr {
+                SearchFileActivity.start(this)
+            }
+        }
 
         initFileTabListeners()
 
@@ -1420,7 +1426,7 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
         selectedTextView.setTextColor(ContextCompat.getColor(this, textColor))
         selectedTextView.setBackgroundResource(underlineResource)
         binding.toolbar.headerBackground.setBackgroundColor(ContextCompat.getColor(this, selectedColor))
-        binding.toolbar.tvTitle.setText(textTitle)
+        binding.toolbar.tvTitle.text = textTitle
     }
 
 
@@ -1608,24 +1614,25 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
         binding.recentlyAddedSection.visibility = View.VISIBLE
         binding.layoutTotalFiles.visibility = View.VISIBLE
         binding.buttonCreate.visibility = View.VISIBLE
-        binding.toolbar.searchContainer.visibility = View.VISIBLE
         binding.toolbar.chooseType.visibility = View.VISIBLE
+        binding.toolbar.ivSearch.visibility = View.VISIBLE
     }
 
     private fun showListUI() {
         binding.layoutTotalFiles.visibility = View.VISIBLE
         binding.buttonCreate.visibility = View.VISIBLE
-        binding.toolbar.searchContainer.visibility = View.VISIBLE
         binding.toolbar.chooseType.visibility = View.VISIBLE
         binding.recentlyAddedSection.visibility = View.GONE
+        binding.toolbar.ivSearch.visibility = View.GONE
     }
 
     private fun showToolsUI() {
         binding.layoutTotalFiles.visibility = View.GONE
         binding.buttonCreate.visibility = View.GONE
-        binding.toolbar.searchContainer.visibility = View.GONE
         binding.toolbar.chooseType.visibility = View.GONE
         binding.recentlyAddedSection.visibility = View.GONE
+        binding.toolbar.ivSearch.visibility = View.GONE
+        binding
     }
 
     private fun handleUIBaseOnBottomTab(id: Int, alsoSelect: Boolean = true) {
