@@ -15,6 +15,10 @@
     <string name="saving_content">Đang lưu nội dung</string>
     <string name="you_have_unfinished_file">Bạn có một tệp chưa hoàn thành</string>
     <string name="click_to_see_more">Nhấn để xem thêm.</string>
+    <string name="read">Đọc</string>
+    <string name="your_recent_PDF_files_are_waiting">Các tệp PDF gần đây của bạn đang chờ</string>
+    <string name="refresh_files">Kéo xuống để làm mới tệp</string>
+    <string name="delete_file">Xóa tệp</string>
 
     <string name="intent_label_ppt_pdf">Chuyển PPT sang PDF</string>
     <string name="intent_label_ppt_reader">Trình đọc PPT</string>
@@ -592,5 +596,6 @@
     <string name="remove_favourite_content">Bạn có chắc muốn xóa tệp này khỏi mục Yêu thích không?</string>
     <string name="remove_favourite">Xóa khỏi Yêu thích</string>
     <string name="leave_the_app">Thoát ứng dụng?</string>
+    <string name="splash_content">Tất cả tài liệu của bạn ở cùng một nơi</string>
 
 </resources>

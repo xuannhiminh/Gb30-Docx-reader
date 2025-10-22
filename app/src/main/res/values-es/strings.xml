@@ -14,6 +14,10 @@
     <string name="saving_content">Guardando contenido</string>
     <string name="you_have_unfinished_file">Tienes un archivo sin terminar</string>
     <string name="click_to_see_more">Haz clic para ver más.</string>
+    <string name="read">Leer</string>
+    <string name="your_recent_PDF_files_are_waiting">Tus archivos PDF recientes te están esperando</string>
+    <string name="refresh_files">Desliza hacia abajo para actualizar los archivos</string>
+    <string name="delete_file">Eliminar archivo</string>
 
     <string name="intent_label_ppt_pdf">PPT a PDF</string>
     <string name="intent_label_ppt_reader">Lector de PPT</string>
@@ -576,5 +580,6 @@
     <string name="update_required">Esta versión está desactualizada. Por favor, actualiza la aplicación</string>
     <string name="set_docx_reader_as_your_default_word_file_viewer">Configura <b>%s</b> como tu visor predeterminado de archivos Word</string>
     <string name="leave_the_app">¿Salir de la aplicación?</string>
+    <string name="splash_content">Tus documentos, todos en un solo lugar</string>
 
 </resources>

@@ -148,8 +148,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
             Log.e("SplashActivity", "Error starting service: ${e.message}")
         }
 
-        binding.loadingTitle.text =  handleAppNameSpannable2()
-
     }
 //    private var ads_inter_id = ""
 

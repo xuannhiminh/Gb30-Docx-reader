@@ -21,6 +21,10 @@
     <string name="saving_content">콘텐츠 저장 중</string>
     <string name="you_have_unfinished_file">완료되지 않은 파일이 있습니다</string>
     <string name="click_to_see_more">더 보려면 클릭하세요.</string>
+    <string name="read">읽기</string>
+    <string name="your_recent_PDF_files_are_waiting">최근 PDF 파일이 기다리고 있습니다</string>
+    <string name="refresh_files">아래로 당겨 파일 새로 고침</string>
+    <string name="delete_file">파일 삭제</string>
 
     <string name="sort_by_date">생성일자: 오름차순</string>
     <string name="sort_by_date_desc">생성일자: 내림차순</string>
@@ -493,4 +497,5 @@
     <string name="reload_file_successful">성공</string>
     <string name="update_required">이 버전은 오래되었습니다. 앱을 업데이트하세요</string>
     <string name="leave_the_app">앱을 종료하시겠습니까?</string>
+    <string name="splash_content">모든 문서를 한곳에서 관리하세요</string>
 </resources> 

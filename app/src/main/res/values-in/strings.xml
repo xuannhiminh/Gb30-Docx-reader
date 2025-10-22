@@ -15,6 +15,10 @@
     <string name="saving_content">Menyimpan konten</string>
     <string name="you_have_unfinished_file">Anda memiliki file yang belum selesai</string>
     <string name="click_to_see_more">Klik untuk melihat lebih banyak.</string>
+    <string name="read">Baca</string>
+    <string name="your_recent_PDF_files_are_waiting">File PDF terbaru Anda sedang menunggu</string>
+    <string name="refresh_files">Tarik ke bawah untuk memuat ulang file</string>
+    <string name="delete_file">Hapus file</string>
 
     <string name="intent_label_ppt_pdf">PPT ke PDF</string>
     <string name="intent_label_ppt_reader">Pembaca PPT</string>
@@ -584,4 +588,5 @@
    <string name="feedback_disclaimer">Dengan mengirim email ini, Anda setuju untuk membagikan informasi di atas dengan kami untuk membantu meningkatkan aplikasi.</string>
     <string name="update_required">Versi ini sudah usang. Silakan perbarui aplikasi</string>
     <string name="leave_the_app">Keluar dari aplikasi?</string>
+    <string name="splash_content">Semua dokumen Anda di satu tempat</string>
 </resources>

@@ -11,6 +11,10 @@
     <string name="intent_label_pdf_excel">Editor de Excel</string>
     <string name="intent_label_excel_smart_editor">Editor Inteligente de Excel</string>
     <string name="intent_label_excel_print">Imprimir Excel</string>
+    <string name="read">Ler</string>
+    <string name="your_recent_PDF_files_are_waiting">Seus arquivos PDF recentes estão esperando</string>
+    <string name="refresh_files">Puxe para baixo para atualizar os arquivos</string>
+    <string name="delete_file">Excluir arquivo</string>
 
     <string name="intent_label_ppt_pdf">PPT para PDF</string>
     <string name="intent_label_ppt_reader">Leitor de PPT</string>
@@ -575,4 +579,5 @@
    <string name="feedback_disclaimer">Ao enviar este e-mail, você concorda em compartilhar as informações acima conosco para ajudar a melhorar o aplicativo.</string>
     <string name="update_required">Esta versão está desatualizada. Atualize o aplicativo</string>
     <string name="leave_the_app">Sair da aplicação?</string>
+    <string name="splash_content">Seus documentos, todos em um só lugar</string>
 </resources>

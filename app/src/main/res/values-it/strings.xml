@@ -21,6 +21,10 @@
     <string name="saving_content">Salvataggio del contenuto</string>
     <string name="you_have_unfinished_file">Hai un file non completato</string>
     <string name="click_to_see_more">Clicca per vedere di più.</string>
+    <string name="read">Leggi</string>
+    <string name="your_recent_PDF_files_are_waiting">I tuoi file PDF recenti ti stanno aspettando</string>
+    <string name="refresh_files">Trascina verso il basso per aggiornare i file</string>
+    <string name="delete_file">Elimina file</string>
 
     <string name="sort_by_date">Data di creazione: crescente</string>
     <string name="sort_by_date_desc">Data di creazione: decrescente</string>
@@ -497,4 +501,5 @@
    <string name="feedback_disclaimer">Inviando questa email, accetti di condividere le informazioni di cui sopra con noi per contribuire a migliorare l\'app.</string>
     <string name="update_required">Questa versione è obsoleta. Aggiorna l’app</string>
     <string name="leave_the_app">Uscire dall’app?</string>
+    <string name="splash_content">I tuoi documenti, tutti in un unico posto</string>
 </resources> 

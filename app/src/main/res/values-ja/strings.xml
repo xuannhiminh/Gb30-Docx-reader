@@ -17,6 +17,10 @@
     <string name="saving_content">コンテンツを保存しています</string>
     <string name="you_have_unfinished_file">未完了のファイルがあります</string>
     <string name="click_to_see_more">もっと見るにはクリックしてください。</string>
+    <string name="read">読む</string>
+    <string name="your_recent_PDF_files_are_waiting">最近のPDFファイルが待機中です</string>
+    <string name="refresh_files">下にスワイプしてファイルを更新</string>
+    <string name="delete_file">ファイルを削除</string>
 
     <string name="remind_later">後で通知</string>
     <string name="please_rate">評価を選択してください!!!</string>
@@ -492,4 +496,5 @@
     <string name="reload_file_successful">成功</string>
     <string name="update_required">このバージョンは古くなっています。アプリを更新してください</string>
     <string name="leave_the_app">アプリを終了しますか？</string>
+    <string name="splash_content">あなたのドキュメントを1か所で管理</string>
 </resources> 

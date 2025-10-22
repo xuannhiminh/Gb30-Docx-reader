@@ -22,6 +22,10 @@
     <string name="saving_content">Saving content</string>
     <string name="you_have_unfinished_file">You have an unfinished file</string>
     <string name="click_to_see_more">Click to see more.</string>
+    <string name="read">Read</string>
+    <string name="your_recent_PDF_files_are_waiting">Your recent PDF files are waiting</string>
+    <string name="refresh_files">Pull down to refresh files</string>
+    <string name="delete_file">Delete File</string>
 
     <string name="congrats_subtext">Welcome to Premium,\n enjoy the benefits</string>
     <string name="ok_great">Ok, Great!</string>
@@ -408,4 +412,5 @@
     <string name="remove_favourite">Remove from Favourite</string>
     <string name="leave_the_app">Leave the app?</string>
     <string name="click_back_to_app">Then press &lt; to the app</string>
+    <string name="splash_content">Your documents, all in one place</string>
 </resources>

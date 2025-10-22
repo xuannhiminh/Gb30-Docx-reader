@@ -51,4 +51,5 @@
     <color name="bg_selected">#E3F2FD</color>
     <color name="stroke_unselected">#F3F4F6</color>
     <color name="bg_unselected">#FFFFFF</color>
+    <color name="text_splash">#0B5799</color>
 </resources>

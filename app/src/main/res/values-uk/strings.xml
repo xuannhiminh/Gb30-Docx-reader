@@ -21,6 +21,10 @@
     <string name="you_have_unfinished_file">У вас є незавершений файл</string>
     <string name="click_to_see_more">Натисніть, щоб побачити більше.</string>
     <string name="saving_content">Збереження вмісту</string>
+    <string name="read">Читати</string>
+    <string name="your_recent_PDF_files_are_waiting">Ваші нещодавні PDF-файли чекають</string>
+    <string name="refresh_files">Потягніть вниз, щоб оновити файли</string>
+    <string name="delete_file">Видалити файл</string>
 
     <string name="sort_by_date">Дата створення: зростання</string>
     <string name="sort_by_date_desc">Дата створення: спадання</string>
@@ -473,4 +477,5 @@
    <string name="feedback_disclaimer">Надсилаючи цей лист, ви погоджуєтеся поділитися наведеними вище даними з нами, щоб допомогти покращити додаток.</string>
     <string name="update_required">Ця версія застаріла. Будь ласка, оновіть додаток</string>
     <string name="leave_the_app">Вийти з програми?</string>
+    <string name="splash_content">Усі ваші документи — в одному місці</string>
 </resources> 

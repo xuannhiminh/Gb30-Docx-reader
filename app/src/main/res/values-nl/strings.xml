@@ -21,6 +21,10 @@
     <string name="saving_content">Inhoud wordt opgeslagen</string>
     <string name="you_have_unfinished_file">U heeft een onvoltooid bestand</string>
     <string name="click_to_see_more">Klik om meer te zien.</string>
+    <string name="read">Lezen</string>
+    <string name="your_recent_PDF_files_are_waiting">Je recente PDF-bestanden wachten</string>
+    <string name="refresh_files">Trek omlaag om bestanden te vernieuwen</string>
+    <string name="delete_file">Bestand verwijderen</string>
 
     <string name="sort_by_date">Aanmaakdatum: oplopend</string>
     <string name="sort_by_date_desc">Aanmaakdatum: aflopend</string>
@@ -497,4 +501,5 @@
    <string name="feedback_disclaimer">Door deze e-mail te verzenden, stemt u ermee in de bovenstaande informatie met ons te delen om de app te verbeteren.</string>
     <string name="update_required">Deze versie is verouderd. Werk de app bij</string>
     <string name="leave_the_app">App verlaten?</string>
+    <string name="splash_content">Al je documenten op één plek</string>
 </resources>

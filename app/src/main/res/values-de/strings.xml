@@ -16,6 +16,10 @@
     <string name="saving_content">Inhalt wird gespeichert</string>
     <string name="you_have_unfinished_file">Sie haben eine unvollständige Datei</string>
     <string name="click_to_see_more">Klicken Sie, um mehr zu sehen.</string>
+    <string name="read">Lesen</string>
+    <string name="your_recent_PDF_files_are_waiting">Ihre letzten PDF-Dateien warten</string>
+    <string name="refresh_files">Zum Aktualisieren nach unten ziehen</string>
+    <string name="delete_file">Datei löschen</string>
 
     <string name="ppt">PPT</string>
     <string name="remind_later">Später erinnern</string>
@@ -478,5 +482,6 @@
     <string name="update_required">Diese Version ist veraltet. Bitte aktualisiere die App</string>
     <string name="set_docx_reader_as_your_default_word_file_viewer">Legen Sie <b>%s</b> als Ihren Standard-Word-Dateibetrachter fest</string>
     <string name="leave_the_app">Quitter l’app ?</string>
+    <string name="splash_content">Ihre Dokumente – alle an einem Ort</string>
 
 </resources> 
