@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingVertical="@dimen/_12sdp"
+            android:paddingTop="@dimen/_12sdp"
             android:layoutDirection="locale"
             android:gravity="center_vertical">
 
@@ -144,7 +144,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingVertical="@dimen/_8sdp">
+            android:paddingBottom="@dimen/_8sdp">
 
 
             <LinearLayout

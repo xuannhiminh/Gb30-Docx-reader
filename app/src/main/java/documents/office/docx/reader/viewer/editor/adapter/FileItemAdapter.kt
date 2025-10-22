@@ -38,6 +38,9 @@ class FileItemAdapter(
         fun bindData(model: FileModel) {
 
             if (model.isAds) {
+                val layoutParams = binding.parent.layoutParams as ViewGroup.MarginLayoutParams
+                layoutParams.topMargin = 0
+                binding.parent.layoutParams = layoutParams
                 binding.content.visibility = View.GONE
                 this.binding.layoutNative.visibility = View.VISIBLE
                 val loadingView = LayoutInflater.from(mContext)

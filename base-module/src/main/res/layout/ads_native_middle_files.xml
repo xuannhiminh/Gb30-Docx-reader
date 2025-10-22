@@ -11,8 +11,8 @@
         <!-- App Icon -->
         <ImageView
             android:id="@+id/ad_app_icon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="78dp"
+            android:layout_height="78dp"
             android:layout_alignParentStart="true"
             android:scaleType="centerCrop"
             android:layout_marginEnd="12dp"
@@ -21,10 +21,12 @@
         <!-- Title + Body -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="78dp"
             android:layout_toEndOf="@id/ad_app_icon"
-            android:layout_alignParentTop="true"
+            android:layout_alignTop="@id/ad_app_icon"
+            android:layout_alignBottom="@id/ad_app_icon"
             android:orientation="vertical"
+            android:gravity="center_vertical"
             android:layout_marginEnd="12dp">
 
             <LinearLayout
@@ -46,7 +48,7 @@
                     android:textColor="@android:color/white"
                     android:textStyle="bold"
                     android:textSize="8sp"
-                    android:layout_gravity="center"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginEnd="4dp"
                     />
 
@@ -65,13 +67,25 @@
             <TextView
                 android:id="@+id/ad_body"
                 android:layout_width="match_parent"
-                android:layout_height="26dp"
+                android:layout_height="wrap_content"
                 android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
                 android:textSize="10sp"
                 android:textColor="@color/text1"
                 android:maxLines="2"
                 android:ellipsize="end"/>
-        </LinearLayout>
+
+        <TextView
+            android:id="@+id/ad_call_to_action"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/button_ads"
+            android:gravity="center"
+            android:text="Let’s Start"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
 
         <LinearLayout
             android:visibility="gone"

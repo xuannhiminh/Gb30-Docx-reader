@@ -39,7 +39,7 @@ class FirebaseRemoteConfigUtil private constructor() {
         private const val DEFAULT_DURATION_RELOADING_FILE = 4000L
         private const val DEFAULT_TIME_DELAY_SHOWING_RELOAD_GUIDE = 3000L
         private const val DEFAULT_TIME_SHOWING_RELOAD_GUIDE = 4L
-        private const val DEFAULT_INTERVAL_SHOW_INTER_SECOND = 30L // 30s
+        private const val DEFAULT_INTERVAL_SHOW_INTER_SECOND = 20L // 30s
         private const val DEFAULT_TIMEOUT_LOAD_INTER_SECOND = 30L // 30s
         private val DEFAULT_TYPE_OF_START_UP = StartUpType.ADS_OPEN_IAP_LANGUAGE.value.toLong()
         private const val DEFAULT_PRELOAD_NATIVE_LANGUAGE = true // 30s
