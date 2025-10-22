@@ -90,7 +90,6 @@ class NotificationManager(private val context: Context) {
             .setDeleteIntent(createDismissPendingIntent(WIDGETS_NOTIFICATION_ID))
             .setCustomBigContentView(remoteCustomBigView)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            .setGroup(GROUP_ID_FOREGROUND)
             .setWhen(0)
             .build()
         return notification

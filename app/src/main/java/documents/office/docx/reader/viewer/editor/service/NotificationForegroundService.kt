@@ -56,7 +56,7 @@ class NotificationForegroundService: Service() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
                 try {
                     startForeground(NotificationManager.WIDGETS_NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE)
-                }catch (ex: ForegroundServiceStartNotAllowedException) {
+                }catch (ex: Exception) {
                     Log.e(TAG, "Foreground service start not allowed: ${ex.message}")
                     // Handle the case where starting a foreground service is not allowed
                     // This might happen if the app is in the background or if the device policy prevents it
@@ -67,7 +67,7 @@ class NotificationForegroundService: Service() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                     try {
                         startForeground(NotificationManager.WIDGETS_NOTIFICATION_ID, notification)
-                    }catch (ex: ForegroundServiceStartNotAllowedException) {
+                    }catch (ex: Exception) {
                         Log.e(TAG, "Foreground service start not allowed: ${ex.message}")
                         // Handle the case where starting a foreground service is not allowed
                         // This might happen if the app is in the background or if the device policy prevents it
@@ -175,7 +175,7 @@ class NotificationForegroundService: Service() {
 
 
 
-        showForegroundNotification()
+//        showForegroundNotification()
 
         registerReceiver(unlockReceiver, IntentFilter(Intent.ACTION_USER_PRESENT))
         try {
