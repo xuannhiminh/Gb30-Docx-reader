@@ -46,7 +46,6 @@ import documents.office.docx.reader.viewer.editor.common.PresKey
 import documents.office.docx.reader.viewer.editor.common.SortState
 import documents.office.docx.reader.viewer.editor.databinding.ActivityMainBinding
 import documents.office.docx.reader.viewer.editor.dialog.AddToHomeDialog
-import documents.office.docx.reader.viewer.editor.dialog.DefaultReaderRequestDialog
 import documents.office.docx.reader.viewer.editor.dialog.SortDialog
 import documents.office.docx.reader.viewer.editor.model.FileModel
 import documents.office.docx.reader.viewer.editor.schedule.OneTimeScheduleWorker
@@ -1037,6 +1036,7 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
             binding.toolbar.chooseType.visibility = View.GONE
             binding.toolbar.ivBack.visibility = View.VISIBLE
             binding.toolbar.tvTitle.text = resources.getString(R.string.recent_add_title)
+            binding.toolbar.icApp.visibility = View.GONE
             handleSortAction(7)
         }
         binding.toolbar.ivBack.setOnClickListener {
@@ -1046,7 +1046,8 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
                 binding.toolbar.chooseType.visibility = View.VISIBLE
                 binding.recentlyAddedSection.visibility = View.VISIBLE
                 binding.layoutTotalFiles.visibility = View.VISIBLE
-                //binding.toolbar.tvTitle.text = handleAppNameSpannable(showIcon = IAPUtils.isPremium())
+                binding.toolbar.icApp.visibility = View.VISIBLE
+                binding.toolbar.tvTitle.text = resources.getString(R.string.app_name)
                 setOutRecently()
                 handleSortAction(4)
                 binding.navView.visibility = View.VISIBLE
