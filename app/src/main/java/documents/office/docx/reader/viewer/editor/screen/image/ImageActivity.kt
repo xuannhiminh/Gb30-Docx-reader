@@ -289,7 +289,6 @@ class ImageActivity : PdfBaseActivity<ActivityImageBinding>() {
             startActivity(Intent.createChooser(shareIntent, getString(R.string.share)))
 
         } catch (e: Exception) {
-            e.printStackTrace()
             Toast.makeText(this, getString(R.string.app_error), Toast.LENGTH_SHORT).show()
         }
     }
@@ -387,7 +386,6 @@ class ImageActivity : PdfBaseActivity<ActivityImageBinding>() {
                 try {
                     deleteImageDialog.show(supportFragmentManager, "DetailPageDialog")
                 } catch (e: Exception) {
-                    e.printStackTrace()
                     Log.e("PdfBaseActivity", "Error showing DetailPageDialog: ${e.message}", e)
                 }
             }
@@ -397,7 +395,6 @@ class ImageActivity : PdfBaseActivity<ActivityImageBinding>() {
                 try {
                     renameImageDialog.show(supportFragmentManager, "RenameImageDialog")
                 } catch (e: Exception) {
-                    e.printStackTrace()
                     Log.e("PdfBaseActivity", "Error showing RenameImageDialog: ${e.message}", e)
                 }
             }
@@ -407,7 +404,6 @@ class ImageActivity : PdfBaseActivity<ActivityImageBinding>() {
                 try {
                     detailImageDialog.show(supportFragmentManager, "DetailPageDialog")
                 } catch (e: Exception) {
-                    e.printStackTrace()
                     Log.e("PdfBaseActivity", "Error showing DetailPageDialog: ${e.message}", e)
                 }
             }

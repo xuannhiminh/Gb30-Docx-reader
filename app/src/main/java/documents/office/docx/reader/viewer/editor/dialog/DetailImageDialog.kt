@@ -71,6 +71,9 @@ class DetailImageDialog( var imagePath: String?) : DialogFragment() {
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.ivBack.setOnClickListener {
+            dismiss()
+        }
         initListener()
         isViewDestroyed = false
         imagePath?.let { path ->
@@ -105,7 +108,6 @@ class DetailImageDialog( var imagePath: String?) : DialogFragment() {
         binding.starIcon.visibility = View.GONE
         binding.tvModified.visibility = View.GONE
         binding.tvModifiedLabel.visibility = View.GONE
-        binding.ivBack.visibility = View.GONE
     }
     override fun onCancel(dialog: DialogInterface) {
         // Chỉ cho cancel khi quảng cáo đã load
