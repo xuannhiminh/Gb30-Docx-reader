@@ -83,16 +83,30 @@ class NotificationManager(private val context: Context) {
     fun createForegroundNotification() : Notification {
         val remoteCustomView = createWidgetNotificationView()
         val remoteCustomBigView = createWidgetNotificationBigView()
-        val notification = NotificationCompat.Builder(context, CHANNEL_ID_FOREGROUND)
-            .setSmallIcon(R.drawable.ic_notitication)
-            .setBadgeIconType(NotificationCompat.BADGE_ICON_NONE)
-            .setCustomContentView(remoteCustomView)
-            .setDeleteIntent(createDismissPendingIntent(WIDGETS_NOTIFICATION_ID))
-            .setCustomBigContentView(remoteCustomBigView)
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            .setWhen(0)
-            .build()
-        return notification
+        try {
+            val notification = NotificationCompat.Builder(context,CHANNEL_ID_FOREGROUND)
+                .setSmallIcon(R.drawable.ic_notitication)
+                .setBadgeIconType(NotificationCompat.BADGE_ICON_NONE)
+                .setCustomContentView(remoteCustomView)
+                .setDeleteIntent(createDismissPendingIntent(WIDGETS_NOTIFICATION_ID))
+                .setCustomBigContentView(remoteCustomBigView)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setWhen(0)
+                .build()
+            return notification
+        }  catch (e : Exception) {
+            Log.e(TAG, "createForegroundNotification: Error creating notification", e)
+            val notification = NotificationCompat.Builder(context,CHANNEL_ID_FOREGROUND)
+                .setSmallIcon(android.R.mipmap.sym_def_app_icon)
+                .setBadgeIconType(NotificationCompat.BADGE_ICON_NONE)
+                .setCustomContentView(remoteCustomView)
+                .setDeleteIntent(createDismissPendingIntent(WIDGETS_NOTIFICATION_ID))
+                .setCustomBigContentView(remoteCustomBigView)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setWhen(0)
+                .build()
+            return notification
+        }
     }
 
     fun createNotificationChannel() {
