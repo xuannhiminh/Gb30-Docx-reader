@@ -2,6 +2,7 @@ package documents.office.docx.reader.viewer.editor.dialog
 
 import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -64,7 +65,11 @@ class SatisfactionDialog : DialogFragment() {
             binding.btnRateUs.setOnClickListener {
                 logEvent(firebaseAnalytics, "Satisfy_love_it")
                 dismiss()
-                RateUsDialog().show(parentFragmentManager, "RateUsDialog")
+                try {
+                    RateUsDialog().show(parentFragmentManager, "RateUsDialog")
+                } catch (e : Exception) {
+                    Log.e("DefaultReaderRequestDialog", "Error showing RateUsDialog: ${e.message}")
+                }
             }
             binding.ivClose.setOnClickListener {
                 dismiss()

@@ -79,22 +79,28 @@ class RateUsDialog : DialogFragment() {
     }
 
     private fun launchInAppReview() {
-        val manager = ReviewManagerFactory.create(requireContext())
-        val request = manager.requestReviewFlow()
-        request.addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                // We got the ReviewInfo object
-                val reviewInfo = task.result
-                val flow = manager.launchReviewFlow(requireActivity(), reviewInfo)
-                flow.addOnCompleteListener { _ ->
+        try {
+            val manager = ReviewManagerFactory.create(requireContext())
+            val request = manager.requestReviewFlow()
+            request.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    // We got the ReviewInfo object
+                    val reviewInfo = task.result
+                    val flow = manager.launchReviewFlow(requireActivity(), reviewInfo)
+                    flow.addOnCompleteListener { _ ->
+                        showSuccessDialog()
+                        Log.d("RateUsDialog", "launchInAppReview: success")
+                    }
+                } else {
                     showSuccessDialog()
-                    Log.d("RateUsDialog", "launchInAppReview: success")
+                    @ReviewErrorCode val reviewErrorCode =
+                        (task.exception as ReviewException).errorCode
+                    Log.d("RateUsDialog", "launchInAppReview: $reviewErrorCode")
                 }
-            } else {
-                showSuccessDialog()
-                @ReviewErrorCode val reviewErrorCode = (task.exception as ReviewException).errorCode
-                Log.d("RateUsDialog", "launchInAppReview: $reviewErrorCode")
             }
+        } catch (e: Exception) {
+            showSuccessDialog()
+            Log.e("RateUsDialog", "Error launching in-app review: ${e.message}", e)
         }
     }
     private fun showSuccessDialog() {
