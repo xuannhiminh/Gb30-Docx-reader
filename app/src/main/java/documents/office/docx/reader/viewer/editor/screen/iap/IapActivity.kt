@@ -329,7 +329,6 @@ class IapActivity : PdfBaseActivity<ActivityIapBinding>() {
             }
         }
         isFreeTrialShowed = true
-        finish()
     }
 
     private fun startRequestAllFilePermission() {
@@ -394,7 +393,6 @@ class IapActivity : PdfBaseActivity<ActivityIapBinding>() {
 
         binding.shineFreeTrialContainer.setOnClickListener {
             logEvent("start_trial_IAP_pressed")
-            IAPUtils.callSubscription(this@IapActivity, IAPUtils.KEY_PREMIUM, IAPUtils.KEY_PREMIUM_WEEKLY_PLAN)
             if (isAnnualSelected) {
                 showFreeTrialDialog()
             } else {
