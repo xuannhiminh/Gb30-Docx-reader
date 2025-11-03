@@ -502,5 +502,6 @@
     <string name="set_docx_reader_as_your_default_word_file_viewer"><b>%s</b> را به عنوان نمایشگر پیش‌فرض فایل‌های Word تنظیم کنید</string>
     <string name="leave_the_app">خروج از برنامه؟</string>
     <string name="splash_content">تمام اسناد شما در یک مکان</string>
+    <string name="rename_success">نام فایل با موفقیت تغییر یافت.</string>
 
 </resources> 

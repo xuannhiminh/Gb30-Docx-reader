@@ -585,4 +585,5 @@
     <string name="update_required">यह संस्करण पुराना हो गया है। कृपया ऐप अपडेट करें</string>
     <string name="leave_the_app">ऐप छोड़ें?</string>
     <string name="splash_content">आपके सभी दस्तावेज़ एक ही स्थान पर</string>
+    <string name="rename_success">फ़ाइल का नाम सफलतापूर्वक बदल दिया गया है।</string>
 </resources>

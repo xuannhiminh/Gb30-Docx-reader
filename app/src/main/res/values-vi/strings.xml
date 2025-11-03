@@ -601,5 +601,6 @@
     <string name="remove_favourite">Xóa khỏi Yêu thích</string>
     <string name="leave_the_app">Thoát ứng dụng?</string>
     <string name="splash_content">Tất cả tài liệu của bạn ở cùng một nơi</string>
+    <string name="rename_success">Tên tệp đã được đổi thành công.</string>
 
 </resources>

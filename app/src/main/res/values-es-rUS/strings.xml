@@ -587,5 +587,6 @@
     <string name="set_docx_reader_as_your_default_word_file_viewer">Set <b>%s</b> as your default Word File Viewer</string>
     <string name="leave_the_app">Exit the app?</string>
     <string name="splash_content">Tus documentos, todos en un solo lugar</string>
+    <string name="rename_success">El nombre del archivo se cambió con éxito.</string>
 
 </resources>

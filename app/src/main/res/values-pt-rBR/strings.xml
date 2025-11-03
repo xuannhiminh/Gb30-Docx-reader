@@ -584,4 +584,5 @@
     <string name="update_required">Esta versão está desatualizada. Atualize o aplicativo</string>
     <string name="leave_the_app">Sair da aplicação?</string>
     <string name="splash_content">Seus documentos, todos em um só lugar</string>
+    <string name="rename_success">O nome do arquivo foi alterado com sucesso.</string>
 </resources>

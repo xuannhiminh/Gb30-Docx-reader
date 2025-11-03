@@ -502,4 +502,5 @@
     <string name="update_required">이 버전은 오래되었습니다. 앱을 업데이트하세요</string>
     <string name="leave_the_app">앱을 종료하시겠습니까?</string>
     <string name="splash_content">모든 문서를 한곳에서 관리하세요</string>
+    <string name="rename_success">파일 이름이 성공적으로 변경되었습니다.</string>
 </resources> 

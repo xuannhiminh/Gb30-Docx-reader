@@ -678,4 +678,5 @@
     <string name="docx_document">Docx Documents</string>
     <string name="xlsx_document">XLSX Documents</string>
     <string name="ppt_document">PPT Documents</string>
+    <string name="rename_success">The file name has been changed successfully</string>
 </resources>

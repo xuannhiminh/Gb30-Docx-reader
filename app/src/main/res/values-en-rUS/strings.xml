@@ -398,5 +398,6 @@
     <string name="leave_the_app">Leave the app?</string>
     <string name="click_back_to_app">Then press &lt; to the app</string>
     <string name="splash_content">Your documents, all in one place</string>
+    <string name="rename_success">The file name has been changed successfully.</string>
 
 </resources>

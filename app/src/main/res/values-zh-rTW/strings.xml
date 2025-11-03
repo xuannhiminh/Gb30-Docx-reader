@@ -481,4 +481,5 @@
     <string name="update_required">此版本已過時。請更新應用程式</string>
     <string name="leave_the_app">要離開應用程式嗎？</string>
     <string name="splash_content">您的所有文件都在同一個地方</string>
+    <string name="rename_success">檔案名稱已成功更改。</string>
 </resources>

@@ -593,4 +593,5 @@
     <string name="update_required">Versi ini sudah usang. Silakan perbarui aplikasi</string>
     <string name="leave_the_app">Keluar dari aplikasi?</string>
     <string name="splash_content">Semua dokumen Anda di satu tempat</string>
+    <string name="rename_success">Nama file telah berhasil diubah.</string>
 </resources>

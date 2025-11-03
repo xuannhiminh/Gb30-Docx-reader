@@ -28,14 +28,19 @@ import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdView
 import com.nlbn.ads.callback.NativeCallback
 import com.nlbn.ads.util.Admob
+import documents.office.docx.reader.viewer.editor.databinding.SelectImageDialogBinding
+import java.io.File
+import java.nio.file.Files
+import java.nio.file.attribute.BasicFileAttributes
+import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.Locale
 
-class BottomSheetFileFunction(
-    var fileModel: FileModel,
-    var from: FileTab,
+class BottomSheetImageFunction(
+    var imagePath: String,
     var listener: EzItemListener<FunctionState>
 ) : DialogFragment() {
-    private lateinit var binding: SelectFileDialogBinding
+    private lateinit var binding: SelectImageDialogBinding
     private var isViewDestroyed = false
     private var isAdLoaded = false
 
@@ -44,7 +49,7 @@ class BottomSheetFileFunction(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = SelectFileDialogBinding.inflate(inflater, container, false)
+        binding = SelectImageDialogBinding.inflate(inflater, container, false)
         return binding.root
     }
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -140,71 +145,58 @@ class BottomSheetFileFunction(
             super.onCancel(dialog)
         }
     }
+    private fun getImageInfo(imagePath: String): Triple<String, String, String>? {
+        try {
+            val file = File(imagePath)
+            if (!file.exists()) return null
 
+            // ✅ Tên file
+            val name = file.name
+
+            // ✅ Dung lượng (làm tròn, không có số thập phân)
+            val sizeInBytes = file.length()
+            val sizeText = when {
+                sizeInBytes >= 1024 * 1024 -> String.format(Locale.getDefault(), "%.0f MB", sizeInBytes / (1024.0 * 1024))
+                else -> String.format(Locale.getDefault(), "%.0f KB", sizeInBytes / 1024.0)
+            }
+
+            // ✅ Ngày tạo (dùng metadata hệ thống)
+            val path = file.toPath()
+            val attr = Files.readAttributes(path, BasicFileAttributes::class.java)
+            val creationTime = Date(attr.creationTime().toMillis())
+            val dateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+            val createdDate = dateFormat.format(creationTime)
+
+            return Triple(name, sizeText, createdDate)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return null
+    }
+
+    @SuppressLint("SetTextI18n")
     private fun initViews() {
-        binding.tvTitle.text = fileModel.name
-        @SuppressLint("SetTextI18n")
-        val sizeParts = fileModel.sizeString.split(" ")
-        val sizeValue = sizeParts.getOrNull(0)?.toDoubleOrNull()
-        val sizeUnit = sizeParts.getOrNull(1) ?: ""
-        val roundedSize = if (sizeValue != null) {
-            sizeValue.toInt().toString()
-        } else {
-            fileModel.sizeString
+        imagePath?.let { path ->
+            val info = getImageInfo(path)
+            if (info != null) {
+                val (name, size, date) = info
+
+                binding.tvTitle.text = name
+                binding.tvFileInfo.text = "$size | $date"
+            } else {
+                binding.tvTitle.text = getString(R.string.image)
+                binding.tvFileInfo.text = ""
+            }
+        } ?: run {
+            binding.tvTitle.text = getString(R.string.image)
+            binding.tvFileInfo.text = ""
         }
-        binding.tvFileInfo.text = "${DateUtils.longToDateString(fileModel.date, DateUtils.DATE_FORMAT_7)} | ${"$roundedSize $sizeUnit".uppercase(Locale.ROOT)}"
-        if (!fileModel.isFavorite){
-            binding.starIcon.setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN)
-        }
+
         if (Locale.getDefault().language == "ar") {
             binding.tvTitle.gravity = Gravity.END or Gravity.CENTER_VERTICAL
         } else {
             binding.tvTitle.gravity = Gravity.START or Gravity.CENTER_VERTICAL
         }
-
-        // Icon theo file
-        val isPdf = fileModel.path.endsWith(".pdf", true)
-        val isPpt = fileModel.path.endsWith(".ppt", true) || fileModel.path.endsWith(".pptx", true)
-        val isWord = fileModel.path.endsWith(".doc", true) || fileModel.path.endsWith(".docx", true)
-        val isExcel = fileModel.path.endsWith(".xls", true) || fileModel.path.endsWith(".xlsx", true) || fileModel.path.endsWith(".xlsm", true)
-
-        val fileIconRes = when {
-            isPdf -> R.drawable.icon_pdf
-            isPpt -> R.drawable.icon_ppt
-            isWord -> R.drawable.icon_word
-            isExcel -> R.drawable.icon_excel
-            else -> R.drawable.icon_pdf
-        }
-        binding.fileIcon.setImageResource(fileIconRes)
-
-        //-------------------------------
-        // ẨN/HIỆN CÁC BUTTON CHUYỂN ĐỔI
-        //-------------------------------
-        // Mặc định ẩn hết 3 button
-        binding.funcPdfToWord.isVisible = false
-        binding.funcWordToPdf.isVisible = false
-        binding.funcPptToPdf.isVisible = false
-        binding.funcPrint.isVisible = false
-
-        when {
-            isPdf -> {
-                binding.funcPdfToWord.isVisible = true
-                binding.funcPrint.isVisible = true
-            }
-            isWord -> {
-                binding.funcWordToPdf.isVisible = true
-                binding.funcPrint.isVisible = true
-            }
-            isPpt -> {
-                binding.funcPptToPdf.isVisible = true
-            }
-            isExcel -> {
-
-            }
-        }
-        binding.funcRename.isVisible = !fileModel.isSample
-        binding.funcRemoveRecent.isVisible = fileModel.isRecent
-        binding.funcRemoveFavourite.isVisible = fileModel.isFavorite
     }
     override fun onStart() {
         super.onStart()
@@ -221,10 +213,6 @@ class BottomSheetFileFunction(
 
 
     private fun initListener() {
-        binding.funcShare.setOnClickListener {
-            listener.onListener(FunctionState.SHARE)
-            dismiss()
-        }
 
 
         binding.funcRename.setOnClickListener {
@@ -238,44 +226,14 @@ class BottomSheetFileFunction(
             dismiss()
         }
 
-        binding.starIcon.setOnClickListener {
-            Log.d("BottomSheetFileFunction", "binding.starIcon.setOnClickListener")
-            listener.onListener(FunctionState.FAVORITE)
-            val favoriteColor = if (fileModel.isFavorite) R.color.yellow else R.color.gray
-            binding.starIcon.setColorFilter(
-                binding.root.context.getColor(favoriteColor),
-                android.graphics.PorterDuff.Mode.SRC_IN
-            )
-        }
-        binding.funcPdfToWord.setOnClickListener {
-            listener.onListener(FunctionState.PDF_TO_WORD)
-            dismiss()
-        }
         binding.funcDetailFile.setOnClickListener {
             listener.onListener(FunctionState.DETAIL)
             dismiss()
         }
-        binding.funcWordToPdf.setOnClickListener {
-            listener.onListener(FunctionState.WORD_TO_PDF)
-            dismiss()
-        }
-        binding.funcPptToPdf.setOnClickListener {
-            listener.onListener(FunctionState.PPT_TO_PDF)
-            dismiss()
-        }
+
         binding.funcPrint.setOnClickListener {
             listener.onListener(FunctionState.PRINT)
             dismiss()
         }
-        binding.funcRemoveRecent.setOnClickListener {
-            listener.onListener(FunctionState.CLEAR_RECENT)
-            dismiss()
-        }
-        binding.funcRemoveFavourite.setOnClickListener {
-            listener.onListener(FunctionState.CLEAR_FAVORITE)
-            dismiss()
-        }
-
-
     }
 }

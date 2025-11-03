@@ -122,6 +122,7 @@ import documents.office.docx.reader.viewer.editor.dialog.ExitAppDialog
 import documents.office.docx.reader.viewer.editor.dialog.SortDialog2
 import documents.office.docx.reader.viewer.editor.screen.file.ToolsFragment
 import documents.office.docx.reader.viewer.editor.screen.iap.IapActivityV2
+import documents.office.docx.reader.viewer.editor.screen.image.ImageActivity
 import documents.office.docx.reader.viewer.editor.screen.language.PreferencesHelper
 import documents.office.docx.reader.viewer.editor.screen.reloadfile.FeatureRequestActivity
 import documents.office.docx.reader.viewer.editor.screen.reloadfile.ReloadLoadingActivity
@@ -785,25 +786,19 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
             Log.d(TAG, "handleScreen filePath: $filePath")
             if (!filePath.isNullOrEmpty()) {
                 if (filePath.substringAfterLast(".") == "png" || filePath.substringAfterLast(".") == "jpg"
-                    || filePath.substringAfterLast(".") == "jpeg") {
+                    || filePath.substringAfterLast(".") == "jpeg"|| filePath.substringAfterLast(".") == "webp"
+                    || filePath.substringAfterLast(".") == "gif"|| filePath.substringAfterLast(".") == "bmp"
+                    || filePath.substringAfterLast(".") == "heic") {
                     Log.d(TAG, "handleScreen open image: $filePath")
-                    val listUri = ArrayList<String>();
                     try {
                         val file = File(filePath)
                         if (file.exists()) {
-                            try {
-                                val uri = PathUtils.getMediaStoreUri(this, file)
-                                listUri.add(uri.toString())
-                                showPopupCreatePdf(listUri)
-                                shouldLoadAdsMiddleFiles = false
-                            } catch (e: Exception) {
-                                Log.e(TAG, "Error creating file: $filePath", e)
-                            }
+                            ImageActivity.startWithImagePath(this, filePath)
                         } else {
                             Log.e(TAG, "File does not exist: $filePath")
                         }
-                    } catch (e: IOException) {
-                        Log.e(TAG, "Error getting URI for file: $filePath", e)
+                    } catch (e: Exception) {
+                        Log.e(TAG, "Error opening image: $filePath", e)
                     }
                 } else {
                     Log.d(TAG, "handleScreen open document: $filePath")

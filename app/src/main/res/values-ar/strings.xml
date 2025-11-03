@@ -582,5 +582,6 @@
     <string name="set_docx_reader_as_your_default_word_file_viewer">تعيين <b>%s</b> كعارض افتراضي لملفات Word</string>
     <string name="leave_the_app">مغادرة التطبيق؟</string>
     <string name="splash_content">جميع مستنداتك في مكان واحد</string>
+    <string name="rename_success">تم تغيير اسم الملف بنجاح.</string>
 
 </resources>

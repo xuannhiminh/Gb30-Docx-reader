@@ -588,4 +588,5 @@
     <string name="update_required">Bu sürüm eski. Lütfen uygulamayı güncelleyin</string>
     <string name="leave_the_app">Uygulamadan çıkılsın mı?</string>
     <string name="splash_content">Seus documentos, todos em um só lugar</string>
+    <string name="rename_success">Dosya adı başarıyla değiştirildi.</string>
 </resources>

@@ -506,4 +506,5 @@
     <string name="update_required">Questa versione è obsoleta. Aggiorna l’app</string>
     <string name="leave_the_app">Uscire dall’app?</string>
     <string name="splash_content">I tuoi documenti, tutti in un unico posto</string>
+    <string name="rename_success">Il nome del file è stato cambiato con successo.</string>
 </resources> 

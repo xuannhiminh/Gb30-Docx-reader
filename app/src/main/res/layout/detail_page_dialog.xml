@@ -186,6 +186,7 @@
 
             <!-- Last modified -->
             <TextView
+                android:id="@+id/tv_modified_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/last_modified"

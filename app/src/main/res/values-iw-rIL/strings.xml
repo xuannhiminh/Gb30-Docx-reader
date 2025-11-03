@@ -641,5 +641,6 @@
     </string-array>
     <string name="leave_the_app">לצאת מהאפליקציה?</string>
     <string name="splash_content">כל המסמכים שלך במקום אחד</string>
+    <string name="rename_success">שם הקובץ שונה בהצלחה.</string>
 
 </resources>

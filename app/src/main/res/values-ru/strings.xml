@@ -584,4 +584,5 @@
     <string name="update_required">Эта версия устарела. Пожалуйста, обновите приложение</string>
     <string name="leave_the_app">Выйти из приложения?</string>
     <string name="splash_content">Ваши документы — всё в одном месте</string>
+    <string name="rename_success">Имя файла успешно изменено.</string>
 </resources>

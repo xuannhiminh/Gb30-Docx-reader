@@ -482,4 +482,5 @@
     <string name="update_required">Ця версія застаріла. Будь ласка, оновіть додаток</string>
     <string name="leave_the_app">Вийти з програми?</string>
     <string name="splash_content">Усі ваші документи — в одному місці</string>
+    <string name="rename_success">Назву файлу успішно змінено.</string>
 </resources> 

@@ -506,4 +506,5 @@
     <string name="update_required">Deze versie is verouderd. Werk de app bij</string>
     <string name="leave_the_app">App verlaten?</string>
     <string name="splash_content">Al je documenten op één plek</string>
+    <string name="rename_success">De bestandsnaam is succesvol gewijzigd.</string>
 </resources>
