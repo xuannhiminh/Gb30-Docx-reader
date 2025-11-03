@@ -603,6 +603,10 @@ class NotificationManager(private val context: Context) {
 
 
     fun showCallUseAppNotificationWhenOutApp() {
+        if (!FirebaseRemoteConfigUtil.getInstance().isShowNotificationOutApp()) {
+            Log.d(TAG,"Notification out app not shown remote config" )
+            return
+        }
         var lastTimeShowNotification = NotificationDecider.getLastTimeShowNotification(context)
         if (System.currentTimeMillis() - lastTimeShowNotification < FirebaseRemoteConfigUtil.getInstance().getNotificationOutAppIntervalSecond() * 1000L) {
             Log.d(TAG, "Notification out app not shown, last time: $lastTimeShowNotification")

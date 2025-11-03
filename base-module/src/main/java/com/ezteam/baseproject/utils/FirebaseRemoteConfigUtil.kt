@@ -52,6 +52,7 @@ class FirebaseRemoteConfigUtil private constructor() {
         private const val DEFAULT_SHOW_ADS_MAIN = false
         private const val DEFAULT_ALLOW_SAVE_EXCEL_TO_PDF = false
         private const val DEFAULT_IS_BIG_ADS = true
+        private const val DEFAULT_IS_SHOW_NOTIFICATION_OUT_APP= true
         private const val DEFAULT_NOTIFICATION_OUT_APP_INTERVAL_SECOND = 10
         private const val DEFAULT_TIME_DELAY_SHOWING_EXTEND_ADS = 30
         private const val DEFAULT_TYPE_ADS_DETAIL = 0
@@ -120,6 +121,7 @@ class FirebaseRemoteConfigUtil private constructor() {
         private const val REMOTE_KEY_ALLOW_SAVE_EXCEL_TO_PDF = "allow_save_excel_to_pdf"
         private const val REMOTE_KEY_IS_BIG_ADS = "is_big_ads"
         private const val REMOTE_KEY_NOTIFICATION_OUT_APP_INTERVAL_SECOND = "notification_out_app_interval_second"
+        private const val REMOTE_KEY_IS_SHOW_NOTIFICATION_OUT_APP = "is_show_notification_out_app"
         private const val REMOTE_KEY_ADS_CONFIG = "ads_config"
         private const val REMOTE_KEY_TIME_DELAY_SHOWING_EXTEND_ADS = "time_delay_showing_extend_ads"
 
@@ -191,7 +193,8 @@ class FirebaseRemoteConfigUtil private constructor() {
                 REMOTE_KEY_ALLOW_SAVE_EXCEL_TO_PDF to DEFAULT_ALLOW_SAVE_EXCEL_TO_PDF,
                 REMOTE_KEY_ADS_CONFIG to DEFAULT_ADS_CONFIG,
                 REMOTE_KEY_TIME_DELAY_SHOWING_EXTEND_ADS to DEFAULT_TIME_DELAY_SHOWING_EXTEND_ADS,
-                REMOTE_KEY_NOTIFICATION_OUT_APP_INTERVAL_SECOND to DEFAULT_NOTIFICATION_OUT_APP_INTERVAL_SECOND
+                REMOTE_KEY_NOTIFICATION_OUT_APP_INTERVAL_SECOND to DEFAULT_NOTIFICATION_OUT_APP_INTERVAL_SECOND,
+                REMOTE_KEY_IS_SHOW_NOTIFICATION_OUT_APP to DEFAULT_IS_SHOW_NOTIFICATION_OUT_APP
 
             )
         )
@@ -332,6 +335,9 @@ class FirebaseRemoteConfigUtil private constructor() {
     }
     fun isBigAds(): Boolean {
         return firebaseRemoteConfig.getBoolean(REMOTE_KEY_IS_BIG_ADS)
+    }
+    fun isShowNotificationOutApp(): Boolean {
+        return firebaseRemoteConfig.getBoolean(REMOTE_KEY_IS_SHOW_NOTIFICATION_OUT_APP)
     }
     fun getNotificationOutAppIntervalSecond(): Int {
         return firebaseRemoteConfig.getLong(REMOTE_KEY_NOTIFICATION_OUT_APP_INTERVAL_SECOND).toInt()
