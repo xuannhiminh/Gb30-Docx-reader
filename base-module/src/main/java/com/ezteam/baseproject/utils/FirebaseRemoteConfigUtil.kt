@@ -62,10 +62,11 @@ class FirebaseRemoteConfigUtil private constructor() {
           "open_splash": "ca-app-pub-5904408074441373/4598993358",
           "native_language": "ca-app-pub-5904408074441373/5989899362",
           "banner_navbar": "ca-app-pub-5904408074441373/9693765681",
-          "inter_home": "ca-app-pub-5904408074441373/7848215442",
           "native_between_files_home": "ca-app-pub-5904408074441373/8133272004",
+          "inter_home": "ca-app-pub-5904408074441373/7848215442",
           "native_filedetail": "ca-app-pub-5904408074441373/4471436585",
           "inter_filedetail": "ca-app-pub-5904408074441373/8219109900",
+          "banner_filedetail": "ca-app-pub-5904408074441373/9693765681",
           "open_all": "ca-app-pub-5904408074441373/6906028230",
           "native_between_files_selectfiles": "ca-app-pub-5904408074441373/8380684016",
           "inter_createpdf": "ca-app-pub-5904408074441373/9134937458",
@@ -75,7 +76,6 @@ class FirebaseRemoteConfigUtil private constructor() {
           "inter_reload": "ca-app-pub-5904408074441373/7941700312",
           "native_reload_success": "ca-app-pub-5904408074441373/6535133776",
           "native_exit_app": "ca-app-pub-5904408074441373/5952893816",
-          "banner_filedetail": "ca-app-pub-5904408074441373/9693765681",
           "native_bot_selectfiles": "ca-app-pub-5904408074441373/7278611444"
         }
         """

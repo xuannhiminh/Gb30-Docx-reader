@@ -12,6 +12,7 @@ import android.graphics.RectF;
 import android.os.SystemClock;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.Pair;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import android.widget.FrameLayout;
@@ -34,6 +35,26 @@ import java.util.Collections;
 import java.util.List;
 
 public class StickerView extends FrameLayout {
+
+
+    // Java conversion of the Kotlin constants and clamp method
+    private static final int BYTES_PER_PIXEL = 4;
+    private static final long MAX_BITMAP_BUDGET_BYTES = 100L * 1024 * 1024; // 100 MB
+
+    private Pair<Integer, Integer> clampToBudget(int width, int height) {
+        Log.d("StickerView", "clampToBudget: original size: " + width + "x" + height);
+        long maxPixels = MAX_BITMAP_BUDGET_BYTES / BYTES_PER_PIXEL;
+        long area = (long) width * (long) height;
+        if (area <= maxPixels) {
+            return new Pair<>(width, height);
+        }
+        double scale = Math.sqrt((double) maxPixels / (double) area);
+        int w = Math.max(1, (int) (width * scale));
+        int h = Math.max(1, (int) (height * scale));
+        Log.d("StickerView", "clampToBudget: clamped size: " + w + "x" + h);
+        return new Pair<>(w, h);
+    }
+
 
     private final boolean showIcons;
     private final boolean showBorder;
