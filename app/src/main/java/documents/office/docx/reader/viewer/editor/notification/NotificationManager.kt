@@ -35,19 +35,19 @@ class NotificationManager(private val context: Context) {
         const val HIGH_CHANNEL_ID = "office_app_channel"
         const val CALL_USE_APP_CHANNEL_ID = "office_app_call_use_app_channel"
         const val CALL_USE_APP_OUT_CHANNEL_ID = "office_app_call_use_app_channel"
-        const val HIGH_CHANNEL_NAME = "Office App Notifications"
-        const val CALL_USE_APP_CHANNEL_NAME = "Office App Call Notifications"
-        const val CHANNEL_NAME_SERVICE = "Office App Service Notifications"
-        const val CHANNEL_DESCRIPTION = "Notifications for Office App app"
-        const val CHANNEL_DESCRIPTION_FOREGROUND = "Notifications for Office App service"
+        const val HIGH_CHANNEL_NAME = "Office Reader Notifications"
+        const val CALL_USE_APP_CHANNEL_NAME = "Office Reader Call Notifications"
+        const val CHANNEL_NAME_SERVICE = "Office Reader Service Notifications"
+        const val CHANNEL_DESCRIPTION = "Notifications for Office Reader app"
+        const val CHANNEL_DESCRIPTION_FOREGROUND = "Notifications for Office Reader service"
         const val CHANNEL_ID_FOREGROUND = "office_app_channel_foreground"
         const val GROUP_ID_FOREGROUND = "office_app_group_foreground"
 
         // Channel thông báo cập nhật ứng dụng
         const val CHANNEL_ID_UPDATE = "office_app_channel_update"
         const val GROUP_ID_UPDATE = "office_app_group_update"
-        const val CHANNEL_NAME_UPDATE = "Office App Update Notifications"
-        const val CHANNEL_DESCRIPTION_UPDATE = "Notifications for Office App app updates and new features"
+        const val CHANNEL_NAME_UPDATE = "Office Reader Update Notifications"
+        const val CHANNEL_DESCRIPTION_UPDATE = "Notifications for Office Reader app updates and new features"
 
         // Notification IDs
         const val NEW_FILE_NOTIFICATION_ID = 1001
