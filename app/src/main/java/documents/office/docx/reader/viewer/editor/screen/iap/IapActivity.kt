@@ -394,7 +394,9 @@ class IapActivity : PdfBaseActivity<ActivityIapBinding>() {
         binding.shineFreeTrialContainer.setOnClickListener {
             logEvent("start_trial_IAP_pressed")
             if (isAnnualSelected) {
-                showFreeTrialDialog()
+                logEvent("purchase_year_pressed")
+                IAPUtils.callSubscription(this@IapActivity, IAPUtils.KEY_PREMIUM, IAPUtils.KEY_PREMIUM_YEARLY_PLAN)
+//                showFreeTrialDialog()
             } else {
                 logEvent("purchase_month_pressed")
                 IAPUtils.callSubscription(this@IapActivity, IAPUtils.KEY_PREMIUM, IAPUtils.KEY_PREMIUM_MONTHLY_PLAN)
