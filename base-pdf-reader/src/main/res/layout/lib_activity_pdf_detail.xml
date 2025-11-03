@@ -135,22 +135,30 @@
                     app:itemTextColor="@color/text_bottomview"
                     app:labelVisibilityMode="labeled"
                     app:menu="@menu/menu_bottom_detail" />
+                <FrameLayout
+                    android:id="@+id/layout_native"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent">
+                    <FrameLayout
+                        android:id="@+id/frNativeAds"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    </FrameLayout>
+                </FrameLayout>
+                <RelativeLayout
+                    android:id="@+id/banner_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="parent">
+                    <include
+                        android:id="@+id/shimmer_container_banner"
+                        layout="@layout/layout_banner" />
+                </RelativeLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <FrameLayout
-        android:id="@+id/layout_native"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent">
-        <FrameLayout
-            android:id="@+id/frNativeAds"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </FrameLayout>
-    </FrameLayout>
 
 </LinearLayout>

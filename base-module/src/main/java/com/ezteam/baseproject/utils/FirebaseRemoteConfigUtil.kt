@@ -74,6 +74,7 @@ class FirebaseRemoteConfigUtil private constructor() {
           "inter_reload": "ca-app-pub-5904408074441373/7941700312",
           "native_reload_success": "ca-app-pub-5904408074441373/6535133776",
           "native_exit_app": "ca-app-pub-5904408074441373/5952893816",
+          "banner_filedetail": "ca-app-pub-5904408074441373/9693765681",
           "native_bot_selectfiles": "ca-app-pub-5904408074441373/7278611444"
         }
         """

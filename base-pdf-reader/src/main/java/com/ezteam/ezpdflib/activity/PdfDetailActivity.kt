@@ -1,9 +1,5 @@
 package com.ezteam.ezpdflib.activity
 
-//import com.google.android.gms.ads.ez.EzAdControl
-//import com.google.android.gms.ads.ez.listenner.NativeAdListener
-//import com.google.android.gms.ads.ez.listenner.ShowAdCallback
-//import com.google.android.gms.ads.ez.nativead.AdmobNativeAdView
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
@@ -22,7 +18,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
-import com.ezteam.baseproject.utils.FirebaseRemoteConfigUtil
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
@@ -44,6 +39,7 @@ import com.ezstudio.pdftoolmodule.activity.ExtractActivity
 import com.ezstudio.pdftoolmodule.dialog.AddWatermarkDialog
 import com.ezteam.baseproject.extensions.uriToBitmap
 import com.ezteam.baseproject.photopicker.PickImageActivity
+import com.ezteam.baseproject.utils.FirebaseRemoteConfigUtil
 import com.ezteam.baseproject.utils.IAPUtils
 import com.ezteam.baseproject.utils.PresKey
 import com.ezteam.baseproject.utils.SystemUtils
@@ -86,8 +82,10 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdView
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.jaredrummler.android.colorpicker.ColorPickerDialog
 import com.jaredrummler.android.colorpicker.ColorPickerDialogListener
+import com.nlbn.ads.banner.BannerPlugin
 import com.nlbn.ads.callback.AdCallback
 import com.nlbn.ads.callback.NativeCallback
 import com.nlbn.ads.util.Admob
@@ -97,7 +95,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.apache.commons.io.FilenameUtils
 import java.io.File
-import kotlin.math.abs
 import kotlin.math.max
 
 @Keep
@@ -131,7 +128,13 @@ open class PdfDetailActivity : BasePdfViewerActivity(), MyRecyclerView.TouchList
     var hasOutline = false
 
     private val TAG = "PdfDetailActivity"
-
+    private fun logEvent(event: String) {
+        try {
+            FirebaseAnalytics.getInstance(this).logEvent(event, Bundle())
+        } catch (e: Exception) {
+            Log.e("DefaultReaderGuideDialog", "Error initializing FirebaseAnalytics $e")
+        }
+    }
     companion object {
         val IS_FAVORITE = "is_favorite"
         fun start(
@@ -180,6 +183,23 @@ open class PdfDetailActivity : BasePdfViewerActivity(), MyRecyclerView.TouchList
             activity.startActivity(intent)
         }
     }
+    private fun loadBannerAds(){
+        if (Admob.getInstance().isLoadFullAds && !IAPUtils.isPremium()) {
+            binding.bannerContainer.visibility = View.VISIBLE
+            val config = BannerPlugin.Config()
+            config.defaultRefreshRateSec = 30
+            config.defaultCBFetchIntervalSec = 30
+            config.defaultAdUnitId = FirebaseRemoteConfigUtil.getInstance().getAdsConfigValue("banner_filedetail")
+            config.defaultBannerType = BannerPlugin.BannerType.Adaptive
+            Admob.getInstance().loadBannerPlugin(
+                this,
+                findViewById(R.id.banner_container),
+                findViewById(R.id.shimmer_container_banner),
+                config
+            )
+        } else binding.bannerContainer.visibility = View.GONE
+
+    }
     private fun loadNativeNomedia() {
         if (IAPUtils.isPremium()) {
             binding.layoutNative.visibility = View.GONE
@@ -221,6 +241,31 @@ open class PdfDetailActivity : BasePdfViewerActivity(), MyRecyclerView.TouchList
             )
         } else {
             binding.layoutNative.visibility = View.GONE
+        }
+    }
+    private fun loadCollapsibleBannerNomedia() {
+        if (IAPUtils.isPremium()) {
+            binding.bannerContainer.visibility = View.GONE
+            return
+        }
+
+        if (Admob.getInstance().isLoadFullAds && SystemUtils.isInternetAvailable(this)) {
+            binding.bannerContainer.visibility = View.VISIBLE
+
+
+            val config = BannerPlugin.Config()
+            config.defaultRefreshRateSec = FirebaseRemoteConfigUtil.getInstance().getTimeDelayShowingExtendAds()
+            config.defaultCBFetchIntervalSec = FirebaseRemoteConfigUtil.getInstance().getTimeDelayShowingExtendAds()
+            config.defaultAdUnitId = FirebaseRemoteConfigUtil.getInstance().getAdsConfigValue("banner_filedetail")
+            config.defaultBannerType = BannerPlugin.BannerType.CollapsibleBottom
+            Admob.getInstance().loadBannerPlugin(
+                this,
+                findViewById(R.id.banner_container),
+                findViewById(R.id.shimmer_container_banner),
+                config
+            )
+        } else {
+            binding.bannerContainer.visibility = View.GONE
         }
     }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -300,7 +345,19 @@ open class PdfDetailActivity : BasePdfViewerActivity(), MyRecyclerView.TouchList
 
     override fun initView() {
         super.initView()
-        loadNativeNomedia()
+        if (FirebaseRemoteConfigUtil.getInstance().getTypeAdsDetail() == 0){
+            loadNativeNomedia()
+            binding.bannerContainer.visibility = View.GONE
+        } else if (FirebaseRemoteConfigUtil.getInstance().getTypeAdsDetail() == 1){
+            loadCollapsibleBannerNomedia()
+            binding.layoutNative.visibility = View.GONE
+        } else if (FirebaseRemoteConfigUtil.getInstance().getTypeAdsDetail() == 2){
+            loadBannerAds()
+            binding.layoutNative.visibility = View.GONE
+        } else {
+            loadNativeNomedia()
+            binding.bannerContainer.visibility = View.GONE
+        }
 
         isFavorite = intent.getBooleanExtra(IS_FAVORITE, false)
         allowEdit = intent.getBooleanExtra(ALLOW_EDIT, true)
@@ -679,6 +736,19 @@ open class PdfDetailActivity : BasePdfViewerActivity(), MyRecyclerView.TouchList
         binding.zoomlayout.apply {
             zoomListener = { scale ->
                 viewmodel.currentZoom = scale
+//                val previousZoom = viewmodel.currentZoom
+//
+//                // Log khi zoom thay đổi
+//                Log.i(TAG, "Zoom changed: $previousZoom -> $scale")
+//
+//                // Log khi zoom tự động reset về giới hạn
+//                val minZoom = getMinZoom()
+//                val maxZoom = getMaxZoom()
+//                if (scale <= minZoom) {
+//                    Log.w(TAG, "Zoom automatically reset to minimum: $scale (min: $minZoom)")
+//                } else if (scale >= maxZoom) {
+//                    Log.w(TAG, "Zoom automatically reset to maximum: $scale (max: $maxZoom)")
+//                }
 
                 binding.rcvPdf.clickCount = 0
                 if (viewmodel.mode.value == Mode.Normal) {
@@ -1029,6 +1099,7 @@ open class PdfDetailActivity : BasePdfViewerActivity(), MyRecyclerView.TouchList
             ViewUtils.showView(false, binding.crvBottomControl, 300)
         } else {
             binding.rnRcv.setPadding(0, 0, 0, 0)
+            binding.rnRcv.setPadding(0, 0, 0, 0)
             ViewUtils.hideView(true, toolbarBinding.container, 300)
             ViewUtils.hideView(false, binding.tvPage, 300)
             ViewUtils.hideView(false, binding.crvBottomControl, 300)
@@ -1038,6 +1109,7 @@ open class PdfDetailActivity : BasePdfViewerActivity(), MyRecyclerView.TouchList
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.iv_setting -> {
+                logEvent("detail_setting")
                 if (aVoidDoubleClick() || isFinishing || isDestroyed)
                     return
                 val bottomSheet = BottomSheetDetailFunction(this::bottomFuncListener)
@@ -1048,6 +1120,7 @@ open class PdfDetailActivity : BasePdfViewerActivity(), MyRecyclerView.TouchList
             }
 
             R.id.iv_search -> {
+                logEvent("detail_search")
                 viewmodel.mode.postValue(Mode.Search)
             }
 
@@ -1199,7 +1272,6 @@ open class PdfDetailActivity : BasePdfViewerActivity(), MyRecyclerView.TouchList
                                                 viewmodel.mode.postValue(Mode.Normal)
                                                 Handler(Looper.getMainLooper()).post {
                                                     recreate()
-                                                    TemporaryStorage.isSavingFileNotNoti = false
                                                 }
                                             }
                                         }
@@ -1519,7 +1591,69 @@ open class PdfDetailActivity : BasePdfViewerActivity(), MyRecyclerView.TouchList
             }
         }
     }
-
+    //    private var isGoingToSettingToClearDefaultPdf = false
+//    override fun onResume() {
+//        super.onResume()
+//        val timeEnterFilePdf = PreferencesUtils.getInteger(PresKey.TIME_ENTER_FILE_PDF, 1)
+//        if (!TemporaryStorage.isShowedDefaultReaderRequestPdfDialogInThisSession || isGoingToSettingToClearDefaultPdf) {
+//            TemporaryStorage.isShowedDefaultReaderRequestPdfDialogInThisSession = true
+//        isGoingToSettingToClearDefaultPdf = false
+//            Log.d(TAG, "time enter file pdf = $timeEnterFilePdf")
+//            if (timeEnterFilePdf == 1 || timeEnterFilePdf % 3 == 0 || BuildConfig.DEBUG) {
+//                val defaultPdfViewerResolveInfo = getDefaultPdfViewerClass()
+//                Log.i("DefaultReader", "defaultPdfViewer: $defaultPdfViewerResolveInfo")
+//                if (defaultPdfViewerResolveInfo?.activityInfo == null || defaultPdfViewerResolveInfo.activityInfo.name.contains("internal.app.ResolverActivity")
+//                    || defaultPdfViewerResolveInfo.activityInfo.name.contains("com.android.intentresolver")) { // default reader isn't set => show dialog to set default
+//                    val dialog = DefaultReaderRequestDialog.newInstance("PDF")
+//                    dialog.show(this.supportFragmentManager, "RequestDefaultReaderDialog")
+//                } else if(!defaultPdfViewerResolveInfo.activityInfo.name.contains(packageName) ) { // default reader is set but not our app => show dialog to clear default
+//                    val fragmentManager = supportFragmentManager
+//                    val existingDialog = fragmentManager.findFragmentByTag("DefaultReaderUninstallDialog")
+//                    if (existingDialog == null) {
+//                        val dialog = DefaultReaderUninstallDialog()
+//                        dialog.defaultPdfViewer = defaultPdfViewerResolveInfo
+//                        dialog.listener = {
+//                            isGoingToSettingToClearDefaultPdf = true
+//                        }
+//                        dialog.show(fragmentManager, "DefaultReaderUninstallDialog")
+//                    }
+//                } else { // default reader is our app => do nothing
+//                    Log.d("DefaultReader", "defaultPdfViewer: $defaultPdfViewerResolveInfo")
+//                }
+//            }
+//       }
+//    }
+//    private fun getDefaultPdfViewerClass(): ResolveInfo? {
+//        val fileName = "file_example_PDF.pdf"
+//        val assetManager = assets
+//        val file = File(File(filesDir, "defaultFiles").apply { mkdirs() }, fileName)
+//
+//        // Copy file từ assets nếu chưa tồn tại
+//        if (!file.exists()) {
+//            try {
+//                assetManager.open(fileName).use { inputStream ->
+//                    FileOutputStream(file).use { outputStream ->
+//                        inputStream.copyTo(outputStream)
+//                    }
+//                }
+//            } catch (e: IOException) {
+//                e.printStackTrace()
+//                return null
+//            }
+//        }
+//
+//        val uri = Uri.fromFile(file)
+//
+//        val intent = Intent(Intent.ACTION_VIEW).apply {
+//            setDataAndType(uri, "application/pdf")
+//            flags = Intent.FLAG_ACTIVITY_NEW_TASK
+//        }
+//
+//        val resolveInfo = packageManager.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY)
+//        Log.d("DefaultReader", "resolveInfo: $resolveInfo")
+//
+//        return resolveInfo
+//    }
     private fun showBottomNote() {
         val bottomSheet = BottomSheetNote(
             listener = {
@@ -1554,7 +1688,6 @@ open class PdfDetailActivity : BasePdfViewerActivity(), MyRecyclerView.TouchList
                         if (it) {
                             viewmodel.saveInternal(muPDFCore, success = {
                                 backMain()
-                                TemporaryStorage.isSavingFileNotNoti = false
                             })
                         } else {
                             backMain()
@@ -1579,6 +1712,12 @@ open class PdfDetailActivity : BasePdfViewerActivity(), MyRecyclerView.TouchList
         ) {
             return complete()
         }
+//        if (IAPUtils.isPremium() || !ConsentHelper.getInstance(
+//                this.applicationContext
+//            ).canRequestAds()
+//        ) {
+//            return complete()
+//        }
         val interCallback: AdCallback = object : AdCallback() {
             override fun onNextAction() {
                 Admob.getInstance().setOpenActivityAfterShowInterAds(true)
@@ -1687,20 +1826,24 @@ open class PdfDetailActivity : BasePdfViewerActivity(), MyRecyclerView.TouchList
         if (aVoidDoubleClick()) return false
         when (item.itemId) {
             R.id.menu_note -> {
+                logEvent("func_detail_note")
                 showBottomNote()
             }
 
             R.id.menu_signature -> {
+                logEvent("func_detail_sign_pdf")
                 launchActivity<SignatureActivity>(Config.IntentResult.SELECT_SIGNATURE) {}
             }
 
             R.id.menu_add_image -> {
+                logEvent("func_detail_add_image")
                 launchActivity<PickImageActivity>(Config.IntentResult.SELECT_IMAGE) {
                     putExtra(PickImageActivity.KEY_PICK_ONE, true)
                 }
             }
 
             R.id.menu_add_text -> {
+                logEvent("func_detail_scanner")
                 viewmodel.mode.postValue(Mode.AddText)
             }
         }
