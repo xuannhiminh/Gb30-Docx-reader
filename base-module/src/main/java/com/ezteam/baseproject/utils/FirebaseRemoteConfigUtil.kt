@@ -53,8 +53,8 @@ class FirebaseRemoteConfigUtil private constructor() {
         private const val DEFAULT_ALLOW_SAVE_EXCEL_TO_PDF = false
         private const val DEFAULT_IS_BIG_ADS = true
         private const val DEFAULT_NOTIFICATION_OUT_APP_INTERVAL_SECOND = 10
-
-        private const val DEFAULT_ADS_CONFIG1 = "{}"
+        private const val DEFAULT_TIME_DELAY_SHOWING_EXTEND_ADS = 30
+        private const val DEFAULT_TYPE_ADS_DETAIL = 0
         private const val DEFAULT_ADS_CONFIG = """
         {
           "inter_splash": "ca-app-pub-5904408074441373/5784518250",
@@ -113,12 +113,14 @@ class FirebaseRemoteConfigUtil private constructor() {
         private const val REMOTE_KEY_TURN_OFF_NOTI_SERVICE_IF_PREMIUM = "turn_off_noti_service_if_premium"
         private const val REMOTE_KEY_ALWAYS_REQUEST_NOTI_WHEN_ENTER_APP= "always_request_noti_when_enter_app"
         private const val REMOTE_KEY_IAP_SCREEN_TYPE = "iap_screen_type"
+        private const val REMOTE_KEY_TYPE_ADS_DETAIL = "type_ads_detail"
         private const val REMOTE_KEY_LANGUAGE_ADAPTER_TYPE = "language_adapter_type"
         private const val REMOTE_KEY_SHOW_ADS_MAIN = "show_ads_main"
         private const val REMOTE_KEY_ALLOW_SAVE_EXCEL_TO_PDF = "allow_save_excel_to_pdf"
         private const val REMOTE_KEY_IS_BIG_ADS = "is_big_ads"
         private const val REMOTE_KEY_NOTIFICATION_OUT_APP_INTERVAL_SECOND = "notification_out_app_interval_second"
         private const val REMOTE_KEY_ADS_CONFIG = "ads_config"
+        private const val REMOTE_KEY_TIME_DELAY_SHOWING_EXTEND_ADS = "time_delay_showing_extend_ads"
 
 
 
@@ -181,11 +183,13 @@ class FirebaseRemoteConfigUtil private constructor() {
                 REMOTE_KEY_TURN_OFF_NOTI_SERVICE_IF_PREMIUM to DEFAULT_TURN_OFF_NOTI_SERVICE_IF_PREMIUM,
                 REMOTE_KEY_ALWAYS_REQUEST_NOTI_WHEN_ENTER_APP to DEFAULT_ALWAYS_ASK_NOTI_WHEN_ENTER_APP,
                 REMOTE_KEY_IAP_SCREEN_TYPE to DEFAULT_IAP_SCREEN_TYPE,
+                REMOTE_KEY_TYPE_ADS_DETAIL to DEFAULT_TYPE_ADS_DETAIL,
                 REMOTE_KEY_LANGUAGE_ADAPTER_TYPE to DEFAULT_LANGUAGE_ADAPTER_TYPE,
                 REMOTE_KEY_SHOW_ADS_MAIN to DEFAULT_SHOW_ADS_MAIN,
                 REMOTE_KEY_IS_BIG_ADS to DEFAULT_IS_BIG_ADS,
                 REMOTE_KEY_ALLOW_SAVE_EXCEL_TO_PDF to DEFAULT_ALLOW_SAVE_EXCEL_TO_PDF,
                 REMOTE_KEY_ADS_CONFIG to DEFAULT_ADS_CONFIG,
+                REMOTE_KEY_TIME_DELAY_SHOWING_EXTEND_ADS to DEFAULT_TIME_DELAY_SHOWING_EXTEND_ADS,
                 REMOTE_KEY_NOTIFICATION_OUT_APP_INTERVAL_SECOND to DEFAULT_NOTIFICATION_OUT_APP_INTERVAL_SECOND
 
             )
@@ -313,6 +317,9 @@ class FirebaseRemoteConfigUtil private constructor() {
     fun getIapScreenType(): Int {
         return firebaseRemoteConfig.getLong(REMOTE_KEY_IAP_SCREEN_TYPE).toInt()
     }
+    fun getTypeAdsDetail(): Int {
+        return firebaseRemoteConfig.getLong(REMOTE_KEY_TYPE_ADS_DETAIL).toInt()
+    }
     fun getLanguageAdapterType(): Int {
         return firebaseRemoteConfig.getLong(REMOTE_KEY_LANGUAGE_ADAPTER_TYPE).toInt()
     }
@@ -328,13 +335,29 @@ class FirebaseRemoteConfigUtil private constructor() {
     fun getNotificationOutAppIntervalSecond(): Int {
         return firebaseRemoteConfig.getLong(REMOTE_KEY_NOTIFICATION_OUT_APP_INTERVAL_SECOND).toInt()
     }
+    fun getTimeDelayShowingExtendAds(): Int {
+        return firebaseRemoteConfig.getLong(REMOTE_KEY_TIME_DELAY_SHOWING_EXTEND_ADS).toInt()
+    }
     fun getAdsConfigValue(key: String): String {
         return try {
-            val jsonString = firebaseRemoteConfig.getString(REMOTE_KEY_ADS_CONFIG)
-            val jsonObject = JSONObject(jsonString)
-            jsonObject.optString(key, "")
+            val remoteJsonString = firebaseRemoteConfig.getString(REMOTE_KEY_ADS_CONFIG)
+            val remoteJson = JSONObject(remoteJsonString)
+
+            // Nếu Firebase không có key -> fallback sang default
+            if (remoteJson.has(key)) {
+                remoteJson.optString(key, "")
+            } else {
+                val defaultJson = JSONObject(DEFAULT_ADS_CONFIG)
+                defaultJson.optString(key, "")
+            }
         } catch (e: Exception) {
-            ""
+            try {
+                // fallback hoàn toàn về default khi lỗi parse
+                val defaultJson = JSONObject(DEFAULT_ADS_CONFIG)
+                defaultJson.optString(key, "")
+            } catch (_: Exception) {
+                ""
+            }
         }
     }
 }

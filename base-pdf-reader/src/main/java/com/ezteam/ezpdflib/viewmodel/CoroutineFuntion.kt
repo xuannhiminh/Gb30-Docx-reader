@@ -8,24 +8,33 @@ import android.graphics.Paint
 import android.graphics.RectF
 import android.net.Uri
 import android.util.Log
-import android.view.View
 import androidx.annotation.Keep
 import com.ezteam.nativepdf.MuPDFCore
-import com.ezteam.ezpdflib.extension.bitmapToUriCache
 import com.ezteam.ezpdflib.extension.bitmapToUriCacheLow
 import com.ezteam.ezpdflib.extension.reverstBitmap
-import com.ezteam.ezpdflib.extension.uriToBitmap
 import com.ezteam.ezpdflib.model.SingleSize
 import com.ezteam.ezpdflib.util.Config
 import com.ezteam.ezpdflib.util.PreferencesKey
 import com.ezteam.ezpdflib.util.PreferencesUtils
-import com.ezteam.ezpdflib.util.Utils
 import kotlinx.coroutines.*
-import kotlin.math.abs
 
 @Keep
 class CoroutineFuntion(var scope: CoroutineScope, private var application: Application) {
 
+    companion object {
+        private const val BYTES_PER_PIXEL = 4
+        private const val MAX_BITMAP_BUDGET_BYTES = 100 * 1024 * 1024 // 100 MB
+
+        private fun clampToBudget(width: Int, height: Int): Pair<Int, Int> {
+            val maxPixels = MAX_BITMAP_BUDGET_BYTES / BYTES_PER_PIXEL
+            val area = width.toLong() * height.toLong()
+            if (area <= maxPixels) return width to height
+            val scale = kotlin.math.sqrt(maxPixels.toDouble() / area.toDouble())
+            val w = (width * scale).toInt().coerceAtLeast(1)
+            val h = (height * scale).toInt().coerceAtLeast(1)
+            return w to h
+        }
+    }
 
     fun loadPage(
         muPDFCore: MuPDFCore,
@@ -123,13 +132,9 @@ class CoroutineFuntion(var scope: CoroutineScope, private var application: Appli
         var targetWidth = (baseDrawX * zoom).toInt()
         var targetHeight = (baseDrawY * zoom).toInt()
 
-        // Cap to avoid excessive memory usage (tune as needed)
-        val am = application.getSystemService(Context.ACTIVITY_SERVICE) as android.app.ActivityManager
-        val memoryClassMb = am.memoryClass // in MB
-
-        val maxDim = (memoryClassMb * 1024 * 1024) / 4  // e.g., keep to ~1/4 of heap
-        targetWidth = targetWidth.coerceAtMost(maxDim)
-        targetHeight = targetHeight.coerceAtMost(maxDim)
+        val (cappedW, cappedH) = clampToBudget(targetWidth, targetHeight)
+        targetWidth = cappedW
+        targetHeight = cappedH
 
         var entireBm: Bitmap? = Bitmap.createBitmap(targetWidth, targetHeight, Bitmap.Config.ARGB_8888)
         entireBm?.let {
@@ -199,14 +204,9 @@ class CoroutineFuntion(var scope: CoroutineScope, private var application: Appli
                 var targetWidth = (baseDrawX * zoom).toInt()
                 var targetHeight = (baseDrawY * zoom).toInt()
 
-                // Cap to avoid excessive memory usage (tune as needed)
-                val am = application.getSystemService(Context.ACTIVITY_SERVICE) as android.app.ActivityManager
-                val memoryClassMb = am.memoryClass // in MB
-
-                val maxDim = (memoryClassMb * 1024 * 1024) / 4  // e.g., keep to ~1/4 of heap
-
-                targetWidth = targetWidth.coerceAtMost(maxDim)
-                targetHeight = targetHeight.coerceAtMost(maxDim)
+                val (cappedW, cappedH) = clampToBudget(targetWidth, targetHeight)
+                targetWidth = cappedW
+                targetHeight = cappedH
 
                 // Allocate and render
                 var bmp: Bitmap? = Bitmap.createBitmap(targetWidth, targetHeight, Bitmap.Config.ARGB_8888)

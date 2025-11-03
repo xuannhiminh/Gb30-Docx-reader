@@ -237,107 +237,110 @@ class PageView(context: Context, attrs: AttributeSet?) : AppCompatImageView(cont
 //        return false
 //    }
     override fun onDraw(canvas: Canvas) {
-        super.onDraw(canvas)
-
-        /*Delete*/
-        selectDelete?.let {
-            Paint().apply {
-                style = Paint.Style.STROKE
-                color = Config.BOX_COLOR
-                strokeWidth = 3f
-                canvas.drawRect(
-                    it.left * scaleWidth,
-                    it.top * scaleHeight,
-                    it.right * scaleWidth,
-                    it.bottom * scaleHeight,
-                    this
-                )
-            }
-        }
-
-        /*Ink*/
-        drawing?.let {
-            val paint = Paint().apply {
-                isAntiAlias = true
-                isDither = true
-                strokeJoin = Paint.Join.ROUND
-                strokeCap = Paint.Cap.ROUND
-                style = Paint.Style.STROKE
-            }
-
-            for (index in 0 until it.size) {
-                val arc = it[index]
-                paint.apply {
-                    color = paintDraw[index].getColorSetting()
-                    strokeWidth = paintDraw[index].thickness.toFloat()
-                }
-                val path = Path()
-                if (arc.size >= 2) {
-                    val iit: Iterator<PointF> = arc.iterator()
-                    var p = iit.next()
-                    var mX: Float = p.x * scaleWidth
-                    var mY: Float = p.y * scaleHeight
-                    path.moveTo(mX, mY)
-                    while (iit.hasNext()) {
-                        p = iit.next()
-                        val x: Float = p.x * scaleWidth
-                        val y: Float = p.y * scaleHeight
-                        path.quadTo(mX, mY, (x + mX) / 2, (y + mY) / 2)
-                        mX = x
-                        mY = y
-                    }
-                    path.lineTo(mX, mY)
-                    canvas.drawPath(path, paint)
-                } else {
-                    val p = arc[0]
-                    canvas.drawCircle(
-                        p.x * scaleWidth,
-                        p.y * scaleHeight,
-                        paintDraw[index].thickness.toFloat(),
-                        paint
-                    )
-                    canvas.drawPath(path, paint)
-                }
-            }
-        }
-
-        /*Copy, HighLight, Unline, Stroker*/
-        selectText?.let { selectText ->
-            textWord?.let { text ->
+        try {
+            super.onDraw(canvas)
+            /*Delete*/
+            selectDelete?.let {
                 Paint().apply {
-                    color = Config.HIGHLIGHT_COLOR
+                    style = Paint.Style.STROKE
+                    color = Config.BOX_COLOR
                     strokeWidth = 3f
-                    TextSelector(text, selectText).select(object : TextSelector.TextProcessor {
+                    canvas.drawRect(
+                        it.left * scaleWidth,
+                        it.top * scaleHeight,
+                        it.right * scaleWidth,
+                        it.bottom * scaleHeight,
+                        this
+                    )
+                }
+            }
 
-                        var rect: RectF? = null
+            /*Ink*/
+            drawing?.let {
+                val paint = Paint().apply {
+                    isAntiAlias = true
+                    isDither = true
+                    strokeJoin = Paint.Join.ROUND
+                    strokeCap = Paint.Cap.ROUND
+                    style = Paint.Style.STROKE
+                }
 
-                        override fun onStartLine() {
-                            rect = RectF()
+                for (index in 0 until it.size) {
+                    val arc = it[index]
+                    paint.apply {
+                        color = paintDraw[index].getColorSetting()
+                        strokeWidth = paintDraw[index].thickness.toFloat()
+                    }
+                    val path = Path()
+                    if (arc.size >= 2) {
+                        val iit: Iterator<PointF> = arc.iterator()
+                        var p = iit.next()
+                        var mX: Float = p.x * scaleWidth
+                        var mY: Float = p.y * scaleHeight
+                        path.moveTo(mX, mY)
+                        while (iit.hasNext()) {
+                            p = iit.next()
+                            val x: Float = p.x * scaleWidth
+                            val y: Float = p.y * scaleHeight
+                            path.quadTo(mX, mY, (x + mX) / 2, (y + mY) / 2)
+                            mX = x
+                            mY = y
                         }
+                        path.lineTo(mX, mY)
+                        canvas.drawPath(path, paint)
+                    } else {
+                        val p = arc[0]
+                        canvas.drawCircle(
+                            p.x * scaleWidth,
+                            p.y * scaleHeight,
+                            paintDraw[index].thickness.toFloat(),
+                            paint
+                        )
+                        canvas.drawPath(path, paint)
+                    }
+                }
+            }
 
-                        override fun onWord(word: TextWord?) {
-                            word?.let {
-                                rect?.union(it)
+            /*Copy, HighLight, Unline, Stroker*/
+            selectText?.let { selectText ->
+                textWord?.let { text ->
+                    Paint().apply {
+                        color = Config.HIGHLIGHT_COLOR
+                        strokeWidth = 3f
+                        TextSelector(text, selectText).select(object : TextSelector.TextProcessor {
+
+                            var rect: RectF? = null
+
+                            override fun onStartLine() {
+                                rect = RectF()
                             }
-                        }
 
-                        override fun onEndLine() {
-                            rect?.let {
-                                if (!it.isEmpty) {
-                                    canvas.drawRect(
-                                        it.left * scaleWidth,
-                                        it.top * scaleHeight,
-                                        it.right * scaleWidth,
-                                        it.bottom * scaleHeight,
-                                        this@apply
-                                    )
+                            override fun onWord(word: TextWord?) {
+                                word?.let {
+                                    rect?.union(it)
                                 }
                             }
-                        }
 
-                    })
+                            override fun onEndLine() {
+                                rect?.let {
+                                    if (!it.isEmpty) {
+                                        canvas.drawRect(
+                                            it.left * scaleWidth,
+                                            it.top * scaleHeight,
+                                            it.right * scaleWidth,
+                                            it.bottom * scaleHeight,
+                                            this@apply
+                                        )
+                                    }
+                                }
+                            }
+
+                        })
+                    }
                 }
             }
+        } catch (e: Exception) {
+            Log.d("PageView", "onDraw: ", e)
         }
     }
 
