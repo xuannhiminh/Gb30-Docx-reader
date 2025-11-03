@@ -7,18 +7,20 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
 import android.graphics.Rect
-import android.net.Uri
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.FileProvider
-import com.ezteam.ezpdflib.activity.PdfDetailActivity
 import com.ezteam.ezpdflib.listener.BroadcastSubmodule
 import office.file.ui.OpenFileActivity
-import org.apache.commons.io.FilenameUtils
 import java.io.File
 import java.util.*
 
+fun isX86Device(): Boolean {
+    val abi = System.getProperty("os.arch") ?: return false
+    return abi.contains("x86", ignoreCase = true)
+}
 
 fun Activity.openDocuments(
     path: String,
@@ -30,6 +32,10 @@ fun Activity.openDocuments(
     isFavorite: Boolean = false,
     isReadDone: Boolean = false
 ) {
+    if (isX86Device()) {
+        Toast.makeText(this, "Not support x86 device!", Toast.LENGTH_SHORT).show()
+        return
+    }
 //    if (FilenameUtils.getExtension(path) == "pdf") {
 //        PdfDetailActivity.start(this, path, isFavorite, isReadDone, allowEdit)
 //    } else {
