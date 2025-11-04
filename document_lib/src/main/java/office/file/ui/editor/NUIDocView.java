@@ -894,19 +894,23 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
     }
 
     private void j() {
-        SODocSession var1 = this.mSession;
-        if (var1 != null && this.mPrintButton != null) {
-            byte var2;
-            LinearLayout var3;
-            if (!var1.getDoc().k() || !this.mConfigOptions.l() && !this.mConfigOptions.m()) {
-                var3 = this.mPrintButton;
-                var2 = 8;
-            } else {
-                var3 = this.mPrintButton;
-                var2 = 0;
-            }
+        try {
+            SODocSession var1 = this.mSession;
+            if (var1 != null && this.mPrintButton != null) {
+                byte var2;
+                LinearLayout var3;
+                if (!var1.getDoc().k() || !this.mConfigOptions.l() && !this.mConfigOptions.m()) {
+                    var3 = this.mPrintButton;
+                    var2 = 8;
+                } else {
+                    var3 = this.mPrintButton;
+                    var2 = 0;
+                }
 
-            var3.setVisibility(var2);
+                var3.setVisibility(var2);
+            }
+        } catch (Exception e) {
+            Log.e("NUIDocView", "Failed to load docx", e);
         }
 
     }
@@ -2531,36 +2535,43 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
     }
 
     public boolean documentHasBeenModified() {
-        SODocSession var1 = this.mSession;
-        boolean var2;
-        if (var1 == null || var1.getDoc() == null || this.mFileState == null || !this.mSession.getDoc().getHasBeenModified() && !this.mFileState.hasChanges()) {
-            var2 = false;
-        } else {
-            var2 = true;
+        try {
+            SODocSession var1 = this.mSession;
+            boolean var2;
+            if (var1 == null || var1.getDoc() == null || this.mFileState == null || !this.mSession.getDoc().getHasBeenModified() && !this.mFileState.hasChanges()) {
+                var2 = false;
+            } else {
+                var2 = true;
+            }
+            return var2;
+        } catch (Exception e) {
+            Log.e("StickerView", "Failed to load docx", e);
+            return false;
         }
-
-        return var2;
     }
 
     public void endDocSession(boolean var1) {
-        DocView var2 = this.mDocView;
-        if (var2 != null) {
-            var2.finish();
-        }
-
-        if (this.usePagesView()) {
-            DocListPagesView var3 = this.mDocPageListView;
-            if (var3 != null) {
-                var3.finish();
+        try {
+            DocView var2 = this.mDocView;
+            if (var2 != null) {
+                var2.finish();
             }
-        }
 
-        SODocSession var4 = this.mSession;
-        if (var4 != null) {
-            var4.endSession(var1);
-        }
+            if (this.usePagesView()) {
+                DocListPagesView var3 = this.mDocPageListView;
+                if (var3 != null) {
+                    var3.finish();
+                }
+            }
+            SODocSession var4 = this.mSession;
+            if (var4 != null) {
+                var4.endSession(var1);
+            }
 
-        this.m();
+            this.m();
+        } catch (Exception e) {
+            Log.e("StickerView", "Failed to load docx", e);
+        }
     }
 
     protected void enforceInitialShowUI(View var1) {
@@ -2663,27 +2674,37 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
     }
 
     public SODoc getDoc() {
-        SODocSession var1 = this.mSession;
-        return var1 == null ? null : var1.getDoc();
+        try {
+            SODocSession var1 = this.mSession;
+            return var1 == null ? null : var1.getDoc();
+        } catch (Exception e) {
+            Log.e("StickerView", "Failed to load docx", e);
+            return null;
+        }
     }
 
     public String getDocFileExtension() {
-        SOFileState var1 = this.mState;
-        String var2;
-        if (var1 != null) {
-            var2 = var1.getUserPath();
-        } else {
-            SODocSession var3 = this.mSession;
-            if (var3 == null) {
-                var2 = com.artifex.solib.a.a(this.getContext(), this.mStartUri);
-                return var2;
+        try {
+            SOFileState var1 = this.mState;
+            String var2;
+            if (var1 != null) {
+                var2 = var1.getUserPath();
+            } else {
+                SODocSession var3 = this.mSession;
+                if (var3 == null) {
+                    var2 = com.artifex.solib.a.a(this.getContext(), this.mStartUri);
+                    return var2;
+                }
+
+                var2 = var3.getUserPath();
             }
 
-            var2 = var3.getUserPath();
+            var2 = com.artifex.solib.a.h(var2);
+            return var2;
+        } catch (Exception e) {
+            Log.e("StickerView", "Failed to load docx", e);
+            return com.artifex.solib.a.a(this.getContext(), this.mStartUri);
         }
-
-        var2 = com.artifex.solib.a.h(var2);
-        return var2;
     }
 
     public DocListPagesView getDocListPagesView() {
@@ -3905,9 +3926,13 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
     }
 
     public void onLayoutChanged() {
-        SODocSession var1 = this.mSession;
-        if (var1 != null && var1.getDoc() != null && !this.mFinished) {
-            this.mDocView.onLayoutChanged();
+        try {
+            SODocSession var1 = this.mSession;
+            if (var1 != null && var1.getDoc() != null && !this.mFinished) {
+                this.mDocView.onLayoutChanged();
+            }
+        } catch (Exception e) {
+            Log.e("StickerView", "Failed to load docx", e);
         }
 
     }
@@ -4402,14 +4427,18 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
     }
 
     public void onSelectionChanged() {
-        SODocSession var1 = this.mSession;
-        if (var1 != null && var1.getDoc() != null && !this.mFinished) {
-            this.mDocView.onSelectionChanged();
-            if (this.usePagesView() && this.isPageListVisible()) {
-                this.mDocPageListView.onSelectionChanged();
-            }
+        try {
+            SODocSession var1 = this.mSession;
+            if (var1 != null && var1.getDoc() != null && !this.mFinished) {
+                this.mDocView.onSelectionChanged();
+                if (this.usePagesView() && this.isPageListVisible()) {
+                    this.mDocPageListView.onSelectionChanged();
+                }
 
-            this.updateUIAppearance();
+                this.updateUIAppearance();
+            }
+        } catch (Exception e) {
+            Log.e("StickerView", "Failed to load docx", e);
         }
 
     }
@@ -4761,99 +4790,103 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
     }
 
     private void prepareToFinish() {
-        if (!this.mFinished) {
-            this.mFinished = true;
-            SODocSession var1 = this.mSession;
-            if (var1 != null && var1.getDoc() != null) {
-                this.mSession.getDoc().a((p) null);
-            }
-
-            this.mSearchListener = null;
-            this.m();
-            SOFileState var2 = this.mFileState;
-            if (var2 != null) {
-                var2.closeFile();
-            }
-
-            Utilities.hideKeyboard(this.getContext());
-            DocView var3 = this.mDocView;
-            if (var3 != null) {
-                var3.finish();
-                this.mDocView = null;
-            }
-
-            if (this.usePagesView()) {
-                DocListPagesView var4 = this.mDocPageListView;
-                if (var4 != null) {
-                    var4.finish();
-                    this.mDocPageListView = null;
+        try {
+            if (!this.mFinished) {
+                this.mFinished = true;
+                SODocSession var1 = this.mSession;
+                if (var1 != null && var1.getDoc() != null) {
+                    this.mSession.getDoc().a((p) null);
                 }
-            }
 
-            var1 = this.mSession;
-            if (var1 != null) {
-                var1.abort();
-            }
+                this.mSearchListener = null;
+                this.m();
+                SOFileState var2 = this.mFileState;
+                if (var2 != null) {
+                    var2.closeFile();
+                }
 
-            SODoc var5 = this.getDoc();
-            if (var5 != null) {
-                var5.N();
-            }
+                Utilities.hideKeyboard(this.getContext());
+                DocView var3 = this.mDocView;
+                if (var3 != null) {
+                    var3.finish();
+                    this.mDocView = null;
+                }
 
-            PageAdapter var6 = this.mAdapter;
-            if (var6 != null) {
-                var6.setDoc((SODoc) null);
-            }
+                if (this.usePagesView()) {
+                    DocListPagesView var4 = this.mDocPageListView;
+                    if (var4 != null) {
+                        var4.finish();
+                        this.mDocPageListView = null;
+                    }
+                }
 
-            this.mAdapter = null;
-            Boolean var7 = this.mEndSessionSilent;
-            if (var7 != null) {
-                this.endDocSession(var7);
-                this.mEndSessionSilent = null;
-            }
+                var1 = this.mSession;
+                if (var1 != null) {
+                    var1.abort();
+                }
 
-            if (this.mSession != null) {
-                final ProgressDialog var8 = new ProgressDialog(this.getContext(), R.style.sodk_editor_alert_dialog_style);
-                var8.setMessage(this.getContext().getString(R.string.sodk_editor_wait));
-                var8.setCancelable(false);
-                var8.setIndeterminate(true);
-                var8.getWindow().clearFlags(2);
-                var8.setOnShowListener(new OnShowListener() {
-                    public void onShow(DialogInterface var1) {
-                        (new Handler()).post(new Runnable() {
-                            public void run() {
-                                if (NUIDocView.this.mSession != null) {
-                                    NUIDocView.this.mSession.destroy();
-                                }
-                                try {
-                                    if(!NUIDocView.this.activity().isFinishing() || !NUIDocView.this.activity().isDestroyed()) {
-                                        var8.dismiss();
+                SODoc var5 = this.getDoc();
+                if (var5 != null) {
+                    var5.N();
+                }
+
+                PageAdapter var6 = this.mAdapter;
+                if (var6 != null) {
+                    var6.setDoc((SODoc) null);
+                }
+
+                this.mAdapter = null;
+                Boolean var7 = this.mEndSessionSilent;
+                if (var7 != null) {
+                    this.endDocSession(var7);
+                    this.mEndSessionSilent = null;
+                }
+
+                if (this.mSession != null) {
+                    final ProgressDialog var8 = new ProgressDialog(this.getContext(), R.style.sodk_editor_alert_dialog_style);
+                    var8.setMessage(this.getContext().getString(R.string.sodk_editor_wait));
+                    var8.setCancelable(false);
+                    var8.setIndeterminate(true);
+                    var8.getWindow().clearFlags(2);
+                    var8.setOnShowListener(new OnShowListener() {
+                        public void onShow(DialogInterface var1) {
+                            (new Handler()).post(new Runnable() {
+                                public void run() {
+                                    if (NUIDocView.this.mSession != null) {
+                                        NUIDocView.this.mSession.destroy();
                                     }
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
+                                    try {
+                                        if(!NUIDocView.this.activity().isFinishing() || !NUIDocView.this.activity().isDestroyed()) {
+                                            var8.dismiss();
+                                        }
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
 //
 //                                if (NUIDocView.this.onDoneListener != null) {
 //                                    NUIDocView.this.onDoneListener.done();
 //                                }
 
-                            }
-                        });
+                                }
+                            });
+                        }
+                    });
+                    var8.show();
+                } else {
+                    OnDoneListener var9 = this.a;
+                    if (var9 != null) {
+                        var9.done();
                     }
-                });
-                var8.show();
-            } else {
-                OnDoneListener var9 = this.a;
-                if (var9 != null) {
-                    var9.done();
                 }
-            }
 
-            NUIView.OnDoneListener var10 = this.a;
-            if (var10 != null) {
-                var10.done();
-            }
+                NUIView.OnDoneListener var10 = this.a;
+                if (var10 != null) {
+                    var10.done();
+                }
 
+            }
+        } catch (Exception e) {
+            Log.e("StickerView", "Failed to load docx", e);
         }
     }
 
@@ -5704,28 +5737,32 @@ public class NUIDocView extends FrameLayout implements OnClickListener, OnTabCha
     }
 
     protected void updateUndoUIAppearance() {
-        SODocSession var1 = this.mSession;
-        if (var1 != null && var1.getDoc() != null) {
-            int var2 = this.mSession.getDoc().getCurrentEdit();
-            int var3 = this.mSession.getDoc().getNumEdits();
-            ImageView var6 = this.mUndoButton;
-            boolean var4 = false;
-            boolean var5;
-            if (var2 > 0) {
-                var5 = true;
-            } else {
-                var5 = false;
+        try {
+            SODocSession var1 = this.mSession;
+            if (var1 != null && var1.getDoc() != null) {
+                int var2 = this.mSession.getDoc().getCurrentEdit();
+                int var3 = this.mSession.getDoc().getNumEdits();
+                ImageView var6 = this.mUndoButton;
+                boolean var4 = false;
+                boolean var5;
+                if (var2 > 0) {
+                    var5 = true;
+                } else {
+                    var5 = false;
+                }
+
+                highlightView(var6, var5);
+
+                var6 = this.mRedoButton;
+                var5 = var4;
+                if (var2 < var3) {
+                    var5 = true;
+                }
+
+                highlightView(var6, var5);
             }
-
-            highlightView(var6, var5);
-
-            var6 = this.mRedoButton;
-            var5 = var4;
-            if (var2 < var3) {
-                var5 = true;
-            }
-
-            highlightView(var6, var5);
+        } catch (Exception e) {
+            Log.e("NUIDocView", "Failed to load docx", e);
         }
     }
 

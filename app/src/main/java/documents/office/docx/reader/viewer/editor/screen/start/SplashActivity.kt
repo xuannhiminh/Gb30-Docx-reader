@@ -115,9 +115,11 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
             override fun onFinish() {
                 Log.e("SplashActivity", "Splash timeout reached, navigating to next screen")
+                logEvent("splash_time_out")
                 navigateToNextScreen()
             }
         }.start()
+        Log.e("SplashActivity", "Splash timeout start")
     }
 
     private var mCountDownTimer: CountDownTimer? = null
@@ -138,7 +140,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
                 navigateToNextScreen()
             }
         }.start()
-
+        Log.e("SplashActivity", "Splash timeout start")
     }
 
     override fun onDestroy() {
