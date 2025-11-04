@@ -762,23 +762,27 @@ public class StickerView extends FrameLayout {
     }
 
     protected void addStickerImmediately(@NonNull Sticker sticker, @Sticker.Position int position) {
-        setStickerPosition(sticker, position);
+        try {
+            setStickerPosition(sticker, position);
 
-        float scaleFactor, widthScaleFactor, heightScaleFactor;
+            float scaleFactor, widthScaleFactor, heightScaleFactor;
 
-        widthScaleFactor = (float) getWidth() / sticker.getDrawable().getIntrinsicWidth();
-        heightScaleFactor = (float) getHeight() / sticker.getDrawable().getIntrinsicHeight();
-        scaleFactor = widthScaleFactor > heightScaleFactor ? heightScaleFactor : widthScaleFactor;
+            widthScaleFactor = (float) getWidth() / sticker.getDrawable().getIntrinsicWidth();
+            heightScaleFactor = (float) getHeight() / sticker.getDrawable().getIntrinsicHeight();
+            scaleFactor = widthScaleFactor > heightScaleFactor ? heightScaleFactor : widthScaleFactor;
 
-        sticker.getMatrix()
-                .postScale(scaleFactor / 2, scaleFactor / 2, getWidth() / 2, getHeight() / 2);
+            sticker.getMatrix()
+                    .postScale(scaleFactor / 2, scaleFactor / 2, getWidth() / 2, getHeight() / 2);
 
-        handlingSticker = sticker;
-        stickers.add(sticker);
-        if (onStickerOperationListener != null) {
-            onStickerOperationListener.onStickerAdded(sticker);
+            handlingSticker = sticker;
+            stickers.add(sticker);
+            if (onStickerOperationListener != null) {
+                onStickerOperationListener.onStickerAdded(sticker);
+            }
+            invalidate();
+        } catch (Exception e) {
+            Log.e("StickerView", "Failed to addStickerImmediately", e);
         }
-        invalidate();
     }
 
     protected void setStickerPosition(@NonNull Sticker sticker, @Sticker.Position int position) {
