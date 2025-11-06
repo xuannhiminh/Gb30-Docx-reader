@@ -1437,10 +1437,7 @@
             android:name="documents.office.docx.reader.viewer.editor.notification.NotificationReceiver"
             android:enabled="false"
             android:exported="false" />
-        <receiver
-            android:name="documents.office.docx.reader.viewer.editor.notification.FullScreenNotificationReceiver"
-            android:enabled="false"
-            android:exported="false" />
+
         <receiver
             android:name="documents.office.docx.reader.viewer.editor.notification.NotificationDismissReceiver"
             android:enabled="true"
