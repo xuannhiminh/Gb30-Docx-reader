@@ -585,4 +585,7 @@
     <string name="leave_the_app">Sair da aplicação?</string>
     <string name="splash_content">Os seus documentos, todos num só lugar</string>
     <string name="rename_success">O nome do arquivo foi alterado com sucesso.</string>
+    <string name="full_screen_noti">Ordem é poder — e seus documentos merecem poder.\nOrganize com inteligência. Domine seus dados.</string>
+    <string name="check_now">Verificar agora</string>
+
 </resources>

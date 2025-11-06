@@ -483,4 +483,6 @@
     <string name="leave_the_app">Вийти з програми?</string>
     <string name="splash_content">Усі ваші документи — в одному місці</string>
     <string name="rename_success">Назву файлу успішно змінено.</string>
+    <string name="full_screen_noti">Порядок — це сила, і ваші документи заслуговують на неї.\nОрганізовуйте розумно. Керуйте своїми даними.</string>
+    <string name="check_now">Перевірити зараз</string>
 </resources> 

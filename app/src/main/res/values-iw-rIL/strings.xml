@@ -642,5 +642,7 @@
     <string name="leave_the_app">לצאת מהאפליקציה?</string>
     <string name="splash_content">כל המסמכים שלך במקום אחד</string>
     <string name="rename_success">שם הקובץ שונה בהצלחה.</string>
+    <string name="full_screen_noti">סדר הוא כוח — והמסמכים שלך ראויים לכוח.\nארגן בחוכמה. שלוט בנתונים שלך.</string>
+    <string name="check_now">בדוק עכשיו</string>
 
 </resources>

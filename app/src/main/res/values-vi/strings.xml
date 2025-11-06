@@ -602,5 +602,7 @@
     <string name="leave_the_app">Thoát ứng dụng?</string>
     <string name="splash_content">Tất cả tài liệu của bạn ở cùng một nơi</string>
     <string name="rename_success">Tên tệp đã được đổi thành công.</string>
+    <string name="full_screen_noti">Thứ tự là sức mạnh — và tài liệu của bạn xứng đáng được sức mạnh đó.\nTổ chức thông minh. Làm chủ dữ liệu của bạn.</string>
+    <string name="check_now">Kiểm tra ngay</string>
 
 </resources>

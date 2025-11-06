@@ -56,6 +56,7 @@ class FirebaseRemoteConfigUtil private constructor() {
         private const val DEFAULT_NOTIFICATION_OUT_APP_INTERVAL_SECOND = 10
         private const val DEFAULT_TIME_DELAY_SHOWING_EXTEND_ADS = 30
         private const val DEFAULT_TYPE_ADS_DETAIL = 0
+        private const val DEFAULT_TIME_SHOW_FULL_SCREEN_NOTIFICATION = 11
         private const val DEFAULT_ADS_CONFIG = """
         {
           "inter_splash": "ca-app-pub-5904408074441373/5784518250",
@@ -124,6 +125,7 @@ class FirebaseRemoteConfigUtil private constructor() {
         private const val REMOTE_KEY_IS_SHOW_NOTIFICATION_OUT_APP = "is_show_notification_out_app"
         private const val REMOTE_KEY_ADS_CONFIG = "ads_config"
         private const val REMOTE_KEY_TIME_DELAY_SHOWING_EXTEND_ADS = "time_delay_showing_extend_ads"
+        private const val REMOTE_KEY_TIME_SHOW_FULL_SCREEN_NOTIFICATION = "time_show_full_screen_notification"
 
 
 
@@ -194,7 +196,8 @@ class FirebaseRemoteConfigUtil private constructor() {
                 REMOTE_KEY_ADS_CONFIG to DEFAULT_ADS_CONFIG,
                 REMOTE_KEY_TIME_DELAY_SHOWING_EXTEND_ADS to DEFAULT_TIME_DELAY_SHOWING_EXTEND_ADS,
                 REMOTE_KEY_NOTIFICATION_OUT_APP_INTERVAL_SECOND to DEFAULT_NOTIFICATION_OUT_APP_INTERVAL_SECOND,
-                REMOTE_KEY_IS_SHOW_NOTIFICATION_OUT_APP to DEFAULT_IS_SHOW_NOTIFICATION_OUT_APP
+                REMOTE_KEY_IS_SHOW_NOTIFICATION_OUT_APP to DEFAULT_IS_SHOW_NOTIFICATION_OUT_APP,
+                REMOTE_KEY_TIME_SHOW_FULL_SCREEN_NOTIFICATION to DEFAULT_TIME_SHOW_FULL_SCREEN_NOTIFICATION
 
             )
         )
@@ -344,6 +347,9 @@ class FirebaseRemoteConfigUtil private constructor() {
     }
     fun getTimeDelayShowingExtendAds(): Int {
         return firebaseRemoteConfig.getLong(REMOTE_KEY_TIME_DELAY_SHOWING_EXTEND_ADS).toInt()
+    }
+    fun getTimeShowFullScreenNotification(): Int {
+        return firebaseRemoteConfig.getLong(REMOTE_KEY_TIME_SHOW_FULL_SCREEN_NOTIFICATION).toInt()
     }
     fun getAdsConfigValue(key: String): String {
         return try {

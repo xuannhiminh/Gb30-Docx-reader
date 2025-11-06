@@ -507,4 +507,7 @@
     <string name="leave_the_app">App verlaten?</string>
     <string name="splash_content">Al je documenten op één plek</string>
     <string name="rename_success">De bestandsnaam is succesvol gewijzigd.</string>
+    <string name="full_screen_noti">Orde is macht — en jouw documenten verdienen macht.\nOrganiseer slim. Beheer je gegevens.</string>
+    <string name="check_now">Nu controleren</string>
+
 </resources>

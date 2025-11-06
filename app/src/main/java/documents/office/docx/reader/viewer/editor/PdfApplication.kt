@@ -45,6 +45,7 @@ import documents.office.docx.reader.viewer.editor.screen.language.PreferencesHel
 import documents.office.docx.reader.viewer.editor.screen.start.SplashActivity
 import documents.office.docx.reader.viewer.editor.utils.FCMTopicHandler
 import com.ezteam.baseproject.utils.FirebaseRemoteConfigUtil
+import documents.office.docx.reader.viewer.editor.notification.NotificationScheduler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -106,6 +107,8 @@ class PdfApplication: MyLibApplication(), DefaultLifecycleObserver {
             }
         FirebaseFirestore.getInstance()
         NotificationManager(this).createNotificationChannel()
+        // Schedule daily full-screen reminder at 11:00
+        NotificationScheduler(this).scheduleDailyFullScreen()
 
         // Register lifecycle observer (replaces deprecated @OnLifecycleEvent)
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)

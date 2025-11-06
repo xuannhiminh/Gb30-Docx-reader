@@ -585,4 +585,7 @@
     <string name="leave_the_app">Выйти из приложения?</string>
     <string name="splash_content">Ваши документы — всё в одном месте</string>
     <string name="rename_success">Имя файла успешно изменено.</string>
+    <string name="full_screen_noti">Порядок — это сила, и ваши документы заслуживают силы.\nОрганизуйте умно. Управляйте своими данными.</string>
+    <string name="check_now">Проверить сейчас</string>
+
 </resources>

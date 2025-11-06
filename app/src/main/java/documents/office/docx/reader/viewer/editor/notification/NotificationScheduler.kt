@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.util.Log
+import com.ezteam.baseproject.utils.FirebaseRemoteConfigUtil
 import java.util.Calendar
 
 
@@ -39,6 +40,28 @@ class NotificationScheduler(private val context: Context) {
 
         if (timeInMillis <= System.currentTimeMillis()) {
             add(Calendar.DATE, 1)
+        }
+    }
+
+    private val calendarDailyFullScreen = Calendar.getInstance().apply {
+        set(Calendar.HOUR_OF_DAY, FirebaseRemoteConfigUtil.getInstance().getTimeShowFullScreenNotification())
+        set(Calendar.MINUTE, 0)
+        set(Calendar.SECOND, 0)
+
+        if (timeInMillis <= System.currentTimeMillis()) {
+            add(Calendar.DATE, 1)
+        }
+    }
+
+    private fun canUseExactAlarms(): Boolean {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            try {
+                alarmManager.canScheduleExactAlarms()
+            } catch (_: Throwable) {
+                false
+            }
+        } else {
+            true
         }
     }
 
@@ -79,11 +102,15 @@ class NotificationScheduler(private val context: Context) {
             intent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
-        alarmManager.setExactAndAllowWhileIdle(
-            AlarmManager.RTC_WAKEUP,
-            calendar.timeInMillis,
-            newPendingIntent
-        )
+        if (canUseExactAlarms()) {
+            alarmManager.setExactAndAllowWhileIdle(
+                AlarmManager.RTC_WAKEUP,
+                calendar.timeInMillis,
+                newPendingIntent
+            )
+        } else {
+            alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, newPendingIntent)
+        }
         Log.d(TAG, "scheduleUnfinishedReadingNotification: Alarm scheduled for ${calendar.timeInMillis}")
     }
 
@@ -120,11 +147,15 @@ class NotificationScheduler(private val context: Context) {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        alarmManager.setExactAndAllowWhileIdle(
-            AlarmManager.RTC_WAKEUP,
-            calendar.timeInMillis,
-            pendingIntent
-        )
+        if (canUseExactAlarms()) {
+            alarmManager.setExactAndAllowWhileIdle(
+                AlarmManager.RTC_WAKEUP,
+                calendar.timeInMillis,
+                pendingIntent
+            )
+        } else {
+            alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, pendingIntent)
+        }
         Log.d(TAG, "scheduleForgottenFileNotification: Alarm scheduled for ${calendar.timeInMillis}")
     }
 
@@ -162,12 +193,48 @@ class NotificationScheduler(private val context: Context) {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        alarmManager.setExactAndAllowWhileIdle(
-            AlarmManager.RTC_WAKEUP,
-            calendar.timeInMillis,
-            pendingIntent
-        )
+        if (canUseExactAlarms()) {
+            alarmManager.setExactAndAllowWhileIdle(
+                AlarmManager.RTC_WAKEUP,
+                calendar.timeInMillis,
+                pendingIntent
+            )
+        } else {
+            alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, pendingIntent)
+        }
         Log.d(TAG, "scheduleDailyCallOpenAppNotification: Alarm scheduled for ${calendar.timeInMillis}")
 
+    }
+
+    fun scheduleDailyFullScreen() {
+        val intent = Intent(context, FullScreenNotificationReceiver::class.java)
+
+        val existing = PendingIntent.getBroadcast(
+            context,
+            NotificationManager.DAILY_FULL_SCREEN_NOTIFICATION_ID,
+            intent,
+            PendingIntent.FLAG_NO_CREATE or PendingIntent.FLAG_IMMUTABLE
+        )
+        if (existing != null) {
+            Log.d(TAG, "scheduleDailyFullScreenAt11PM: already scheduled")
+            return
+        }
+
+        val pendingIntent = PendingIntent.getBroadcast(
+            context,
+            NotificationManager.DAILY_FULL_SCREEN_NOTIFICATION_ID,
+            intent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+        if (canUseExactAlarms()) {
+            alarmManager.setExactAndAllowWhileIdle(
+                AlarmManager.RTC_WAKEUP,
+                calendarDailyFullScreen.timeInMillis,
+                pendingIntent
+            )
+        } else {
+            alarmManager.set(AlarmManager.RTC_WAKEUP, calendarDailyFullScreen.timeInMillis, pendingIntent)
+        }
+        Log.d(TAG, "scheduleDailyFullScreenAt5PM: Alarm scheduled for ${calendarDailyFullScreen.timeInMillis}")
     }
 } 

@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE"  />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"  />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
@@ -43,6 +44,13 @@
             android:screenOrientation="portrait"
             android:exported="true"
             tools:node="merge" />
+
+        <activity
+            android:name="documents.office.docx.reader.viewer.editor.screen.start.FullScreenActivity"
+            android:exported="false"
+            android:showWhenLocked="true"
+            android:turnScreenOn="true"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name="documents.office.docx.reader.viewer.editor.screen.start.SplashActivity"

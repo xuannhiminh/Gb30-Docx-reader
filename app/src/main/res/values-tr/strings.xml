@@ -589,4 +589,6 @@
     <string name="leave_the_app">Uygulamadan çıkılsın mı?</string>
     <string name="splash_content">Seus documentos, todos em um só lugar</string>
     <string name="rename_success">Dosya adı başarıyla değiştirildi.</string>
+    <string name="full_screen_noti">Düzen güçtür — ve belgelerin güç sahibi olmayı hak eder.\nAkıllıca düzenleyin. Verilerinize hükmedin.</string>
+    <string name="check_now">Şimdi kontrol et</string>
 </resources>

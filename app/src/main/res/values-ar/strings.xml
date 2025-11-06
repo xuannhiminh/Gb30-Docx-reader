@@ -583,5 +583,7 @@
     <string name="leave_the_app">مغادرة التطبيق؟</string>
     <string name="splash_content">جميع مستنداتك في مكان واحد</string>
     <string name="rename_success">تم تغيير اسم الملف بنجاح.</string>
+    <string name="full_screen_noti">النظام هو القوة - ومستنداتك تستحق القوة.\nنظّم بذكاء. سيطر على بياناتك.</string>
+    <string name="check_now">تحقق الآن</string>
 
 </resources>
