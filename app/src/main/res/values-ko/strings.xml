@@ -503,7 +503,4 @@
     <string name="leave_the_app">앱을 종료하시겠습니까?</string>
     <string name="splash_content">모든 문서를 한곳에서 관리하세요</string>
     <string name="rename_success">파일 이름이 성공적으로 변경되었습니다.</string>
-    <string name="full_screen_noti">질서는 힘입니다 — 문서도 힘을 가질 자격이 있습니다.\n스마트하게 정리하고 데이터를 관리하세요.</string>
-    <string name="check_now">지금 확인</string>
-
 </resources> 

@@ -482,7 +482,4 @@
     <string name="leave_the_app">要離開應用程式嗎？</string>
     <string name="splash_content">您的所有文件都在同一個地方</string>
     <string name="rename_success">檔案名稱已成功更改。</string>
-    <string name="full_screen_noti">秩序就是力量——您的文件值得擁有力量。\n智慧整理，掌控您的資料。</string>
-    <string name="check_now">立即檢查</string>
-
 </resources>

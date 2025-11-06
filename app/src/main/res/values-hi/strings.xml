@@ -586,7 +586,4 @@
     <string name="leave_the_app">ऐप छोड़ें?</string>
     <string name="splash_content">आपके सभी दस्तावेज़ एक ही स्थान पर</string>
     <string name="rename_success">फ़ाइल का नाम सफलतापूर्वक बदल दिया गया है।</string>
-    <string name="full_screen_noti">क्रम शक्ति है — और आपके दस्तावेज़ शक्ति के योग्य हैं।\nस्मार्ट तरीके से व्यवस्थित करें। अपने डेटा पर नियंत्रण रखें।</string>
-    <string name="check_now">अभी जांचें</string>
-
 </resources>

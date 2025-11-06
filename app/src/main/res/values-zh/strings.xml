@@ -483,7 +483,4 @@
     <string name="leave_the_app">退出应用？</string>
     <string name="splash_content">您的所有文档尽在一个地方</string>
     <string name="rename_success">文件名已成功更改。</string>
-    <string name="full_screen_noti">秩序就是力量——您的文档值得拥有力量。\n智能整理，掌控您的数据。</string>
-    <string name="check_now">立即检查</string>
-
 </resources>

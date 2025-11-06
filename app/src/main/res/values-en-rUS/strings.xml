@@ -399,7 +399,5 @@
     <string name="click_back_to_app">Then press &lt; to the app</string>
     <string name="splash_content">Your documents, all in one place</string>
     <string name="rename_success">The file name has been changed successfully.</string>
-    <string name="full_screen_noti">Allow full screen intents to never miss any updates on rewards, promotions, and more</string>
-    <string name="check_now">Check now</string>
 
 </resources>

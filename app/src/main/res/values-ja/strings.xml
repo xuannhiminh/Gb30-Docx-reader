@@ -502,7 +502,4 @@
     <string name="leave_the_app">アプリを終了しますか？</string>
     <string name="splash_content">あなたのドキュメントを1か所で管理</string>
     <string name="rename_success">ファイル名が正常に変更されました。</string>
-    <string name="full_screen_noti">秩序は力であり、あなたのドキュメントも力を持つに値します。\nスマートに整理し、データを管理しましょう。</string>
-    <string name="check_now">今すぐ確認</string>
-
 </resources> 

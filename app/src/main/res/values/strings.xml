@@ -679,6 +679,4 @@
     <string name="xlsx_document">XLSX Documents</string>
     <string name="ppt_document">PPT Documents</string>
     <string name="rename_success">The file name has been changed successfully</string>
-    <string name="full_screen_noti">Allow full screen intents to never miss any updates on rewards, promotions, and more</string>
-    <string name="check_now">Check now</string>
 </resources>

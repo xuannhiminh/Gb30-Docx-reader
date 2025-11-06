@@ -24,7 +24,6 @@ import com.google.firebase.messaging.RemoteMessage
 import documents.office.docx.reader.viewer.editor.R
 import documents.office.docx.reader.viewer.editor.screen.start.SplashActivity
 import com.ezteam.baseproject.utils.FirebaseRemoteConfigUtil
-import documents.office.docx.reader.viewer.editor.screen.start.FullScreenActivity
 import java.io.File
 import kotlin.text.compareTo
 import android.app.NotificationManager as AndroidNotificationManager
@@ -61,7 +60,6 @@ class NotificationManager(private val context: Context) {
         const val SCREENSHOT_NOTIFICATION_ID = 1007
         const val UPDATE_NOTIFICATION_ID = 1008
         const val FCM_NOTIFICATION_ID = 1009
-        const val DAILY_FULL_SCREEN_NOTIFICATION_ID = 1011
     }
     private val firebaseAnalytics: FirebaseAnalytics by lazy {
         FirebaseAnalytics.getInstance(context)
@@ -835,33 +833,6 @@ class NotificationManager(private val context: Context) {
         notificationManager.notify(DAILY_CALL_OPEN_APP_NOTIFICATION_ID, notification)
         logEvent("notification_shown_${DAILY_CALL_OPEN_APP_NOTIFICATION_ID}")
         Log.d(TAG, "showDailyCallOpenAppNotification: Notification shown at ${System.currentTimeMillis()}")
-    }
-
-    fun showDailyFullScreenNotification() {
-        // Intent used for full screen display
-        val fullScreenIntent = Intent(context, FullScreenActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
-        }
-        val fullScreenPendingIntent = PendingIntent.getActivity(
-            context,
-            0,
-            fullScreenIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-        )
-
-        val notification = NotificationCompat.Builder(context,HIGH_CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_notitication)
-            .setContentTitle(context.getString(R.string.app_name))
-            .setContentText(context.getString(R.string.daily_call_open_app_content))
-            .setPriority(NotificationCompat.PRIORITY_HIGH)
-            .setCategory(NotificationCompat.CATEGORY_CALL)
-            .setAutoCancel(true)
-            .setFullScreenIntent(fullScreenPendingIntent, true)
-            .build()
-
-        val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as AndroidNotificationManager
-        manager.notify(DAILY_FULL_SCREEN_NOTIFICATION_ID, notification)
-        logEvent("notification_shown_${DAILY_FULL_SCREEN_NOTIFICATION_ID}")
     }
 
     fun showForgottenFileNotification(fileName: String, filePath: String? = null) {

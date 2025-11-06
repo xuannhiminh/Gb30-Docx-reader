@@ -584,7 +584,5 @@
     <string name="leave_the_app">Quitter l’app ?</string>
     <string name="splash_content">Vos documents, tous en un seul endroit</string>
     <string name="rename_success">Le nom du fichier a été modifié avec succès.</string>
-    <string name="full_screen_noti">L’ordre, c’est le pouvoir — et vos documents méritent le pouvoir.\nOrganisez intelligemment. Maîtrisez vos données.</string>
-    <string name="check_now">Vérifier maintenant</string>
 
 </resources>
