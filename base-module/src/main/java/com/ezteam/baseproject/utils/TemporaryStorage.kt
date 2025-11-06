@@ -10,6 +10,7 @@ object TemporaryStorage {
      @JvmStatic var isObtainConsent: Boolean = false
      @JvmStatic @Volatile var isSavingFileNotNoti = false
      @JvmStatic var isShowedDefaultReaderRequestDialogInThisSession: Boolean = false
+     @JvmStatic var isShowedFullScreenRequestDialogInThisSession: Boolean = false
      @JvmStatic var isShowSatisfiedDialogInThisSession: Boolean = false
      @JvmStatic var isShowedAddToHoneDialog: Boolean = false
      @JvmStatic var timeEnterPdfDetail = 0;
@@ -27,6 +28,7 @@ object TemporaryStorage {
      @JvmStatic
      fun reset() {
         isShowedDefaultReaderRequestDialogInThisSession = false
+         isShowedFullScreenRequestDialogInThisSession = false
         isShowSatisfiedDialogInThisSession = false
         isShowedAddToHoneDialog = false
         timeEnterPdfDetail = 0
