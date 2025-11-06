@@ -119,7 +119,6 @@ import java.util.concurrent.TimeUnit
 import com.ezteam.baseproject.extensions.hasExtraKeyContaining
 import com.nlbn.ads.util.Helper
 import documents.office.docx.reader.viewer.editor.dialog.ExitAppDialog
-import documents.office.docx.reader.viewer.editor.dialog.FullScreenRequestDialog
 import documents.office.docx.reader.viewer.editor.dialog.SortDialog2
 import documents.office.docx.reader.viewer.editor.screen.file.ToolsFragment
 import documents.office.docx.reader.viewer.editor.screen.iap.IapActivityV2
@@ -128,9 +127,6 @@ import documents.office.docx.reader.viewer.editor.screen.language.PreferencesHel
 import documents.office.docx.reader.viewer.editor.screen.reloadfile.FeatureRequestActivity
 import documents.office.docx.reader.viewer.editor.screen.reloadfile.ReloadLoadingActivity
 import documents.office.docx.reader.viewer.editor.utils.FCMTopicHandler
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 
 private const val ALL_FILES_FRAGMENT_INDEX = 0
@@ -747,89 +743,6 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
             && isAcceptManagerStorage()) { // only show guide if user has accepted storage permission
             handler.postDelayed(checkNoDialogToShowReloadGuideRunnable,
                 FirebaseRemoteConfigUtil.getInstance().getDurationDelayShowingReloadGuide()) // delay 5s if it's not first time
-        }
-        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as android.app.NotificationManager
-
-        val hasFullScreenPermission = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-            notificationManager.canUseFullScreenIntent()
-        } else {
-            true
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            if (!hasFullScreenPermission && !TemporaryStorage.isShowedFullScreenRequestDialogInThisSession) {
-                TemporaryStorage.isShowedFullScreenRequestDialogInThisSession = true
-                val dialog = FullScreenRequestDialog().setOnConfirmListener {
-                    try {
-                        requestFullScreenIntentPermission {
-                            if(it) {
-                                val intent = Intent(this, MainActivity::class.java).apply {
-                                    flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-                                }
-                                startActivity(intent)
-                            }
-                        }
-                    } catch (e: Exception) {
-                        Log.e("MainActivity", "Failed to open full screen intent settings: ${e.message}", e)
-                    }
-                }
-                try {
-                    dialog.show(supportFragmentManager, FullScreenRequestDialog::class.java.name)
-                } catch (e: Exception) {
-                    Log.e("MainActivity", "Error showing FullScreenRequestDialog: ${e.message}", e)
-                }
-            }
-        }
-    }
-
-    fun requestFullScreenIntentPermission(result: (Boolean) -> Unit) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) { // Android 14+
-
-            val intent = Intent(android.provider.Settings.ACTION_MANAGE_APP_USE_FULL_SCREEN_INTENT).apply {
-                data = Uri.parse("package:$packageName")
-            }
-
-            val job = lifecycleScope.launch(Dispatchers.IO) {
-                val startTime = System.currentTimeMillis()
-                while (true) {
-                    val granted = (getSystemService(Context.NOTIFICATION_SERVICE) as android.app.NotificationManager).canUseFullScreenIntent()
-                    if (granted) {
-                        withContext(Dispatchers.Main) {
-                            Log.d("BaseActivity", "Full screen intent permission granted")
-                            result(true)
-                        }
-                        break
-                    } else if (System.currentTimeMillis() - startTime < 15000) { // timeout 15s
-                        delay(500)
-                    } else {
-                        Log.d("BaseActivity", "Full screen intent permission timeout")
-                        withContext(Dispatchers.Main) {
-                            result(false)
-                        }
-                        break
-                    }
-                }
-            }
-
-            try {
-                AppOpenManager.getInstance().disableAppResume()
-                activityLauncher.launch(intent) {
-                    Log.d("BaseActivity", "Full screen intent permission result: $it")
-                    job.cancel()
-                    val grantedNow = (getSystemService(Context.NOTIFICATION_SERVICE) as android.app.NotificationManager).canUseFullScreenIntent()
-                    if (grantedNow) {
-                        result(true)
-                    } else {
-                        result(false)
-                    }
-                }
-            } catch (e: Exception) {
-                Log.e("BaseActivity", "Error launching full screen intent permission intent", e)
-                job.cancel()
-                result(false)
-            }
-        } else {
-            // Dưới Android 14 thì không cần quyền này
-            result(true)
         }
     }
 
