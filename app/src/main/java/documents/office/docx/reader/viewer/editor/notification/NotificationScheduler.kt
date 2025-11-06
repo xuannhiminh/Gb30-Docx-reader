@@ -6,8 +6,12 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.util.Log
+import androidx.work.ExistingWorkPolicy
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import com.ezteam.baseproject.utils.FirebaseRemoteConfigUtil
 import java.util.Calendar
+import java.util.concurrent.TimeUnit
 
 
 class NotificationScheduler(private val context: Context) {
@@ -207,34 +211,28 @@ class NotificationScheduler(private val context: Context) {
     }
 
     fun scheduleDailyFullScreen() {
-        val intent = Intent(context, FullScreenNotificationReceiver::class.java)
-
-        val existing = PendingIntent.getBroadcast(
-            context,
-            NotificationManager.DAILY_FULL_SCREEN_NOTIFICATION_ID,
-            intent,
-            PendingIntent.FLAG_NO_CREATE or PendingIntent.FLAG_IMMUTABLE
-        )
-        if (existing != null) {
-            Log.d(TAG, "scheduleDailyFullScreenAt11PM: already scheduled")
-            return
+        val now = System.currentTimeMillis()
+        var triggerAt = calendarDailyFullScreen.timeInMillis
+        if (triggerAt <= now) {
+            // Nếu đã qua giờ hôm nay, chuyển sang ngày mai cùng khung giờ
+            calendarDailyFullScreen.add(Calendar.DATE, 1)
+            triggerAt = calendarDailyFullScreen.timeInMillis
         }
 
-        val pendingIntent = PendingIntent.getBroadcast(
-            context,
-            NotificationManager.DAILY_FULL_SCREEN_NOTIFICATION_ID,
-            intent,
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-        )
-        if (canUseExactAlarms()) {
-            alarmManager.setExactAndAllowWhileIdle(
-                AlarmManager.RTC_WAKEUP,
-                calendarDailyFullScreen.timeInMillis,
-                pendingIntent
+        val delayMs = (triggerAt - now).coerceAtLeast(0)
+
+        val request = OneTimeWorkRequestBuilder<FullScreenNotificationWorker>()
+            .setInitialDelay(delayMs, TimeUnit.MILLISECONDS)
+            .addTag("DAILY_FULL_SCREEN")
+            .build()
+
+        WorkManager.getInstance(context)
+            .enqueueUniqueWork(
+                "DAILY_FULL_SCREEN",
+                ExistingWorkPolicy.KEEP,
+                request
             )
-        } else {
-            alarmManager.set(AlarmManager.RTC_WAKEUP, calendarDailyFullScreen.timeInMillis, pendingIntent)
-        }
-        Log.d(TAG, "scheduleDailyFullScreenAt5PM: Alarm scheduled for ${calendarDailyFullScreen.timeInMillis}")
+
+        Log.d(TAG, "scheduleDailyFullScreen (WorkManager): scheduled after ${delayMs}ms for ${calendarDailyFullScreen.timeInMillis}")
     }
 } 

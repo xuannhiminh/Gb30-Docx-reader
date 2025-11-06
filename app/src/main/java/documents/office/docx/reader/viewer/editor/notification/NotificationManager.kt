@@ -844,7 +844,7 @@ class NotificationManager(private val context: Context) {
         }
         val fullScreenPendingIntent = PendingIntent.getActivity(
             context,
-            0,
+            DAILY_FULL_SCREEN_NOTIFICATION_ID,
             fullScreenIntent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
@@ -853,10 +853,11 @@ class NotificationManager(private val context: Context) {
             .setSmallIcon(R.drawable.ic_notitication)
             .setContentTitle(context.getString(R.string.app_name))
             .setContentText(context.getString(R.string.daily_call_open_app_content))
-            .setPriority(NotificationCompat.PRIORITY_HIGH)
-            .setCategory(NotificationCompat.CATEGORY_CALL)
+            .setPriority(NotificationCompat.PRIORITY_MAX) // Use MAX priority for wake capability
+            .setCategory(NotificationCompat.CATEGORY_CALL) // CALL category allows wake from sleep
             .setAutoCancel(true)
             .setFullScreenIntent(fullScreenPendingIntent, true)
+            .setVisibility(NotificationCompat.VISIBILITY_PUBLIC) // Show on lock screen
             .build()
 
         val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as AndroidNotificationManager
