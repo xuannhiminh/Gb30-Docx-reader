@@ -293,8 +293,12 @@ class IapActivity : PdfBaseActivity<ActivityIapBinding>() {
             finish()    // vào từ main
             return
         }
-        if (PreferencesUtils.getBoolean(com.ezteam.baseproject.utils.PresKey.GET_START, true)) {
-            LanguageActivity.start(this)    // lần đầu tiên
+        if (PreferencesUtils.getBoolean(PresKey.GET_START, true)) {
+            if (PreferencesUtils.getBoolean(PresKey.IS_FIRST_TIME_LANGUAGE, true)) {
+                LanguageActivity.start(this)    // lần đầu tiên
+            } else {
+                MainActivity.start(this)
+            }
         } else {
             MainActivity.start(this)
         }

@@ -1,6 +1,8 @@
 package documents.office.docx.reader.viewer.editor.screen.language
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
@@ -8,6 +10,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewTreeObserver
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import documents.office.docx.reader.viewer.editor.databinding.ActivityLanguageBinding
@@ -244,10 +247,15 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>() {
             }
             showIvDoneChecked()
 
-            val layoutRes = if (FirebaseRemoteConfigUtil.getInstance().isBigAds()) {
+            val layoutRes = if (!PreferencesUtils.getBoolean(PresKey.IS_FIRST_TIME_LANGUAGE, true)){
                 R.layout.ads_native_bot_2
             } else {
-                R.layout.ads_native_bot_no_media_short
+                if (FirebaseRemoteConfigUtil.getInstance().isBigAds() &&
+                    ContextCompat.checkSelfPermission(this,Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED){
+                    R.layout.ads_native_bot_2
+                } else {
+                    R.layout.ads_native_bot_no_media_short
+                }
             }
             val adView = LayoutInflater.from(this@LanguageActivity).inflate(layoutRes, null) as NativeAdView
             binding.layoutNative.removeAllViews()
@@ -257,10 +265,15 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>() {
             return
         } else if (TemporaryStorage.isLoadingNativeAdsLanguage) {
             Log.d(TAG, "loadNativeNomedia: TemporaryStorage.isLoadingNativeAdsLanguage " + TemporaryStorage.isLoadingNativeAdsLanguage)
-            val layoutRes = if (FirebaseRemoteConfigUtil.getInstance().isBigAds()) {
+            val layoutRes = if (!PreferencesUtils.getBoolean(PresKey.IS_FIRST_TIME_LANGUAGE, true)){
                 R.layout.ads_native_bot_loading_2
             } else {
-                R.layout.ads_native_loading_short
+                if (FirebaseRemoteConfigUtil.getInstance().isBigAds() &&
+                    ContextCompat.checkSelfPermission(this,Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED){
+                    R.layout.ads_native_bot_loading_2
+                } else {
+                    R.layout.ads_native_loading_short
+                }
             }
             val loadingView = LayoutInflater.from(this).inflate(layoutRes, null)
             binding.layoutNative.removeAllViews()
@@ -278,10 +291,15 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>() {
                     showIvDoneChecked()
 
                     // Inflate and bind your NativeAdView
-                    val layoutRes = if (FirebaseRemoteConfigUtil.getInstance().isBigAds()) {
+                    val layoutRes = if (!PreferencesUtils.getBoolean(PresKey.IS_FIRST_TIME_LANGUAGE, true)){
                         R.layout.ads_native_bot_2
                     } else {
-                        R.layout.ads_native_bot_no_media_short
+                        if (FirebaseRemoteConfigUtil.getInstance().isBigAds() &&
+                            ContextCompat.checkSelfPermission(this,Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED){
+                            R.layout.ads_native_bot_2
+                        } else {
+                            R.layout.ads_native_bot_no_media_short
+                        }
                     }
                     val adView = LayoutInflater.from(this@LanguageActivity).inflate(layoutRes, null) as NativeAdView
                     binding.layoutNative.removeAllViews()
@@ -302,10 +320,15 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>() {
 
             return
         } else {
-            val layoutRes = if (FirebaseRemoteConfigUtil.getInstance().isBigAds()) {
+            val layoutRes = if (!PreferencesUtils.getBoolean(PresKey.IS_FIRST_TIME_LANGUAGE, true)){
                 R.layout.ads_native_bot_loading_2
             } else {
-                R.layout.ads_native_loading_short
+                if (FirebaseRemoteConfigUtil.getInstance().isBigAds() &&
+                    ContextCompat.checkSelfPermission(this,Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED){
+                    R.layout.ads_native_bot_loading_2
+                } else {
+                    R.layout.ads_native_loading_short
+                }
             }
             val loadingView = LayoutInflater.from(this).inflate(layoutRes, null)
             binding.layoutNative.removeAllViews()
@@ -315,10 +338,15 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>() {
                 override fun onNativeAdLoaded(nativeAd: NativeAd?) {
                     if (isFinishing || isDestroyed) return
                     showIvDoneChecked()
-                    val layoutRes = if (FirebaseRemoteConfigUtil.getInstance().isBigAds()) {
+                    val layoutRes = if (!PreferencesUtils.getBoolean(PresKey.IS_FIRST_TIME_LANGUAGE, true)){
                         R.layout.ads_native_bot_2
                     } else {
-                        R.layout.ads_native_bot_no_media_short
+                        if (FirebaseRemoteConfigUtil.getInstance().isBigAds() &&
+                            ContextCompat.checkSelfPermission(this@LanguageActivity,Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED){
+                            R.layout.ads_native_bot_2
+                        } else {
+                            R.layout.ads_native_bot_no_media_short
+                        }
                     }
                     val adView = LayoutInflater.from(this@LanguageActivity).inflate(layoutRes, null) as NativeAdView
                     binding.layoutNative.removeAllViews()
@@ -414,6 +442,7 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>() {
         super.onStop()
         TemporaryStorage.nativeAdPreload = null
         PreferencesUtils.putBoolean(PresKey.FIRST_TIME_OPEN_APP, false)
+        PreferencesUtils.putBoolean(PresKey.IS_FIRST_TIME_LANGUAGE, false)
     }
 
     override fun onDestroy() {

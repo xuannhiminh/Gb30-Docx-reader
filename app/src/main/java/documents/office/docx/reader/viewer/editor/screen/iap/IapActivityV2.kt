@@ -17,7 +17,6 @@ import com.ezteam.baseproject.iapLib.v3.Constants
 import com.ezteam.baseproject.iapLib.v3.PurchaseInfo
 import com.ezteam.baseproject.utils.IAPUtils
 import com.ezteam.baseproject.utils.PreferencesUtils
-import com.ezteam.baseproject.utils.PresKey
 import com.ezteam.baseproject.utils.TemporaryStorage
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.firebase.analytics.FirebaseAnalytics
@@ -35,6 +34,7 @@ import documents.office.docx.reader.viewer.editor.screen.start.RequestAllFilePer
 import documents.office.docx.reader.viewer.editor.utils.AppUtils
 import documents.office.docx.reader.viewer.editor.utils.FCMTopicHandler
 import com.ezteam.baseproject.utils.FirebaseRemoteConfigUtil
+import documents.office.docx.reader.viewer.editor.common.PresKey
 import java.util.Locale
 
 
@@ -161,7 +161,11 @@ class IapActivityV2 : PdfBaseActivity<ActivityIapV3Binding>() {
             return
         }
         if (PreferencesUtils.getBoolean(PresKey.GET_START, true)) {
-            LanguageActivity.start(this)    // lần đầu tiên
+            if (PreferencesUtils.getBoolean(PresKey.IS_FIRST_TIME_LANGUAGE, true)) {
+                LanguageActivity.start(this)    // lần đầu tiên
+            } else {
+                MainActivity.start(this)
+            }
         } else {
             MainActivity.start(this)
         }

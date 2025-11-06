@@ -182,6 +182,7 @@ class MainActivity : PdfBaseActivity<ActivityMainBinding>() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        PreferencesUtils.putBoolean(PresKey.GET_START, false)
         firebaseAnalytics = FirebaseAnalytics.getInstance(this)
         val timeoutSec = FirebaseRemoteConfigUtil.getInstance().getIntervalShowInterSecond()
         allowShowAdsAt = System.currentTimeMillis() + timeoutSec * 1000

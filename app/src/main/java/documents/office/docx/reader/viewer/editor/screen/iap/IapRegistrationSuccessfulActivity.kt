@@ -8,7 +8,7 @@ import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.FragmentActivity
 import com.ezteam.baseproject.extensions.hasExtraKeyContaining
 import com.ezteam.baseproject.utils.PreferencesUtils
-import com.ezteam.baseproject.utils.PresKey
+import documents.office.docx.reader.viewer.editor.common.PresKey
 import documents.office.docx.reader.viewer.editor.databinding.ActivityIapRegistrationSuccessfulBinding
 import documents.office.docx.reader.viewer.editor.screen.base.PdfBaseActivity
 import documents.office.docx.reader.viewer.editor.screen.language.LanguageActivity
@@ -69,7 +69,11 @@ class IapRegistrationSuccessfulActivity : PdfBaseActivity<ActivityIapRegistratio
             return
         }
         if (PreferencesUtils.getBoolean(PresKey.GET_START, true)) {
-            LanguageActivity.start(this)    // lần đầu tiên
+            if (PreferencesUtils.getBoolean(PresKey.IS_FIRST_TIME_LANGUAGE, true)) {
+                LanguageActivity.start(this)    // lần đầu tiên
+            } else {
+                MainActivity.start(this)
+            }
         } else {
             MainActivity.start(this)
         }

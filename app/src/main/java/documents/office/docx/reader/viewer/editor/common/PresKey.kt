@@ -5,6 +5,7 @@ object PresKey {
 
     const val GET_START = "get start"
     const val FIRST_TIME_OPEN_APP = "FIRST_TIME_OPEN_APP"
+    const val IS_FIRST_TIME_LANGUAGE = "IS_FIRST_TIME_LANGUAGE"
 
     const val SORT_STATE = "sort_state"
 

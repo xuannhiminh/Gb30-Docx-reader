@@ -612,21 +612,19 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
         }
 
         if (PreferencesUtils.getBoolean(PresKey.GET_START, true)) {
-//            if (ContextCompat.checkSelfPermission(this,
-//                    Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-//                Log.i("SplashActivity", "Notification permission not granted, go to Intro")
-//                logEvent("splash_to_intro")
-////                IntroActivity.start(this)
-//                PreferencesUtils.putBoolean(PresKey.FIRST_TIME_OPEN_APP, false)
-//                LanguageActivity.start(this@SplashActivity)
-//                finish()
-//                return
-//            }
-            TemporaryStorage.shouldLoadAdsLanguageScreen = true
-            try {
-                LanguageActivity.start(this@SplashActivity)
-            } catch (e: Exception) {
-                Log.d("SplashActivity", "Failed to start Language Activity")
+            if (PreferencesUtils.getBoolean(PresKey.IS_FIRST_TIME_LANGUAGE, true)) {
+                TemporaryStorage.shouldLoadAdsLanguageScreen = true
+                try {
+                    LanguageActivity.start(this@SplashActivity)
+                } catch (e: Exception) {
+                    Log.d("SplashActivity", "Failed to start Language Activity")
+                }
+            } else {
+                try {
+                    MainActivity.start(this@SplashActivity)
+                } catch (e: Exception) {
+                    Log.d("SplashActivity", "Failed to start Main Activity")
+                }
             }
             finish()
         } else {
