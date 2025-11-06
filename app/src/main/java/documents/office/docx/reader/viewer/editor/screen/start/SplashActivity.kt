@@ -48,9 +48,12 @@ import documents.office.docx.reader.viewer.editor.service.NotificationForeground
 import documents.office.docx.reader.viewer.editor.utils.AppUtils
 import documents.office.docx.reader.viewer.editor.utils.FCMTopicHandler
 import com.ezteam.baseproject.utils.FirebaseRemoteConfigUtil
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withContext
@@ -108,21 +111,33 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
         handleIntent()
         super.onCreate(savedInstanceState)
 
-        mCountDownTimer?.cancel()
-        mCountDownTimer = object : CountDownTimer(FirebaseRemoteConfigUtil.getInstance().getTimeoutLoadInterMillisecond()+10000L, FirebaseRemoteConfigUtil.getInstance().getTimeoutLoadInterMillisecond()) {
-            override fun onTick(millisUntilFinished: Long) {
-            }
+        cancelSplashTimeout()
+        startSplashTimeout()
 
-            override fun onFinish() {
-                Log.e("SplashActivity", "Splash timeout reached, navigating to next screen")
-                logEvent("splash_time_out")
-                navigateToNextScreen()
-            }
-        }.start()
-        Log.e("SplashActivity", "Splash timeout start")
     }
 
-    private var mCountDownTimer: CountDownTimer? = null
+    private var mTimeoutJob: Job? = null
+
+    private fun startSplashTimeout() {
+        cancelSplashTimeout()
+        mTimeoutJob = lifecycleScope.launch {
+            val timeout = FirebaseRemoteConfigUtil.getInstance().getTimeoutLoadInterMillisecond() + 10_000L
+            try {
+                delay(timeout)
+                Log.e("SplashActivity", "Splash timeout reached (coroutine), navigating to next screen")
+                navigateToNextScreen()
+            } catch (e: CancellationException) {
+                Log.i("SplashActivity", "Splash timeout cancelled")
+            } catch (t: Throwable) {
+                Log.e("SplashActivity", "Error in splash timeout", t)
+            }
+        }
+    }
+
+    private fun cancelSplashTimeout() {
+        mTimeoutJob?.cancel()
+        mTimeoutJob = null
+    }
 
     override fun onResume() {
         super.onResume()
@@ -130,22 +145,12 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        mCountDownTimer?.cancel()
-        mCountDownTimer = object : CountDownTimer(FirebaseRemoteConfigUtil.getInstance().getTimeoutLoadInterMillisecond()+10000L, FirebaseRemoteConfigUtil.getInstance().getTimeoutLoadInterMillisecond()) {
-            override fun onTick(millisUntilFinished: Long) {
-            }
-
-            override fun onFinish() {
-                Log.e("SplashActivity", "Splash timeout reached, navigating to next screen")
-                navigateToNextScreen()
-            }
-        }.start()
-        Log.e("SplashActivity", "Splash timeout start")
-    }
+        cancelSplashTimeout()
+        startSplashTimeout()    }
 
     override fun onDestroy() {
         super.onDestroy()
-        mCountDownTimer?.cancel()
+        cancelSplashTimeout()
     }
 
     override fun onStop() {
@@ -215,21 +220,19 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
                         override fun onInterstitialLoad(ad: InterstitialAd?) {
                             Log.i("SplashActivity", "Inter Ad loaded in ${System.currentTimeMillis() - startTime} ms")
                             if (cont.isActive) cont.resume(ad)
-                            mCountDownTimer?.cancel()
-
+                            cancelSplashTimeout()
                         }
 
                         override fun onInterstitialLoadFaild() {
                             Log.e("SplashActivity", "Inter Ad failed to load")
                             if (cont.isActive) cont.resume(null)
-                            mCountDownTimer?.cancel()
+                            cancelSplashTimeout()
 
                         }
                         override fun onAdFailedToLoad(var1: LoadAdError?) {
                             Log.e("SplashActivity", "Inter Ad failed to load")
                             if (cont.isActive) cont.resume(null)
-                            mCountDownTimer?.cancel()
-
+                            cancelSplashTimeout()
                         }
                     }
                     Admob.getInstance().setOpenActivityAfterShowInterAds(false)
@@ -293,19 +296,22 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
                             override fun onAdSplashReady() {
                                 Log.i("SplashActivity", "Open ad ready in ${System.currentTimeMillis() - startTime} ms")
                                 if (cont.isActive) cont.resume(Unit)
-                                mCountDownTimer?.cancel()
+                                cancelSplashTimeout()
+
                             }
 
                             override fun onAdFailedToLoad(var1: LoadAdError?) {
                                 Log.e("SplashActivity", "Open ad failed to load")
                                 if (cont.isActive) cont.resume(Unit)
-                                mCountDownTimer?.cancel()
+                                cancelSplashTimeout()
+
                             }
 
                             override fun onNextAction() {
                                 Log.e("SplashActivity", "Open ad failed to load onNextAction")
                                 if (cont.isActive) cont.resume(Unit)
-                                mCountDownTimer?.cancel()
+                                cancelSplashTimeout()
+
                             }
                         }
                     )
@@ -349,6 +355,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 //            getString(R.string.inter_splash)
 //        }
     }
+
     private suspend fun fetchRemoteConfigSuspend(): Boolean = suspendCancellableCoroutine { cont ->
         val startTime = System.currentTimeMillis()
         Log.i(TAG, "fetchRemoteConfigSuspend started at $startTime ms")
@@ -361,6 +368,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
             }
         }
     }
+
     private suspend fun initBillingAndAwait(): Unit = suspendCancellableCoroutine { cont ->
         val startTimeT = System.currentTimeMillis()
         Log.i("SplashActivity", "initAndRegister called at $startTimeT ms")
@@ -381,6 +389,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
                 IAPUtils.loadOwnedPurchasesFromGoogleAsync { success ->
                     Log.i("SplashActivity", "loadOwnedPurchasesFromGoogleAsync: $success")
                     // resume the coroutine
+                    FCMTopicHandler.resetFCMTopic(this@SplashActivity)
                     if (cont.isActive) cont.resume(Unit)
                 }
                 // unregister listener right away
@@ -407,7 +416,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
                     val startTime = System.currentTimeMillis()
                     Log.i("SplashActivity", "Splash flow start at $startTime ms")
                     val loadFileDeferred = async { migrateFileDataAndHandleIntentOpeningFile() }
-                 //   val loadInterAdDeferred   = async { loadInterstitialAd(ads_inter_id) }
+                    //   val loadInterAdDeferred   = async { loadInterstitialAd(ads_inter_id) }
                     val billingAndAdsDeferred = async {
                         val parallelStartTime = System.currentTimeMillis()
                         Log.i(TAG, "Starting parallel execution of billing and remote config at $parallelStartTime ms")
@@ -481,7 +490,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
     }
 
     private fun showAdsOpenAndPreLoadNativeAds() {
-        mCountDownTimer?.cancel()
+        cancelSplashTimeout()
         showAdsOpen()
         val isFistTimeOpenApp = PreferencesUtils.getBoolean(PresKey.GET_START, true)
         Log.i("SplashActivity", "isFistTimeOpenApp = $isFistTimeOpenApp")
@@ -493,7 +502,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
     private suspend fun  handleIntentOpeningFile() {
         if(intent.getBooleanExtra("${this.packageName}.isToSetDefaultReader", false)) {
-            Log.i("SplashActivity", "isToSetDefaultReader OK")
+            Log.i("MainActivity", "isToSetDefaultReader OK")
             intent.removeExtra("${this.packageName}.isToSetDefaultReader")
             intent?.data = null
             return
@@ -546,7 +555,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
                     }
                 }
             } else {
-             //   val pathFromDict = viewModel.searchFileFromDict(it)
+                //   val pathFromDict = viewModel.searchFileFromDict(it)
                 if (false) { // temporary comment searchFileFromDict because same file name are not trusted
                     Log.d("File", "Path: From dict")
 //                    Log.d("File", "Path: From dict")
@@ -591,56 +600,63 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
     private fun navigateToNextScreen() {
         Log.d(TAG, "navigateToNextScreen called")
-        if (FirebaseRemoteConfigUtil.getInstance().getTypeOfStartUp() == FirebaseRemoteConfigUtil.Companion.StartUpType.ADS_OPEN_IAP_LANGUAGE.value ||
-            FirebaseRemoteConfigUtil.getInstance().getTypeOfStartUp() == FirebaseRemoteConfigUtil.Companion.StartUpType.IAP_ADS_INTER_LANGUAGE.value) {
-            if (!IAPUtils.isPremium() && BillingProcessor.isIabServiceAvailable(this)) {
+        // Launch a short coroutine to move blocking checks off main
+        lifecycleScope.launch {
+            val showIap = withContext(Dispatchers.IO) {
+                try {
+                    val startUpType = FirebaseRemoteConfigUtil.getInstance().getTypeOfStartUp()
+                    if (startUpType == FirebaseRemoteConfigUtil.Companion.StartUpType.ADS_OPEN_IAP_LANGUAGE.value ||
+                        startUpType == FirebaseRemoteConfigUtil.Companion.StartUpType.IAP_ADS_INTER_LANGUAGE.value) {
+                        val premium = IAPUtils.isPremium()            // SharedPreferences / disk
+                        val iabAvailable = BillingProcessor.isIabServiceAvailable(this@SplashActivity) // PackageManager / IPC
+                        !premium && iabAvailable
+                    } else false
+                } catch (t: Throwable) {
+                    Log.e("SplashActivity", "Error checking IAP availability", t)
+                    true
+                }
+            }
+
+            if (showIap) {
                 intent.apply {
                     putExtra("${packageName}.isFromSplash", true)
                 }
                 try {
                     when (FirebaseRemoteConfigUtil.getInstance().getIapScreenType()) {
-                        0 -> IapActivityV2.start(this)
-                        1 -> IapActivity.start(this)
-                        else -> IapActivityV2.start(this)
+                        0 -> IapActivityV2.start(this@SplashActivity)
+                        1 -> IapActivity.start(this@SplashActivity)
+                        else -> IapActivityV2.start(this@SplashActivity)
                     }
                 } catch (e: Exception) {
-                    Log.d("SplashActivity", "Failed to start IAP activity")
+                    Log.d("SplashActivity", "Failed to start IAP activity", e)
                 }
                 finish()
-                return
+                return@launch
             }
-        }
 
-        if (PreferencesUtils.getBoolean(PresKey.GET_START, true)) {
-            if (PreferencesUtils.getBoolean(PresKey.IS_FIRST_TIME_LANGUAGE, true)) {
+            // Continue rest of navigation logic on Main (we are already on Main after coroutine)
+            if (PreferencesUtils.getBoolean(PresKey.GET_START, true)) {
                 TemporaryStorage.shouldLoadAdsLanguageScreen = true
                 try {
                     LanguageActivity.start(this@SplashActivity)
                 } catch (e: Exception) {
-                    Log.d("SplashActivity", "Failed to start Language Activity")
+                    Log.d("SplashActivity", "Failed to start Language Activity", e)
                 }
-            } else {
-                try {
-                    MainActivity.start(this@SplashActivity)
-                } catch (e: Exception) {
-                    Log.d("SplashActivity", "Failed to start Main Activity")
-                }
+                finish()
+                return@launch
             }
-            finish()
-        } else {
-            Log.d("SplashActivity", "isFromWidget = ${this@SplashActivity.intent.getBooleanExtra("${this@SplashActivity.packageName}.isFromWidget", false)}")
-            Log.d("SplashActivity", "isFromNotification = ${this@SplashActivity.intent.getBooleanExtra("${this@SplashActivity.packageName}.isFromNotification", false)}")
-            if (ContextCompat.checkSelfPermission(this,
+
+            if (ContextCompat.checkSelfPermission(this@SplashActivity,
                     Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED &&
                 FirebaseRemoteConfigUtil.getInstance().isAlwaysRequestNotiWhenEnterApp()
             ) {
                 Log.i("SplashActivity", "Notification permission not granted, go to Noti request")
-                RequestNotificationPermissionActivity.start(this)
+                RequestNotificationPermissionActivity.start(this@SplashActivity)
             } else {
                 try {
                     MainActivity.start(this@SplashActivity)
                 } catch (e: Exception) {
-                    Log.d("SplashActivity", "Failed to start Main Activity")
+                    Log.d("SplashActivity", "Failed to start Main Activity", e)
                 }
 
             }
@@ -814,11 +830,11 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 //                    Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
 //                requestNotificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
 //            } else {
-//                Log.d("SplashActivity", "Notification permission granted, no need to request")
+//                Log.d("MainActivity", "Notification permission granted, no need to request")
 //                onNotificationPermissionGranted()
 //            }
 //        } else {
-//            Log.d("SplashActivity", "Notification permission not required for SDK < 33")
+//            Log.d("MainActivity", "Notification permission not required for SDK < 33")
 //            if (ContextCompat.checkSelfPermission(this,
 //                    Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
 //                onNotificationPermissionDenied()
@@ -830,7 +846,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
     private fun onNotificationPermissionGranted() {
         PreferencesUtils.putBoolean("NOTIFICATION", true)
-        Log.d("SplashActivity", "Notification permission granted")
+        Log.d("MainActivity", "Notification permission granted")
         try {
             startForegroundService( Intent(this, NotificationForegroundService::class.java))
         } catch (e: Exception) {
@@ -857,7 +873,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
         } catch (e: Exception) {
             Log.e("SplashActivity", "Error starting service: ${e.message}")
         }
-        Log.e("SplashActivity", "Notification permission denied")
+        Log.e("MainActivity", "Notification permission denied")
 //        loadAdsAndGoToNextScreen()
     }
 }
